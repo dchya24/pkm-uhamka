@@ -31,3 +31,21 @@ Route::prefix('register')->group(function () {
     Route::get("create-password", [RegisterController::class, "createPasswordPage"])->name('register.create-password');
     Route::get("confirm", [RegisterController::class, "confirmPage"])->name('register.confirm');
 });
+
+Route::prefix('admin')->group(function(){
+    Route::get("dashboard", function(){
+        return view("admin.dashboard");
+    });
+
+    Route::get("informasi", function(){
+        return view("admin.manajemen-informasi");
+    });
+
+    Route::get("akses-halaman", function(){
+        return view("admin.akses-halaman");
+    });
+
+    Route::get("skema-pkm", function(){
+        return view("admin.skema-pkm");
+    });
+});
