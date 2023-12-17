@@ -32,20 +32,32 @@ Route::prefix('register')->group(function () {
     Route::get("confirm", [RegisterController::class, "confirmPage"])->name('register.confirm');
 });
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function(){
     Route::get("dashboard", function(){
         return view("admin.dashboard");
-    });
+    })->name("dashboard");
 
     Route::get("informasi", function(){
         return view("admin.manajemen-informasi");
-    });
+    })->name("informasi");
 
     Route::get("akses-halaman", function(){
         return view("admin.akses-halaman");
-    });
+    })->name("akses-halaman");
 
     Route::get("skema-pkm", function(){
         return view("admin.skema-pkm");
-    });
+    })->name("skema-pkm");
+
+    Route::get("sertifikat", function(){
+        return view("admin.sertifikat");
+    })->name("sertifikat");
+
+    Route::get("data-mahasiswa", function(){
+        return view("admin.data-mahasiswa");
+    })->name("data-mahasiswa");
+
+    Route::get("data-dosen", function(){
+        return view("admin.data-dosen");
+    })->name("data-dosen");
 });

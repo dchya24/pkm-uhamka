@@ -1,8 +1,8 @@
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
   <div class="container-xxl">
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-      <a href="A_Dashboard.html" class="app-brand-link gap-2">
-        <img src="../../assets/img/Logo/uhamka.png" alt class="w-px-40 h-auto rounded-circle" />
+      <a href="{{ route('admin.dashboard') }}" class="app-brand-link gap-2">
+        <img src="{{ url('assets/img/Logo/uhamka.png') }}" alt class="w-px-40 h-auto rounded-circle" />
         <span class="app-brand-text demo menu-text fw-bold">PKM UHAMKA</span>
       </a>
 
@@ -23,7 +23,7 @@
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
           <a class="nav-link dropdown-toggle hide-arrow" href="/Admin/ManajemenAkun/A_Akunadmin.html" data-bs-toggle="dropdown">
             <div class="avatar avatar-online">
-              <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+              <img src="{{ url('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -32,7 +32,7 @@
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar avatar-online">
-                      <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="{{ url('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </div>
                   <div class="flex-grow-1">

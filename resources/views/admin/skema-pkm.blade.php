@@ -1,4 +1,5 @@
 @extends('admin.template.layout')
+@section("title", "Admin | Tambah Skema PKM")
 
 @section('body')
 <!-- Content -->
