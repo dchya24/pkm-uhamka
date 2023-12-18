@@ -82,7 +82,7 @@
             
             @yield('body')
 
-            @include('admin.template.footer')
+            @include('template.footer')
 
             <div class="content-backdrop fade"></div>
           </div>

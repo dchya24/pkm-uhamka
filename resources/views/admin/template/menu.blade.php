@@ -19,31 +19,31 @@
           </a>
           <ul class="menu-sub">
             <li class="menu-item">
-              <a href="/Admin/ManajemenUsulan/A_Dataproposal.html" class="menu-link">
+              <a href="{{ route('admin.manajemen-proposal.proposal') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-file-swap-outline"></i>
                 <div>Semua Proposal</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenUsulan/A_Pemilihiansubstansi.html" class="menu-link">
+              <a href="{{ route('admin.manajemen-proposal.penilai-substansi') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-clipboard-account"></i>
                 <div>Tambah penilai substansi</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenUsulan/A_Pemilihanadministrasi.html" class="menu-link">
+              <a href="{{ route('admin.manajemen-proposal.penilai-administrasi') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-note-multiple-outline"></i>
                 <div>Tambah penilai administrasi</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenUsulan/A_Pemilihanreviewer.html" class="menu-link">
+              <a href="{{ route('admin.manajemen-proposal.peninjau') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-comment-account"></i>
                 <div>Tambah peninjau</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenUsulan/A_Pemilihanwakilrektor.html" class="menu-link">
+              <a href="{{ route('admin.manajemen-proposal.wakil-rektor') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-star"></i>
                 <div>Tambah Wakil Rektor</div>
               </a>
@@ -59,37 +59,37 @@
           </a>
           <ul class="menu-sub">
             <li class="menu-item">
-              <a href="/Admin/ManajemenAkun/A_Akunadmin.html" class="menu-link">
+              <a href="{{route('admin.manajemen-akun.administrator')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-cog"></i>
                 <div>Administrator</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenAkun/A_Akunketuakelompok.html" class="menu-link">
+              <a href="{{route('admin.manajemen-akun.ketua-kelompok')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-key"></i>
                 <div>Ketua Kelompok</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenAkun/A_Akunsubstansi.html" class="menu-link">
+              <a href="{{route('admin.manajemen-akun.penilai')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-group"></i>
                 <div>Penilai Substansi</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenAkun/A_Akunadministrasi.html" class="menu-link">
+              <a href="{{route('admin.manajemen-akun.penilai')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-comment-account"></i>
                 <div>Penilai Administrasi</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenAkun/A_Akunpeninjau.html" class="menu-link">
+              <a href="{{route('admin.manajemen-akun.peninjau')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-check"></i>
                 <div>Peninjau</div>
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Admin/ManajemenAkun/A_Akunwakilrektor.html" class="menu-link">
+              <a href="{{route('admin.manajemen-akun.wakil-rektor')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-convert"></i>
                 <div>Wakil Rektor</div>
               </a>
