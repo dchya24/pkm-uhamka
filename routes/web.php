@@ -125,3 +125,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
         })->name('wakil-rektor.tambah');
     });
 });
+
+Route::prefix('mahasiswa')->name("mahasiswa.")->group(function(){
+    Route::get('dashboard', function(){
+        return view("mahasiswa.dashboard");
+    })->name("dashboard");
+});
