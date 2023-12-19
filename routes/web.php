@@ -88,20 +88,40 @@ Route::prefix('admin')->name('admin.')->group(function(){
             return view('admin.manajemen-proposal.proposal');
         })->name('proposal');
 
+        Route::get('proposal/{id}', function(){
+            return view('admin.manajemen-proposal.proposal-detail');
+        })->name('proposal-detail');
+
         Route::get('penilai-administrasi', function(){
             return view('admin.manajemen-proposal.penilai-administrasi');
         })->name('penilai-administrasi');
+
+        Route::get('penilai-administrasi/{id}', function(){
+            return view('admin.manajemen-proposal.tambah-penilai-administrasi');
+        })->name('penilai-administrasi.tambah');
 
         Route::get('penilai-substansi', function(){
             return view('admin.manajemen-proposal.penilai-substansi');
         })->name('penilai-substansi');
 
+        Route::get('penilai-substansi/{id}', function(){
+            return view('admin.manajemen-proposal.tambah-penilai-substansi');
+        })->name('penilai-substansi.tambah');
+
         Route::get('peninjau', function(){
             return view('admin.manajemen-proposal.peninjau');
         })->name('peninjau');
 
+        Route::get('peninjau/{id}', function(){
+            return view('admin.manajemen-proposal.tambah-peninjau');
+        })->name('peninjau.tambah');
+
         Route::get('wakil-rektor', function(){
             return view('admin.manajemen-proposal.wakil-rektor');
         })->name('wakil-rektor');
+
+        Route::get('wakil-rektor/{id}', function(){
+            return view('admin.manajemen-proposal.tambah-wakil-rektor');
+        })->name('wakil-rektor.tambah');
     });
 });

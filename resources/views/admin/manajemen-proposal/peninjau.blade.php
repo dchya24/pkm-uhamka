@@ -28,7 +28,7 @@
                       <td>Suryo Putro, S.T, M.T</td>
                       <td>4</td>
                       <td>
-                        <a href="A_IDPemilihanreviewer.html">
+                        <a href="{{ route('admin.manajemen-proposal.peninjau.tambah', 1) }}">
                           <button
                             type="button"
                             class="btn btn-sm rounded-pill btn-info waves-effect waves-light">

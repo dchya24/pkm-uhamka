@@ -28,7 +28,7 @@
                       <td>Suryo Putro, S.T, M.T</td>
                       <td>4</td>
                       <td>
-                        <a href="A_IDPemilihiansubstansi.html">
+                        <a href="{{ route('admin.manajemen-proposal.penilai-substansi.tambah', 1) }}">
                           <button
                             type="button"
                             class="btn btn-sm rounded-pill btn-info waves-effect waves-light">

@@ -59,7 +59,7 @@
             <tbody>
               <tr>
                 <td>
-                  <a href="/Admin/ManajemenUsulan/A_IDProposaledit.html" type="button" class="btn rounded-pill btn-primary btn-xs" target="_blank">
+                  <a href="{{route('admin.manajemen-proposal.proposal-detail', 1)}}" type="button" class="btn rounded-pill btn-primary btn-xs" target="_blank">
                     Detil
                   </a> 
                 </td>
