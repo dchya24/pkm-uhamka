@@ -6,7 +6,7 @@
   <div class="container-xxl flex-grow-0 container-p-y">
     <!-- Keterangan Semua Proposal  -->
     <div class="col-md-12">
-      <div class="card h-100">
+      <div class="card">
         <div class="d-flex row">
           <div class="col-md-8">
             <div class="card-body">

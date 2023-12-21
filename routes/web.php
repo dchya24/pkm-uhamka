@@ -130,4 +130,24 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->group(function(){
     Route::get('dashboard', function(){
         return view("mahasiswa.dashboard");
     })->name("dashboard");
+
+    Route::get('informasi', function(){
+        return view("mahasiswa.informasi");
+    })->name("informasi");
+
+    Route::get('sertifikat', function(){
+        return view("mahasiswa.sertifikat");
+    })->name("sertifikat");
+
+    Route::get('kirim-usulan', function(){
+        return view("mahasiswa.kirim-usulan");
+    })->name("kirim-usulan");
+
+    Route::get('profile', function(){
+        return view("mahasiswa.profile");
+    })->name("profile");
+
+    Route::get('faq', function(){
+        return view("mahasiswa.faq");
+    })->name("faq");
 });

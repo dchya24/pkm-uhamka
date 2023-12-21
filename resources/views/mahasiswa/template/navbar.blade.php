@@ -111,7 +111,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="M_Akunsaya.html">
+                      <a class="dropdown-item" href="{{ route("mahasiswa.profile") }}">
                         <i class="mdi mdi-account-outline me-2"></i>
                         <span class="align-middle">Akun Saya</span>
                       </a>

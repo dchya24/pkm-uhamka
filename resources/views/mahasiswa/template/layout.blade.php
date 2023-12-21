@@ -73,7 +73,7 @@
   <body>
     <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
       <div class="layout-container">
-        @include('template.navbar')
+        @include('mahasiswa.template.navbar')
 
         
         <!-- Layout container -->

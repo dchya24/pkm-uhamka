@@ -13,7 +13,7 @@
 
         <!-- Informasi -->
         <li class="menu-item">
-          <a class="menu-link" href="/Mahasiswa/M_Informasi.html">
+          <a class="menu-link" href="{{ route("mahasiswa.informasi") }}">
             <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
             <div>Informasi</div>
           </a>
@@ -27,7 +27,7 @@
           </a>
           <ul class="menu-sub">
             <li class="menu-item">
-              <a href="/Mahasiswa/Kirim usulan/M_kirimusulan.html" class="menu-link">
+              <a href="{{ route("mahasiswa.kirim-usulan") }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-file-swap-outline"></i>
                 <div>Kirim usulan</div>
               </a>
@@ -43,7 +43,7 @@
 
         <!-- Sertifikat PKM -->
         <li class="menu-item">
-          <a href="/Mahasiswa/M_Sertifikat.html" class="menu-link">
+          <a href="{{ route("mahasiswa.sertifikat") }}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-card-account-details-outline"></i>
             <div>Sertifikat PKM</div>
           </a>
@@ -51,7 +51,7 @@
 
         <!-- Tentang Akun -->
         <li class="menu-item">
-          <a href="/Mahasiswa/M_Akunsaya.html" class="menu-link">
+          <a href="{{ route("mahasiswa.profile") }}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
             <div>Akun Saya</div>
           </a>
@@ -59,7 +59,7 @@
 
         <!-- FAQ -->
         <li class="menu-item ">
-          <a href="/Mahasiswa/M_FAQ.html" class="menu-link">
+          <a href="{{ route("mahasiswa.faq") }}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-comment-question-outline"></i>
             <div>FAQ</div>
           </a>
