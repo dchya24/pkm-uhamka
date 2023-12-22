@@ -1,5 +1,5 @@
 @extends('mahasiswa.template.layout')
-@section("title", "Sertifikat | Mahasiswa")
+@section("title", "Kirim Usulan | Mahasiswa")
 
 @section('body')
   <!-- Main Content -->
@@ -392,7 +392,7 @@
 
 @section('javascript')
   <!-- Vendors JS -->
-  <script src="{{ url('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+  <script src="{{ url('assets/vendor/libs/apex-charts/apexcharts.js') }}') }}"></script>
   <script src="{{ url('assets/vendor/libs/swiper/swiper.js') }}"></script>
 
   <!-- Main JS -->
@@ -401,24 +401,21 @@
   <!-- Page JS -->
   <script src="{{ url('assets/js/dashboards-analytics.js') }}"></script>
 
-  <!-- DataTables  & Plugins -->
-  <script src="{{ url('dist2/plugins/datatables/jquery.dataTables.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/jszip/jszip.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/pdfmake/pdfmake.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/pdfmake/vfs_fonts.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-  <script src="{{ url('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+    <!-- Vendors JS -->
+  <script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js') }}"></script>
 
   <!-- Page JS -->
-  <script src="{{ url('dist2/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
-  <script src="{{ url('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+
+  <script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
+  <script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
+  <!-- Vendors JS -->
+  <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
   <script>
     $(function () {

@@ -151,3 +151,9 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->group(function(){
         return view("mahasiswa.faq");
     })->name("faq");
 });
+
+Route::prefix("penilai-administrasi")->name("penilai-administrasi")->group(function(){
+    Route::get('dashboard', function(){
+        return view("penilai-administrasi.dashboard");
+    })->name("dashboard");
+});

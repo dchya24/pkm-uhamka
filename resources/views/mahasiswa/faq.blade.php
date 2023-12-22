@@ -1,5 +1,5 @@
 @extends('mahasiswa.template.layout')
-@section("title", "Akun | Mahasiswa")
+@section("title", "FAQ | Mahasiswa")
 
 @section('body')
 
