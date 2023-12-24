@@ -5,7 +5,7 @@
       <ul class="menu-inner">
         <!-- Dashboards -->
         <li class="menu-item active">
-          <a class="menu-link" href="{{route('penilai-administrasi.dashboard')}}">
+          <a class="menu-link" href="{{route('reviewer.dashboard')}}">
             <i class="menu-icon tf-icons mdi mdi-notebook-outline"></i>
             Beranda
           </a>
@@ -13,7 +13,7 @@
 
         <!-- Informasi -->
         <li class="menu-item">
-          <a class="menu-link" href="{{route('penilai-administrasi.informasi')}}">
+          <a class="menu-link" href="{{route('reviewer.informasi')}}">
             <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
             <div>Informasi</div>
           </a>
@@ -21,7 +21,7 @@
 
         <!-- Penilaian Proposal -->
         <li class="menu-item">
-          <a href="{{route('penilai-administrasi.penilaian-proposal')}}" class="menu-link">
+          <a href="{{route('reviewer.penilaian-proposal')}}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-checkbox-marked-outline"></i>
             <div>Penilaian Proposal</div>
           </a>
@@ -29,7 +29,7 @@
 
         <!-- Tentang Akun -->
         <li class="menu-item">
-          <a href="{{route('penilai-administrasi.profile')}}" class="menu-link">
+          <a href="{{route('reviewer.profile')}}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
             <div>Akun Saya</div>
           </a>

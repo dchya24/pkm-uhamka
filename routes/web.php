@@ -152,8 +152,38 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->group(function(){
     })->name("faq");
 });
 
-Route::prefix("penilai-administrasi")->name("penilai-administrasi")->group(function(){
+Route::prefix("penilai-administrasi")->name("penilai-administrasi.")->group(function(){
     Route::get('dashboard', function(){
         return view("penilai-administrasi.dashboard");
     })->name("dashboard");
+
+    Route::get('informasi', function(){
+        return view("penilai-administrasi.informasi");
+    })->name("informasi");
+
+    Route::get('penilaian-proposal', function(){
+        return view("penilai-administrasi.penilaian-proposal");
+    })->name("penilaian-proposal");
+
+    Route::get('profile', function(){
+        return view("penilai-administrasi.profile");
+    })->name("profile");
+});
+
+Route::prefix("reviewer")->name("reviewer.")->group(function(){
+    Route::get('dashboard', function(){
+        return view("reviewer.dashboard");
+    })->name("dashboard");
+
+    Route::get('informasi', function(){
+        return view("reviewer.informasi");
+    })->name("informasi");
+
+    Route::get('penilaian-proposal', function(){
+        return view("reviewer.penilaian-proposal");
+    })->name("penilaian-proposal");
+
+    Route::get('profile', function(){
+        return view("reviewer.profile");
+    })->name("profile");
 });
