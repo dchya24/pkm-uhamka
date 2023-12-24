@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -33,54 +35,32 @@ Route::prefix('register')->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
-    Route::get("dashboard", function(){
-        return view("admin.dashboard");
-    })->name("dashboard");
+    Route::get("dashboard", [AdminController::class, "dashboardPage"])->name("dashboard");
 
-    Route::get("informasi", function(){
-        return view("admin.manajemen-informasi");
-    })->name("informasi");
+    Route::get("informasi",[AdminController::class, "informasiPage"])->name("informasi");
 
-    Route::get("akses-halaman", function(){
-        return view("admin.akses-halaman");
-    })->name("akses-halaman");
+    Route::get("akses-halaman", [AdminController::class, "aksesHalamanPage"])->name("akses-halaman");
 
-    Route::get("skema-pkm", function(){
-        return view("admin.skema-pkm");
-    })->name("skema-pkm");
+    Route::get("skema-pkm", [AdminController::class, "skemaPkmPage"])->name("skema-pkm");
 
     Route::get("sertifikat", function(){
         return view("admin.sertifikat");
     })->name("sertifikat");
 
-    Route::get("data-mahasiswa", function(){
-        return view("admin.data-mahasiswa");
-    })->name("data-mahasiswa");
+    Route::get("data-mahasiswa", [AdminController::class, "dataMahasiswaPage"])->name("data-mahasiswa");
 
-    Route::get("data-dosen", function(){
-        return view("admin.data-dosen");
-    })->name("data-dosen");
+    Route::get("data-dosen", [AdminController::class, "dataDosenPage"])->name("data-dosen");
 
     Route::prefix("manajemen-akun")->name('manajemen-akun.')->group(function(){
-        Route::get("administrator", function() {
-            return view("admin.manajemen-akun.administrator");
-        })->name("administrator");
+        Route::get("administrator", [ManajemenAkunController::class, "administratorPage"])->name("administrator");
 
-        Route::get("ketua-kelompok", function() {
-            return view("admin.manajemen-akun.ketua-kelompok");
-        })->name("ketua-kelompok");
+        Route::get("ketua-kelompok", [ManajemenAkunController::class, "ketuaKelompokPage"])->name("ketua-kelompok");
 
-        Route::get("penilai", function() {
-            return view("admin.manajemen-akun.penilai");
-        })->name("penilai");
+        Route::get("penilai", [ManajemenAkunController::class, "penilaiPage"])->name("penilai");
 
-        Route::get("peninjau", function() {
-            return view("admin.manajemen-akun.peninjau");
-        })->name("peninjau");
+        Route::get("peninjau", [ManajemenAkunController::class, "peninjauPage"])->name("peninjau");
 
-        Route::get("wakil-rektor", function() {
-            return view("admin.manajemen-akun.wakil-rektor");
-        })->name("wakil-rektor");
+        Route::get("wakil-rektor", [ManajemenAkunController::class, "warekPage"])->name("wakil-rektor");
     });
 
     Route::prefix('manajemen-proposal')->name('manajemen-proposal.')->group( function(){
