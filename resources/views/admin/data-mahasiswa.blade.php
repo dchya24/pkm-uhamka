@@ -45,7 +45,6 @@
                 <th>Fakultas</th>
                 <th>Program Studi</th>
                 <th>Keterangan</th>
-                <th>Status akun</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -56,16 +55,6 @@
                 <td>Fakultas Teknik</td>
                 <td>Teknik Informatika</td>
                 <td>Aktif</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" class="switch-input" checked />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on"></span>
-                      <span class="switch-off"></span>
-                    </span>
-                    <span class="switch-label"></span>
-                  </label>
-                </td>
                 <td>
                   <button
                     type="button"
