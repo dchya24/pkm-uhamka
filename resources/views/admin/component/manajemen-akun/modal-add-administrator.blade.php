@@ -13,22 +13,33 @@
       <div class="modal-body">
         <div class="mb-4">
           <div class="card-body">
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                name="Tambah_A_Username"
-                aria-label="Product title" />
-              <label>Username</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                name="Tambah_A_Password"
-                aria-label="Product title" />
-              <label>Password</label>
-            </div>
+            <form action="{{ route("admin.manajemen-akun.administrator.store") }}" method="POST" name="add-administrator" id="add-administrator">
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  aria-label="Product title" />
+                <label>Username</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nama"
+                  aria-label="Product title" />
+                <label>Nama</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  aria-label="Product title" />
+                <label>Password</label>
+              </div>
+              {{ csrf_field() }}
+            </form>
           </div>
         </div>
         <!-- /Product Information -->
@@ -37,7 +48,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary">Tambah</button>
+        <button type="button" class="btn btn-primary" onclick="submitAdd()">Tambah</button>
       </div>
     </div>
   </div>
