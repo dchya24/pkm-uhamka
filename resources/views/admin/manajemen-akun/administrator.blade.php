@@ -1,4 +1,5 @@
 @extends('admin.template.layout')
+@section("title", "Admin |  Akun Administrator")
 
 @section('body')
   <!-- Main Content -->
@@ -28,38 +29,42 @@
             <thead>
               <tr class="text-center">
                 <th>Username</th>
-                <th>Password</th>
-                <th>Keterangan</th>
-                <th>Actions</th>
+                <th>Nama</th>
+                <th width="25%">Actions</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              <tr class="text-center">
-                <td>iwan mahyudin</td>
-                <td>1234567</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" class="switch-input" checked />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on"></span>
-                      <span class="switch-off"></span>
-                    </span>
-                  </label>
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
-                    data-bs-toggle="modal"
-                    data-bs-target="#largeModal">
-                    Edit
-                  </button>
-
-                  <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+              @forelse ($data as $item)
+                  <tr>
+                    <td class="text-center">{{ $item->username }}</td>
+                    <td class="text-center">{{ $item->nama }}</td>
+                    <td>
+                      <button
+                        onclick="openModal(event)"
+                        type="button"
+                        class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
+                        data-bs-toggle="modal"
+                        data-bs-target="#edit-administrator"
+                        data-id="{{$item->id}}"
+                        data-nama="{{$item->nama}}"
+                        data-username="{{$item->username}}">
+                        Edit
+                      </button>
+    
+                      <form action="{{ route('admin.manajemen-akun.administrator.delete', $item->id) }}" method="POST" class="d-inline">
+                        {{csrf_field()}}
+                        @method('delete')
+                        <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
+                          Hapus
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+              @empty
+                  <tr>
+                    <td colspan="3">Empty!</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
@@ -70,9 +75,9 @@
 
   @include('admin.component.manajemen-akun.modal-add-administrator')
   @include('admin.component.manajemen-akun.modal-edit-administrator')
+@endsection
 
-
-  @section('javascript')
+@section('javascript')
     
     <!-- Vendors JS -->
     <script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
@@ -121,5 +126,27 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-  @endsection
+
+    <script>
+      function submitAdd(){
+        $("#add-administrator").submit();
+      }
+
+      function submitEdit(){
+        $("#edit_administrator").submit();
+      }
+
+      function openModal(event){
+        event.preventDefault();
+        const username = event.target.getAttribute('data-username');
+        const id = event.target.getAttribute('data-id');
+        const nama = event.target.getAttribute('data-nama');
+
+        document.getElementById("edit_username").value = username;
+        document.getElementById("edit_nama").value = nama;
+        const url = window.BASE_URL + `/admin/manajemen-akun/administrator/${id}/update`;
+
+        document.forms["edit_administrator"].action = url;
+      }
+    </script>
 @endsection

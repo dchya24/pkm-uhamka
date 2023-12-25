@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\ManajemenAkunController;
+use App\Http\Controllers\Admin\AdministratorController;
+use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -65,7 +67,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 
     Route::prefix("manajemen-akun")->name('manajemen-akun.')->group(function(){
-        Route::get("administrator", [ManajemenAkunController::class, "administratorPage"])->name("administrator");
+        Route::prefix("administrator")->group(function(){
+            Route::post("", [AdministratorController::class, "store"])->name("administrator.store");
+            Route::get("", [AdministratorController::class, "index"])->name("administrator");
+            Route::put("{id}/update", [AdministratorController::class, "update"])->name("administrator.update");
+            Route::delete("{id}/delete", [AdministratorController::class, "destroy"])->name("administrator.delete");
+        });
 
         Route::get("ketua-kelompok", [ManajemenAkunController::class, "ketuaKelompokPage"])->name("ketua-kelompok");
 
@@ -73,7 +80,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         Route::get("peninjau", [ManajemenAkunController::class, "peninjauPage"])->name("peninjau");
 
-        Route::get("wakil-rektor", [ManajemenAkunController::class, "warekPage"])->name("wakil-rektor");
+        Route::prefix("wakil-rektor")->group(function(){
+            Route::post("", [WarekController::class, "store"])->name("wakil-rektor.store");
+            Route::get("", [WarekController::class, "index"])->name("wakil-rektor");
+            Route::put("{id}/update", [WarekController::class, "update"])->name("wakil-rektor.update");
+            Route::delete("{id}/delete", [WarekController::class, "destroy"])->name("wakil-rektor.delete");
+        });
     });
 
     Route::prefix('manajemen-proposal')->name('manajemen-proposal.')->group( function(){

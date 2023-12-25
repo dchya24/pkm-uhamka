@@ -1,9 +1,9 @@
 <!-- Modal Tambah Akun -->
-<div class="modal fade" id="Tambah_Akunmahasiswa" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal-add-warek" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Akun Wakil Rektor</h4>
+        <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Akun Administrator</h4>
         <button
           type="button"
           class="btn-close"
@@ -13,30 +13,33 @@
       <div class="modal-body">
         <div class="mb-4">
           <div class="card-body">
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="number"
-                class="form-control"
-                name="Tambah_A_NIMmahasiswa"
-                aria-label="Product title" />
-              <label>Username</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="number"
-                class="form-control"
-                name="Tambah_A_NIMmahasiswa"
-                aria-label="Product title" />
-              <label>Nama Lengkap</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                name="Tambah_A_Passwordmahasiswa"
-                aria-label="Product title" />
-              <label>Password</label>
-            </div>
+            <form action="{{ route("admin.manajemen-akun.wakil-rektor.store") }}" method="POST" name="add-warek" id="add-warek">
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  aria-label="Product title" />
+                <label>Username</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nama"
+                  aria-label="Product title" />
+                <label>Nama</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  aria-label="Product title" />
+                <label>Password</label>
+              </div>
+              {{ csrf_field() }}
+            </form>
           </div>
         </div>
         <!-- /Product Information -->
@@ -45,7 +48,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary">Tambah</button>
+        <button type="button" class="btn btn-primary" onclick="submitAdd()">Tambah</button>
       </div>
     </div>
   </div>

@@ -10,11 +10,12 @@
             <h4 class="">Data Akun Wakil Rektor</h4>
           </div>
           <div class="col-sm">
+
             <button
               type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
-              data-bs-target="#Tambah_Akunmahasiswa"
+              data-bs-target="#modal-add-warek"
               style="float: right">
               Tambahkan Akun Wakil Rektor
             </button>
@@ -27,41 +28,42 @@
             <thead>
               <tr class="text-center">
                 <th>Username</th>
-                <th>Nama Lengkap</th>
-                <th>Password</th>
-                <th>Keterangan</th>
-                <th>Actions</th>
+                <th>Nama</th>
+                <th width="25%">Actions</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              <tr class="text-center">
-                <td>1803015012</td>
-                <td> losia praleut</td>
-                <td>1234567</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" class="switch-input" checked />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on"></span>
-                      <span class="switch-off"></span>
-                    </span>
-                    <span class="switch-label"></span>
-                  </label>
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
-                    data-bs-toggle="modal"
-                    data-bs-target="#largeModal">
-                    Edit
-                  </button>
-
-                  <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+              @forelse ($data as $item)
+                  <tr>
+                    <td class="text-center">{{ $item->username }}</td>
+                    <td class="text-center">{{ $item->nama }}</td>
+                    <td>
+                      <button
+                        onclick="openModal(event)"
+                        type="button"
+                        class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-warek"
+                        data-id="{{$item->id}}"
+                        data-nama="{{$item->nama}}"
+                        data-username="{{$item->username}}">
+                        Edit
+                      </button>
+    
+                      <form action="{{ route('admin.manajemen-akun.wakil-rektor.delete', $item->id) }}" method="POST" class="d-inline">
+                        {{csrf_field()}}
+                        @method('delete')
+                        <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
+                          Hapus
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+              @empty
+                  <tr>
+                    <td colspan="3">Empty!</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
@@ -72,8 +74,9 @@
 
   @include('admin.component.manajemen-akun.modal-add-warek')
   @include('admin.component.manajemen-akun.modal-edit-warek')
+@endsection
 
-  @section('javascript')
+@section('javascript')
     
     <!-- Vendors JS -->
     <script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
@@ -85,8 +88,6 @@
     <script src="{{ asset('assets/vendor/libs/tagify/tagify.js') }}"></script>
 
     <!-- Main JS -->
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <!-- Page JS -->
@@ -109,7 +110,6 @@
 
     <script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
     <script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
-    <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('dist2/plugins/datatables/jquery.dataTables.js') }}"></script>
@@ -125,6 +125,27 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
-  @endsection
+
+    <script>
+      function submitAdd(){
+        $("#add-warek").submit();
+      }
+
+      function submitEdit(){
+        $("#edit_warek").submit();
+      }
+
+      function openModal(event){
+        event.preventDefault();
+        const username = event.target.getAttribute('data-username');
+        const id = event.target.getAttribute('data-id');
+        const nama = event.target.getAttribute('data-nama');
+
+        document.getElementById("edit_username").value = username;
+        document.getElementById("edit_nama").value = nama;
+        const url = window.BASE_URL + `/admin/manajemen-akun/wakil-rektor/${id}/update`;
+
+        document.forms["edit_warek"].action = url;
+      }
+    </script>
 @endsection
