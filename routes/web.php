@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
@@ -47,7 +48,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
         return view("admin.sertifikat");
     })->name("sertifikat");
 
-    Route::get("data-mahasiswa", [AdminController::class, "dataMahasiswaPage"])->name("data-mahasiswa");
+    Route::prefix('data-mahasiswa')->group(function(){
+        Route::post("", [DataMahasiswaController::class, "store"])->name('data-mahasiswa.store');
+        Route::get("", [DataMahasiswaController::class, "index"])->name('data-mahasiswa');
+        Route::delete("{nim}/delete", [DataMahasiswaController::class, "delete"])->name('data-mahasiswa.delete');
+        Route::put("{nim}/update", [DataMahasiswaController::class, "update"])->name('data-mahasiswa.update');
+    });
 
     Route::get("data-dosen", [AdminController::class, "dataDosenPage"])->name("data-dosen");
 

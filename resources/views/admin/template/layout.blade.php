@@ -14,6 +14,7 @@
     <title>@yield("title", "Admin | Beranda")</title>
 
     <meta name="description" content="" />
+    <meta name="base_url" content="{{url('/')}}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{url('assets/img/Logo/uhamka.png')}}" />
@@ -60,12 +61,16 @@
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-statistics.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-analytics.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script>
+      window.BASE_URL = document.querySelector("meta[name='base_url']").getAttribute('content');
+    </script>
   </head>
   
   <body>
@@ -108,6 +113,7 @@
     <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+    <script src="{{ url('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
     <!-- endbuild -->
 

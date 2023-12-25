@@ -27,10 +27,6 @@ class AdminController extends Controller
         return view("admin.sertifikat");
     }
 
-    public function dataMahasiswaPage(){
-        return view('admin.data-mahasiswa');
-    }
-
     public function dataDosenPage(){
         return view('admin.data-dosen');
     }
