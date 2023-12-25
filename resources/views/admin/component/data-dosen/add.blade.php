@@ -10,57 +10,65 @@
           data-bs-dismiss="modal"
           aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="mb-4">
-          <div class="card-body">
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="number"
-                class="form-control"
-                aria-label="Product title" />
-              <label>NIDN/NIP</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                aria-label="Product title" />
-              <label>Nama Lengkap</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                aria-label="Product title" />
-              <label>Fakultas</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                aria-label="Product title" />
-              <label>Program Studi</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <select
-              id="select2Basic"
-              class="select2 form-select form-select-lg"
-              data-allow-clear="true">
-              <option value="AK">Tidak Aktif</option>
-              <option value="HI">Aktif</option>
-            </select>
-              <label>Keterangan</label>
+      <form action="{{ route('admin.data-dosen.store') }}" method="POST">
+        <div class="modal-body">
+          <div class="mb-4">
+            <div class="card-body">
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="nidn"
+                  aria-label="Product title" />
+                <label>NIDN/NIP</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nama"
+                  aria-label="Product title" />
+                <label>Nama Lengkap</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="fakultas"
+                  aria-label="Product title" />
+                <label>Fakultas</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="prodi"
+                  aria-label="Product title" />
+                <label>Program Studi</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <select
+                  id="select2Basic"
+                  class="select2 form-select form-select-lg"
+                  name="keterangan"
+                  data-allow-clear="true">
+                  <option value="0">Tidak Aktif</option>
+                  <option value="1">Aktif</option>
+                </select>
+                <label>Keterangan</label>
+              </div>
             </div>
           </div>
+          <!-- /Product Information -->
         </div>
-        <!-- /Product Information -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-          Tutup
-        </button>
-        <button type="button" class="btn btn-primary">Tambah</button>
-      </div>
+        <div class="modal-footer">
+          {{ csrf_field() }}
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Tutup
+          </button>
+          <button type="submit" class="btn btn-primary">Tambah</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

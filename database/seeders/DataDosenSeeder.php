@@ -12,6 +12,7 @@ class DataDosenSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\DataDosen::factory(50)->create();
+
     }
 }

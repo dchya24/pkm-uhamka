@@ -44,41 +44,55 @@
                 <th>Fakultas</th>
                 <th>Program Studi</th>
                 <th>Keterangan</th>
-                <th>Status akun</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              <tr class="text-center">
-                <td>1803015012</td>
-                <td>Iwan Mahyudin</td>
-                <td>Fakultas Teknik</td>
-                <td>Teknik Informatika</td>
-                <td>Aktif</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" class="switch-input" checked />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on"></span>
-                      <span class="switch-off"></span>
-                    </span>
-                    <span class="switch-label"></span>
-                  </label>
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
-                    data-bs-toggle="modal"
-                    data-bs-target="#largeModal">
-                    Edit
-                  </button>
+              @forelse ($data as $item)
+                  <tr>
+                    <td>{{$item->nidn}}</td>
+                    <td>{{$item->nama}}</td>
+                    <td>{{$item->fakultas}}</td>
+                    <td>{{$item->prodi}}</td>
+                    <td>
+                      @if ($item->keterangan == 1)
+                          Aktif
+                      @else
+                          Tidak Aktif
+                      @endif 
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
+                        onclick="openModal(event)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#edit_dosen"
+                        data-nidn="{{$item->nidn}}"
+                        data-nama="{{$item->nama}}"
+                        data-fakultas="{{$item->fakultas}}"
+                        data-prodi="{{$item->prodi}}"
+                        data-keterangan="{{$item->keterangan}}"
+                      >
+                        Edit
+                      </button>
 
-                  <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+                      <form action=" {{route('admin.data-dosen.delete', $item->nidn)}}" method="POST" onsubmit="confirm()">
+                        {{ csrf_field() }}
+                        @method('delete')
+                        <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
+                            Hapus
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+              @empty
+                  <tr>
+                    <td class="text-center">
+                      Empty!
+                    </td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
@@ -119,4 +133,28 @@
 
   <!-- Bootstrap Switch -->
   <script src="{{ asset('dist2/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+  <script>
+      function openModal(event){
+        event.preventDefault();
+        const nidn = event.target.getAttribute('data-nidn');
+        const nama = event.target.getAttribute('data-nama');
+        const fakultas = event.target.getAttribute('data-fakultas');
+        const prodi = event.target.getAttribute('data-prodi');
+        const keterangan = event.target.getAttribute('data-keterangan');
+
+        document.getElementById("edit_nidn").value = nidn;
+        document.getElementById("edit_nama").value = nama;
+        document.getElementById("edit_fakultas").value = fakultas;
+        document.getElementById("edit_prodi").value = prodi;
+        document.getElementById("edit_keterangan").value = keterangan;
+        const url = window.BASE_URL + `/admin/data-dosen/${nidn}/update`;
+
+        document.forms["edit_dosen"].action = url;
+      }
+
+      function submitEdit(){
+        $("#form-edit").submit();
+      }
+  </script>
 @endsection

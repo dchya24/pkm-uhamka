@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Login\LoginController;
@@ -55,7 +56,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::put("{nim}/update", [DataMahasiswaController::class, "update"])->name('data-mahasiswa.update');
     });
 
-    Route::get("data-dosen", [AdminController::class, "dataDosenPage"])->name("data-dosen");
+    Route::prefix('data-dosen')->group(function (){
+        Route::post("", [DataDosenController::class, "store"])->name("data-dosen.store");
+        Route::get("", [DataDosenController::class, "index"])->name("data-dosen");
+        Route::put("{nidn}/update", [DataDosenController::class, "update"])->name("data-dosen.update");
+        Route::delete("{nidn}/delete", [DataDosenController::class, "delete"])->name("data-dosen.delete");
+    });
+
 
     Route::prefix("manajemen-akun")->name('manajemen-akun.')->group(function(){
         Route::get("administrator", [ManajemenAkunController::class, "administratorPage"])->name("administrator");

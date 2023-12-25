@@ -26,8 +26,4 @@ class AdminController extends Controller
     public function sertifikatPage(){
         return view("admin.sertifikat");
     }
-
-    public function dataDosenPage(){
-        return view('admin.data-dosen');
-    }
 }
