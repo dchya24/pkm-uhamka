@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DataDosen;
+use Illuminate\Support\Facades\DB;
 
 class DataDosenController extends Controller
 {
@@ -43,5 +44,25 @@ class DataDosenController extends Controller
         $dataDosen->save();
 
         return redirect()->back();
+    }
+
+    public function apiDataDosen(Request $request){
+        $data = DB::table("data_dosen")
+            ->select(["data_dosen.id", "data_dosen.nidn", "data_dosen.nama"])
+            ->leftJoin("peninjau",  "peninjau.data_dosen_id", "data_dosen.id")
+            ->whereNull("peninjau.data_dosen_id")
+            ->where("keterangan", 1);
+
+        if(!empty($request->search)){
+            $search = $request->search;
+
+            $data->where("data_dosen.nidn", "like", "%$search%");
+        }
+
+        $data = $data->get();
+
+        return response()->json([
+            "data" => $data
+        ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Admin\AdministratorController;
 use App\Http\Controllers\Admin\PenilaiController;
+use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
@@ -85,7 +86,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
 
 
-        Route::get("peninjau", [ManajemenAkunController::class, "peninjauPage"])->name("peninjau");
+        Route::prefix("peninjau")->group(function(){
+            Route::post("", [PeninjauController::class, "store"])->name("peninjau.store");
+            Route::get("", [PeninjauController::class, "index"])->name("peninjau");
+            Route::put("{id}/update-password", [PeninjauController::class, "update"])->name("peninjau.update-password");
+            Route::delete("{id}/delete", [PeninjauController::class, "destroy"])->name("peninjau.delete");
+        });
 
         Route::prefix("wakil-rektor")->group(function(){
             Route::post("", [WarekController::class, "store"])->name("wakil-rektor.store");
