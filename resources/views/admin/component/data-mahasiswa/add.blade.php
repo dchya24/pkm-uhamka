@@ -48,13 +48,13 @@
               </div>
               <div class="form-floating form-floating-outline mb-4">
                 <select
-                id="select2Basic"
-                class="select2 form-select form-select-lg"
-                name="keterangan"
-                data-allow-clear="true">
-                <option value="1">Aktif</option>
-                <option value="0">Tidak Aktif</option>
-              </select>
+                  id="select2Basic"
+                  class="select2 form-select form-select-lg"
+                  name="keterangan"
+                  data-allow-clear="true">
+                  <option value="1">Aktif</option>
+                  <option value="0">Tidak Aktif</option>
+                </select>
                 <label>Keterangan</label>
               </div>
             </div>

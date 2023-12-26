@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             "type" => "admin",
             "password" => bcrypt("password")
         ]);
-        // $this->call([]);
+        $this->call([
+            DataDosenSeeder::class,
+            DataMahasiswaSeeder::class
+        ]);
     }
 }

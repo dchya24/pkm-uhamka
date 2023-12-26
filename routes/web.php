@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Admin\AdministratorController;
+use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
@@ -76,7 +77,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         Route::get("ketua-kelompok", [ManajemenAkunController::class, "ketuaKelompokPage"])->name("ketua-kelompok");
 
-        Route::get("penilai", [ManajemenAkunController::class, "penilaiPage"])->name("penilai");
+        Route::prefix("penilai")->group(function(){
+            Route::post("", [PenilaiController::class, "store"])->name("penilai.store");
+            Route::get("", [PenilaiController::class, "index"])->name("penilai");
+            Route::put("{id}/update", [PenilaiController::class, "update"])->name("penilai.update");
+            Route::delete("{id}/delete", [PenilaiController::class, "destroy"])->name("penilai.delete");
+        });
+
 
         Route::get("peninjau", [ManajemenAkunController::class, "peninjauPage"])->name("peninjau");
 

@@ -15,10 +15,6 @@ class ManajemenAkunController extends Controller
         return view("admin.manajemen-akun.ketua-kelompok");
     }
 
-    public function penilaiPage(){
-        return view("admin.manajemen-akun.penilai");
-    }
-
     public function peninjauPage(){
         return view("admin.manajemen-akun.peninjau");
     }

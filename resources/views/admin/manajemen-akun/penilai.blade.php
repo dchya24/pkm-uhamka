@@ -7,7 +7,7 @@
       <div class="card-header">
         <div class="row pt-3">
           <div class="col-sm">
-            <h4 class="">Data Akun Penilai Substansi</h4>
+            <h4 class="">Data Akun Penilai</h4>
           </div>
           <div class="col-sm">
             
@@ -15,9 +15,9 @@
               type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
-              data-bs-target="#Tambah_Akunmahasiswa"
+              data-bs-target="#tambah-penilai"
               style="float: right">
-              Tambahkan Akun Penilai Substansi
+              Tambahkan Akun Penilai
             </button>
           </div>
         </div>
@@ -29,40 +29,44 @@
               <tr class="text-center">
                 <th>Username</th>
                 <th>Nama Lengkap</th>
-                <th>Password</th>
-                <th>Keterangan</th>
+                <th>Jenis Penilai</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              <tr class="text-center">
-                <td>1803015012</td>
-                <td> losia praleut</td>
-                <td>1234567</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" class="switch-input" checked />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on"></span>
-                      <span class="switch-off"></span>
-                    </span>
-                    <span class="switch-label"></span>
-                  </label>
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
-                    data-bs-toggle="modal"
-                    data-bs-target="#largeModal">
-                    Edit
-                  </button>
-
-                  <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+              @forelse ($penilai as $item)
+                  <tr>
+                    <td>{{$item->username}}</td>
+                    <td>{{$item->nama}}</td>
+                    <td>{{$item->tipePenilai()}}</td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
+                        data-bs-toggle="modal"
+                        data-bs-target="#edit-penilai"
+                        onclick="openModal(event)"
+                        data-id="{{$item->id}}"
+                        data-nama="{{$item->nama}}"
+                        data-jenis-penilai="{{$item->jenis_penilai}}"
+                        data-username="{{$item->username}}">
+                        Edit
+                      </button>
+    
+                      <form action="{{ route('admin.manajemen-akun.penilai.delete', $item->id)}}"method="POST" class="d-inline">
+                        {{ csrf_field() }}
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
+                          Hapus
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+              @empty
+                  <tr>
+                    <td class="text-center font-weight-bold" colspan="4">Empty!</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
@@ -128,5 +132,29 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
+    <script>
+      function submitAdd(){
+        document.getElementById("add-penilai").submit();
+      }
+
+      function submitEdit(){
+        $("#edit_penilai").submit();
+      }
+
+      function openModal(event){
+        event.preventDefault();
+        const username = event.target.getAttribute('data-username');
+        const id = event.target.getAttribute('data-id');
+        const nama = event.target.getAttribute('data-nama');
+        const jenis_penilai = event.target.getAttribute('data-jenis-penilai');
+
+        document.getElementById("edit_username").value = username;
+        document.getElementById("edit_nama").value = nama;
+        document.getElementById("edit_jenis_penilai").value = jenis_penilai;
+        const url = window.BASE_URL + `/admin/manajemen-akun/penilai/${id}/update`;
+
+        document.forms["edit_penilai"].action = url;
+      }
+    </script>
   @endsection
 @endsection

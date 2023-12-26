@@ -73,13 +73,7 @@
             <li class="menu-item">
               <a href="{{route('admin.manajemen-akun.penilai')}}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-account-group"></i>
-                <div>Penilai Substansi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="{{route('admin.manajemen-akun.penilai')}}" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-comment-account"></i>
-                <div>Penilai Administrasi</div>
+                <div>Akun Penilai</div>
               </a>
             </li>
             <li class="menu-item">
