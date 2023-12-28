@@ -27,16 +27,18 @@
               <h4 class="mb-2">Pendaftaran akun PKM UHAMKA👋</h4>
               <p class="mb-4">Silahhkan masukan Nomor induk mahasiswa mu untuk verifikasi!</p>
 
-              <form id="formAuthentication" class="mb-3" action="/All Login/mahasiswa/R2_Mahasiswa.html">
+              <form id="formAuthentication" class="mb-3" action="{{route('register.verify-nim')}}" method="POST">
                 <div class="form-floating form-floating-outline mb-3">
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     placeholder="Masukan NIM kamu"
+                    name="nim"
                     autofocus />
                   <label for="a_username">Nomor Induk Mahasiswa</label>
                 </div>
                 <div class="mb-3">
+                    @csrf
                     <button class="btn btn-primary d-grid w-100" type="submit">Verifikasi data</button>                  
                 </div>
               </form>

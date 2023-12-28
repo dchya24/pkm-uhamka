@@ -25,9 +25,9 @@
 
             <div class="card-body mt-2">
               <h4 class="mb-2">Kamu adalah mahasiswa aktif</h4>
-              <p class="mb-4">Ahmad saroji / Fakultas teknik / teknik informatika</p>
+              <p class="mb-4">{{$mahasiswa->nama}} / {{$mahasiswa->fakultas}} / {{$mahasiswa->prodi}}</p>
 
-              <form id="formAuthentication" class="mb-3" action="/All Login/mahasiswa/C_mahasiswa.html">
+              <form id="formAuthentication" class="mb-3" action="{{ route('register.create-account')}}" method="POST">
                 
                 <div class="mb-3 form-password-toggle">
                   <div class="input-group input-group-merge">
@@ -51,7 +51,7 @@
                         type="password"
                         id="confirm-password"
                         class="form-control"
-                        name="confirm-password"
+                        name="confirm_password"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password" />
                       <label for="confirm-password">Konfirmasi Password</label>
@@ -60,6 +60,9 @@
                   </div>
                 </div>
                 <div class="mb-3">
+                    @csrf
+                    <input type="hidden" name="nim" value="{{$mahasiswa->nim}}">
+                    <input type="hidden" name="token" value="{{$token}}">
                     <button class="btn btn-primary d-grid w-100" type="submit">Daftar</button>                  
                 </div>
               </form>

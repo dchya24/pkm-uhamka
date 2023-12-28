@@ -37,6 +37,8 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('register')->group(function () {
     Route::get("", [RegisterController::class, "index"])->name('register.index');
+    Route::post("verify-nim", [RegisterController::class, "verifyNim"])->name('register.verify-nim');
+    Route::post("create-password", [RegisterController::class, "register"])->name('register.create-account');
     Route::get("create-password", [RegisterController::class, "createPasswordPage"])->name('register.create-password');
     Route::get("confirm", [RegisterController::class, "confirmPage"])->name('register.confirm');
 });

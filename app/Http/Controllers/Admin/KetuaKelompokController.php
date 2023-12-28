@@ -19,7 +19,9 @@ class KetuaKelompokController extends Controller
         $nim = $request->nim;
         $password = bcrypt($request->password);
 
-        $checkDataMahasiswa = DataMahasiswa::where("nim", $nim)->first();
+        $checkDataMahasiswa = DataMahasiswa::where("nim", $nim)
+                ->where("keterangan", 1)
+                ->first();
 
         if(!$checkDataMahasiswa) abort(404); 
         
