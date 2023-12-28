@@ -11,10 +11,6 @@ class ManajemenAkunController extends Controller
         return view("admin.manajemen-akun.administrator");
     }
 
-    public function ketuaKelompokPage(){
-        return view("admin.manajemen-akun.ketua-kelompok");
-    }
-
     public function peninjauPage(){
         return view("admin.manajemen-akun.peninjau");
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Admin\AdministratorController;
+use App\Http\Controllers\Admin\KetuaKelompokController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
@@ -76,7 +77,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::delete("{id}/delete", [AdministratorController::class, "destroy"])->name("administrator.delete");
         });
 
-        Route::get("ketua-kelompok", [ManajemenAkunController::class, "ketuaKelompokPage"])->name("ketua-kelompok");
+        Route::prefix("ketua-kelompok")->group(function(){
+            Route::post("", [KetuaKelompokController::class, "store"])->name("ketua-kelompok.store");
+            Route::get("", [KetuaKelompokController::class, "index"])->name("ketua-kelompok");
+            Route::put("{id}/update-password", [KetuaKelompokController::class, "update"])->name("ketua-kelompok.update-password");
+            Route::delete("{id}/delete", [KetuaKelompokController::class, "destroy"])->name("ketua-kelompok.delete");
+        });
 
         Route::prefix("penilai")->group(function(){
             Route::post("", [PenilaiController::class, "store"])->name("penilai.store");

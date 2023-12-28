@@ -41,7 +41,7 @@
                         type="button"
                         class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
                         data-bs-toggle="modal"
-                        data-bs-target="#edit-peninjau"
+                        data-bs-target="#modal-edit-peninjau"
                         onclick="openModal(event)"
                         data-id="{{$item->id}}">
                         Edit
@@ -178,8 +178,5 @@
       });
   });
 </script>
-
-@endsection
-@section('afterBody')
 
 @endsection

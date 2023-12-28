@@ -1,5 +1,5 @@
 <!-- Modal Tambah Akun -->
-<div class="modal fade" id="Tambah_Akunmahasiswa" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="tambah-ketua-kelompok" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,22 +13,26 @@
       <div class="modal-body">
         <div class="mb-4">
           <div class="card-body">
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="number"
-                class="form-control"
-                name="Tambah_A_NIMmahasiswa"
-                aria-label="Product title" />
-              <label>Username/NIM</label>
-            </div>
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                name="Tambah_A_Passwordmahasiswa"
-                aria-label="Product title" />
-              <label>Password</label>
-            </div>
+            <form action="{{ route('admin.manajemen-akun.ketua-kelompok.store') }}" method="POST" id="add-ketua-kelompok">
+              <div class="form-floating form-floating-outline mb-4">
+                <select
+                  name="nim"
+                  class="select2"
+                  id="select2-nim">
+                  <option value="">NIM - NAMA</option>
+                </select>
+                <label>NIM</label>
+              </div>
+              <div class="form-floating form-floating-outline mb-4">
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  aria-label="Product title" />
+                <label>Password</label>
+              </div>
+              @csrf
+            </form>
           </div>
         </div>
         <!-- /Product Information -->
@@ -37,7 +41,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary">Tambah</button>
+        <button type="button" class="btn btn-primary" onclick="submitAdd()">Tambah</button>
       </div>
     </div>
   </div>

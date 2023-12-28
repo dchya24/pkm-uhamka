@@ -1,5 +1,5 @@
 <!--modal-->
-<div class="modal fade" id="edit-peninjau" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal-edit-peninjau" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
