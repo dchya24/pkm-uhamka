@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        "mahasiswa" => [
+            "driver" => 'session',
+            'provider' => 'mahasiswa'
+        ],
+        "peninjau" => [
+            "driver" => 'session',
+            'provider' => 'peninjau'
+        ],
+        "penilai" => [
+            "driver" => 'session',
+            'provider' => 'penilai'
+        ],
+        "admin" => [
+            "driver" => 'session',
+            'provider' => 'admin'
+        ]
     ],
 
     /*
@@ -64,7 +80,22 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'mahasiswa' => [
+            'driver' => 'database',
+            'model' => App\Models\KetuaKelompok::class,
+        ],
+        'peninjau' => [
+            'driver' => 'database',
+            'model' => App\Models\Peninjau::class,
+        ],
+        'penilai' => [
+            'driver' => 'database',
+            'model' => App\Models\Penilai::class,
+        ],
+        'admin' => [
+            'driver' => 'database',
+            'model' => App\Models\Administrator::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

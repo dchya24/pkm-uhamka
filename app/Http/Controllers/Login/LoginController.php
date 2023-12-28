@@ -12,8 +12,12 @@ class LoginController extends Controller
         return view('login.index');
     }
 
+
     public function mahasiswa(): View {
         return view("login.mahasiswa");
+    }
+    public function loginMahasiswa(Request $request){
+        $credentials = $request->only(["nim", "password"]);
     }
 
     public function peninjau(): View {

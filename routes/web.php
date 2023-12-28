@@ -152,7 +152,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 });
 
-Route::prefix('mahasiswa')->name("mahasiswa.")->group(function(){
+Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->group(function(){
     Route::get('dashboard', function(){
         return view("mahasiswa.dashboard");
     })->name("dashboard");
