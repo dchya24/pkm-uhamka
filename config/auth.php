@@ -81,19 +81,19 @@ return [
             'model' => App\Models\User::class,
         ],
         'mahasiswa' => [
-            'driver' => 'database',
+            'driver' => 'eloquent',
             'model' => App\Models\KetuaKelompok::class,
         ],
         'peninjau' => [
-            'driver' => 'database',
+            'driver' => 'eloquent',
             'model' => App\Models\Peninjau::class,
         ],
         'penilai' => [
-            'driver' => 'database',
+            'driver' => 'eloquent',
             'model' => App\Models\Penilai::class,
         ],
         'admin' => [
-            'driver' => 'database',
+            'driver' => 'eloquent',
             'model' => App\Models\Administrator::class,
         ],
         // 'users' => [

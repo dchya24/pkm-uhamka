@@ -14,7 +14,7 @@
           <div class="card p-2">
               <!-- Logo -->
               <div class="app-brand justify-content-center mt-5">
-              <a href="{{route('login.index')}}" class="d-flex align-items-center gap-2">
+              <a href="{{route('login')}}" class="d-flex align-items-center gap-2">
                   <span class="app-brand-logo demo">
                   <img src="{{ asset('assets/img/Logo/uhamka.png') }}" alt="Girl in a jacket" width="40" height="40" />
                   </span>
@@ -27,12 +27,13 @@
               <h4 class="mb-2">Halo, Hamka muda! 👋</h4>
               <p class="mb-4">Silahhkan masuk ke akun mu</p>
   
-              <form id="formAuthentication" class="mb-3" action="/Mahasiswa/M_Dashboard.html">
+              <form id="formAuthentication" class="mb-3" action="{{route('login.mahasiswa.attempt')}}" method="POST">
                   <div class="form-floating form-floating-outline mb-3">
                   <input
                       type="text"
                       class="form-control"
                       placeholder="Masukan NIM kamu"
+                      name="nim"
                       autofocus />
                   <label for="a_username">Nomor Induk Mahasiswa</label>
                   </div>
@@ -52,6 +53,7 @@
                   </div>
                   </div>
                   <div class="mb-3">
+                    @csrf
                       <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>                  
                   </div>
               </form>

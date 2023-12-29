@@ -67,7 +67,10 @@
 
         <!-- Keluar -->
         <li class="menu-item">
-          <a href="/All Login/mahasiswa/L_Mahasiswa.html" class="menu-link">
+          <form action="{{ route("mahasiswa.logout") }}" method="POST" name="mahasiswa-logout" class="d-none">
+            @csrf
+          </form>
+          <a href="#" class="menu-link" onclick="document.forms['mahasiswa-logout'].submit()"> 
             <i class="menu-icon tf-icons mdi mdi-chart-donut"></i>
             <div>Keluar</div>
           </a>

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
 
 class Penilai extends Model
 {
@@ -20,5 +19,10 @@ class Penilai extends Model
         $jenis = [1 => "Penilai Administrator", 2 => "Penilai Substansi"];
 
         return $jenis[$this->jenis_penilai];
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
     }
 }

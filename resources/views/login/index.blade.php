@@ -14,7 +14,7 @@
             <div class="card-header">
             <!-- Logo -->
             <div class="app-brand justify-content-center ">
-                <a href="{{route('login.index')}}" class="d-flex align-items-center gap-2">
+                <a href="{{route('login')}}" class="d-flex align-items-center gap-2">
                 <span class="app-brand-logo demo">
                     <img src="{{ asset('assets/img/Logo/uhamka.png') }}" alt="Girl in a jacket" width="40" height="40" />
                 </span>
@@ -50,7 +50,7 @@
                 class="img-fluid d-flex mx-auto my-4 rounded"
                 src="{{ asset('assets/img/elements/penilai.jpg') }}"
                 alt="Card image cap" />
-                <a class="btn btn-primary d-grid w-100" type="button" href="{{route('login.peninjau')}}">
+                <a class="btn btn-primary d-grid w-100" type="button" href="{{route('login.penilai')}}">
                 Masuk akun
                 </a>
             </div>

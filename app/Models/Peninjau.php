@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
 
 class Peninjau extends Model
 {
@@ -17,5 +17,10 @@ class Peninjau extends Model
 
     public function dosen(){
         return $this->belongsTo(DataDosen::class, "data_dosen_id", "id");
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -12,16 +14,21 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-
-    public function mahasiswa(): View {
-        return view("login.mahasiswa");
-    }
-    public function loginMahasiswa(Request $request){
-        $credentials = $request->only(["nim", "password"]);
-    }
-
-    public function peninjau(): View {
+    public function penilai(): View {
         return view("login.peninjau");
+    }
+
+    public function loginPenilai(Request $request){
+        $loginType = $request->login_type;
+
+        if($loginType == "penilai"){
+            $penilaiLoginController = new PenilaiLoginController();
+
+            $penilaiLoginController->login($request);
+        }
+        else if($loginType == "peninjau"){
+            dd("Login as Peninjau under maintenance");
+        }
     }
 
     public function administrator(): View {

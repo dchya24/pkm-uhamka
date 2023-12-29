@@ -14,7 +14,7 @@
           <div class="card p-2">
             <!-- Logo -->
             <div class="app-brand justify-content-center mt-5">
-              <a href="{{route('login.index')}}" class="d-flex align-items-center gap-2">
+              <a href="{{route('login')}}" class="d-flex align-items-center gap-2">
                 <span class="app-brand-logo demo">
                   <img src="{{asset('assets/img/Logo/uhamka.png')}}" alt="Girl in a jacket" width="40" height="40" />
                 </span>

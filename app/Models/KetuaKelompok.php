@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
 
 class KetuaKelompok extends Model
 {
@@ -17,5 +17,10 @@ class KetuaKelompok extends Model
 
     public function mahasiswa(){
         return $this->belongsTo(DataMahasiswa::class, "data_mahasiswa_id", "id");
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
     }
 }
