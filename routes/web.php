@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,14 @@ Route::get('/', function () {
 });
 
 Route::prefix('login')->group(function () {
-    Route::get("", [LoginController::class, "index"])->name('login.index');
-    Route::get("mahasiswa", [LoginController::class, "mahasiswa"])->name('login.mahasiswa');
-    Route::get("peninjau", [LoginController::class, "peninjau"])->name('login.peninjau');
+    Route::get("", [LoginController::class, "index"])->name('login');
+    Route::post("mahasiswa", [MahasiswaLoginController::class, "login"])->name('login.mahasiswa.attempt');
+    Route::get("mahasiswa", [MahasiswaLoginController::class, "mahasiswa"])->name('login.mahasiswa');
+
+    Route::post("penilai", [LoginController::class, "loginPenilai"])->name('login.penilai.attempt');
+    Route::get("penilai", [LoginController::class, "penilai"])->name('login.penilai');
+    
+    Route::post("administrator", [LoginController::class, "loginAdmin"])->name('login.administrator.attempt');
     Route::get("administrator", [LoginController::class, "administrator"])->name('login.administrator');
 });
 
@@ -153,6 +159,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 });
 
 Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->group(function(){
+    Route::post("logout", [MahasiswaLoginController::class, "logout"])->name("logout");
+
     Route::get('dashboard', function(){
         return view("mahasiswa.dashboard");
     })->name("dashboard");
