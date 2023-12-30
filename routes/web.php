@@ -13,6 +13,7 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use App\Http\Controllers\PenilaiSubstansiController;
+use App\Http\Controllers\WakilRektorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -232,4 +233,15 @@ Route::prefix("reviewer")->name("reviewer.")->group(function(){
     Route::get('profile', function(){
         return view("reviewer.profile");
     })->name("profile");
+});
+
+Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
+    Route::get('dashboard', [WakilRektorController::class, "index"])->name("dashboard");
+
+    Route::get('informasi', [WakilRektorController::class, "informasi"])->name("informasi");
+
+    Route::get('penilaian-proposal', [WakilRektorController::class, "penilaian"])->name("penilaian-proposal");
+
+
+    Route::get('profile', [WakilRektorController::class, "profile"])->name("profile");
 });
