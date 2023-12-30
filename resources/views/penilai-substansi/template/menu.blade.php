@@ -37,7 +37,7 @@
 
         <!-- Keluar -->
         <li class="menu-item">
-          <a href="/All Login/penilai/L_Penilai.html" class="menu-link">
+          <a href="#" onclick="document.forms['penilai-logout'].submit()" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-chart-donut"></i>
             <div>Keluar</div>
           </a>

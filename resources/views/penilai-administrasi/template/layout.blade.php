@@ -85,6 +85,9 @@
             @yield('body')
 
             @include('template.footer')
+            @include('template.logout-penilai', [
+              "jenisPenilai" => "penilai_administrasi"
+            ])
 
             <div class="content-backdrop fade"></div>
           </div>

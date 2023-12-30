@@ -1,4 +1,4 @@
-@extends('penilai-administrasi.template.layout')
+@extends('reviewer.template.layout')
 @section("title", "Penilaian | Reviewer")
 
 @section('body')

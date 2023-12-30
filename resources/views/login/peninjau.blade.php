@@ -24,20 +24,19 @@
             <!-- /Logo -->
 
             <div class="card-body mt-2">
-              <h4 class="mb-2">Halo, para penilai! 👋</h4>
+              <h4 class="mb-2">Halo, para penilai dan peninjau! 👋</h4>
               <p class="mb-4">Silahhkan masuk ke akun mu</p>
 
-              <form id="formAuthentication" class="mb-3" action="/Mahasiswa/M_Dashboard.html">
+              <form id="formAuthentication" class="mb-3" action="{{ route('login.penilai.attempt')}}" method="POST">
                 <div class="mb-3">
                     <div class="form-floating form-floating-outline">
                         <select
                         id="select2Basic"
                         class="select2 form-select form-select-lg"
                         data-allow-clear="true"
-                        p>
-                        <option value="AK">Penilai Substansi</option>
-                        <option value="HI">Penilai Administrasi</option>
-                        <option value="CA">Peninjau</option>
+                        name="login_type">
+                        <option value="penilai">Penilai Substansi / Administrasi</option>
+                        <option value="peninjau">Peninjau</option>
                         </select>
                         <label for="select">Masuk sebagai</label>
                     </div>
@@ -46,9 +45,10 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Masukan NIM kamu"
+                    placeholder="Masukan NIDN/username kamu"
+                    name="username"
                     autofocus />
-                  <label for="a_username">Username</label>
+                  <label for="a_username">NIDN/Username</label>
                 </div>
                 <div class="mb-3">
                   <div class="form-password-toggle">
@@ -58,7 +58,7 @@
                           type="password"
                           id="password-mahasiswa"
                           class="form-control"
-                          name="password-mahasiswa"
+                          name="password"
                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                           aria-describedby="password" />
                         <label for="password">Password</label>
@@ -68,9 +68,10 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <a class="btn btn-primary d-grid w-100" type="button" href="/P_Substansi/S_Dashboard.html">
+                  @csrf
+                  <button class="btn btn-primary d-grid w-100" type="submit">
                     Masuk 
-                  </a>            
+                  </button>            
                 </div>
               </form>
               

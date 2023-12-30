@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
-use App\Http\Controllers\Admin\ManajemenAkunController;
 use App\Http\Controllers\Admin\AdministratorController;
 use App\Http\Controllers\Admin\KetuaKelompokController;
 use App\Http\Controllers\Admin\PenilaiController;
@@ -11,9 +10,12 @@ use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
+use App\Http\Controllers\Login\PenilaiLoginController;
+use App\Http\Controllers\Login\PeninjauLoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use App\Http\Controllers\PenilaiSubstansiController;
 use App\Http\Controllers\WakilRektorController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('penilai/dashboard', function(){
+    $user = Auth::guard('penilai')->user();
+
+    if($user->jenis_penilai == 1){
+        return redirect()->route('penilai-administrasi.dashboard');
+    }
+    else if($user->jenis_penilai == 2){
+        return redirect()->route('penilai-substansi.dashboard');
+    }
+})->middleware("auth:penilai");
+
+Route::post("penilai/logout", [PenilaiLoginController::class, "logout"])
+    ->middleware("auth:penilai")
+    ->name("penilai.logout");
 
 Route::prefix('login')->middleware("web")->group(function () {
     Route::get("", [LoginController::class, "index"])->name('login');
@@ -217,23 +234,28 @@ Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function()
     Route::get('profile', [PenilaiSubstansiController::class, "profile"])->name("profile");
 });
 
-Route::prefix("reviewer")->name("reviewer.")->group(function(){
-    Route::get('dashboard', function(){
-        return view("reviewer.dashboard");
-    })->name("dashboard");
+Route::prefix("peninjau")
+    ->name("reviewer.")
+    ->middleware("auth:peninjau")
+    ->group(function(){
+        Route::get('dashboard', function(){
+            return view("reviewer.dashboard");
+        })->name("dashboard");
 
-    Route::get('informasi', function(){
-        return view("reviewer.informasi");
-    })->name("informasi");
+        Route::get('informasi', function(){
+            return view("reviewer.informasi");
+        })->name("informasi");
 
-    Route::get('penilaian-proposal', function(){
-        return view("reviewer.penilaian-proposal");
-    })->name("penilaian-proposal");
+        Route::get('penilaian-proposal', function(){
+            return view("reviewer.penilaian-proposal");
+        })->name("penilaian-proposal");
 
-    Route::get('profile', function(){
-        return view("reviewer.profile");
-    })->name("profile");
-});
+        Route::get('profile', function(){
+            return view("reviewer.profile");
+        })->name("profile");
+
+        Route::post("logout", [PeninjauLoginController::class, "logout"])->name("logout");
+    });
 
 Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
     Route::get('dashboard', [WakilRektorController::class, "index"])->name("dashboard");

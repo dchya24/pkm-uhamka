@@ -10,7 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    protected function checkAuth(){
+        if(
+            Auth::guard('penilai')->check() ||
+            Auth::guard('peninjau')->check() ||
+            Auth::guard('mahasiswa')->check()
+        ){
+            dd("Has login");
+        };
+    }
+
     public function index(): View {
+        $this->checkAuth();
         return view('login.index');
     }
 
@@ -27,7 +38,14 @@ class LoginController extends Controller
             $penilaiLoginController->login($request);
         }
         else if($loginType == "peninjau"){
-            dd("Login as Peninjau under maintenance");
+            $peninjauLoginController = new PeninjauLoginController();
+
+            $credentials = [
+                "nidn" => $request->username,
+                "password" => $request->password
+            ];
+
+            $peninjauLoginController->login($request);
         }
     }
 

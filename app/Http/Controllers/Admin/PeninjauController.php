@@ -28,7 +28,7 @@ class PeninjauController extends Controller
         if($checkDataPeninjau) abort(402);
 
         $prepareDataInsert = [
-            "nidn" => $nidn,
+            "username" => $nidn,
             "data_dosen_id" => $checkDataDosen->id,
             "password" => $password
         ];

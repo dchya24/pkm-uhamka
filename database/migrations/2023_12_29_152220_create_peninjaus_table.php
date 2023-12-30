@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('peninjau', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("data_dosen_id");
-            $table->string("nidn", 16)->unique();
+            $table->string("username", 16)->unique();
             $table->string("password");
             $table->timestamps();
         });

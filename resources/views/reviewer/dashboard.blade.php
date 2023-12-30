@@ -1,5 +1,5 @@
-@extends('penilai-administrasi.template.layout')
-@section("title", "Beranda | Penilai Administrasi")
+@extends('reviewer.template.layout')
+@section("title", "Beranda | Peninjau")
 
 @section('body')
   <!-- Main Content -->

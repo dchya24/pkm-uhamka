@@ -111,13 +111,13 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ route("mahasiswa.profile") }}">
+                      <a class="dropdown-item" href="{{ route("reviewer.profile") }}">
                         <i class="mdi mdi-account-outline me-2"></i>
                         <span class="align-middle">Akun Saya</span>
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/All Login/mahasiswa/L_Mahasiswa.html">
+                      <a class="dropdown-item" href="#" onclick="document.forms['reviewer-logout'].submit()">
                         <i class="mdi mdi-logout me-2"></i>
                         <span class="align-middle">Keluar</span>
                       </a>
