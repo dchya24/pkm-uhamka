@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
+use App\Http\Controllers\PenilaiSubstansiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('login')->group(function () {
+Route::prefix('login')->middleware("web")->group(function () {
     Route::get("", [LoginController::class, "index"])->name('login');
     Route::post("mahasiswa", [MahasiswaLoginController::class, "login"])->name('login.mahasiswa.attempt');
     Route::get("mahasiswa", [MahasiswaLoginController::class, "mahasiswa"])->name('login.mahasiswa');
@@ -41,7 +42,7 @@ Route::prefix('login')->group(function () {
     Route::get("administrator", [LoginController::class, "administrator"])->name('login.administrator');
 });
 
-Route::prefix('register')->group(function () {
+Route::prefix('register')->middleware("web")->group(function () {
     Route::get("", [RegisterController::class, "index"])->name('register.index');
     Route::post("verify-nim", [RegisterController::class, "verifyNim"])->name('register.verify-nim');
     Route::post("create-password", [RegisterController::class, "register"])->name('register.create-account');
@@ -49,7 +50,7 @@ Route::prefix('register')->group(function () {
     Route::get("confirm", [RegisterController::class, "confirmPage"])->name('register.confirm');
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function(){
     Route::get("dashboard", [AdminController::class, "dashboardPage"])->name("dashboard");
 
     Route::get("informasi",[AdminController::class, "informasiPage"])->name("informasi");
@@ -186,7 +187,7 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
     })->name("faq");
 });
 
-Route::prefix("penilai-administrasi")->name("penilai-administrasi.")->group(function(){
+Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai-administrasi.")->group(function(){
     Route::get('dashboard', function(){
         return view("penilai-administrasi.dashboard");
     })->name("dashboard");
@@ -202,6 +203,17 @@ Route::prefix("penilai-administrasi")->name("penilai-administrasi.")->group(func
     Route::get('profile', function(){
         return view("penilai-administrasi.profile");
     })->name("profile");
+});
+
+// ->middleware("auth:penilai")
+Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function(){
+    Route::get('dashboard', [PenilaiSubstansiController::class, "index"])->name("dashboard");
+
+    Route::get('informasi', [PenilaiSubstansiController::class, "informasi"])->name("informasi");
+
+    Route::get('penilaian-proposal', [PenilaiSubstansiController::class, "penilaian"])->name("penilaian-proposal");
+
+    Route::get('profile', [PenilaiSubstansiController::class, "profile"])->name("profile");
 });
 
 Route::prefix("reviewer")->name("reviewer.")->group(function(){
