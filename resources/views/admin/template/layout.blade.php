@@ -89,7 +89,9 @@
             @yield('body')
 
             @include('template.footer')
-
+            <form action="{{ route("admin.logout") }}" method="POST" name="admin-logout" class="d-none">
+                @csrf
+            </form>
             <div class="content-backdrop fade"></div>
           </div>
         </div>

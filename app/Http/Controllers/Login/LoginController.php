@@ -48,8 +48,4 @@ class LoginController extends Controller
             $peninjauLoginController->login($request);
         }
     }
-
-    public function administrator(): View {
-        return view("login.administrator");
-    }
 }

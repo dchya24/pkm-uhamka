@@ -85,7 +85,9 @@
             @yield('body')
 
             @include('template.footer')
-
+            <form action="{{ route("wakil-rektor.logout") }}" method="POST" name="wakil-rektor-logout" class="d-none">
+                @csrf
+            </form>
             <div class="content-backdrop fade"></div>
           </div>
         </div>

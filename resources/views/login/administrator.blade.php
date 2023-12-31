@@ -27,7 +27,7 @@
               <h4 class="mb-2">Halo, Hamka muda! 👋</h4>
               <p class="mb-4">Silahhkan masuk ke akun mu</p>
 
-              <form id="formAuthentication" class="mb-3" action="/Mahasiswa/M_Dashboard.html">
+              <form id="formAuthentication" class="mb-3" action="{{ route('login.administrator.attempt')}}" method="POST">
                 <div class="mb-3">
                     <div class="form-floating form-floating-outline">
                         <select
@@ -45,7 +45,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Masukan NIM kamu"
+                    placeholder="Masukan Username"
+                    name="username"
                     autofocus />
                   <label for="a_username">Username</label>
                 </div>
@@ -57,7 +58,7 @@
                           type="password"
                           id="password-mahasiswa"
                           class="form-control"
-                          name="password-mahasiswa"
+                          name="password"
                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                           aria-describedby="password" />
                         <label for="password">Password</label>
@@ -67,6 +68,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
+                    @csrf
                     <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>                  
                 </div>
               </form>

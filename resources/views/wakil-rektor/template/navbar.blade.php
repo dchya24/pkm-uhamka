@@ -117,7 +117,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/All Login/mahasiswa/L_Mahasiswa.html">
+                      <a class="dropdown-item" href="#" onclick="document.forms['wakil-rektor-logout'].submit()">
                         <i class="mdi mdi-logout me-2"></i>
                         <span class="align-middle">Keluar</span>
                       </a>

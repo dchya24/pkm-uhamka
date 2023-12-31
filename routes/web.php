@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\KetuaKelompokController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
+use App\Http\Controllers\Login\AdministratorLoginController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Login\PenilaiLoginController;
@@ -44,6 +45,17 @@ Route::get('penilai/dashboard', function(){
     }
 })->middleware("auth:penilai");
 
+Route::get('administrator/dashboard', function(){
+    $user = Auth::guard('penilai')->user();
+
+    if($user->type == "admin"){
+        return redirect()->route('admin.dashboard');
+    }
+    else if($user->type == "warek"){
+        return redirect()->route('wakil-rektor.dashboard');
+    }
+})->middleware("auth:penilai");
+
 Route::post("penilai/logout", [PenilaiLoginController::class, "logout"])
     ->middleware("auth:penilai")
     ->name("penilai.logout");
@@ -56,8 +68,8 @@ Route::prefix('login')->middleware("web")->group(function () {
     Route::post("penilai", [LoginController::class, "loginPenilai"])->name('login.penilai.attempt');
     Route::get("penilai", [LoginController::class, "penilai"])->name('login.penilai');
     
-    Route::post("administrator", [LoginController::class, "loginAdmin"])->name('login.administrator.attempt');
-    Route::get("administrator", [LoginController::class, "administrator"])->name('login.administrator');
+    Route::post("administrator", [AdministratorLoginController::class, "login"])->name('login.administrator.attempt');
+    Route::get("administrator", [AdministratorLoginController::class, "administrator"])->name('login.administrator');
 });
 
 Route::prefix('register')->middleware("web")->group(function () {
@@ -69,6 +81,8 @@ Route::prefix('register')->middleware("web")->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function(){
+    Route::post("logout", [AdministratorLoginController::class, "logout"])->name('login.logout');
+
     Route::get("dashboard", [AdminController::class, "dashboardPage"])->name("dashboard");
 
     Route::get("informasi",[AdminController::class, "informasiPage"])->name("informasi");
@@ -257,7 +271,10 @@ Route::prefix("peninjau")
         Route::post("logout", [PeninjauLoginController::class, "logout"])->name("logout");
     });
 
+
 Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
+    Route::post("logout", [AdministratorLoginController::class, "logout"])->name('wakil-rektor.logout');
+
     Route::get('dashboard', [WakilRektorController::class, "index"])->name("dashboard");
 
     Route::get('informasi', [WakilRektorController::class, "informasi"])->name("informasi");

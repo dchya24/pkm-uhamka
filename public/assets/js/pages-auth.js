@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 message: 'Please enter username'
               },
               stringLength: {
-                min: 6,
+                min: 3,
                 message: 'Username must be more than 6 characters'
               }
             }
