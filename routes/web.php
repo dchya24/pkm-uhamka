@@ -45,8 +45,8 @@ Route::get('penilai/dashboard', function(){
     }
 })->middleware("auth:penilai");
 
-Route::get('administrator/dashboard', function(){
-    $user = Auth::guard('penilai')->user();
+Route::get('admin/dashboard', function(){
+    $user = Auth::guard('admin')->user();
 
     if($user->type == "admin"){
         return redirect()->route('admin.dashboard');
@@ -54,7 +54,7 @@ Route::get('administrator/dashboard', function(){
     else if($user->type == "warek"){
         return redirect()->route('wakil-rektor.dashboard');
     }
-})->middleware("auth:penilai");
+})->middleware("auth:admin");
 
 Route::post("penilai/logout", [PenilaiLoginController::class, "logout"])
     ->middleware("auth:penilai")
@@ -80,8 +80,8 @@ Route::prefix('register')->middleware("web")->group(function () {
     Route::get("confirm", [RegisterController::class, "confirmPage"])->name('register.confirm');
 });
 
-Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function(){
-    Route::post("logout", [AdministratorLoginController::class, "logout"])->name('login.logout');
+Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(function(){
+    Route::post("logout", [AdministratorLoginController::class, "logout"])->name('logout');
 
     Route::get("dashboard", [AdminController::class, "dashboardPage"])->name("dashboard");
 
@@ -273,7 +273,7 @@ Route::prefix("peninjau")
 
 
 Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
-    Route::post("logout", [AdministratorLoginController::class, "logout"])->name('wakil-rektor.logout');
+    Route::post("logout", [AdministratorLoginController::class, "logout"])->name('logout');
 
     Route::get('dashboard', [WakilRektorController::class, "index"])->name("dashboard");
 
