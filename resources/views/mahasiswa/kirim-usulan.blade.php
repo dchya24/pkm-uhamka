@@ -49,23 +49,22 @@
               </div>
             </div>
             <div class="bs-stepper-content">
-              <form onSubmit="return false">
+              <form action="{{ route('mahasiswa.usulan.store')}}" method="POST">
                 <!-- Proposal Details -->
                 <div id="data-usulan" class="content">
                   <div class="content-header mb-3">
-                    <h5 class="mb-0 pb-3">Data usulan </h6>    
+                    <h5 class="mb-0 pb-3">Data usulan </h5>    
                                                   
-                          <p class="font-weight-bold my-3">
-                              Catatan : <br />1. Batas anggaran usulan
-                              Rp.5.000.000 - Rp.12.000.000
-                              <br />
-                              2. Lembar bimbingan wajib tanda tangan basah <br />
-                              3. Kosongkan data anggota berikutnya, jika data anggota sudah cukup
-                          </p>   
-                          <hr>                                
+                    <p class="font-weight-bold my-3">
+                        Catatan : <br />1. Batas anggaran usulan
+                        Rp.5.000.000 - Rp.12.000.000
+                        <br />
+                        2. Lembar bimbingan wajib tanda tangan basah <br />
+                        3. Kosongkan data anggota berikutnya, jika data anggota sudah cukup
+                    </p>   
+                    <hr>                                
                   </div>
                   <div class="card-body">
-                    <form>
                       <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Ketua Pengusul</label>
                           <div class="col-xl-6">
@@ -88,94 +87,114 @@
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 1</label>
                         <div class="col-xl-2">
-                          <div class="input-group input-group-merge">
-                            <input
-                              type="number"
-                              id="basic-default-email"
-                              class="form-control"
-                              placeholder="NIM Ketua Pengusul" 
-                              value="1803021231"/>
+                          <div class="form-floating form-floating-outline">
+                            <select
+                              name="nim[]"
+                              class="select2-nim form-select form-select-sm"
+                              onchange="selectAnggota(event)"
+                              id="anggota-1">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
+                            <label>NIM</label>
                           </div>
                         </div>
-                        <div class="col-xl-8 d-flex pt-2">
-                            <p>Iwan Mahyudin</p> 
-                            <p>&nbsp /&nbsp</p>
-                            <p>FKIP</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>Teknik Informatika</p>
+                        <div class="col-xl-8 d-flex pt-2" id="result-anggota-1">
                         </div>
                       </div>  
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 2</label>
                         <div class="col-xl-2">
-                          <div class="input-group input-group-merge">
-                            <input
-                              type="number"
-                              id="basic-default-email"
-                              class="form-control"
-                              placeholder="NIM Ketua Pengusul" 
-                              value="1803021231"/>
+                          <div class="form-floating form-floating-outline">
+                            <select
+                              name="nim[]"
+                              class="select2-nim form-select form-select-sm"
+                              onchange="selectAnggota(event)"
+                              id="anggota-2">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
+                            <label>NIM</label>
                           </div>
                         </div>
-                        <div class="col-xl-8 d-flex pt-2">
-                            <p>Iwan Mahyudin</p> 
-                            <p>&nbsp /&nbsp</p>
-                            <p>FKIP</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>Teknik Informatika</p>
+                        <div class="col-xl-8 d-flex pt-2" id="result-anggota-2">
                         </div>
                       </div>  
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 3</label>
                         <div class="col-xl-2">
-                          <div class="input-group input-group-merge">
-                            <input
-                              type="number"
-                              id="basic-default-email"
-                              class="form-control"
-                              placeholder="NIM Ketua Pengusul" 
-                              value="1803021231"/>
+                          <div class="form-floating form-floating-outline">
+                            <select
+                              name="nim[]"
+                              class="select2-nim form-select form-select-sm"
+                              onchange="selectAnggota(event)"
+                              id="anggota-3">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
+                            <label>NIM</label>
                           </div>
                         </div>
-                        <div class="col-xl-8 d-flex pt-2">
-                            <p>Iwan Mahyudin</p> 
-                            <p>&nbsp /&nbsp</p>
-                            <p>FKIP</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>Teknik Informatika</p>
+                        <div class="col-xl-8 d-flex pt-2" id="result-anggota-3">
                         </div>
                       </div>  
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 4</label>
                         <div class="col-xl-2">
-                          <div class="input-group input-group-merge">
-                            <input
-                              type="number"
-                              id="basic-default-email"
-                              class="form-control"
-                              placeholder="NIM Ketua Pengusul" 
-                              value="1803021231"/>
+                          <div class="form-floating form-floating-outline">
+                            <select
+                              name="nim[]"
+                              class="select2-nim form-select form-select-sm"
+                              onchange="selectAnggota(event)"
+                              id="anggota-4">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
+                            <label>NIM</label>
                           </div>
                         </div>
-                        <div class="col-xl-8 d-flex pt-2">
-                            <p>Iwan Mahyudin</p> 
-                            <p>&nbsp /&nbsp</p>
-                            <p>FKIP</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>Teknik Informatika</p>
+                        <div class="col-xl-8 d-flex pt-2" id="result-anggota-4">
                         </div>
                       </div>  
 
                       <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Dosem Pembimbing pengusul</label>
                           <div class="col-xl-2">
-                            <div class="input-group input-group-merge">
-                              <input
-                                type="number"
-                                id="basic-default-email"
-                                class="form-control"
-                                placeholder="NIP/NIDN Dosen Pengusul" 
-                                value="2312121"/>
+                            <div class="form-floating form-floating-outline">
+                              <select
+                                name="nidn[]"
+                                class="select2 select2-nim form-select form-select-lg"
+                                id="anggota-5">
+                                <option value="">NIM - NAMA</option>
+                              </select>
                             </div>
                           </div>
                           <div class="col-xl-8 d-flex pt-2">
@@ -192,14 +211,14 @@
                         <div class="col-xl-10">
                           <div class="form-floating form-floating-outline">
                             <select
-                              id="select2Basic"
-                              class="select2 form-select form-select-lg"
+                              id="skema_pkm"
+                              class="form-select form-select-xl w-25"
+                              name="jenis_pkm"
                               data-allow-clear="true">
-                              <option value="AK">Alaska</option>
-                              <option value="HI">Hawaii</option>
-                              <option value="CA">California</option>
-                              <option value="NV">Nevada</option>
-                              <option value="OR">Oregon</option>
+                              <option value="" selected>Singkatan - Jenis PKM</option>
+                              @foreach ($jenisPkm as $item)
+                                  <option value="{{$item->id}}">{{$item->singkatan}} - {{$item->nama_skema}}</option>
+                              @endforeach
                             </select>
                           </div>
                         </div>
@@ -228,13 +247,11 @@
                         >
                         <div class="col-xl-10">
                           <input                                 
-                            type="text"
+                            type="number"
+                            name="anggaran"
                             class="form-control"
-                            id="dengan-rupiah"
-                            placeholder="37000000 (contoh)"
-                            step="1" 
-                            min="0" 
-                            max="4"/>
+                            id="anggaran"
+                            placeholder="37000000 (contoh)"/>
                         </div>
                       </div>
 
@@ -249,16 +266,15 @@
                       </div>
 
                       <div class="col-12 d-flex justify-content-between pt-3">
-                        <button class="btn btn-outline-secondary btn-prev" disabled>
+                        <button class="btn btn-outline-secondary btn-prev" type="button" disabled>
                           <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
                           <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                         </button>
-                        <button class="btn btn-primary btn-next">
+                        <button class="btn btn-primary btn-next" type="button">
                           <span class="align-middle d-sm-inline-block d-none me-sm-1">Selanjutnya</span>
                           <i class="mdi mdi-arrow-right"></i>
                         </button>
                       </div>
-                    </form>
                   </div>
                 </div>
                 <!-- Substansi Info -->
@@ -278,7 +294,6 @@
                           <hr>
                   </div>
                   <div class="row g-4">
-                    <form>                                
                       <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
                             >Judul Proposal
@@ -288,6 +303,7 @@
                               type="text"
                               class="form-control"
                               id="basic-default-name"
+                              name="judul"
                               placeholder="Masukan Judul Proposal (Tidak boleh lebih dari 20 Kata)" />
                           </div>
                       </div>
@@ -300,6 +316,7 @@
                             <textarea
                               class="form-control"
                               id="exampleFormControlTextarea1"
+                              name="isian"
                               rows="15"
                               placeholder="Isian disesuaikan dengan skema yang diusulkan"></textarea>
                           </div>
@@ -315,61 +332,65 @@
                               class="form-control"
                               id="exampleFormControlTextarea1"
                               rows="10"
+                              name="tugas_ketua"
                               placeholder="Jabarkan secara rinci & jelas tugas Ketua Kelompok!"></textarea>
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-                            >Tugas Anggota 1 <p>1803015016 <br> IWAN MAHYUDIN</p>
+                            >Tugas Anggota 1 <p id="tugas-anggota-1"></p>
                           </label>
                           <div class="col-xl-10">
                             <textarea
                               class="form-control"
-                              id="exampleFormControlTextarea1"
+                              id="textarea-tugas-anggota-1"
                               rows="10"
-                              placeholder="Jabarkan secara rinci & jelas tugas anggota 1!"></textarea>
+                              name="tugas_anggota[]"
+                              placeholder="Jabarkan secara rinci & jelas tugas anggota 1!" disabled></textarea>
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-                            >Tugas Anggota 2 <p>1803015016 <br> IWAN MAHYUDIN</p>
+                            >Tugas Anggota 2 <p id="tugas-anggota-2"></p>
                           </label>
                           <div class="col-xl-10">
                             <textarea
                               class="form-control"
-                              id="exampleFormControlTextarea1"
+                              id="textarea-tugas-anggota-2"
                               rows="10"
-                              placeholder="Jabarkan secara rinci & jelas tugas anggota 2!"></textarea>
+                              name="tugas_anggota[]"
+                              placeholder="Jabarkan secara rinci & jelas tugas anggota 2!" disabled></textarea>
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-                            >Tugas Anggota 3 <p>1803015016 <br> IWAN MAHYUDIN</p>
+                            >Tugas Anggota 3 <p id="tugas-anggota-3"></p>
                           </label>
                           <div class="col-xl-10">
                             <textarea
                               class="form-control"
-                              id="exampleFormControlTextarea1"
+                              id="textarea-tugas-anggota-3"
                               rows="10"
-                              placeholder="Jabarkan secara rinci & jelas tugas anggota 3!"></textarea>
+                              name="tugas_anggota[]"
+                              placeholder="Jabarkan secara rinci & jelas tugas anggota 3!" disabled></textarea>
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-                            >Tugas Anggota 4 <p>1803015016 <br> IWAN MAHYUDIN</p>
+                            >Tugas Anggota 4 <p id="tugas-anggota-4"></p>
                           </label>
                           <div class="col-xl-10">
                             <textarea
-                              class="form-control"
-                              id="exampleFormControlTextarea1"
-                              rows="10"
-                              placeholder="Jabarkan secara rinci & jelas tugas anggota 4!"></textarea>
+                            class="form-control"
+                            id="textarea-tugas-anggota-4"
+                            rows="10"
+                            name="tugas_anggota[]"
+                              placeholder="Jabarkan secara rinci & jelas tugas anggota 4!" disabled></textarea>
                           </div>
                         </div>
                         <p>Catatan : Apabila anggota sudah cukup, isian tidak perlu diisi</p>
-                    </form>
                     <div class="col-12 d-flex justify-content-between">
-                      <button class="btn btn-outline-secondary btn-prev">
+                      <button class="btn btn-outline-secondary btn-prev" type="button">
                         <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
                         <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                       </button>
@@ -377,6 +398,7 @@
                     </div>
                   </div>
                 </div>
+                @csrf
               </form>
             </div>
           </div>
@@ -392,7 +414,7 @@
 
 @section('javascript')
   <!-- Vendors JS -->
-  <script src="{{ url('assets/vendor/libs/apex-charts/apexcharts.js') }}') }}"></script>
+  <script src="{{ url('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
   <script src="{{ url('assets/vendor/libs/swiper/swiper.js') }}"></script>
 
   <!-- Main JS -->
@@ -418,17 +440,54 @@
   <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
   <script>
-    $(function () {
-      $('#example1')
-        .DataTable({
-          responsive: true,
-          lengthChange: false,
-          autoWidth: false,
-          searching: false
-        })
-        .buttons()
-        .container()
-        .appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
+
+    function selectAnggota(event){
+      const resultId = event.srcElement.getAttribute('id');
+      const target = event.target[event.target.selectedIndex];
+      const id = target.getAttribute('data-id');
+      const fakultas = target.getAttribute('data-fakultas');
+      const prodi = target.getAttribute('data-prodi');
+      const text = target.text.split("-")
+      const nim = text[0].trim();
+      const nama = text[1].trim();
+
+      const preview = `${nama} / ${fakultas} / ${prodi}`;
+      console.log(resultId, preview)
+
+      document.getElementById(`result-${resultId}`).innerHTML = preview;
+      document.getElementById(`tugas-${resultId}`).innerHTML = `${nim} <br> ${nama}`;
+      document.getElementById(`textarea-tugas-${resultId}`).disabled = false;
+    }
+
+    // $(document).ready(function() {
+      // FIXME Select 2 NIM Mahasiswa
+      // TODO Select2 dosen
+    //   $('.select2-nim').select2({
+    //     dropdownParent: $(document.body),
+    //     delay: 250,
+    //     ajax: {
+    //       url: "{{url('api/mahasiswa')}}",
+    //       data: function (params) {
+    //         var query = {
+    //           search: params.term,
+    //         }
+
+    //         // Query parameters will be ?search=[term]&type=public
+    //         return query;
+    //       },
+    //       processResults: function (data) {
+    //         // Transforms the top-level key of the response object from 'items' to 'results'
+    //         return {
+    //             results: $.map(data.data, function (item) {
+    //                 return {
+    //                     text: `${item.nim} - ${item.nama}`,
+    //                     id: item.nim
+    //                 }
+    //             })
+    //         };
+    //       }
+    //     }
+    //   });
+    // });
   </script>
 @endsection

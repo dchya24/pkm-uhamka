@@ -15,6 +15,7 @@ use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Login\PenilaiLoginController;
 use App\Http\Controllers\Login\PeninjauLoginController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
+use App\Http\Controllers\Mahasiswa\UsulanController;
 use App\Http\Controllers\PenilaiSubstansiController;
 use App\Http\Controllers\WakilRektorController;
 use Illuminate\Support\Facades\Auth;
@@ -213,9 +214,8 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
         return view("mahasiswa.sertifikat");
     })->name("sertifikat");
 
-    Route::get('kirim-usulan', function(){
-        return view("mahasiswa.kirim-usulan");
-    })->name("kirim-usulan");
+    Route::post('kirim-usulan', [UsulanController::class, "store"])->name("usulan.store");
+    Route::get('kirim-usulan', [UsulanController::class, "showKirimUsulanPage"])->name("kirim-usulan");
 
     Route::get('profile', function(){
         return view("mahasiswa.profile");
