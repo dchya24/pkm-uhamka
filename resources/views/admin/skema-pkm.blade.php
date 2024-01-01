@@ -42,39 +42,55 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Artificial Intelegent</td>
-                    <td>PKM-KT</td>
-                    <td>
-                      <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="/assets/pdf/HASIL_SUB_VGK122.pdf" target="_blank" title="Read PDF">
-                        <i class="mdi mdi-file"></i> Unduh
-                      </a>
-                    </td>
-                    <td>
-                      <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="/assets/pdf/HASIL_SUB_VGK122.pdf" target="_blank" title="Read PDF">
-                        <i class="mdi mdi-file"></i> Unduh
-                      </a>
-                    </td>
-                    <td>
-                      <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="/assets/pdf/HASIL_SUB_VGK122.pdf" target="_blank" title="Read PDF">
-                        <i class="mdi mdi-file"></i> Unduh
-                      </a>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-sm rounded-pill btn-info waves-effect waves-light"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editModal">
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                        Hapus
-                      </button>
-                    </td>
-                  </tr>
+                  @forelse ($jenisPkm as $item)
+                      <tr>
+                        <td>{{$item->nama_skema}}</td>
+                        <td>{{$item->singkatan}}</td>
+                        <td>
+                          <a  class="btn rounded-pill btn-primary btn-sm" href="{{url($item->form_substansi)}}" download>
+                            <i class="mdi mdi-file"></i> Unduh
+                          </a>
+                        </td>
+                        <td>
+                          <a class="btn rounded-pill btn-primary btn-sm" href="{{url($item->form_administrasi)}}" download>
+                            <i class="mdi mdi-file"></i> Unduh
+                          </a>  
+                        </td>
+                        <td>
+                          <a class="btn rounded-pill btn-primary btn-sm" href="{{url($item->form_peninjau)}}" download>
+                            <i class="mdi mdi-file"></i> Unduh
+                          </a>  
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-sm rounded-pill btn-info waves-effect waves-light"
+                            onclick="openModal(event)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                            data-id="{{$item->id}}"
+                            data-nama_skema="{{$item->nama_skema}}"
+                            data-singkatan="{{$item->singkatan}}">
+                            Edit
+                          </button>
+                          <form action="{{route('admin.skema-pkm.delete' ,$item->id)}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                              type="submit"
+                              class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
+                              Hapus
+                            </button>
+                        </form>
+                        </td>
+                      </tr>
+                  @empty
+                      <tr>
+                        <td class="text-center font-weight-bold" colspan="6">
+                          Empty!
+                        </td>
+                      </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
@@ -125,4 +141,20 @@
    
        <!-- Page JS -->
        <script src="{{url('assets/js/forms-file-upload.js')}}"></script>
+       <script>
+        function openModal(event){
+          event.preventDefault();
+          const id = event.target.getAttribute('data-id');
+          const nama_skema = event.target.getAttribute('data-nama_skema');
+          const singkatan = event.target.getAttribute('data-singkatan');
+
+          document.getElementById("edit_id").value = id;
+          document.getElementById("edit_nama_skema").value = nama_skema;
+          document.getElementById("edit_singkatan").value = singkatan;
+
+          const url = window.BASE_URL + `/administrator/skema-pkm/${id}/update`;
+
+          document.forms["edit-jenis-pkm"].action = url;
+        }
+       </script>
 @endsection

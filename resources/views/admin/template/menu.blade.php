@@ -109,7 +109,7 @@
           <ul class="menu-sub">
 
             <li class="menu-item">
-              <a href="{{ route('admin.skema-pkm') }}" class="menu-link">
+              <a href="{{ route('admin.skema-pkm.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-file-eye"></i>
                 <div>Data Jenis PKM</div>
               </a>

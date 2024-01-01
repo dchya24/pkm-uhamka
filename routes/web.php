@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\AdministratorController;
+use App\Http\Controllers\Admin\JenisPkmController;
 use App\Http\Controllers\Admin\KetuaKelompokController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
@@ -89,7 +90,13 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
 
     Route::get("akses-halaman", [AdminController::class, "aksesHalamanPage"])->name("akses-halaman");
 
-    Route::get("skema-pkm", [AdminController::class, "skemaPkmPage"])->name("skema-pkm");
+    Route::prefix("skema-pkm")->name('skema-pkm.')->group(function(){
+        Route::post("", [JenisPkmController::class, "store"])->name("store");
+        Route::get("", [JenisPkmController::class, "index"])->name("dashboard");
+        Route::put("{id}/update", [JenisPkmController::class, "update"])->name("update");
+        Route::delete("{id}/delete", [JenisPkmController::class, "delete"])->name("delete");
+    });
+
 
     Route::get("sertifikat", function(){
         return view("admin.sertifikat");
