@@ -30,9 +30,9 @@
                   </div>
                   <div class="content-right">
                     <p class="mb-0 fw-medium" style="font-size: 1rem">Ketua Kelompok</p>
-                    <span class="text-primary mb-0 display-6" style="font-size: 1.3rem"
-                      >Muhammad abdillah bin nisan aksai</span
-                    >
+                    <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">
+                      {{$userInfo->mahasiswa->nama}}
+                    </span>
                   </div>
                 </div>
                 <div class="d-flex align-items-center gap-3">
@@ -43,11 +43,11 @@
                   </div>
                   <div class="content-right">
                     <p class="mb-0 fw-medium" style="font-size: 1rem">
-                      Fakultas Keguruan dan Ilmu Pendidikan
+                      {{$userInfo->mahasiswa->fakultas}}
                     </p>
-                    <span class="text-info mb-0 display-6" style="font-size: 1.3rem"
-                      >Bimbingan Konseling</span
-                    >
+                    <span class="text-info mb-0 display-6" style="font-size: 1.3rem">
+                      {{$userInfo->mahasiswa->prodi}}
+                    </span>
                   </div>
                 </div>
                 

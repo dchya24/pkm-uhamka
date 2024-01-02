@@ -14,6 +14,7 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Login\PenilaiLoginController;
 use App\Http\Controllers\Login\PeninjauLoginController;
+use App\Http\Controllers\Mahasiswa\DashboardController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use App\Http\Controllers\Mahasiswa\UsulanController;
 use App\Http\Controllers\PenilaiSubstansiController;
@@ -33,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route("login");
 });
 
 Route::get('penilai/dashboard', function(){
@@ -202,9 +203,7 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
 Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->group(function(){
     Route::post("logout", [MahasiswaLoginController::class, "logout"])->name("logout");
 
-    Route::get('dashboard', function(){
-        return view("mahasiswa.dashboard");
-    })->name("dashboard");
+    Route::get('dashboard', [DashboardController::class, "dashboard"])->name("dashboard");
 
     Route::get('informasi', function(){
         return view("mahasiswa.informasi");
