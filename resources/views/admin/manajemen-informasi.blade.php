@@ -46,7 +46,7 @@
                         <td>{{$item->dikirimKepada()}}</td>
                         <td>{!! $item->description !!}</td>
                         <td>
-                          <a href="{{url($item->file)}}" class="btn rounded-pill btn-primary btn-sm" type="button">
+                          <a href="{{url($item->file)}}" class="btn rounded-pill btn-primary btn-sm" type="button" download>
                             <i class="mdi mdi-file"></i>
                             Unduh
                           </a>
@@ -188,7 +188,7 @@
 
   function submitEdit(){
     const descriptionText = window.quillEditDescription.root.innerHTML;
-    const description = document.querySelector("#edit_description");
+    const description = document.querySelector("#edit_description_value");
     description.value = descriptionText
 
     document.forms['update_informasi'].submit() ;

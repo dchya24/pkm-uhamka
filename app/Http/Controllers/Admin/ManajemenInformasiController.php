@@ -56,8 +56,6 @@ class ManajemenInformasiController extends Controller
     }
 
     public function update(Request $request, $id){
-        dd($request->all());
-        
         $informasi = Informasi::find($id);
 
         if(!$informasi) abort(404);
@@ -66,11 +64,11 @@ class ManajemenInformasiController extends Controller
 
         $informasi->judul = $data['judul'];
         $informasi->description = $data['description'];
-        $informasi->untuk_mahasiswa = $data['untuk_mahasiswa'];
-        $informasi->untuk_penilai_substansi = $data['untuk_penilai_substansi'];
-        $informasi->untuk_penilai_administrasi = $data['untuk_penilai_administrasi'];
-        $informasi->untuk_peninjau = $data['untuk_peninjau'];
-        $informasi->untuk_warek = $data['untuk_warek'];
+        $informasi->untuk_mahasiswa = $request->has('untuk_mahasiswa') ? 1 : 0;
+        $informasi->untuk_penilai_substansi = $request->has('untuk_substansi') ? 1 : 0;
+        $informasi->untuk_penilai_administrasi = $request->has('untuk_administrasi') ? 1 : 0;
+        $informasi->untuk_peninjau = $request->has('untuk_peninjau') ? 1 : 0;
+        $informasi->untuk_warek = $request->has('untuk_warek') ? 1 : 0;
 
         $fileUpload = null;
         if($request->hasFile('file')){

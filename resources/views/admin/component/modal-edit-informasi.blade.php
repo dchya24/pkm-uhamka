@@ -40,7 +40,7 @@
                 </div>
                 <div class="comment-editor border-0 pb-1" id="edit_description">
                 </div>
-                <input type="hidden" name="description" id="edit_description">
+                <input type="hidden" name="description" id="edit_description_value">
               </div>
             </div>
 
