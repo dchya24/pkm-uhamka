@@ -29,6 +29,8 @@ return new class extends Migration
             $table->unsignedBigInteger('anggota_empat_id')->nullable();
             $table->text('tugas_anggota_empat')->nullable();
 
+            $table->unsignedBigInteger("pembimbing_id")->nullable();
+
             // File
             $table->string("lembar_proposal")->nullable();
             $table->string("lembar_biodata_dospem")->nullable();
