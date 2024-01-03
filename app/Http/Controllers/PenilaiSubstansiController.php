@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Informasi;
 use Illuminate\Http\Request;
 
 class PenilaiSubstansiController extends Controller
@@ -11,7 +12,9 @@ class PenilaiSubstansiController extends Controller
     }
 
     public function informasi(){
-        return view("penilai-substansi.informasi");
+        $informasi = Informasi::where('untuk_penilai_substansi', true)->get();
+
+        return view("penilai-substansi.informasi", compact('informasi'));
     }
 
     public function penilaian(){

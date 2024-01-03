@@ -14,50 +14,28 @@
         </div>
         <div class="card-body pt-4 pb-1">
           <ul class="timeline card-timeline mb-0">
-            <li class="timeline-item timeline-item-transparent">
-              <span class="timeline-point timeline-point-info"></span>
-              <div class="timeline-event">
-                <div class="timeline-header mb-1">
-                  <h6 class="mb-2">Create youtube video for next product 😎</h6>
-                  <small class="text-muted">Tomorrow</small>
-                </div>
-                <p class="mb-2">Product introduction and details video</p>
-                <div class="d-flex">
-                  <a href="https://www.youtube.com/@pixinvent1515" target="_blank" class="text-truncate">
-                    <span class="badge badge-center rounded-pill bg-danger w-px-20 h-px-20 me-2">
-                      <i class="mdi mdi-play text-white"></i>
-                    </span>
-                    <span class="fw-medium">https://www.youtube.com/@pixinvent1515</span>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-item timeline-item-transparent">
-              <span class="timeline-point timeline-point-info"></span>
-              <div class="timeline-event">
-                <div class="timeline-header mb-1">
-                  <h6 class="mb-2">Received payment from usa client 😍</h6>
-                  <small class="text-muted">January, 18</small>
-                </div>
-                <p class="mb-2">Received payment $1,490 for banking ios app</p>
-              </div>
-            </li>
-            <li class="timeline-item timeline-item-transparent">
-              <span class="timeline-point timeline-point-info"></span>
-              <div class="timeline-event pb-1">
-                <div class="timeline-header mb-1">
-                  <h6 class="mb-2">Meeting with joseph morgan for next project</h6>
-                  <small class="text-muted">April, 23</small>
-                </div>
-                <p class="mb-2">Meeting Video call on zoom at 9pm</p>
-                <div class="d-flex">
-                  <a href="javascript:void(0)" class="me-3">
-                    <img src="../../assets/img/icons/misc/pdf.png" alt="PDF image" width="20" class="me-2" />
-                    <span class="fw-medium">presentation.pdf</span>
-                  </a>
-                </div>
-              </div>
-            </li>
+            @foreach ($informasi as $item)
+                <li class="timeline-item timeline-item-transparent  @if($loop->last) border-transparent @endif">
+                  <span class="timeline-point timeline-point-primary"></span>
+                  <div class="timeline-event">
+                    <div class="timeline-header mb-1">
+                      <h6 class="mb-2">{{ $item->judul }}</h6>
+                      <small class="text-muted">{{ $item->created_at->locale('id-ID')->format('d M Y') }}</small>
+                    </div>
+                    <p class="mb-2">
+                      {!! $item->description !!}
+                    </p>
+                    @if($item->file)
+                      <div class="d-flex">
+                        <a href="{{ url($item->file) }}" class="me-3" download>
+                          <img src="{{asset('assets/img/icons/misc/pdf.png')}}" alt="PDF image" width="20" class="me-2" />
+                          <span class="fw-medium">Download</span>
+                        </a>
+                      </div>
+                    @endif
+                  </div>
+                </li>
+            @endforeach
           </ul>
         </div>
       </div>

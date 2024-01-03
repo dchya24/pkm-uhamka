@@ -64,19 +64,26 @@ Route::post("penilai/logout", [PenilaiLoginController::class, "logout"])
     ->middleware("auth:penilai")
     ->name("penilai.logout");
 
-Route::prefix('login')->middleware("web")->group(function () {
+Route::prefix('login')->group(function () {
     Route::get("", [LoginController::class, "index"])->name('login');
-    Route::post("mahasiswa", [MahasiswaLoginController::class, "login"])->name('login.mahasiswa.attempt');
-    Route::get("mahasiswa", [MahasiswaLoginController::class, "mahasiswa"])->name('login.mahasiswa');
 
-    Route::post("penilai", [LoginController::class, "loginPenilai"])->name('login.penilai.attempt');
-    Route::get("penilai", [LoginController::class, "penilai"])->name('login.penilai');
-    
-    Route::post("administrator", [AdministratorLoginController::class, "login"])->name('login.administrator.attempt');
-    Route::get("administrator", [AdministratorLoginController::class, "administrator"])->name('login.administrator');
+    Route::middleware("guest:mahasiswa")->group(function(){
+        Route::post("mahasiswa", [MahasiswaLoginController::class, "login"])->name('login.mahasiswa.attempt');
+        Route::get("mahasiswa", [MahasiswaLoginController::class, "mahasiswa"])->name('login.mahasiswa');
+    });
+
+    Route::middleware(["guest:penilai", "guest:peninjau"])->group(function(){
+        Route::post("penilai", [LoginController::class, "loginPenilai"])->name('login.penilai.attempt');
+        Route::get("penilai", [LoginController::class, "penilai"])->name('login.penilai');
+    });
+
+    Route::middleware(["guest:admin", "guest:warek"])->group(function(){
+        Route::post("administrator", [AdministratorLoginController::class, "login"])->name('login.administrator.attempt');
+        Route::get("administrator", [AdministratorLoginController::class, "admin"])->name('login.administrator');
+    });
 });
 
-Route::prefix('register')->middleware("web")->group(function () {
+Route::prefix('register')->middleware("guest")->group(function () {
     Route::get("", [RegisterController::class, "index"])->name('register.index');
     Route::post("verify-nim", [RegisterController::class, "verifyNim"])->name('register.verify-nim');
     Route::post("create-password", [RegisterController::class, "register"])->name('register.create-account');
