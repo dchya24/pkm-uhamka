@@ -21,50 +21,28 @@
         </div>
         <div class="card-body pt-4 pb-1">
           <ul class="timeline card-timeline mb-0">
-            <li class="timeline-item timeline-item-transparent">
-              <span class="timeline-point timeline-point-primary"></span>
-              <div class="timeline-event">
-                <div class="timeline-header mb-1">
-                  <h6 class="mb-2">Pemberitahuan pembukaan usulan ke-2</h6>
-                  <small class="text-muted">20 Desember 2023</small>
-                </div>
-                <p class="mb-2">
-                  Bagi yang substansi 1 mendapat Minor, dapat mengusulkan kembali ke usulan-2
-                </p>
-              </div>
-            </li>
-            <li class="timeline-item timeline-item-transparent">
-              <span class="timeline-point timeline-point-info"></span>
-              <div class="timeline-event">
-                <div class="timeline-header mb-1">
-                  <h6 class="mb-2">Pemberitahuan pembukaan usulan ke-2</h6>
-                  <small class="text-muted">30 September 2023</small>
-                </div>
-                <p class="mb-2">
-                  Silahkan menajukan usulan ke-1, sampai batas waktu 07 September 2022 Waktu : 18.00 WIB
-                </p>
-              </div>
-            </li>
-            <li class="timeline-item timeline-item-transparent border-transparent">
-              <span class="timeline-point timeline-point-warning"></span>
-              <div class="timeline-event pb-1">
-                <div class="timeline-header mb-1">
-                  <h6 class="mb-2">Tutorial Website</h6>
-                  <small class="text-muted">20 Juni 2023</small>
-                </div>
-                <p class="mb-2">
-                  <a href="https://www.youtube.com/watch?v=dxIG9JtakBM&ab_channel=WeirdGenius" target="_blank"
-                    >Klick Disini</a
-                  >
-                </p>
-                <div class="d-flex">
-                  <a href="javascript:void(0)" class="me-3">
-                    <img src="../../assets/img/icons/misc/pdf.png" alt="PDF image" width="20" class="me-2" />
-                    <span class="fw-medium">presentation.pdf</span>
-                  </a>
-                </div>
-              </div>
-            </li>
+            @foreach ($informasi as $item)
+                <li class="timeline-item timeline-item-transparent  @if($loop->last) border-transparent @endif">
+                  <span class="timeline-point timeline-point-primary"></span>
+                  <div class="timeline-event">
+                    <div class="timeline-header mb-1">
+                      <h6 class="mb-2">{{ $item->judul }}</h6>
+                      <small class="text-muted">{{ $item->created_at->locale('id-ID')->format('d M Y') }}</small>
+                    </div>
+                    <p class="mb-2">
+                      {!! $item->description !!}
+                    </p>
+                    @if($item->file)
+                      <div class="d-flex">
+                        <a href="{{ url($item->file) }}" class="me-3" download>
+                          <img src="{{asset('assets/img/icons/misc/pdf.png')}}" alt="PDF image" width="20" class="me-2" />
+                          <span class="fw-medium">Download</span>
+                        </a>
+                      </div>
+                    @endif
+                  </div>
+                </li>
+            @endforeach
           </ul>
         </div>
       </div>

@@ -15,7 +15,7 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
 use App\Http\Controllers\Login\PenilaiLoginController;
 use App\Http\Controllers\Login\PeninjauLoginController;
-use App\Http\Controllers\Mahasiswa\DashboardController;
+use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use App\Http\Controllers\Mahasiswa\UsulanController;
 use App\Http\Controllers\PenilaiSubstansiController;
@@ -108,6 +108,7 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
 
 
     Route::get("sertifikat", function(){
+        // TODO sertifikat module
         return view("admin.sertifikat");
     })->name("sertifikat");
 
@@ -210,26 +211,18 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
 Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->group(function(){
     Route::post("logout", [MahasiswaLoginController::class, "logout"])->name("logout");
 
-    Route::get('dashboard', [DashboardController::class, "dashboard"])->name("dashboard");
+    Route::get('dashboard', [MahasiswaDashboardController::class, "dashboard"])->name("dashboard");
 
-    Route::get('informasi', function(){
-        return view("mahasiswa.informasi");
-    })->name("informasi");
+    Route::get('informasi', [MahasiswaDashboardController::class, "informasi"])->name("informasi");
 
-    Route::get('sertifikat', function(){
-        return view("mahasiswa.sertifikat");
-    })->name("sertifikat");
+    Route::get('sertifikat', [MahasiswaDashboardController::class, "sertifikat"])->name("sertifikat");
 
     Route::post('kirim-usulan', [UsulanController::class, "store"])->name("usulan.store");
     Route::get('kirim-usulan', [UsulanController::class, "showKirimUsulanPage"])->name("kirim-usulan");
 
-    Route::get('profile', function(){
-        return view("mahasiswa.profile");
-    })->name("profile");
+    Route::get('profile', [MahasiswaDashboardController::class, "profile"])->name("profile");
 
-    Route::get('faq', function(){
-        return view("mahasiswa.faq");
-    })->name("faq");
+    Route::get('faq', [MahasiswaDashboardController::class, "faq"])->name("faq");
 });
 
 Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai-administrasi.")->group(function(){
@@ -250,7 +243,6 @@ Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai
     })->name("profile");
 });
 
-// ->middleware("auth:penilai")
 Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function(){
     Route::get('dashboard', [PenilaiSubstansiController::class, "index"])->name("dashboard");
 
