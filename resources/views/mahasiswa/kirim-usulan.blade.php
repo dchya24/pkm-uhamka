@@ -49,7 +49,7 @@
               </div>
             </div>
             <div class="bs-stepper-content">
-              <form action="{{ route('mahasiswa.usulan.store')}}" method="POST">
+              <form action="{{ route('mahasiswa.usulan.store')}}" method="POST" enctype="multipart/form-data">
                 <!-- Proposal Details -->
                 <div id="data-usulan" class="content">
                   <div class="content-header mb-3">
@@ -89,7 +89,7 @@
                         <div class="col-xl-2">
                           <div class="form-floating form-floating-outline">
                             <select
-                              name="nim[]"
+                              name="anggota_kelompok[]"
                               class="select2-nim form-select form-select-sm"
                               onchange="selectAnggota(event)"
                               id="anggota-1">
@@ -114,7 +114,7 @@
                         <div class="col-xl-2">
                           <div class="form-floating form-floating-outline">
                             <select
-                              name="nim[]"
+                              name="anggota_kelompok[]"
                               class="select2-nim form-select form-select-sm"
                               onchange="selectAnggota(event)"
                               id="anggota-2">
@@ -139,7 +139,7 @@
                         <div class="col-xl-2">
                           <div class="form-floating form-floating-outline">
                             <select
-                              name="nim[]"
+                              name="anggota_kelompok[]"
                               class="select2-nim form-select form-select-sm"
                               onchange="selectAnggota(event)"
                               id="anggota-3">
@@ -164,7 +164,7 @@
                         <div class="col-xl-2">
                           <div class="form-floating form-floating-outline">
                             <select
-                              name="nim[]"
+                              name="anggota_kelompok[]"
                               class="select2-nim form-select form-select-sm"
                               onchange="selectAnggota(event)"
                               id="anggota-4">
@@ -190,19 +190,23 @@
                           <div class="col-xl-2">
                             <div class="form-floating form-floating-outline">
                               <select
-                                name="nidn[]"
-                                class="select2 select2-nim form-select form-select-lg"
+                                name="pembimbing_id"
+                                class="select2-nim form-select form-select-sm"
+                                onchange="selectPembimbing(event)"
                                 id="anggota-5">
-                                <option value="">NIM - NAMA</option>
+                                <option value="">NIDN - NAMA</option>
+                                @foreach ($dataDosen as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"> 
+                                    {{$item->nidn}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
                               </select>
                             </div>
                           </div>
-                          <div class="col-xl-8 d-flex pt-2">
-                            <p>Laksano</p> 
-                            <p>&nbsp /&nbsp</p>
-                            <p>FT</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>TI</p>
+                          <div class="col-xl-8 d-flex pt-2" id="result-pembimbing">
                         </div>
                       </div>     
 
@@ -213,7 +217,7 @@
                             <select
                               id="skema_pkm"
                               class="form-select form-select-xl w-25"
-                              name="jenis_pkm"
+                              name="jenis_pkm_id"
                               data-allow-clear="true">
                               <option value="" selected>Singkatan - Jenis PKM</option>
                               @foreach ($jenisPkm as $item)
@@ -234,6 +238,7 @@
                               type="text"
                               id="basic-default-email"
                               class="form-control"
+                              name="tahun_pengajuan"
                               placeholder="Tahun Pengajuan"
                               value="2024"
                               disabled />
@@ -316,7 +321,7 @@
                             <textarea
                               class="form-control"
                               id="exampleFormControlTextarea1"
-                              name="isian"
+                              name="pendahuluan"
                               rows="15"
                               placeholder="Isian disesuaikan dengan skema yang diusulkan"></textarea>
                           </div>
@@ -457,6 +462,21 @@
       document.getElementById(`result-${resultId}`).innerHTML = preview;
       document.getElementById(`tugas-${resultId}`).innerHTML = `${nim} <br> ${nama}`;
       document.getElementById(`textarea-tugas-${resultId}`).disabled = false;
+    }
+
+    function selectPembimbing(event){
+      const target = event.target[event.target.selectedIndex];
+      const id = target.getAttribute('data-id');
+      const fakultas = target.getAttribute('data-fakultas');
+      const prodi = target.getAttribute('data-prodi');
+      const text = target.text.split("-")
+      const nidn = text[0].trim();
+      const nama = text[1].trim();
+
+      const preview = `${nama} / ${fakultas} / ${prodi}`;
+      console.log(preview)
+
+      document.getElementById(`result-pembimbing`).innerHTML = preview;
     }
 
     // $(document).ready(function() {

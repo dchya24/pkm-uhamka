@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('usulan', function (Blueprint $table) {
             $table->id();
             $table->string("judul");
-            $table->text("latar_belakang");
+            $table->text("pendahuluan");
             $table->unsignedBigInteger("jenis_pkm_id");
             $table->string("anggaran");
             $table->string("tahun_pengajuan", 4);
@@ -32,6 +32,7 @@ return new class extends Migration
             $table->unsignedBigInteger("pembimbing_id")->nullable();
 
             // File
+            $table->string("lembar_bimbingan")->nullable();
             $table->string("lembar_proposal")->nullable();
             $table->string("lembar_biodata_dospem")->nullable();
             $table->string("lembar_pengesahan")->nullable();

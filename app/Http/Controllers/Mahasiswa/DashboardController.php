@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Informasi;
+use App\Models\usulan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
@@ -11,8 +12,9 @@ class DashboardController extends Controller
 {
     public function dashboard(){
         $userInfo = Auth::user();
+        $usulan = usulan::where('ketua_kelompok_id', $userInfo->data_mahasiswa_id)->get();
 
-        return view("mahasiswa.dashboard", compact('userInfo'));
+        return view("mahasiswa.dashboard", compact('userInfo', 'usulan'));
     }
 
     public function informasi(){

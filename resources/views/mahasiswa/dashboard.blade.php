@@ -100,128 +100,70 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Minor Substani-->
-              <tr >
-                <td class="col-1">
-                  Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                  budidaya ikan lele
-                </td>                          
-                <td>PKM-T</td>
-                <td>Usulan 1</td>
-                <td>
-                  <span class="badge rounded-pill bg-label-danger text-md-end text-dark">MINOR</span>
-                </td>
-                <td></td>
-                <td></td>                          
-                <td></td>
-                <td>2024</td>
-                <td>37000000</td>
-                <td>Rifaldi</td>
-                <td>Isa Faqihuddin, S.T, M.T</td>
-                <td>Gendut wijaya</td>
-                <td>anton siuta</td>
-                <td>latasya miranda</td>
-                <td></td>
-                <td>
-                  <a href="M_Proposalsaya.html">
-                    <button
-                      type="button"
-                      class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">
-                      Lihat
-                    </button>
-                  </a>                                           
-                </td>
-              </tr>
-
-              <!-- Mayor semua, penyaluran internal-->
-              <tr >
-                <td class="col-1">
-                  Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                  budidaya ikan lele
-                </td>                          
-                <td>PKM-T</td>
-                <td>Usulan 2</td>
-                <td>
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                    MAYOR
-                  </span>
-                </td>
-                <td>
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                    MAYOR
-                  </span>
-                </td>
-                <td>
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                    MAYOR
-                  </span>
-                </td>                          
-                <td>
-                  Internal
-                </td>
-                <td>2024</td>
-                <td>37000000</td>
-                <td>Rifaldi</td>
-                <td>Isa Faqihuddin, S.T, M.T</td>
-                <td>Gendut wijaya</td>
-                <td>anton siuta</td>
-                <td>latasya miranda</td>
-                <td></td>
-                <td>
-                  <a href="M_Proposalsaya.html">
-                    <button
-                      type="button"
-                      class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">
-                      Lihat
-                    </button>
-                  </a>                                           
-                </td>
-              </tr>
-
-              <!-- Mayor semua, penyaluran belmawa kemendikbudristek-->
-              <tr >
-                <td class="col-1">
-                  Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                  budidaya ikan lele
-                </td>                          
-                <td>PKM-T</td>
-                <td>Usulan 3</td>
-                <td>
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                    MAYOR
-                  </span>
-                </td>
-                <td>
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                    MAYOR
-                  </span>
-                </td>
-                <td>
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                    MAYOR
-                  </span>
-                </td>                          
-                <td>
-                  Kemendikbudristek
-                </td>
-                <td>2024</td>
-                <td>37000000</td>
-                <td>Rifaldi</td>
-                <td>Isa Faqihuddin, S.T, M.T</td>
-                <td>Gendut wijaya</td>
-                <td>anton siuta</td>
-                <td>latasya miranda</td>
-                <td></td>
-                <td>
-                  <a href="M_Proposalsaya.html">
-                    <button
-                      type="button"
-                      class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">
-                      Lihat
-                    </button>
-                  </a>                                           
-                </td>
-              </tr>
+              @forelse ($usulan as $item)
+                  <tr >
+                    <td class='col-1'>{{$item->judul}}</td>
+                    <td>{{$item->jenisPkm->singkatan}}</td>
+                    <td>Usulan {{$loop->index + 1}}</td>
+                    <td>
+                      @if($item->status_penilaian_substansi == "mayor")
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                          MAYOR
+                        </span>
+                      @elseif($item->status_penilaian_substansi == "minor")
+                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                          MINOR
+                        </span>
+                        @endif
+                    </td>
+                    <td>
+                      @if($item->status_penilaian_administrasi == "mayor")
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                          MAYOR
+                        </span>
+                      @elseif($item->status_penilaian_administrasi == "minor")
+                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                          MINOR
+                        </span>
+                      @endif
+                    </td>
+                    <td>
+                      @if($item->status_penilaian_peninjau == "mayor")
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                          MAYOR
+                        </span>
+                      @elseif($item->status_penilaian_peninjau == "minor")
+                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                          MINOR
+                        </span>
+                      @endif
+                    </td>
+                    <td>{{$item->status_rekomendasi}}</td>
+                    <td>{{$item->tahun_pengajuan}}</td>
+                    <td>{{$item->anggaran}}</td>
+                    <td>{{$item->ketuaKelompok->nama}}</td>
+                    <td>{{$item->pembimbing->nama}}</td>
+                    <td>{{$item->anggotaSatu->nama}}</td>
+                    <td>{{$item->anggotaDua->nama}}</td>
+                    <td>{{$item->anggotaTiga->nama}}</td>
+                    <td>{{$item->anggotaEmpat->nama}}</td>
+                    <td>
+                      <a href="M_Proposalsaya.html">
+                        <button
+                          type="button"
+                          class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">
+                          Lihat
+                        </button>
+                      </a>                                           
+                    </td>
+                  </tr>
+              @empty
+                <tr>
+                  <td colspan="15" class="text-center font-weight bold">
+                    Tidak ada data!
+                  </td>
+                </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
