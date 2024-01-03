@@ -12,6 +12,6 @@ class InformasiSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Informasi::factory(3)->create();
     }
 }

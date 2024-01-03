@@ -151,7 +151,7 @@
         document.getElementById("edit_username").value = username;
         document.getElementById("edit_nama").value = nama;
         document.getElementById("edit_jenis_penilai").value = jenis_penilai;
-        const url = window.BASE_URL + `/admin/manajemen-akun/penilai/${id}/update`;
+        const url = window.BASE_URL + `/administrator/manajemen-akun/penilai/${id}/update`;
 
         document.forms["edit_penilai"].action = url;
       }

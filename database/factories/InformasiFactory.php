@@ -17,7 +17,14 @@ class InformasiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "judul" => fake()->jobTitle(),
+            "description" => fake()->sentence(10),
+            "file" => "/upload/informasi/informasi.pdf",
+            "untuk_mahasiswa" => fake()->boolean,
+            "untuk_penilai_substansi" => fake()->boolean,
+            "untuk_penilai_administrasi" => fake()->boolean,
+            "untuk_peninjau" => fake()->boolean,
+            "untuk_warek" => fake()->boolean,
         ];
     }
 }

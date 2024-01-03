@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text("description");
             $table->string("file");
             $table->boolean("untuk_mahasiswa");
-            $table->boolean("untuk_penguji");
+            $table->boolean("untuk_penilai_substansi");
+            $table->boolean("untuk_penilai_administrasi");
             $table->boolean("untuk_peninjau");
             $table->boolean("untuk_warek");
             $table->timestamps();

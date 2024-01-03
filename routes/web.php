@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\AdministratorController;
 use App\Http\Controllers\Admin\JenisPkmController;
 use App\Http\Controllers\Admin\KetuaKelompokController;
+use App\Http\Controllers\Admin\ManajemenInformasiController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
@@ -88,7 +89,13 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
 
     Route::get("dashboard", [AdminController::class, "dashboardPage"])->name("dashboard");
 
-    Route::get("informasi",[AdminController::class, "informasiPage"])->name("informasi");
+    Route::prefix("informasi")->group(function(){
+        Route::post("",[ManajemenInformasiController::class, "store"])->name("informasi.store");
+        Route::get("",[ManajemenInformasiController::class, "index"])->name("informasi");
+        Route::delete("{id}/delete",[ManajemenInformasiController::class, "delete"])->name("informasi.delete");
+        
+        Route::put("{id}/update",[ManajemenInformasiController::class, "update"])->name("informasi.update");
+    });
 
     Route::get("akses-halaman", [AdminController::class, "aksesHalamanPage"])->name("akses-halaman");
 

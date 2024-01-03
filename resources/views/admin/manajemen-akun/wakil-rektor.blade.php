@@ -143,7 +143,7 @@
 
         document.getElementById("edit_username").value = username;
         document.getElementById("edit_nama").value = nama;
-        const url = window.BASE_URL + `/admin/manajemen-akun/wakil-rektor/${id}/update`;
+        const url = window.BASE_URL + `/administrator/manajemen-akun/wakil-rektor/${id}/update`;
 
         document.forms["edit_warek"].action = url;
       }

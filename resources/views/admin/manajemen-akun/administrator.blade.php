@@ -144,7 +144,7 @@
 
         document.getElementById("edit_username").value = username;
         document.getElementById("edit_nama").value = nama;
-        const url = window.BASE_URL + `/admin/manajemen-akun/administrator/${id}/update`;
+        const url = window.BASE_URL + `/administrator/manajemen-akun/administrator/${id}/update`;
 
         document.forms["edit_administrator"].action = url;
       }

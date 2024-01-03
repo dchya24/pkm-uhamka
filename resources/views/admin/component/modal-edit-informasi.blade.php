@@ -8,22 +8,25 @@
       </div>
       <div class="modal-body">
         <!-- Product Information -->
-        <div class="mb-4">
+
+        <form class="mb-4" method="POST" action="" name='update_informasi' enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
           <div class="card-body">
             <div class="form-floating form-floating-outline mb-4">
               <input
                 type="text"
                 class="form-control"
-                name="Ubah_A_Judulinformasi"
-                aria-label="Product title"
-                value="Iwan Mahyudin" />
+                name="judul"
+                id="edit_judul"
+                aria-label="Product title" />
               <label for="ecommerce-product-name">Judul</label>
             </div>
 
             <!-- Comment -->
             <div>
               <div class="form-control p-0 pt-1">
-                <div class="comment-toolbar border-0 border-bottom">
+                <div class="comment-toolbar-edit border-0 border-bottom">
                   <div class="d-flex justify-content-start">
                     <span class="ql-formats me-0">
                       <button class="ql-bold"></button>
@@ -35,15 +38,15 @@
                     </span>
                   </div>
                 </div>
-                <div class="comment-editor border-0 pb-1" id="ecommerce-category-description">
-                  <h6>iwanslowajj@gmail.com</h6>
+                <div class="comment-editor border-0 pb-1" id="edit_description">
                 </div>
+                <input type="hidden" name="description" id="edit_description">
               </div>
             </div>
 
             <!-- Upload file-->
             <div class="justify-content-start col-sm  pt-3">
-              <input class="form-control" type="file" id="formFile" />
+              <input class="form-control" type="file" name="file" id="formFile" />
               
               <a href="">
                 Modulpkm.pdf
@@ -58,61 +61,59 @@
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  checked/>
-                <label class="form-check-label" for="flexCheckDefault"> Mahasiswa </label>                            
+                  value="1"
+                  id="edit_untuk_mahasiswa"
+                  name="untuk_mahasiswa" />
+                <label class="form-check-label" for="edit_untuk_mahasiswa"> Mahasiswa </label>                            
                 <br>
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  checked/>
-                <label class="form-check-label" for="flexCheckDefault">
+                  value="1"
+                  id="edit_untuk_substansi"
+                  name="untuk_substansi" />
+                <label class="form-check-label" for="edit_untuk_substansi">
                   Penilai Substansi
                 </label>
                 <br>
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  checked/>
-                <label class="form-check-label" for="flexCheckDefault">
+                  value="1"
+                  id="edit_untuk_administrasi"
+                  name="untuk_administrasi" />
+                <label class="form-check-label" for="edit_untuk_administrasi">
                   Penilai Administrasi
                 </label>
                 <br>
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  checked/>
-                <label class="form-check-label" for="flexCheckDefault">
+                  value="1"
+                  id="edit_untuk_peninjau"
+                  name="untuk_peninjau" />
+                <label class="form-check-label" for="edit_untuk_peninjau">
                   Peninjau
                 </label>
                 <br>
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                  checked />
-                <label class="form-check-label" for="flexCheckDefault">
+                  value="1"
+                  id="edit_untuk_warek"
+                  name="untuk_warek" />
+                <label class="form-check-label" for="edit_untuk_warek">
                   Wakil Rektor
                 </label>
               </div>
             </div>
           </div>
-        </div>
+        </form>
         <!-- /Product Information -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-        <a href="A_Buatinformasi.html">
-        <button href type="button" class="btn btn-primary">Ubah</button>
-      </a> 
+        <button onclick="submitEdit()" type="button" class="btn btn-primary">Ubah</button>
       </div>
     </div>
   </div>

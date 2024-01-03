@@ -11,10 +11,6 @@ class AdminController extends Controller
         return view("admin.dashboard");
     }
 
-    public function informasiPage(){
-        return view("admin.manajemen-informasi");
-    }
-
     public function aksesHalamanPage(){
         return view("admin.akses-halaman");
     }

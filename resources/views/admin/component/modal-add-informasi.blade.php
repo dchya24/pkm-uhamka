@@ -14,73 +14,99 @@
         <!-- Product Information -->
         <div class="mb-4">
           <div class="card-body">
-            <div class="form-floating form-floating-outline mb-4">
-              <input
-                type="text"
-                class="form-control"
-                id="ecommerce-product-name"
-                placeholder="Product title"
-                name="productTitle"
-                aria-label="Product title" />
-              <label for="ecommerce-product-name">Judul</label>
-            </div>
-            <!-- Komentas -->
-            <div id="full-editor">
-            </div>
+            <form action="{{route('admin.informasi.store')}}" method="POST" name="Tambah_Informasi" enctype="multipart/form-data">
 
-            <!-- Upload file-->
-            <div class="justify-content-start col-sm d-flex pt-3">
-              <input class="form-control" type="file" id="formFile" />
-            </div>
-
-            <!-- chechk box kirim kemana-->
-            <div class="row pt-3">
-              <div class="col-sm">
-                <h5>Dikirim kepada :</h5>
+              <div class="form-floating form-floating-outline mb-4">
                 <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault"> Mahasiswa </label>
-                <br>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">
-                  Penilai Substansi
-                </label>
-                <br>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">
-                  Penilai Administrasi
-                </label>
-                <br>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">
-                  Peninjau
-                </label>
-                <br>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">
-                  Wakil Rektor
-                </label>
+                  type="text"
+                  class="form-control"
+                  id="ecommerce-product-name"
+                  placeholder="Product title"
+                  name="judul"
+                  aria-label="Product title" />
+                <label for="ecommerce-product-name">Judul</label>
               </div>
-            </div>
+              <!-- Komentas -->
+              <div>
+                <div class="form-control p-0 pt-1">
+                  <div class="comment-toolbar border-0 border-bottom">
+                    <div class="d-flex justify-content-start">
+                      <span class="ql-formats me-0">
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                        <button class="ql-list" value="ordered"></button>
+                        <button class="ql-list" value="bullet"></button>
+                        <button class="ql-link"></button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="comment-editor border-0 pb-1" id="description">
+                  </div>
+                </div>
+                <input type="hidden" name="description" id="description">
+              </div>
+
+              <!-- Upload file-->
+              <div class="justify-content-start col-sm d-flex pt-3">
+                <input class="form-control" type="file" name="file" id="formFile" />
+              </div>
+
+              <!-- chechk box kirim kemana-->
+              <div class="row pt-3">
+                <div class="col-sm">
+                    <h5>Dikirim kepada :</h5>
+                    <input
+                      class="form-check-input"
+                      value="1"
+                      type="checkbox"
+                      name="untuk_mahasiswa"
+                      id="mahasiswa" />
+                    <label class="form-check-label" for="mahasiswa"> Mahasiswa </label>
+                    <br>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="1"
+                      name="untuk_penilai_substansi"
+                      id="substansi" />
+                    <label class="form-check-label" for="substansi">
+                      Penilai Substansi
+                    </label>
+                    <br>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="1"
+                      name="untuk_penilai_administrasi"
+                      id="administrasi" />
+                    <label class="form-check-label" for="administrasi">
+                      Penilai Administrasi
+                    </label>
+                    <br>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="1"
+                      name="untuk_peninjau"
+                      id="peninjau" />
+                    <label class="form-check-label" for="peninjau">
+                      Peninjau
+                    </label>
+                    <br>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="1"
+                      name="untuk_warek"
+                      id="warek" />
+                    <label class="form-check-label" for="warek">
+                      Wakil Rektor
+                    </label>
+                    @csrf
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         <!-- /Product Information -->
@@ -90,9 +116,9 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button> 
-        <a href="A_Buatinformasi.html">
-        <button type="button" class="btn btn-primary">Tambahkan</button>
-      </a>
+        <button type="button" class="btn btn-primary" onclick="submit()">
+          Tambahkan
+        </button>
       </div>
     </div>
   </div>

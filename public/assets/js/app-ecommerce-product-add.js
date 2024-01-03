@@ -8,12 +8,24 @@
 (function () {
   // Comment editor
 
-  const commentEditor = document.querySelector('.comment-editor');
+  const descriptionEditor = document.querySelector('#description');
 
-  if (commentEditor) {
-    new Quill(commentEditor, {
+  if (descriptionEditor) {
+    window.quillDescription = new Quill(descriptionEditor, {
       modules: {
         toolbar: '.comment-toolbar'
+      },
+      placeholder: 'Tambahkan Isi Informasi',
+      theme: 'snow'
+    });
+  }
+
+  const EditdescriptionEditor = document.querySelector('#edit_description');
+
+  if (EditdescriptionEditor) {
+    window.quillEditDescription = new Quill(EditdescriptionEditor, {
+      modules: {
+        toolbar: '.comment-toolbar-edit'
       },
       placeholder: 'Tambahkan Isi Informasi',
       theme: 'snow'

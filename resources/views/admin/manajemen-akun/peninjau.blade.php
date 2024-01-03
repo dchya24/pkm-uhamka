@@ -142,7 +142,7 @@
     event.preventDefault();
     const id = event.target.getAttribute('data-id');
 
-    const url = window.BASE_URL + `/admin/manajemen-akun/peninjau/${id}/update-password`;
+    const url = window.BASE_URL + `/administrator/manajemen-akun/peninjau/${id}/update-password`;
 
     document.forms["edit_peninjau"].action = url;
   }
