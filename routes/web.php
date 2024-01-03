@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ManajemenInformasiController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
+use App\Http\Controllers\Administrasi\AdministrasiController;
 use App\Http\Controllers\Login\AdministratorLoginController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\MahasiswaLoginController;
@@ -77,9 +78,9 @@ Route::prefix('login')->group(function () {
         Route::get("penilai", [LoginController::class, "penilai"])->name('login.penilai');
     });
 
-    Route::middleware(["guest:admin", "guest:warek"])->group(function(){
+    Route::middleware(["guest:admin"])->group(function(){
         Route::post("administrator", [AdministratorLoginController::class, "login"])->name('login.administrator.attempt');
-        Route::get("administrator", [AdministratorLoginController::class, "admin"])->name('login.administrator');
+        Route::get("administrator", [AdministratorLoginController::class, "administrator"])->name('login.administrator');
     });
 });
 
@@ -233,21 +234,13 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
 });
 
 Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai-administrasi.")->group(function(){
-    Route::get('dashboard', function(){
-        return view("penilai-administrasi.dashboard");
-    })->name("dashboard");
+    Route::get('dashboard', [AdministrasiController::class, "index"])->name("dashboard");
 
-    Route::get('informasi', function(){
-        return view("penilai-administrasi.informasi");
-    })->name("informasi");
+    Route::get('informasi', [AdministrasiController::class, "informasi"])->name("informasi");
 
-    Route::get('penilaian-proposal', function(){
-        return view("penilai-administrasi.penilaian-proposal");
-    })->name("penilaian-proposal");
+    Route::get('penilaian-proposal', [AdministrasiController::class, "penilaian"])->name("penilaian-proposal");
 
-    Route::get('profile', function(){
-        return view("penilai-administrasi.profile");
-    })->name("profile");
+    Route::get('profile', [AdministrasiController::class, "profile"])->name("profile");
 });
 
 Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function(){
