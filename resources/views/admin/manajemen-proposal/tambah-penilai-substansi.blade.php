@@ -11,7 +11,7 @@
         <h3 class="text-center pt-3">Penambahan Penilai Substansi pada Usulan </h3>                 
           <Label>Nama Penilai Substansi : {{$penilaiSubstansi->nama}} </Label>
           <br>
-          <label for="">Jumlah Usulan yang dinilai : ({{$penilaiSubstansi->penilaianSubstansi->count()}})</label>
+          <label for="">Jumlah Usulan yang dinilai : {{$penilaiSubstansi->penilaianSubstansi->count()}}</label>
           <br>
         
       </div>
