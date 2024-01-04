@@ -14,6 +14,7 @@ class usulan extends Model
     protected $fillable = [
         "judul",
         "pendahuluan",
+        "usulan",
         "jenis_pkm_id",
         "anggaran",
         "tahun_pengajuan",

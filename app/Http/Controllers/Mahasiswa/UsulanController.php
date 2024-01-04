@@ -32,15 +32,23 @@ class UsulanController extends Controller
 
         $anggota = ["satu", "dua", "tiga", "empat"];
 
+        $lembar_bimbinan = $request->file('lembar_bimbingan');
+        $lembar_bimbinan_name = $lembar_bimbinan->getClientOriginalName();
+        $lembar_bimbinan->move('upload/lembar_bimbingan', $lembar_bimbinan_name);
+
+        $countOldUsulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)->count();
+
         $data = [
             "judul" => $request->judul,
             "pendahuluan" => $request->pendahuluan,
             "jenis_pkm_id" => $request->jenis_pkm_id,
+            "usulan" => $countOldUsulan + 1,
             "anggaran" => $request->anggaran,
             "tahun_pengajuan" => $request->has('tahun_pengajuan') ? $request->tahun_pengajuan : date("Y"),
             "pembimbing_id" => $request->pembimbing_id,
             "ketua_kelompok_id" => $user->data_mahasiswa_id,
             "tugas_ketua_kelompok" => $request->tugas_ketua,
+            "lembar_bimbingan" => 'upload/lembar_bimbingan/' . $lembar_bimbinan_name,
         ];
 
         foreach($request->anggota_kelompok as $key => $item){
@@ -56,5 +64,16 @@ class UsulanController extends Controller
 
         // TODO insert Data
         return redirect()->back()->with("success", "Berhasil mengirim usulan");
+    }
+
+    public function index(){
+        $user = Auth::user();
+        $usulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
+            ->select('id')->get();
+
+        $detail = usulan::where('usulan', 1)
+            ->first();
+
+        return view("mahasiswa.usulan", compact("usulan", "detail"));
     }
 }
