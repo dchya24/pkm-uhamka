@@ -40,11 +40,6 @@ class LoginController extends Controller
         else if($loginType == "peninjau"){
             $peninjauLoginController = new PeninjauLoginController();
 
-            $credentials = [
-                "nidn" => $request->username,
-                "password" => $request->password
-            ];
-
             $peninjauLoginController->login($request);
         }
     }

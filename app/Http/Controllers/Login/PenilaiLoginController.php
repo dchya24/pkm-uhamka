@@ -25,4 +25,26 @@ class PenilaiLoginController extends Controller
         return Auth::guard('penilai');
     }
 
+    public function login($request){
+        $credentials = [
+            "username" => $request->username,
+            "password" => $request->password
+        ];
+
+        if(Auth::guard('penilai')->attempt($credentials)){
+            $user = Auth::guard('penilai')->user();
+            $route = "";
+
+            if($user->id == 2){
+                $route = "penilai-substansi.dashboard";
+            }
+            else if($user->id == 1){
+                $route = "penilai-administrasi.dashboard";
+            }
+
+            return redirect()->route($route);
+        }
+
+        return redirect()->back()->withInput($request->only('username', 'remember'));
+    }
 }

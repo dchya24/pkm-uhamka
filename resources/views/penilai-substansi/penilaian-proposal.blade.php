@@ -20,6 +20,34 @@
     </div>
     <div class="card-body">
       <div class="row gy-4 mb-4">
+        @foreach ($usulan as $item)
+          <div class="col-sm-7 col-lg-3">
+            <div class="card p-2 shadow-none border">
+              <div class="card-body p-3 pt-2">
+                <h6>{{$item->ketuaKelompok->nama}}</h6>
+                <p class="">{{$item->judul}}</p>
+                <p>{{ $item->jenisPkm->singkatan }}</p>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  @if($item->status_penilai_substansi == "sedang dinilai")
+                    <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
+                  @elseif($item->status_penilai_substansi == "minor")
+                    <span class="badge rounded-pill bg-label-danger">MINOR</span>
+                  @elseif($item->status_penilai_substansi == "mayor")
+                    <span class="badge rounded-pill bg-label-success">MAYOR</span>
+                  @endif
+                </div>
+                <div
+                  class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                  <a
+                    class="w-100 btn btn-outline-primary d-flex align-items-center"
+                    href="{{ route('penilai-substansi.penilaian.detail', $item->id) }}">
+                    <span class="me-1">Detail</span><i class="mdi mdi-arrow-right lh-1 scaleX-n1-rtl"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endforeach
         <div class="col-sm-7 col-lg-3">
           <div class="card p-2 shadow-none border">
             <div class="card-body p-3 pt-2">

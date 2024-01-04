@@ -236,6 +236,19 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
     Route::get('faq', [MahasiswaDashboardController::class, "faq"])->name("faq");
 });
 
+
+
+Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function(){
+    Route::get('dashboard', [PenilaiSubstansiController::class, "index"])->name("dashboard");
+
+    Route::get('informasi', [PenilaiSubstansiController::class, "informasi"])->name("informasi");
+
+    Route::get('penilaian-proposal', [PenilaiSubstansiController::class, "penilaian"])->name("penilaian-proposal");
+    Route::get('penilaian-proposal/{id}', [PenilaiSubstansiController::class, "detailPenilaian"])->name("penilaian.detail");
+
+    Route::get('profile', [PenilaiSubstansiController::class, "profile"])->name("profile");
+});
+
 Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai-administrasi.")->group(function(){
     Route::get('dashboard', [AdministrasiController::class, "index"])->name("dashboard");
 
@@ -244,16 +257,6 @@ Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai
     Route::get('penilaian-proposal', [AdministrasiController::class, "penilaian"])->name("penilaian-proposal");
 
     Route::get('profile', [AdministrasiController::class, "profile"])->name("profile");
-});
-
-Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function(){
-    Route::get('dashboard', [PenilaiSubstansiController::class, "index"])->name("dashboard");
-
-    Route::get('informasi', [PenilaiSubstansiController::class, "informasi"])->name("informasi");
-
-    Route::get('penilaian-proposal', [PenilaiSubstansiController::class, "penilaian"])->name("penilaian-proposal");
-
-    Route::get('profile', [PenilaiSubstansiController::class, "profile"])->name("profile");
 });
 
 Route::prefix("peninjau")
