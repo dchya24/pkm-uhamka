@@ -11,6 +11,8 @@ class Penilai extends Model
 
     protected $table = "penilai";
 
+    protected $hidden = ["password"];
+
     protected $fillable = [
         "username", "nama", "jenis_penilai", "password"
     ];
@@ -24,5 +26,13 @@ class Penilai extends Model
     public function getAuthPassword()
     {
         return $this->password;
+    }
+
+    public function penilaianSubstansi() {
+        return $this->hasMany(Usulan::class, "penilai_substansi_id");
+    }
+    
+    public function penilaianAdministrasi() {
+        return $this->hasMany(Usulan::class, "penilai_administrasi_id");
     }
 }
