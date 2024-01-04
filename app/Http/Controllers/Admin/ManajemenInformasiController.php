@@ -82,9 +82,7 @@ class ManajemenInformasiController extends Controller
 
             $informasi->file = $fileUpload;
         }
-
-        // TODO Belum ditesting
-
+        
         $informasi->save();
         
         return redirect()->back();
