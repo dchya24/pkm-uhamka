@@ -231,6 +231,8 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
     Route::post('kirim-usulan', [UsulanController::class, "store"])->name("usulan.store");
     Route::get('kirim-usulan', [UsulanController::class, "showKirimUsulanPage"])->name("kirim-usulan");
 
+    Route::get('usulan', [UsulanController::class, "index"])->name("usulan");
+
     Route::get('profile', [MahasiswaDashboardController::class, "profile"])->name("profile");
 
     Route::get('faq', [MahasiswaDashboardController::class, "faq"])->name("faq");

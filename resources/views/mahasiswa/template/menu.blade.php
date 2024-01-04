@@ -33,7 +33,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="/Mahasiswa/Substansi/M_Substansi_delay.html" class="menu-link">
+              <a href="{{ route("mahasiswa.usulan") }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-clipboard-account"></i>
                 <div>Usulan anda</div>
               </a>
