@@ -9,9 +9,9 @@
         Kembali
       </a>
       <h3 class="text-center pt-3">Penambahan Penilai Administrasi pada Usulan </h3>                 
-        <Label>Nama Penilai Administrasi : (Nama Penilai) </Label>
+        <Label>Nama Penilai Administrasi : {{$penilaiAdministrasi->nama}} </Label>
         <br>
-        <label for="">Jumlah Usulan yang dinilai : (129)</label>
+        <label for="">Jumlah Usulan yang dinilai : {{$penilaiAdministrasi->penilaianSubstansi->count()}}</label>
         <br>
       
     </div>
@@ -22,28 +22,33 @@
             <tr class="text-bold">
               <th>Judul</th>
               <th>Skema PKM</th>
-              <th>Usulan</th>
-              <th>Penilai Administrasi</th>
               <th>Dosen Pembimbing</th>
               <th>Ketua Kelompok</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
-            <tr>                          
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>
-              
-              <td>Ahamad Darto</td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>
-             
-              <td>
-                <a href="" type="button" class="btn rounded-pill btn-danger btn-xs" >
-                  Hapus
-                </a> 
-              </td>
+            @forelse ($penilaiAdministrasi->penilaianSubstansi as $item)
+                <tr>
+                  <td>{{$item->judul}}</td>
+                  <td>{{$item->jenisPkm->singkatan}}</td>
+                  <td>{{ $item->pembimbing->nama}}</td>
+                  <td>{{ $item->ketuaKelompok->nama}}</td>
+                  <td>
+                    <form action="{{route('admin.manajemen-proposal.penilai-substansi.delete-penilai', $item->id)}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn rounded-pill btn-danger btn-xs" >
+                        Hapus
+                      </button> 
+                    </form>
+                  </td>
+                </tr>
+              @empty
+                  <tr>
+                    <td colspan="5" class="text-center text-bold">Tidak ada Usulan yang dinilai!</td>
+                  </tr>
+              @endforelse
             </tr>
           </tbody>
         </table>
@@ -73,108 +78,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr>                                              
-            <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-            <td>PKM-TD</td>
-            <td>Usulan 1</td>                        
-            <td></td>
-            <td>Suinta Golo</td>
-            <td>Utung Ketopa</td>    
-            <td>
-              <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  />
-            </td>                       
-          </tr>
-
-          <tr>                                              
-            <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-            <td>PKM-TD</td>
-            <td>Usulan 1</td>                        
-            <td></td>
-            <td>Suinta Golo</td>
-            <td>Utung Ketopa</td>    
-            <td>
-              <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  />
-            </td>                       
-          </tr>
-
-          <tr>                                              
-            <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-            <td>PKM-TD</td>
-            <td>Usulan 1</td>                        
-            <td></td>
-            <td>Suinta Golo</td>
-            <td>Utung Ketopa</td>    
-            <td>
-              <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  />
-            </td>                       
-          </tr>
-
-          <tr>                                              
-            <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-            <td>PKM-TD</td>
-            <td>Usulan 1</td>                        
-            <td></td>
-            <td>Suinta Golo</td>
-            <td>Utung Ketopa</td>    
-            <td>
-              <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  />
-            </td>                       
-          </tr>
-
-          <tr>                                              
-            <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-            <td>PKM-TD</td>
-            <td>Usulan 1</td>                        
-            <td></td>
-            <td>Suinta Golo</td>
-            <td>Utung Ketopa</td>    
-            <td>
-              <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  />
-            </td>                       
-          </tr>
-
-          <tr>                                              
-            <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-            <td>PKM-TD</td>
-            <td>Usulan 1</td>                        
-            <td></td>
-            <td>Suinta Golo</td>
-            <td>Utung Ketopa</td>    
-            <td>
-              <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault" 
-                  />
-            </td>                       
-          </tr>
-          
+          <form action="{{route('admin.manajemen-proposal.penilai-substansi.store', $penilaiAdministrasi->id)}}" method="POST" name="add-usulan">
+            @forelse ($listUsulan as $item)
+              <tr>
+                <td>{{$item->judul}}</td>
+                <td>{{$item->jenisPkm->singkatan}}</td>
+                <td>{{ $item->pembimbing->nama}}</td>
+                <td>{{ $item->ketuaKelompok->nama}}</td>
+                <td>
+                  <input
+                      class="form-check-input"
+                      type="checkbox"
+                      name="usulanId[]"
+                      value="{{ $item->id }}"
+                      id="flexCheckDefault" 
+                      />
+                </td> 
+              </tr>
+            @empty
+                <tr>
+                  <td colspan="7" class="text-center text-bold">Tidak ada Usulan yang dinilai!</td>
+                </tr>
+            @endforelse
+            <input type="hidden" name="penilai_id" value="{{$penilaiAdministrasi->id}}">
+            @csrf
+          </form>
         </tbody>
       </table>
     </div>

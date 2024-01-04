@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\JenisPkmController;
 use App\Http\Controllers\Admin\KetuaKelompokController;
 use App\Http\Controllers\Admin\ManajemenInformasiController;
 use App\Http\Controllers\Admin\ManajemenProposal\ManajemenProposalController;
+use App\Http\Controllers\Admin\ManajemenProposal\PenilaiAdministrasiController as ManajemenProposalPenilaiAdministrasiController;
 use App\Http\Controllers\Admin\ManajemenProposal\PenilaiSubstansiController as ManajemenProposalPenilaiSubstansiController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
@@ -187,13 +188,18 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
         Route::get('penilai-substansi/{id}', [ManajemenProposalPenilaiSubstansiController::class, "show"])->name('penilai-substansi.tambah');
         Route::delete('penilai-substansi/{idUsulan}/delete-penilai', [ManajemenProposalPenilaiSubstansiController::class, "deletePenilai"])->name('penilai-substansi.delete-penilai');
 
-        Route::get('penilai-administrasi', function(){
-            return view('admin.manajemen-proposal.penilai-administrasi');
-        })->name('penilai-administrasi');
+        Route::get('penilai-administrasi', [ManajemenProposalPenilaiAdministrasiController::class, "index"])->name('penilai-administrasi');
+        Route::post('penilai-administrasi/{id}', [ManajemenProposalPenilaiAdministrasiController::class, "store"])->name('penilai-administrasi.store');
+        Route::get('penilai-administrasi/{id}', [ManajemenProposalPenilaiAdministrasiController::class, "show"])->name('penilai-administrasi.tambah');
+        Route::delete('penilai-administrasi/{idUsulan}/delete-penilai', [ManajemenProposalPenilaiAdministrasiController::class, "deletePenilai"])->name('penilai-administrasi.delete-penilai');
 
-        Route::get('penilai-administrasi/{id}', function(){
-            return view('admin.manajemen-proposal.tambah-penilai-administrasi');
-        })->name('penilai-administrasi.tambah');
+        // Route::get('penilai-administrasi', function(){
+        //     return view('admin.manajemen-proposal.penilai-administrasi');
+        // })->name('penilai-administrasi');
+
+        // Route::get('penilai-administrasi/{id}', function(){
+        //     return view('admin.manajemen-proposal.tambah-penilai-administrasi');
+        // })->name('penilai-administrasi.tambah');
 
         Route::get('peninjau', function(){
             return view('admin.manajemen-proposal.peninjau');
