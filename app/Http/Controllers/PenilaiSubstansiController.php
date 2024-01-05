@@ -38,11 +38,31 @@ class PenilaiSubstansiController extends Controller
     }
 
     // TODO create detail and input nilai
-    public function detailPenilaian(){
-        return view("penilai-substansi.detail-penilaian");
+    public function detailPenilaian($id){
+        $detail = usulan::find($id);
+
+        return view("penilai-substansi.detail-penilaian", compact('detail'));
     }
 
     public function profile(){
         return view("penilai-substansi.profile");
+    }
+
+    public function tambahPenilaian(Request $request, $id){
+        $usulan = usulan::find($id);
+
+        $usulan->status_penilai_substansi = $request->status_penilaian;
+
+        $lembar_penilaian = $request->file('form_penilaian_substansi');
+
+        $nama_file = $lembar_penilaian->getClientOriginalName();
+
+        $lembar_penilaian->move('upload/penilaian/substansi', $nama_file);
+
+        $usulan->form_penilaian_substansi = 'upload/penilaian/substansi/' . $nama_file;
+
+        $usulan->save();
+
+        return redirect()->back();
     }
 }

@@ -246,6 +246,7 @@ Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function()
     Route::get('informasi', [PenilaiSubstansiController::class, "informasi"])->name("informasi");
 
     Route::get('penilaian-proposal', [PenilaiSubstansiController::class, "penilaian"])->name("penilaian-proposal");
+    Route::post('penilaian-proposal/{id}', [PenilaiSubstansiController::class, "tambahPenilaian"])->name("penilaian.tambah-penilaian");
     Route::get('penilaian-proposal/{id}', [PenilaiSubstansiController::class, "detailPenilaian"])->name("penilaian.detail");
 
     Route::get('profile', [PenilaiSubstansiController::class, "profile"])->name("profile");
