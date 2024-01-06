@@ -555,12 +555,12 @@
 														data-bs-target="#backDropModal">
 														Tinjau Usulan
 													</button>
-													@elseif($detail->status_penilaian_peninjau === "done")
-														<button class="btn btn-primary btn-next" disabled>
-															<span class="align-middle d-sm-inline-block d-none me-sm-1" >Selanjutnya</span>
-															<i class="mdi mdi-arrow-right"></i>
-														</button>
-													@endif
+												@elseif($detail->status_penilaian_peninjau === "done")
+													<button class="btn btn-primary btn-next" disabled>
+														<span class="align-middle d-sm-inline-block d-none me-sm-1" >Selanjutnya</span>
+														<i class="mdi mdi-arrow-right"></i>
+													</button>
+												@endif
                       </div>
                   </div>
                 </form>
