@@ -136,13 +136,13 @@
                       @endif
                     </td>
                     <td>
-                      @if($item->status_penilaian_peninjau == "mayor")
-                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                          MAYOR
+                      @if($item->status_penilaian_peninjau == "waiting")
+                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
+                          Sedang Dinilai
                         </span>
-                      @elseif($item->status_penilaian_peninjau == "minor")
-                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
-                          MINOR
+                      @elseif($item->status_penilaian_peninjau == "done")
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                          Sudah Dinilai
                         </span>
                       @endif
                     </td>

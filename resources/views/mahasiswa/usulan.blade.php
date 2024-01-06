@@ -84,7 +84,7 @@
 							@endif
 
 							{{-- Step rekomendasi --}}
-							@if($detail->status_rekomendasi != null)
+							@if(in_array($detail->status_penilaian_peninjau, ['done', 'rejected']))
 								<div class="line"></div>
 								<div class="step" data-target="#Rekomendasi-usulan">
 									<button type="button" class="step-trigger">
@@ -528,15 +528,14 @@
 									<h5 class="mb-1 pb-2">Tinjauan usulan </h6>
 									<p class="fw-bold">
 										Status : 
-										{{-- @if($detail->status_penilaian_peninjau === "waiting") --}}
-										@if(true)
+										@if($detail->status_penilaian_peninjau === "waiting")
 											<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
 										@elseif($detail->status_penilaian_peninjau === "done")
 											<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap rekomendasi</span>
 										@endif
 									</p>
 
-									@if($detail->status_penilaian_peninjau === "minor")
+									@if($detail->status_penilaian_peninjau === "done")
 										<label for="">
 											Unduh Nilai
 											<a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->form_penilaian_peninjau)}}" target="_blank" title="Read PDF">
@@ -544,9 +543,9 @@
 											</a>
 										</label>
 										<br>
-										<Label class="fw-bold">Komentar peninjau: </Label> 
+										<Label class="fw-bold mt-1">Komentar peninjau: </Label> 
 										<p>
-											{{$detail->komentar_peninjau}}
+											{{$detail->komentar_ke_mahasiswa}}
 										</p>
 									@endif
 									<hr>
@@ -589,32 +588,42 @@
 									<div class="content-header mb-3">
 											<h5 class="mb-1 pb-2">Rekomendasi usulan </h6>   
 												<div>                                
-													<p class="fw-bold">Status : <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span> </p>
+													<p class="fw-bold">
+														Status : 
+														@if($detail->satus_rekomendasi === null)
+															<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang Diputuskan</span> 
+														@elseif($detail->status_rekomendasi === 'internal')
+															<span class="badge rounded-pill bg-label-info text-md-end text-dark">Internal</span> 
+														@elseif($detail->status_rekomendasi === 'belmawa')
+															<span class="badge rounded-pill bg-label-success text-md-end text-dark">Belmawa</span> 
+														@endif
+													</p>
 												</div> 
 
 												<!-- grup Rekomendasi internal-->
 
-												<div class="d-none">
-													<Label class="fw-bold">Tautan grup whatsapp Rekomendasi internal :
-														<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
-															<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
-														</a> 
-													</Label> 
-												</div>
-
-												<!-- grup Rekomendasi kemendikbudristek-->
-												<div class="d-none">
-													<Label class="fw-bold">Tautan grup whatsapp Rekomendasi kemendikbudristek :
-														<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
-															<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
-														</a> 
-													</Label> 
+												<div>
+													@if($detail->status_rekomendasi === 'internal')
+														{{-- Grup rekomendasi Internal --}}
+														<Label class="fw-bold">Tautan grup whatsapp Rekomendasi internal :
+															<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+																<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
+															</a> 
+														</Label> 
+													@elseif($detail->status_rekomendasi === 'belmawa')
+														{{-- Grup rekomendasi ke belmawa --}}
+														<Label class="fw-bold">Tautan grup whatsapp Rekomendasi kemendikbudristek :
+															<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+																<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
+															</a> 
+														</Label>  
+													@endif
 												</div>
 
 												<div>                                      
 														<hr>
 														<p class="fw-bold">Nilai substansi :
-															<a href="/assets/pdf/HASIL_SUB_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+															<a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 																<i class="mdi mdi-file"></i> Unduh
 															</a>                                         
 														</p>
@@ -622,7 +631,7 @@
 												
 												<div>
 													<p class="fw-bold">Nilai administrasi : 
-														<a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+														<a href="{{url($detail->form_penilaian_administrasi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 															<i class="mdi mdi-file"></i> Unduh
 														</a> 
 													</p>
@@ -630,24 +639,35 @@
 
 												<div>
 													<p class="fw-bold">Nilai tinjauan : 
-														<a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+														<a href="{{url($detail->form_penilaian_peninjau)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 															<i class="mdi mdi-file"></i> Unduh
 														</a> 
 													</p>
 													
 													<p class="fw-bold">Komentar peninjau : </p>
-													<p class="fst-italic">"Tolong ketika kamu ke tahap belmawa / internal, perkuat argumentasi terakir kenapa alat2 iot sangat mahal"</p>
+													<p class="fst-italic">
+														"{{$detail->komentar_ke_mahasiswa}}"
+													</p>
 												</div>
 												
 												<hr>
 									</div>
 									<div class="row g-4">                        
 											<div class="d-flex flex-column align-items-center">
+												@if($detail->status_rekomendasi !== null)
+													<?php $disabled = ''; ?>
 													<img
-														src="../../assets/img/illustrations/tinjau_succes.png"
+														src="{{asset('assets/img/illustrations/tinjau_succes.png')}}"
 														alt="misc-under-maintenance"
 														class="img-fluid zindex-1"
 														width="400" />
+												@else
+													<img
+														src="{{asset('assets/img/illustrations/tinjau_delay.png')}}"
+														alt="misc-under-maintenance"
+														class="img-fluid zindex-1"
+														width="400" />
+												@endif
 												</div>
 									</div>
 									<div class="col-12 d-flex justify-content-between">
