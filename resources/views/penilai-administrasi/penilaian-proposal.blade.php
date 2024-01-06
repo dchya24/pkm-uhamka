@@ -29,7 +29,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   @if($item->status_penilaian_administrasi == "waiting")
                     <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
-                  @elseif($item->status_penilaian_administrasi == "minor")
+                  @elseif($item->status_penilaian_administrasi == "done")
                     <span class="badge rounded-pill bg-label-success">Sudah Dinilai</span>
                   @endif
                 </div>

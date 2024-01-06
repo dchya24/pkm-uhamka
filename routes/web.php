@@ -24,6 +24,7 @@ use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardCont
 use App\Http\Controllers\Mahasiswa\RegisterController;
 use App\Http\Controllers\Mahasiswa\UsulanController;
 use App\Http\Controllers\PenilaiSubstansiController;
+use App\Http\Controllers\Peninjau\PeninjauController as PeninjauPeninjauController;
 use App\Http\Controllers\WakilRektorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -271,21 +272,17 @@ Route::prefix("peninjau")
     ->name("reviewer.")
     ->middleware("auth:peninjau")
     ->group(function(){
-        Route::get('dashboard', function(){
-            return view("reviewer.dashboard");
-        })->name("dashboard");
+        Route::get('dashboard', [PeninjauPeninjauController::class, "index"])->name("dashboard");
 
-        Route::get('informasi', function(){
-            return view("reviewer.informasi");
-        })->name("informasi");
+        Route::get('informasi', [PeninjauPeninjauController::class, "informasi"])->name("informasi");
 
-        Route::get('penilaian-proposal', function(){
-            return view("reviewer.penilaian-proposal");
-        })->name("penilaian-proposal");
+        Route::get('penilaian-proposal', [PeninjauPeninjauController::class, "penilaian"])->name("penilaian-proposal");
 
-        Route::get('profile', function(){
-            return view("reviewer.profile");
-        })->name("profile");
+        
+        Route::post('penilaian-proposal/{id}', [PeninjauPeninjauController::class, "tambahPenilaian"])->name("penilaian.tambah-penilaian");
+        Route::get('penilaian-proposal/{id}', [PeninjauPeninjauController::class, "detailPenilaian"])->name("penilaian.detail");
+
+        Route::get('profile', [PeninjauPeninjauController::class, "profile"])->name("profile");
 
         Route::post("logout", [PeninjauLoginController::class, "logout"])->name("logout");
     });

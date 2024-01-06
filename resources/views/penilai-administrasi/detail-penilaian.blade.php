@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="bs-stepper-content">
-            <!-- Proposal Details -->
+          <!-- Proposal Details -->
           <div id="data-usulan" class="content">
             <div class="content-header mb-3">
               <h5 class="mb-0 fw-bold">Data usulan </h5>
@@ -342,22 +342,22 @@
           <div id="administrasi-usulan" class="content">
             <div class="content-header mb-3">
                 <h5 class="mb-1 pb-2 fw-bold">Administrasi usulan </h6>
-                  <p class="fw-bold">
-                    Status : 
-                    <?php $disabled = ""; ?>
-                    @if($detail->status_penilaian_administrasi == 'waiting')
-                      <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Belum dinilai</span> 
-                    @elseif($detail->status_penilaian_administrasi == 'done')
-                    <?php $disabled = "disabled"; ?>
-                    <span class="badge rounded-pill bg-label-success text-md-end text-dark">Sudah dinilai</span>
-                    @endif
-                  </p>
-                  <Label class="fw-bold">Unduh nilai : 
-                    &nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_administrasi)}}" target="_blank" title="Read PDF">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a>
-                  </Label> 
-                  <hr>
+                <p class="fw-bold">
+                  Status : 
+                  <?php $disabled = ""; ?>
+                  @if($detail->status_penilaian_administrasi == 'waiting')
+                    <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Belum dinilai</span> 
+                  @elseif($detail->status_penilaian_administrasi == 'done')
+                  <?php $disabled = "disabled"; ?>
+                  <span class="badge rounded-pill bg-label-success text-md-end text-dark">Sudah dinilai</span>
+                  @endif
+                </p>
+                <Label class="fw-bold">Unduh nilai : 
+                  &nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_administrasi)}}" target="_blank" title="Read PDF">
+                    <i class="mdi mdi-file"></i> Unduh
+                  </a>
+                </Label> 
+                <hr>
             </div>                  
               <div class="row g-4">
                 <form>                                
