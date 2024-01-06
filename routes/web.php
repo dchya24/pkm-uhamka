@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManajemenProposal\ManajemenProposalController;
 use App\Http\Controllers\Admin\ManajemenProposal\PenilaiAdministrasiController as ManajemenProposalPenilaiAdministrasiController;
 use App\Http\Controllers\Admin\ManajemenProposal\PenilaiSubstansiController as ManajemenProposalPenilaiSubstansiController;
 use App\Http\Controllers\Admin\ManajemenProposal\PeninjauController as ManajemenProposalPeninjauController;
+use App\Http\Controllers\Admin\ManajemenProposal\RekomendasiController;
 use App\Http\Controllers\Admin\ManajemenProposal\WarekController as ManajemenProposalWarekController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
@@ -220,7 +221,11 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
         Route::get('wakil-rektor/{id}', [ManajemenProposalWarekController::class, "show"])->name('wakil-rektor.tambah');
 
         Route::delete('wakil-rektor/{idUsulan}/delete-penilai', [ManajemenProposalWarekController::class, "deleteWarek"])->name('wakil-rektor.delete-warek');
-        
+
+        /**
+         * Rekomendasi
+         */
+        Route::put("rekomendasi/{id}", [RekomendasiController::class, "update"])->name("rekomendasi.update");
     });
 });
 

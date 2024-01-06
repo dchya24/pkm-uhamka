@@ -84,48 +84,35 @@
                   </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                  <tr class="text-center">
-                    <td>
-                      <a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank">
-                        Www.dasdasdsadasdasdas.com
-                      </a>
-                    </td>
-                    <td>Internal</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
-                        data-bs-toggle="modal"
-                        data-bs-target="#largeModal">
-                        Edit
-                      </button>
+                  @forelse ($rekomendasi as $item)
+                      <tr>
+                        <td>
+                          <a href="{{$item->link_group}}">{{$item->link_group}}</a>
+                        </td>
+                        <td>{{$item->nama}}</td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
+                            onclick="editLinkGroup(event)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#largeModal"
+                            data-rekomendasi="{{$item->nama}}"
+                            data-id="{{$item->id}}"
+                            data-link_group="{{$item->link_group}}">
+                            Edit
+                          </button>
 
-                      <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                        Hapus
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="text-center">
-                    <td>
-                      <a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank">
-                        Www.dasdasdsadasdasdas.com
-                      </a>
-                    </td>
-                    <td>Belmawa</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-sm rounded-pill btn-primary waves-effect waves-light"
-                        data-bs-toggle="modal"
-                        data-bs-target="#largeModal">
-                        Edit
-                      </button>
-
-                      <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                        Hapus
-                      </button>
-                    </td>
-                  </tr>
+                          <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
+                            Hapus
+                          </button>
+                        </td>
+                      </tr>
+                  @empty
+                      <tr>
+                        <td class="fw-bold" colspan="3">Tidak ada data!</td>
+                      </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
@@ -193,5 +180,18 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
+
+    <script>
+      function editLinkGroup(event){
+        console.log(event.target.dataset.id);
+        const id = event.target.dataset.id;
+        const link_group = event.target.dataset.link_group;
+        const rekomendasi = event.target.dataset.rekomendasi;
+
+        document.forms['edit-link-group'].action = window.BASE_URL + `/administrator/manajemen-proposal/rekomendasi/${id}`;
+        document.getElementById('edit_link_group').value = link_group;
+        document.getElementById('edit_rekomendasi').value = rekomendasi;
+      }
+    </script>
   @endsection
 @endsection

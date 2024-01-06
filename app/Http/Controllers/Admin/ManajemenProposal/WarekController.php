@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Administrator;
 use App\Models\Penilai;
 use App\Models\Peninjau;
+use App\Models\Rekomendasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,10 @@ class WarekController extends Controller
     public function index(){
         $warek = Administrator::where('type', 'warek')
             ->get();
+
+        $rekomendasi = Rekomendasi::all();
         
-        return view('admin.manajemen-proposal.wakil-rektor', compact('warek'));
+        return view('admin.manajemen-proposal.wakil-rektor', compact('warek', 'rekomendasi'));
     }
 
     public function show($id){
