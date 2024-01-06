@@ -21,7 +21,7 @@
                 </div>
                 <div class="content-right">
                   <p class="mb-0 fw-medium" style="font-size: 1rem">Belum di rekomendasikan</p>
-                  <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">08</span>
+                  <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">{{$belumDiputuskan}}</span>
                 </div>
               </div>
               <div class="d-flex align-items-center gap-3">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="content-right">
                   <p class="mb-0 fw-medium" style="font-size: 1rem">Internal</p>
-                  <span class="text-info mb-0 display-6" style="font-size: 1.3rem">07</span>
+                  <span class="text-info mb-0 display-6" style="font-size: 1.3rem">{{$internal}}</span>
                 </div>
               </div>
               <div class="d-flex align-items-center gap-3">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="content-right">
                   <p class="mb-0 fw-medium" style="font-size: 1rem">Belmawa</p>
-                  <span class="text-success mb-0 display-6" style="font-size: 1.3rem">07</span>
+                  <span class="text-success mb-0 display-6" style="font-size: 1.3rem">{{$belmawa}}</span>
                 </div>
               </div>
             </div>

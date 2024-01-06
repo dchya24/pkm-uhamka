@@ -44,10 +44,11 @@ class PeninjauController extends Controller
         return redirect()->back();
     }
 
-    public function deletePenilai($id){
+    public function deletePeninjau($id){
         $usulan = usulan::find($id);
 
         $usulan->peninjau_id = null;
+        $usulan->status_penilaian_peninjau = 'submited';
         $usulan->save();
 
         return redirect()->back();

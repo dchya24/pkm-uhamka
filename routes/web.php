@@ -300,6 +300,9 @@ Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
     Route::get('informasi', [WakilRektorController::class, "informasi"])->name("informasi");
 
     Route::get('penilaian-proposal', [WakilRektorController::class, "penilaian"])->name("penilaian-proposal");
+    
+    Route::post('penilaian-proposal/{id}', [WakilRektorController::class, "buatRekomendasi"])->name("penilaian.rekomendasi");
+    Route::get('penilaian-proposal/{id}', [WakilRektorController::class, "detailPenilaian"])->name("penilaian.detail");
 
 
     Route::get('profile', [WakilRektorController::class, "profile"])->name("profile");
