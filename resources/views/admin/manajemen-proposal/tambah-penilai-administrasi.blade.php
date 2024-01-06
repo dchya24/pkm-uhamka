@@ -5,7 +5,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="card">
     <div class="card-header">
-      <a href="javascript:history.back()" class="btn btn-primary" type="button">
+      <a href="{{route('admin.manajemen-proposal.penilai-administrasi')}}" class="btn btn-primary" type="button">
         Kembali
       </a>
       <h3 class="text-center pt-3">Penambahan Penilai Administrasi pada Usulan </h3>                 
@@ -28,14 +28,14 @@
             </tr>
           </thead>
           <tbody>
-            @forelse ($penilaiAdministrasi->penilaianSubstansi as $item)
+            @forelse ($penilaiAdministrasi->penilaianAdministrasi as $item)
                 <tr>
                   <td>{{$item->judul}}</td>
                   <td>{{$item->jenisPkm->singkatan}}</td>
                   <td>{{ $item->pembimbing->nama}}</td>
                   <td>{{ $item->ketuaKelompok->nama}}</td>
                   <td>
-                    <form action="{{route('admin.manajemen-proposal.penilai-substansi.delete-penilai', $item->id)}}" method="POST">
+                    <form action="{{route('admin.manajemen-proposal.penilai-administrasi.delete-penilai', $item->id)}}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn rounded-pill btn-danger btn-xs" >
@@ -60,9 +60,12 @@
   <!-- TABEL TAMBAH-->
   <div class="card mt-3">
     <div class="card-header mt-3">
-      <a href="" class="btn btn-primary btn" style="float: right;"> 
+      <button 
+        class="btn btn-primary btn" 
+        style="float: right;"
+        onclick="document.forms['add-usulan'].submit()"> 
         Tambahkan 
-      </a>
+      </button>
     </div>
     <div class="card-body">
       <table id="example2" class="table table-bordered table-striped text-center">
@@ -71,18 +74,19 @@
             <th>Judul</th>
             <th>Skema PKM</th>
             <th>Usulan</th>
-            <th>Penilai Administrasi</th>
             <th>Dosen Pembimbing</th>
             <th>Ketua Kelompok</th>                        
             <th>Check</th>
           </tr>
         </thead>
         <tbody>
-          <form action="{{route('admin.manajemen-proposal.penilai-substansi.store', $penilaiAdministrasi->id)}}" method="POST" name="add-usulan">
+          <form action="{{route('admin.manajemen-proposal.penilai-administrasi.store', $penilaiAdministrasi->id)}}" method="POST" name="add-usulan">
+            @csrf
             @forelse ($listUsulan as $item)
               <tr>
                 <td>{{$item->judul}}</td>
                 <td>{{$item->jenisPkm->singkatan}}</td>
+                <td>Usulan {{$item->usulan}}</td>
                 <td>{{ $item->pembimbing->nama}}</td>
                 <td>{{ $item->ketuaKelompok->nama}}</td>
                 <td>

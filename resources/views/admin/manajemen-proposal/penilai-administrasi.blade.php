@@ -23,20 +23,32 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Suryo Putro, S.T, M.T</td>
-                    <td>4</td>
-                    <td>
-                      <a href="{{ route('admin.manajemen-proposal.penilai-administrasi.tambah', 1) }}">
-                        <button
-                          type="button"
-                          class="btn btn-sm rounded-pill btn-info waves-effect waves-light">
-                          Detail
-                        </button>
-                      </a>
-                    </td>
-                  </tr>
+                  @forelse ($penilaiAdministrasi as $item)
+                      <tr>
+                        <td>{{$loop->index + 1}}</td>
+                        <td>{{ $item->nama }}</td>
+                        <td>
+                          @if ($item->penilaianAdministrasi->count() == 0)
+                            <span class="text-danger">Belum ada proposal yang dinilai</span>
+                          @else
+                            {{ $item->penilaianAdministrasi->count() }}
+                          @endif
+                        </td>
+                        <td>
+                          <a href="{{ route('admin.manajemen-proposal.penilai-administrasi.tambah', $item->id) }}">
+                            <button
+                              type="button"
+                              class="btn btn-sm rounded-pill btn-info waves-effect waves-light">
+                              Detail
+                            </button>
+                          </a>
+                        </td>
+                      </tr>
+                  @empty
+                      <tr>
+                        <td colspan="4" class="text-bold">Belum ada penilai administrasi</td>
+                      </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>

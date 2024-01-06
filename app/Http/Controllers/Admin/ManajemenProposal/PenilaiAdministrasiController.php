@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class PenilaiAdministrasiController extends Controller
 {
     public function index(){
-        $penilaiAdministrasi = Penilai::select("id", "nama")->where('jenis_penilai', 2)->get();
+        $penilaiAdministrasi = Penilai::select("id", "nama")->where('jenis_penilai',1)->get();
         
         return view('admin.manajemen-proposal.penilai-administrasi', compact('penilaiAdministrasi'));
     }
@@ -24,6 +24,7 @@ class PenilaiAdministrasiController extends Controller
         
         $listUsulan = usulan::with(['jenisPkm', 'ketuaKelompok', 'pembimbing'])
             ->whereNull('penilai_administrasi_id')
+            ->where('status_penilaian_administrasi', 'submited')
             ->get();
 
         return view('admin.manajemen-proposal.tambah-penilai-administrasi', compact('penilaiAdministrasi', 'listUsulan'));
@@ -36,6 +37,7 @@ class PenilaiAdministrasiController extends Controller
         foreach($usulanIds as $usulanId){
             $usulan = usulan::find($usulanId);
             $usulan->penilai_administrasi_id = $penilaiAdministrasiId;
+            $usulan->status_penilaian_administrasi = 'waiting';
             $usulan->save();
         }
 
@@ -46,7 +48,8 @@ class PenilaiAdministrasiController extends Controller
         $usulan = usulan::find($id);
 
         $usulan->penilai_administrasi_id = null;
-        $usulan->save();
+            $usulan->status_penilaian_administrasi = 'submited';
+            $usulan->save();
 
         return redirect()->back();
     }
