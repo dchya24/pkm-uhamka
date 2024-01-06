@@ -93,7 +93,7 @@
             @forelse ($usulan as $item)
                 <tr>
                   <td>{{$item->jenisPkm->singkatan}}</td>
-                  <td>Usulan 1</td>
+                  <td>Usulan {{$item->usulan}}</td>
                   <td>
                     @if($item->status_penilaian_substansi == "mayor")
                         <span class="badge rounded-pill bg-label-success text-md-end text-dark ">

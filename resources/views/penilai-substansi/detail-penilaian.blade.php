@@ -90,48 +90,48 @@
 						<!-- Proposal Details -->
 						<div id="data-usulan" class="content">
 							<div class="content-header mb-3">
-								<h5 class="mb-0 fw-bold">Data usulan </h6>
-									<hr>
+								<h5 class="mb-0 fw-bold">Data usulan </h5>
+								<hr>
 							</div>
 							<div class="card-body">
 								<div class="row mb-3">
-										<label class="col-xl-2 fw-bold">Ketua Pengusul</label>
-										<div class="col-xl-10 d-flex">
-											<p>:&nbsp;{{$detail->ketuaKelompok->nim}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->ketuaKelompok->nama}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->ketuaKelompok->fakultas}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->ketuaKelompok->prodi}} &nbsp;</p>
-										</div>
+									<label class="col-xl-2 fw-bold">Ketua Pengusul</label>
+									<div class="col-xl-10 d-flex">
+										<p>:&nbsp;{{$detail->ketuaKelompok->nim}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->ketuaKelompok->nama}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->ketuaKelompok->fakultas}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->ketuaKelompok->prodi}} &nbsp;</p>
+									</div>
 								</div>                                  
 								
 								<div class="row mb-3">
-										<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 1 Pengusul</label>
-										<div class="col-xl-10 d-flex">
-											<p>:&nbsp;{{$detail->anggotaSatu->nim}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaSatu->nama}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaSatu->fakultas}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaSatu->prodi}} &nbsp;</p>
-										</div>
+									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 1 Pengusul</label>
+									<div class="col-xl-10 d-flex">
+										<p>:&nbsp;{{$detail->anggotaSatu->nim}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaSatu->nama}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaSatu->fakultas}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaSatu->prodi}} &nbsp;</p>
+									</div>
 								</div>                                
 								
 								<div class="row mb-3">
-										<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 2 Pengusul</label>
-										<div class="col-xl-10 d-flex">
-											<p>:&nbsp;{{$detail->anggotaDua->nim}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaDua->nama}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaDua->fakultas}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaDua->prodi}} &nbsp;</p>
-										</div>
+									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 2 Pengusul</label>
+									<div class="col-xl-10 d-flex">
+										<p>:&nbsp;{{$detail->anggotaDua->nim}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaDua->nama}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaDua->fakultas}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaDua->prodi}} &nbsp;</p>
+									</div>
 								</div>
 								
 								<div class="row mb-3">
-										<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 3 Pengusul</label>
-										<div class="col-xl-10 d-flex">
-											<p>:&nbsp;{{$detail->anggotaTiga->nim}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaTiga->nama}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaTiga->fakultas}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaTiga->prodi}} &nbsp;</p>
-										</div>
+									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 3 Pengusul</label>
+									<div class="col-xl-10 d-flex">
+										<p>:&nbsp;{{$detail->anggotaTiga->nim}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaTiga->nama}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaTiga->fakultas}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->anggotaTiga->prodi}} &nbsp;</p>
+									</div>
 								</div>
 
 								<div class="row mb-3">
@@ -145,13 +145,13 @@
 								</div>
 
 								<div class="row mb-3">
-										<label class="col-xl-2 fw-bold" for="basic-default-email">Dosem Pembimbing pengusul</label>
-										<div class="col-xl-10 d-flex">
-											<p>:&nbsp;{{$detail->pembimbing->nidn}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->pembimbing->nama}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->pembimbing->fakultas}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->pembimbing->prodi}} &nbsp;</p>
-										</div>
+									<label class="col-xl-2 fw-bold" for="basic-default-email">Dosem Pembimbing pengusul</label>
+									<div class="col-xl-10 d-flex">
+										<p>:&nbsp;{{$detail->pembimbing->nidn}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->pembimbing->nama}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->pembimbing->fakultas}} &nbsp;</p>
+										<p>/&nbsp; {{$detail->pembimbing->prodi}} &nbsp;</p>
+									</div>
 								</div>     
 
 								<div class="row mb-3">
@@ -162,27 +162,27 @@
 								</div>
 
 								<div class="row mb-3">
-									<label class="col-xl-2 fw-bold" for="basic-default-email"
-										>Tahun Pengajuan</label
-									>
+									<label class="col-xl-2 fw-bold" for="basic-default-email">
+										Tahun Pengajuan
+									</label>
 									<div class="col-xl-8">
 										<p>: {{$detail->tahun_pengajuan}}</p>
 									</div>
 								</div>
 
 								<div class="row mb-3">
-									<label class="col-xl-2 fw-bold" for="basic-default-name"
-										>Anggaran yang diajukan</label
-									>
+									<label class="col-xl-2 fw-bold" for="basic-default-name">
+										Anggaran yang diajukan
+									</label>
 									<div class="col-xl-8">
 										<p>: {{$detail->anggaran}}</p>
 									</div>
 								</div>
 
 								<div class="row mb-3">
-									<label class="col-xl-2 fw-bold pt-2" for="basic-default-message"
-										>Lembar Bimbingan</label
-									>
+									<label class="col-xl-2 fw-bold pt-2" for="basic-default-message">
+										Lembar Bimbingan
+									</label>
 									<div class="col-xl-10">
 										<a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_bimbingan)}}" target="_blank" title="Read PDF">
 											<i class="mdi mdi-file"></i> Unduh
@@ -204,28 +204,28 @@
 						<!-- Substansi Info -->
 						<div id="substansi-usulan" class="content">
 							<div class="content-header mb-3">
-									<h5 class="mb-0 fw-bold">Substansi usulan </h5>
-										<hr>
-										<p class="fw-bold">
-											Status :
-											<?php $disabled = "disabled" ?>
-											@if($detail->status_penilaian_substansi === 'sedang dinilai' || $detail->penilaian_substansi_id !== null) 
-												<?php $disabled = "" ?>
-												<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
-											@elseif($detail->status_penilaian_substansi === 'minor')
-												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MINOR</span>
-											@elseif($detail->status_penilaian_substansi === 'mayor')
-												<span class="badge rounded-pill bg-label-success text-md-end text-dark">MAYOR</span>
-											@endif
-										</p>
-										@if($detail->status_penilaian_substansi !== 'sedang dinilai' && $detail->penilai_substansi_id !== null) 
-											<Label class="fw-bold">Unduh nilai : 
-												<a href="/assets/pdf/HASIL_SUB_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-													<i class="mdi mdi-file"></i> Unduh
-												</a> 
-											</Label>
-										@endif
-										<hr>
+								<h5 class="mb-0 fw-bold">Substansi usulan </h5>
+								<hr>
+								<p class="fw-bold">
+									Status :
+									<?php $disabled = "disabled"; ?>
+									@if($detail->status_penilaian_substansi === 'sedang dinilai' || $detail->penilaian_substansi_id !== null) 
+										<?php $disabled = ""; ?>
+										<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
+									@elseif($detail->status_penilaian_substansi === 'minor')
+										<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MINOR</span>
+									@elseif($detail->status_penilaian_substansi === 'mayor')
+										<span class="badge rounded-pill bg-label-success text-md-end text-dark">MAYOR</span>
+									@endif
+								</p>
+								@if($detail->status_penilaian_substansi !== 'sedang dinilai' && $detail->penilai_substansi_id !== null) 
+									<Label class="fw-bold">Unduh nilai : 
+										<a href="/assets/pdf/HASIL_SUB_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+											<i class="mdi mdi-file"></i> Unduh
+										</a> 
+									</Label>
+								@endif
+								<hr>
 							</div>
 							<div class="row g-4 mt-2">
 								<div class="row mb-3">
@@ -346,31 +346,31 @@
 @endsection
 
 @section('javascript')
-<!-- Vendors JS -->
-<script src="{{ url('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-<script src="{{ url('assets/vendor/libs/swiper/swiper.js') }}"></script>
-
-<!-- Main JS -->
-<script src="{{ url('assets/js/main.js') }}"></script>
-
-<!-- Page JS -->
-<script src="{{ url('assets/js/dashboards-analytics.js') }}"></script>
-
-
 	<!-- Vendors JS -->
-<script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js') }}"></script>
+	<script src="{{ url('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+	<script src="{{ url('assets/vendor/libs/swiper/swiper.js') }}"></script>
 
-<!-- Page JS -->
+	<!-- Main JS -->
+	<script src="{{ url('assets/js/main.js') }}"></script>
 
-<script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
-<script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
-<!-- Vendors JS -->
-<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+	<!-- Page JS -->
+	<script src="{{ url('assets/js/dashboards-analytics.js') }}"></script>
+
+
+		<!-- Vendors JS -->
+	<script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
+	<script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+	<script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+	<script src="{{ asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js') }}"></script>
+
+	<!-- Page JS -->
+
+	<script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
+	<script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
+	<!-- Vendors JS -->
+	<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
   <script>
     $(function () {
