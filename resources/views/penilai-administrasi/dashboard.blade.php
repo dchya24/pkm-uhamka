@@ -80,123 +80,75 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>PKM-SW</td>
-              <td>Belum dinilai</td>
-              <td>Usulan 1</td>
-              <td>
-                <a href="/P_Administrasi/A_IDPenilaian_belumdinilai.html">
-                  <button class="btn btn-primary rounded btn-xs">Detail</button>
-                </a>
-              </td>
-              <td>DASDASDAS</td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>Darsini</td>
-              <td>Hakim</td>
-              <td>Rifaldi</td>
-              <td>Isa Faqihuddin, S.T, M.T</td>
-              <td>Gendut wijaya</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>PKM-TD</td>
-              <td>Sudah dinilai</td>
-              <td>Usulan 1</td>
-              <td>
-                <a href="/P_Administrasi/A_IDPenilaian_dinilai.html">
-                  <button class="btn btn-primary rounded btn-xs">Detail</button>
-                </a>
-              </td>
-              <td>
-                Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                budidaya ikan lele
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-sm"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-              <td>Darsini</td>
-              <td>Hakim</td>
-              <td>Rifaldi</td>
-              <td>Isa Faqihuddin, S.T, M.T</td>
-              <td>Gendut wijaya</td>
-              <td></td>
-            </tr>
+            @forelse ($usulan as $item)
+              <tr>
+                <td>{{$item->jenisPkm->singkatan}}</td>
+                <td>
+                  @if(in_array($item->status_penilaian_administrasi,["done", 'rejected']))
+                    <span class="badge bg-label-success">Sudah Dinilai</span>
+                  @elseif($item->status_penilaian_administrasi == "waiting")
+                    <span class="badge bg-label-danger">Belum Dinilai</span>
+                  @endif
+                </td>
+                <td>Usulan {{$item->usulan}}</td>
+                <td>
+                  <a href="{{ route('penilai-administrasi.penilaian.detail', $item->id) }}">
+                    <button class="btn btn-primary rounded btn-xs">Detail</button>
+                  </a>
+                </td>
+                <td>{{$item->judul}}</td>
+                <td>
+                  <a
+                    class="btn rounded-pill btn-primary btn-xs"
+                    type="button"
+                    href="{{url($item->lembar_proposal)}}"
+                    target="_blank"
+                    title="Read PDF">
+                    <i class="mdi mdi-file"></i> Unduh
+                  </a>
+                </td>
+                <td>
+                  <a
+                    class="btn rounded-pill btn-primary btn-xs"
+                    type="button"
+                    href="{{url($item->lembar_biodata_dospem)}}"
+                    target="_blank"
+                    title="Read PDF">
+                    <i class="mdi mdi-file"></i> Unduh
+                  </a>
+                </td>
+                <td>
+                  <a
+                    class="btn rounded-pill btn-primary btn-xs"
+                    type="button"
+                    href="{{url($item->lembar_biodata_kelompok)}}"
+                    target="_blank"
+                    title="Read PDF">
+                    <i class="mdi mdi-file"></i> Unduh
+                  </a>
+                </td>
+                <td>
+                  <a
+                    class="btn rounded-pill btn-primary btn-xs"
+                    type="button"
+                    href="{{url($item->lembar_pengesahan)}}"
+                    target="_blank"
+                    title="Read PDF">
+                    <i class="mdi mdi-file"></i> Unduh
+                  </a>
+                </td>
+                <td>{{$item->pembimbing->nama}}</td>
+                <td>{{$item->ketuaKelompok->nama}}</td>
+                <td>{{$item->anggotaSatu->nama}}</td>
+                <td>{{$item->anggotaDua->nama}}</td>
+                <td>{{$item->anggotaTiga->nama}}</td>
+                <td>{{$item->anggotaEmpat->nama}}</td>
+              </tr>
+            @empty
+              <tr>
+                <td class="text-center text-bold">TIdak ada data!</td>
+              </tr>
+            @endforelse
           </tbody>
         </table>
       </div>

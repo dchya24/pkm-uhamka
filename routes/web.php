@@ -261,6 +261,8 @@ Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai
     Route::get('informasi', [AdministrasiController::class, "informasi"])->name("informasi");
 
     Route::get('penilaian-proposal', [AdministrasiController::class, "penilaian"])->name("penilaian-proposal");
+    Route::post('penilaian-proposal/{id}', [AdministrasiController::class, "tambahPenilaian"])->name("penilaian.tambah-penilaian");
+    Route::get('penilaian-proposal/{id}', [AdministrasiController::class, "detailPenilaian"])->name("penilaian.detail");
 
     Route::get('profile', [AdministrasiController::class, "profile"])->name("profile");
 });

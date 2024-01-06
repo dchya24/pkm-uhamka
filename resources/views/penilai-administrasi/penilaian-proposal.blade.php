@@ -19,47 +19,32 @@
     </div>
     <div class="card-body">
       <div class="row gy-4 mb-4">
-        <!-- Tabel isi usulan yang dinilai -->
-        <div class="col-sm-7 col-lg-3">
-          <div class="card p-2 shadow-none border">
-            <div class="card-body p-3 pt-2">
-              <h6>Satria Eka Dawongso</h6>
-              <p class="">Penanaman Modal asing untuk kemakmuran rakyat indonesia lewat hilirisasi desa</p>
-              <p>PKM-AI</p>
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
-              </div>
-              <div
-                class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                <a
-                  class="w-100 btn btn-outline-primary d-flex align-items-center"
-                  href="/P_Administrasi/A_IDPenilaian_belumdinilai.html">
-                  <span class="me-1">Detail</span><i class="mdi mdi-arrow-right lh-1 scaleX-n1-rtl"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-7 col-lg-3">
-          <div class="card p-2 shadow-none border">
-            <div class="card-body p-3 pt-2">
-              <h6>Satria Eka Dawongso</h6>
-              <p class="">Penanaman Modal asing untuk kemakmuran rakyat indonesia lewat hilirisasi desa</p>
-              <p>PKM-AI</p>
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="badge rounded-pill bg-label-success text-dark">Sudah dinilai</span>
-              </div>
-              <div
-                class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                <a
-                  class="w-100 btn btn-outline-primary d-flex align-items-center"
-                  href="/P_Administrasi/A_IDPenilaian_dinilai.html">
-                  <span class="me-1">Detail</span><i class="mdi mdi-arrow-right lh-1 scaleX-n1-rtl"></i>
-                </a>
+        @foreach ($usulan as $item)
+          <div class="col-sm-7 col-lg-3">
+            <div class="card p-2 shadow-none border">
+              <div class="card-body p-3 pt-2">
+                <h6>{{$item->ketuaKelompok->nama}}</h6>
+                <p class="">{{$item->judul}}</p>
+                <p>{{ $item->jenisPkm->singkatan }}</p>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  @if($item->status_penilaian_administrasi == "waiting")
+                    <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
+                  @elseif($item->status_penilaian_administrasi == "minor")
+                    <span class="badge rounded-pill bg-label-success">Sudah Dinilai</span>
+                  @endif
+                </div>
+                <div
+                  class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                  <a
+                    class="w-100 btn btn-outline-primary d-flex align-items-center"
+                    href="{{ route('penilai-administrasi.penilaian.detail', $item->id) }}">
+                    <span class="me-1">Detail</span><i class="mdi mdi-arrow-right lh-1 scaleX-n1-rtl"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        @endforeach
       </div>
 
       <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
