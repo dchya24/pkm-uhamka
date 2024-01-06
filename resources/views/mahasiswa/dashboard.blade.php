@@ -101,10 +101,10 @@
             </thead>
             <tbody>
               @forelse ($usulan as $item)
-                  <tr >
+                  <tr>
                     <td class='col-1'>{{$item->judul}}</td>
                     <td>{{$item->jenisPkm->singkatan}}</td>
-                    <td>Usulan {{$loop->index + 1}}</td>
+                    <td>Usulan {{$item->usulan}}</td>
                     <td>
                       @if($item->status_penilaian_substansi == "mayor")
                         <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
@@ -121,13 +121,17 @@
                       @endif
                     </td>
                     <td>
-                      @if($item->status_penilaian_administrasi == "mayor")
+                      @if($item->status_penilaian_administrasi == "done")
                         <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                          MAYOR
+                          Sudah Dinilai
                         </span>
-                      @elseif($item->status_penilaian_administrasi == "minor")
+                      @elseif($item->status_penilaian_administrasi == "waiting")
+                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
+                          Sedang Dinilai
+                        </span>
+                      @else
                         <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
-                          MINOR
+                          Belum Dinilai
                         </span>
                       @endif
                     </td>

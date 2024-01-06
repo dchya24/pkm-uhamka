@@ -67,7 +67,7 @@
 							@endif
 
 							{{-- Step peninjauan --}}
-							@if($detail->status_penilaian_peninjau && $detail->penilai_peninjau_id !== null)
+							@if(in_array($detail->status_penilaian_administrasi, ['done', 'rejected']))
 								<div class="line"></div>
 								<div class="step" data-target="#tinjauan-usulan">
 									<button type="button" class="step-trigger">
@@ -443,10 +443,10 @@
 											<?php $disabled = "disabled"; ?>
 											@if(in_array($detail->status_penilaian_administrasi, ['submited', 'waiting'])) 
 												<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
-											@elseif($detail->status_penilaian_substansi === 'done') 
+											@elseif($detail->status_penilaian_administrasi === 'done') 
 												<?php $disabled = ""; ?>
 												<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap Tinjauan</span>
-											@elseif($detail->status_penilaian_substansi === 'rejected')
+											@elseif($detail->status_penilaian_administrasi === 'rejected')
 												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">Tertolak</span>
 											@endif
 										</p>
@@ -554,10 +554,10 @@
 								<div class="row g-4">                        
 									<div class="d-flex flex-column align-items-center">
 										@php
-											$disabled = '';
+											$disabled = 'disabled';
 										@endphp 
 										@if($detail->status_penilaian_peninjau === 'done')
-											<?php $disabled = 'disabled'; ?>
+											<?php $disabled = ''; ?>
 											<img
 												src="{{asset('assets/img/illustrations/tinjau_succes.png')}}"
 												alt="misc-under-maintenance"
