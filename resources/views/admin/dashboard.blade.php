@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="card-info">
-                <h4 class="mb-0">3212</h4>
+                <h4 class="mb-0">{{$allUsulan->count()}}</h4>
                 <small>Usulan</small>
               </div>
             </div>
@@ -33,7 +33,7 @@
                 </div>
               </div>
               <div class="card-info">
-                <h4 class="mb-0">313</h4>
+                <h4 class="mb-0">{{$internalUsulan}}</h4>
                 <small>Internal</small>
               </div>
             </div>
@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div class="card-info">
-                <h4 class="mb-0">2131</h4>
+                <h4 class="mb-0">{{$internalUsulan}}</h4>
                 <small>BELMAWA KEMENDIKBUDRISTEK</small>
               </div>
             </div>
@@ -62,7 +62,7 @@
                   <h5 class="mb-3 mb-lg-2 mb-xl-3 text-nowrap">Akun Ketua Kelompok</h5>
                 </div>
                 <div class="d-flex align-items-end flex-wrap gap-1">
-                  <h4 class="mb-0 me-2">123</h4>
+                  <h4 class="mb-0 me-2">{{$akunKetua}}</h4>
                   <small class="text-success">25 November 2023</small>
                 </div>
               </div>
@@ -89,7 +89,7 @@
                   <h5 class="mb-3 mb-lg-2 mb-xl-3 text-nowrap">Akun Tim Penilai</h5>
                 </div>
                 <div class="d-flex align-items-end flex-wrap gap-1">
-                  <h4 class="mb-0 me-2">122</h4>
+                  <h4 class="mb-0 me-2">{{$akunPenilai}}</h4>
                   <small class="text-danger">25 November 2023</small>
                 </div>
               </div>
@@ -121,138 +121,34 @@
                   <th>Jenis PKM</th>
                   <th>Usulan</th>
                   <th>Tahun Pengajuan</th>
-                  <th>Anggran yang diajukan</th>
-                  <th>Penilai Substansi</th>
-                  <th>Penilai Administrasi</th>
-                  <th>Peninjau</th>
-                  <th>Wakil rektor</th>
-                  <th>NIDN Dospem</th>
+                  <th>Anggaran</th>
+                  <th>Ketua Kelompok</th>
                   <th>Dosen Pembimbing</th>
-                  <th>NIM Ketua Kelompok</th>
-                  <th>Nama Ketua Kelompok</th>                            
-                  <th>Tugas Ketua Kelompok</th>
-                  <th>NIM Anggota 1</th>     
-                  <th>Nama Angggota 1</th>
-                  <th>Tugas anggota 1</th>
-                  <th>NIM Anggota 2</th>
-                  <th>Nama Angggota 2</th>
-                  <th>Tugas anggota 2</th>
-                  <th>NIM Anggota 3</th>
-                  <th>Nama Angggota 3</th>
-                  <th>Tugas anggota 3</th>
-                  <th>NIM anggota 4</th>
-                  <th>Nama Angggota 4</th>
-                  <th>Tugas anggota 4</th>
-                  <th>Pendahuluan usulan</th>                          
-                  <th>Proposal</th>
-                  <th>Lembar Bimbingan</th>
-                  <th>Lembar Biodata Dosen Pembimbing</th>
-                  <th>Lembar Biodata Ketua & Anggota-anggota</th>                            
-                  <th>Lembar Pengesahan</th>
-                  <th>Ket.Substansi</th>
-                  <th>Ket.Administrasi</th>
-                  <th>Ket.Peninjau</th>
-                  <th>Nilai Substansi</th>
-                  <th>Nilai Administrasi</th>
-                  <th>Nilai Peninjau</th>
-                  <th>Komentar peninjau mahasisawa</th>
-                  <th>Komentar peninjau wakil rektor</th>
-                  <th>Penyaluran</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <a href="/Admin/ManajemenUsulan/A_Dataproposal.html" type="button" class="btn rounded-pill btn-primary btn-xs" target="_blank">
-                      Detil
-                    </a> 
-                  </td>
-                  <td>Pembingaaadsadsa dajdsadas dasd as</td>
-                  <td>
-                    PKM-TD
-                  </td>
-                  <td>Usulan 1</td>
-                  <td>2024</td>
-                  <td>730000000</td>
-
-                  <td>Ahamad Darto</td>
-                  <td>Suinta Golo</td>
-                  <td>Isa faqihuddin</td>
-                  <td>Suryatno</td>
-
-                  <td>87312312</td>
-                  <td>darsono</td>
-
-                  <td>87312312</td>
-                  <td>darsono</td>                            
-                  <td>
-                    dasdasdas
-                  </td>
-
-                  <td>87312312</td>
-                  <td>darsono</td>                            
-                  <td>1.dsadasdsada</td>
-
-                  <td>87312312</td>
-                  <td>darsono</td>                            
-                  <td>1.dsadasdsada</td>
-
-                  <td>87312312</td>                            
-                  <td>darsono</td>                            
-                  <td>1.dsadasdsada</td>
-
-                  <td></td>
-                  <td></td>
-                  <td></td>
-
-                  <td>1.dsadasdasdasdsa</td>
-                  <td>
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>MINOR/MAYOR</td>
-                  <td>MINOR/MAYOR</td>
-                  <td>MINOR/MAYOR</td>
-                  <td>
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>  
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>  
-                    <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                      <i class="mdi mdi-file"></i> Unduh
-                    </a> 
-                  </td>
-                  <td>dkjlasjndklasdasdas</td>
-                  <td>dasdashdas</td>
-                  <td>Internal</td>
-                </tr>
+                @forelse ($allUsulan as $item)
+                    <tr>
+                      <td>
+                        <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
+                          Detail
+                        </a>
+                      </td>
+                      <td>{{$item->judul}}</td>
+                      <td>{{$item->jenisPkm->singkatan}}</td>
+                      <td>Usulan {{$item->usulan}}</td>
+                      <td>{{$item->tahun_pengajuan}}</td>
+                      <td>{{$item->anggaran}}</td>
+                      <td>{{$item->ketuaKelompok->nama}}</td>
+                      <td>{{$item->pembimbing->nama}}</td>
+                    </tr>
+                @empty
+                    <tr>
+                      <td class="fw-bold" colspan="12">
+                        Belum ada usulan!
+                      </td>
+                    </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
