@@ -18,13 +18,13 @@ class PeninjauController extends Controller
     }
 
     public function show($id){
-        $peninjau = Peninjau::select("id", "nama")
-            ->with(['penilaianAdministrasi', 'penilaianAdministrasi.jenisPkm', 'penilaianAdministrasi.ketuaKelompok', 'penilaianAdministrasi.pembimbing'])
+        $peninjau = Peninjau::with('dosen', "usulan")
             ->where('id', $id)
             ->first();
         
         $listUsulan = usulan::with(['jenisPkm', 'ketuaKelompok', 'pembimbing'])
-            ->whereNull('penilai_administrasi_id')
+            ->whereNull('peninjau_id')
+            ->where('status_penilaian_administrasi', "done")
             ->get();
 
         return view('admin.manajemen-proposal.tambah-peninjau', compact('peninjau', 'listUsulan'));
@@ -32,11 +32,12 @@ class PeninjauController extends Controller
 
     public function store(Request $request){
         $usulanIds = $request->usulanId;
-        $peninjauId = $request->penilai_id;
+        $peninjauId = $request->peninjau_id;
 
         foreach($usulanIds as $usulanId){
             $usulan = usulan::find($usulanId);
-            $usulan->penilai_administrasi_id = $peninjauId;
+            $usulan->peninjau_id = $peninjauId;
+            $usulan->status_penilaian_peninjau = "waiting";
             $usulan->save();
         }
 
@@ -46,7 +47,7 @@ class PeninjauController extends Controller
     public function deletePenilai($id){
         $usulan = usulan::find($id);
 
-        $usulan->penilai_administrasi_id = null;
+        $usulan->peninjau_id = null;
         $usulan->save();
 
         return redirect()->back();
