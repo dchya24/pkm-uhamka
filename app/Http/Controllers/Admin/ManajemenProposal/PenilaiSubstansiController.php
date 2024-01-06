@@ -35,7 +35,7 @@ class PenilaiSubstansiController extends Controller
         foreach($usulanIds as $usulanId){
             $usulan = usulan::find($usulanId);
             $usulan->penilai_substansi_id = $penilaiSubstansiId;
-            $usulan->status_penilai_substansi = "sedang dinilai";
+            $usulan->status_penilaian_substansi = "sedang dinilai";
             $usulan->save();
         }
 
@@ -46,7 +46,7 @@ class PenilaiSubstansiController extends Controller
         $usulan = usulan::find($id);
 
         $usulan->penilai_substansi_id = null;
-        $usulan->status_penilai_substansi = null;
+        $usulan->status_penilaian_substansi = null;
         $usulan->save();
 
         return redirect()->back();

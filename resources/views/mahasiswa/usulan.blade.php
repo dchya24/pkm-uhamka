@@ -50,7 +50,7 @@
 							</div>
 
 							{{-- Administrasi usulan steper --}}
-							@if($detail->status_penilai_substansi === "minor")
+							@if($detail->status_penilaian_substansi === "minor")
 								<div class="line"></div>
 								<div class="step" data-target="#administrasi-usulan">
 									<button type="button" class="step-trigger">
@@ -224,12 +224,12 @@
 										<hr>
 										<p class="fw-bold">
 											Status :
-											@if($detail->status_penilai_substansi === 'sedang dinilai') 
+											@if($detail->status_penilaian_substansi === 'sedang dinilai') 
 												<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
-											@elseif($detail->status_penilai_substansi === 'minor') 
+											@elseif($detail->status_penilaian_substansi === 'minor') 
 												<span class="badge rounded-pill bg-label-success text-md-end text-dark">MINOR</span> 
 												<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap administrasi</span>
-											@elseif($detail->status_penilai_substansi === 'mayor')
+											@elseif($detail->status_penilaian_substansi === 'mayor')
 												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MAYOR</span>
 											@endif
 										</p>
@@ -343,7 +343,7 @@
 											<span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
 										</button>
 
-										@if($detail->status_penilai_substansi === "minor")
+										@if($detail->status_penilaian_substansi === "minor")
 											<button class="btn btn-primary btn-next">
 												<span class="align-middle d-sm-inline-block d-none me-sm-1" >Selanjutnya</span>
 												<i class="mdi mdi-arrow-right"></i>
@@ -353,7 +353,7 @@
 							</div>
 
 							<!-- Administrasi Info -->
-							@if($detail->status_penilai_administrasi === "not_submited" || $detail->status_penilai_administrasi === null)
+							@if($detail->status_penilaian_administrasi === "not_submited" || $detail->status_penilaian_administrasi === null)
 								<div id="administrasi-usulan" class="content">
 									<div class="content-header mb-3">
 										<h5 class="mb-3">Administrasi usulan </h6>   

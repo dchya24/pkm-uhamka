@@ -35,15 +35,17 @@ class usulan extends Model
         "lembar_pengesahan",
         "penilai_substansi_id",
         "form_penilaian_substansi",
-        "status_penilai_substansi",
+        "status_penilaian_substansi",
         "penilai_administrasi_id",
         "form_penilaian_administrasi",
-        "status_penilai_administrasi",
-        "penilai_peninjau_id",
+        "status_penilaian_administrasi",
+        "peninjau_id",
         "form_penilaian_peninjau",
-        "status_penilai_peninjau",
+        "status_penilaian_peninjau",
         "wakil_rektor_id",
         "status_rekomendasi",
+        "komentar_ke_mahasiswa",
+        "komentar_ke_warek"
     ];
 
     public function jenisPkm(){

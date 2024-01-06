@@ -95,10 +95,10 @@
                   <td>{{$item->jenisPkm->singkatan}}</td>
                   <td>Usulan 1</td>
                   <td>
-                    @if($item->status_penilai_substansi == "sedang dinilai")
+                    @if($item->status_penilaian_substansi == "sedang dinilai")
                       Belum Dinilai
                     @else
-                      {{$item->status_penilai_substansi}}
+                      {{$item->status_penilaian_substansi}}
                     @endif
                   </td>
                   <td>

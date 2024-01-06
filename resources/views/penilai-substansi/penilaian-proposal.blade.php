@@ -28,11 +28,11 @@
                 <p class="">{{$item->judul}}</p>
                 <p>{{ $item->jenisPkm->singkatan }}</p>
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  @if($item->status_penilai_substansi == "sedang dinilai")
+                  @if($item->status_penilaian_substansi == "sedang dinilai")
                     <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
-                  @elseif($item->status_penilai_substansi == "minor")
+                  @elseif($item->status_penilaian_substansi == "minor")
                     <span class="badge rounded-pill bg-label-danger">MINOR</span>
-                  @elseif($item->status_penilai_substansi == "mayor")
+                  @elseif($item->status_penilaian_substansi == "mayor")
                     <span class="badge rounded-pill bg-label-success">MAYOR</span>
                   @endif
                 </div>

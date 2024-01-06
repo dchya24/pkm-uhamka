@@ -14,9 +14,9 @@ class PenilaiSubstansiController extends Controller
         $penilai = Auth::guard('penilai')->user();
 
         $usulan = usulan::where('penilai_substansi_id', $penilai->id)->get();
-        $countDataMinor = usulan::where('penilai_substansi_id', $penilai->id)->where('status_penilai_substansi', 'minor')->count();
-        $countDataMayor = usulan::where('penilai_substansi_id', $penilai->id)->where('status_penilai_substansi', 'mayor')->count();
-        $countDataDiNilai = usulan::where('penilai_substansi_id', $penilai->id)->where('status_penilai_substansi', 'sedang dinilai')->count();
+        $countDataMinor = usulan::where('penilai_substansi_id', $penilai->id)->where('status_penilaian_substansi', 'minor')->count();
+        $countDataMayor = usulan::where('penilai_substansi_id', $penilai->id)->where('status_penilaian_substansi', 'mayor')->count();
+        $countDataDiNilai = usulan::where('penilai_substansi_id', $penilai->id)->where('status_penilaian_substansi', 'sedang dinilai')->count();
         
 
         return view("penilai-substansi.dashboard", compact('usulan', 'penilai', 
@@ -51,7 +51,7 @@ class PenilaiSubstansiController extends Controller
     public function tambahPenilaian(Request $request, $id){
         $usulan = usulan::find($id);
 
-        $usulan->status_penilai_substansi = $request->status_penilaian;
+        $usulan->status_penilaian_substansi = $request->status_penilaian;
 
         $lembar_penilaian = $request->file('form_penilaian_substansi');
 
