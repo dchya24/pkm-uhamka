@@ -67,8 +67,7 @@
 							@endif
 
 							{{-- Step peninjauan --}}
-							{{-- @if($detail->status_penilaian_peninjau && $detail->penilai_peninjau_id !== null) --}}
-							@if(true)
+							@if($detail->status_penilaian_peninjau && $detail->penilai_peninjau_id !== null)
 								<div class="line"></div>
 								<div class="step" data-target="#tinjauan-usulan">
 									<button type="button" class="step-trigger">
@@ -85,8 +84,7 @@
 							@endif
 
 							{{-- Step rekomendasi --}}
-							{{-- @if($detail->status_rekomendasi != null) --}}
-							@if(true)
+							@if($detail->status_rekomendasi != null)
 								<div class="line"></div>
 								<div class="step" data-target="#Rekomendasi-usulan">
 									<button type="button" class="step-trigger">
@@ -227,10 +225,10 @@
 											@if($detail->status_penilaian_substansi === 'sedang dinilai') 
 												<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
 											@elseif($detail->status_penilaian_substansi === 'minor') 
-												<span class="badge rounded-pill bg-label-success text-md-end text-dark">MINOR</span> 
+												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MINOR</span> 
 												<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap administrasi</span>
 											@elseif($detail->status_penilaian_substansi === 'mayor')
-												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MAYOR</span>
+												<span class="badge rounded-pill bg-label-success text-md-end text-dark">MAYOR</span>
 											@endif
 										</p>
 										@if(!$detail->status_penilaian_substansi && $detail->status_penilaian_substansi !== "sedang_dinilai") 
@@ -367,60 +365,61 @@
 									</div>
 									<div class="row g-4">                        
 									<div class="row g-4">
-										<form action="" method="POST" name="pengajuan_administrasi">                                
-										<div class="row mb-3">
-											<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
-												>Upload proposal
-											</label>
-											<div class="col-sm-10">
-												<input class="form-control" type="file"  name="lembar_proposal" id="formFile" />
-												<label >Maks.5 MB | Tipe File : PDF | </label>
-												<br>
-												<label class="fw-bold">Nama File : Proposal_NIMKetua_Usulan 1/2/3/4</label>
-												<br>
-												<label class="">Contoh : Proposal_1802121211_Usulan1</label>
-											</div>
-										</div>
-										<br>
-		
-										<div class="row mb-3">
-											<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
-											>Upload lembar biodata dosen pembimbing
-											</label>
-											<div class="col-sm-10">
-											<input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" />
-											<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah</label>
-											<br>
-												<label class="fw-bold">Nama File : Biodatadosen_NIMKetua_Usulan 1/2/3/4</label>
-												<br>
-												<label class="">Contoh : Biodatadosen_1802121211_Usulan1</label>
-											</div>
-										</div>
-										<br>
-		
-										<div class="row mb-3">
-											<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
-												>Upload lembar biodata ketua & semua anggota
-											</label>
-											<div class="col-sm-10">
-												<input class="form-control" type="file" id="formFile" name="lembar_biodata_kelompok" />
-												<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah & jadikan 1 file saja (digabung)</label>
-												<br>
-													<label class="fw-bold">Nama File : Biodatakelompok_NIMKetua_Usulan 1/2/3/4</label>
+										<form action="{{route('mahasiswa.usulan.administrasi', $detail->id)}}" method="POST" name="pengajuan_administrasi" enctype="multipart/form-data">                                
+											<div class="row mb-3">
+												<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
+													>Upload proposal
+												</label>
+												<div class="col-sm-10">
+													<input class="form-control" type="file"  name="lembar_proposal" id="formFile" />
+													<label >Maks.5 MB | Tipe File : PDF | </label>
 													<br>
-													<label class="">Contoh : Biodatakelompok_1802121211_Usulan1</label>
+													<label class="fw-bold">Nama File : Proposal_NIMKetua_Usulan 1/2/3/4</label>
+													<br>
+													<label class="">Contoh : Proposal_1802121211_Usulan1</label>
+												</div>
 											</div>
-										</div>
-		
-										<div class="row mb-3 pt-3">
-											<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
-												>Upload lembar pengesahan
-											</label>
-											<div class="col-sm-10">
-												<input class="form-control" type="file" name="lembar_pengesahan" id="formFile" />
-												<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah (Cukup sampai TTD Dekan)</label>
+											<br>
+			
+											<div class="row mb-3">
+												<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
+												>Upload lembar biodata dosen pembimbing
+												</label>
+												<div class="col-sm-10">
+												<input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" />
+												<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah</label>
+												<br>
+													<label class="fw-bold">Nama File : Biodatadosen_NIMKetua_Usulan 1/2/3/4</label>
+													<br>
+													<label class="">Contoh : Biodatadosen_1802121211_Usulan1</label>
+												</div>
 											</div>
-										</div>
+											<br>
+			
+											<div class="row mb-3">
+												<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
+													>Upload lembar biodata ketua & semua anggota
+												</label>
+												<div class="col-sm-10">
+													<input class="form-control" type="file" id="formFile" name="lembar_biodata_kelompok" />
+													<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah & jadikan 1 file saja (digabung)</label>
+													<br>
+														<label class="fw-bold">Nama File : Biodatakelompok_NIMKetua_Usulan 1/2/3/4</label>
+														<br>
+														<label class="">Contoh : Biodatakelompok_1802121211_Usulan1</label>
+												</div>
+											</div>
+			
+											<div class="row mb-3 pt-3">
+												<label class="col-sm-2 col-form-label fw-bold" for="basic-default-name"
+													>Upload lembar pengesahan
+												</label>
+												<div class="col-sm-10">
+													<input class="form-control" type="file" name="lembar_pengesahan" id="formFile" />
+													<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah (Cukup sampai TTD Dekan)</label>
+												</div>
+											</div>
+											@csrf
 										</form>
 										<div class="col-12 d-flex justify-content-between">
 										<button class="btn btn-outline-secondary btn-prev">
@@ -439,22 +438,35 @@
 								<div id="administrasi-usulan" class="content">
 									<div class="content-header mb-3">
 										<h5 class="mb-1 pb-2 fw-bold">Administrasi usulan </h5>
-										<p class="fw-bold">Status : <span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap peninjauan</span> </p>
-										<Label class="fw-bold">Unduh nilai : 
-											<a href="{{url($detail->form_penilaian_administrasi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-												<i class="mdi mdi-file"></i> Unduh
-											</a> 
-										</Label> 
+										<p class="fw-bold">
+											Status :
+											<?php $disabled = "disabled"; ?>
+											@if(in_array($detail->status_penilaian_administrasi, ['submited', 'waiting'])) 
+												<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
+											@elseif($detail->status_penilaian_substansi === 'done') 
+												<?php $disabled = ""; ?>
+												<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap Tinjauan</span>
+											@elseif($detail->status_penilaian_substansi === 'rejected')
+												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">Tertolak</span>
+											@endif
+										</p>
+										@if(in_array($detail->status_penilaian_administrasi, ['done', 'rejected']))
+											<Label class="fw-bold">Unduh nilai : 
+												<a href="{{url($detail->form_penilaian_administrasi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+													<i class="mdi mdi-file"></i> Unduh
+												</a> 
+											</Label> 
+										@endif
 										<hr>
 									</div>                  
 										<div class="row g-4">
 											<form>                                
 												<div class="row mb-3">
-													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message"
-													>Proposal</label
-												>
+													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message">
+														Proposal
+													</label>
 													<div class="col-xl-10 ">
-														<a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_proposal)}}" target="_blank" title="Read PDF">
+														: <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_proposal)}}" target="_blank" title="Read PDF">
 															<i class="mdi mdi-file"></i> Unduh
 														</a>
 													</div>
@@ -462,11 +474,11 @@
 												<br>
 
 												<div class="row mb-3">
-													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message"
-													>Lembar biodata dosen pembimbing</label
-												>
+													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message">
+														Lembar biodata dosen pembimbing
+													</label>
 													<div class="col-xl-10 ">
-														<a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->lembar_biodata_dospem)}}" target="_blank" title="Read PDF">
+														: <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->lembar_biodata_dospem)}}" target="_blank" title="Read PDF">
 															<i class="mdi mdi-file"></i> Unduh
 														</a>
 													</div>
@@ -474,22 +486,22 @@
 											<br>
 
 											<div class="row mb-3 ">
-													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message"
-													>Lembar biodata ketua & semua anggota</label
-												>
+													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message">
+														Lembar biodata ketua & semua anggota
+													</label>
 													<div class="col-xl-10 ">
-														<a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_biodata_kelompok)}}" target="_blank" title="Read PDF">
+														: <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_biodata_kelompok)}}" target="_blank" title="Read PDF">
 															<i class="mdi mdi-file"></i> Unduh
 														</a>
 													</div>
 											</div>
 
 											<div class="row mb-3">
-													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message"
-													>Lembar Pengesahan</label
-												>
+													<label class="col-xl-2 fw-bold pt-2" for="basic-default-message">
+														Lembar Pengesahan
+													</label>
 													<div class="col-xl-10 ">
-														<a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_pengesahan)}}" target="_blank" title="Read PDF">
+														: <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{url($detail->lembar_pengesahan)}}" target="_blank" title="Read PDF">
 															<i class="mdi mdi-file"></i> Unduh
 														</a>
 													</div>
@@ -502,7 +514,7 @@
 												<i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
 												<span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
 											</button>
-											<button class="btn btn-primary btn-next">
+											<button class="btn btn-primary btn-next {{$disabled}}">
 												<span class="align-middle d-sm-inline-block d-none me-sm-1" >Selanjutnya</span>
 												<i class="mdi mdi-arrow-right"></i>
 											</button>

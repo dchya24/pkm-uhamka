@@ -66,14 +66,47 @@ class UsulanController extends Controller
         return redirect()->back()->with("success", "Berhasil mengirim usulan");
     }
 
-    public function index(){
+    public function index(Request $request){
+        $id = $request->has('id') ? $request->id : 1;
+
         $user = Auth::user();
         $usulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
-            ->select('id')->get();
+            ->whereNot('id', $id)
+            ->select('id', 'usulan')->get();
 
-        $detail = usulan::where('usulan', 1)
+        $detail = usulan::where('usulan', $id)
             ->first();
 
         return view("mahasiswa.usulan", compact("usulan", "detail"));
+    }
+
+    public function pengajuanAdministrasi(Request $request, $id){
+        $usulan = usulan::find($id);
+
+        $lembar_proposal = $request->file('lembar_proposal');
+        $lembar_biodata_dospem = $request->file('lembar_biodata_dospem');
+        $lembar_biodata_kelompok =  $request->file('lembar_biodata_kelompok');
+        $lembar_pengesahan = $request->file('lembar_pengesahan');
+
+        $lembar_proposal_name = $lembar_proposal->getClientOriginalName();
+        $lembar_biodata_dospem_name = $lembar_biodata_dospem->getClientOriginalName();
+        $lembar_biodata_kelompok_name = $lembar_biodata_kelompok->getClientOriginalName(); 
+        $lembar_pengesahan_name = $lembar_pengesahan->getClientOriginalName();
+
+        $lembar_proposal->move('upload/lembar_proposal', $lembar_proposal_name);
+        $lembar_biodata_dospem->move('upload/lembar_biodata_dospem', $lembar_biodata_dospem_name);
+        $lembar_biodata_kelompok->move('upload/lembar_biodata_kelompok', $lembar_biodata_kelompok_name);
+        $lembar_pengesahan->move('upload/lembar_pengesahan', $lembar_pengesahan_name); 
+
+        $usulan->lembar_proposal = 'upload/lembar_proposal/' . $lembar_proposal_name;
+        $usulan->lembar_biodata_dospem = 'upload/lembar_biodata_dospem/' . $lembar_biodata_dospem_name;
+        $usulan->lembar_biodata_kelompok = 'upload/lembar_biodata_kelompok/' . $lembar_biodata_kelompok_name;
+        $usulan->lembar_pengesahan = 'upload/lembar_pengesahan/' . $lembar_pengesahan_name;
+
+        $usulan->status_penilaian_administrasi = "submited";
+
+        $usulan->save();
+
+        return redirect()->back();
     }
 }

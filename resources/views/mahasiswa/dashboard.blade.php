@@ -114,7 +114,11 @@
                         <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
                           MINOR
                         </span>
-                        @endif
+                      @else
+                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
+                          SEDANG DINILAI
+                        </span>
+                      @endif
                     </td>
                     <td>
                       @if($item->status_penilaian_administrasi == "mayor")
@@ -148,7 +152,7 @@
                     <td>{{$item->anggotaTiga->nama}}</td>
                     <td>{{$item->anggotaEmpat->nama}}</td>
                     <td>
-                      <a href="M_Proposalsaya.html">
+                      <a href="{{ route('mahasiswa.usulan', 'id='.$item->id)}}">
                         <button
                           type="button"
                           class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">

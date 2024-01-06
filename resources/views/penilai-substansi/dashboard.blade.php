@@ -95,11 +95,19 @@
                   <td>{{$item->jenisPkm->singkatan}}</td>
                   <td>Usulan 1</td>
                   <td>
-                    @if($item->status_penilaian_substansi == "sedang dinilai")
-                      Belum Dinilai
-                    @else
-                      {{$item->status_penilaian_substansi}}
-                    @endif
+                    @if($item->status_penilaian_substansi == "mayor")
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                          MAYOR
+                        </span>
+                      @elseif($item->status_penilaian_substansi == "minor")
+                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                          MINOR
+                        </span>
+                      @else
+                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark btn-sm">
+                          Belum Dinilai
+                        </span>
+                      @endif
                   </td>
                   <td>
                     <a href="{{ route('penilai-substansi.penilaian.detail', $item->id) }}">
