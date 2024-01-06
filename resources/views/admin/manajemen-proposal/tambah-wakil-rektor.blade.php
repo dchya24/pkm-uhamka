@@ -9,9 +9,9 @@
           Kembali
         </a>
         <h3 class="text-center pt-3">Penambahan Wakil Rektor pada Usulan </h3>                 
-          <Label>Nama Wakil Rektor : (Nama Penilai) </Label>
+          <Label>Nama Wakil Rektor : {{$warek->nama}} </Label>
           <br>
-          <label for="">Jumlah Usulan yang dinilai : (129)</label>
+          <label for="">Jumlah Usulan yang dinilai : {{$warek->usulan->count()}}</label>
           <br>
         
       </div>
@@ -22,29 +22,33 @@
               <tr class="text-bold">
                 <th>Judul</th>
                 <th>Skema PKM</th>
-                <th>Usulan</th>
-                <th>Wakil Rektor</th>
                 <th>Dosen Pembimbing</th>
                 <th>Ketua Kelompok</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-              <tr>                          
-                <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-                <td>PKM-TD</td>
-                <td>Usulan 1</td>
-                
-                <td>Ahamad Darto</td>
-                <td>Suinta Golo</td>
-                <td>Utung Ketopa</td>
-              
-                <td>
-                  <a href="" type="button" class="btn rounded-pill btn-danger btn-xs" >
-                    Hapus
-                  </a> 
-                </td>
-              </tr>
+              @forelse ($warek->usulan as $item)
+                <tr>
+                  <td>{{$item->judul}}</td>
+                  <td>{{$item->jenisPkm->singkatan}}</td>
+                  <td>{{ $item->pembimbing->nama}}</td>
+                  <td>{{ $item->ketuaKelompok->nama}}</td>
+                  <td>
+                    <form action="{{route('admin.manajemen-proposal.wakil-rektor.delete-warek', $item->id)}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn rounded-pill btn-danger btn-xs" >
+                        Hapus
+                      </button> 
+                    </form>
+                  </td>
+                </tr>
+              @empty
+                  <tr>
+                    <td colspan="5" class="text-center text-bold">Tidak ada Usulan yang dinilai!</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
@@ -55,9 +59,13 @@
     <!-- TABEL TAMBAH-->
     <div class="card mt-3">
       <div class="card-header mt-3">
-        <a href="" class="btn btn-primary btn" style="float: right;"> 
+        <button
+          type="button"
+          class="btn btn-primary btn" 
+          style="float: right;"
+          onclick="document.forms['add-usulan'].submit()"> 
           Tambahkan 
-        </a>
+        </button>
       </div>
       <div class="card-body">
         <table id="example2" class="table table-bordered table-striped text-center">
@@ -66,115 +74,38 @@
               <th>Judul</th>
               <th>Skema PKM</th>
               <th>Usulan</th>
-              <th>Wakil Rektor</th>
               <th>Dosen Pembimbing</th>
               <th>Ketua Kelompok</th>                        
               <th>Check</th>
             </tr>
           </thead>
           <tbody>
-            <tr>                                              
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>                        
-              <td></td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>    
-              <td>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault" 
-                    />
-              </td>                       
-            </tr>
-
-            <tr>                                              
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>                        
-              <td></td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>    
-              <td>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault" 
-                    />
-              </td>                       
-            </tr>
-
-            <tr>                                              
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>                        
-              <td></td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>    
-              <td>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault" 
-                    />
-              </td>                       
-            </tr>
-
-            <tr>                                              
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>                        
-              <td></td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>    
-              <td>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault" 
-                    />
-              </td>                       
-            </tr>
-
-            <tr>                                              
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>                        
-              <td></td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>    
-              <td>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault" 
-                    />
-              </td>                       
-            </tr>
-
-            <tr>                                              
-              <td>Pembingaaadsadsa dajdsadas dasd as</td>                         
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>                        
-              <td></td>
-              <td>Suinta Golo</td>
-              <td>Utung Ketopa</td>    
-              <td>
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault" 
-                    />
-              </td>                       
-            </tr>
-            
+            <form action="{{route('admin.manajemen-proposal.wakil-rektor.store', $warek->id)}}" method="POST" name="add-usulan">
+              @forelse ($listUsulan as $item)
+                <tr>
+                  <td>{{$item->judul}}</td>
+                  <td>{{$item->jenisPkm->singkatan}}</td>
+                  <td>Usulan {{$item->usulan}}</td>
+                  <td>{{ $item->pembimbing->nama}}</td>
+                  <td>{{ $item->ketuaKelompok->nama}}</td>
+                  <td>
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="usulanId[]"
+                        value="{{ $item->id }}"
+                        id="flexCheckDefault" 
+                        />
+                  </td> 
+                </tr>
+              @empty
+                  <tr>
+                    <td colspan="7" class="text-center text-bold">Tidak ada Usulan yang dinilai!</td>
+                  </tr>
+              @endforelse
+                <input type="hidden" name="warek_id" value="{{$warek->id}}">
+              @csrf
+            </form>
           </tbody>
         </table>
       </div>

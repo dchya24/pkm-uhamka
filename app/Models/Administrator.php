@@ -18,4 +18,8 @@ class Administrator extends Model
     {
         return $this->password;
     }
+
+    public function usulan(){
+        return $this->hasMany(Usulan::class, "wakil_rektor_id", "id");
+    }
 }

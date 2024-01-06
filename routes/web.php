@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManajemenProposal\ManajemenProposalController;
 use App\Http\Controllers\Admin\ManajemenProposal\PenilaiAdministrasiController as ManajemenProposalPenilaiAdministrasiController;
 use App\Http\Controllers\Admin\ManajemenProposal\PenilaiSubstansiController as ManajemenProposalPenilaiSubstansiController;
 use App\Http\Controllers\Admin\ManajemenProposal\PeninjauController as ManajemenProposalPeninjauController;
+use App\Http\Controllers\Admin\ManajemenProposal\WarekController as ManajemenProposalWarekController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
 use App\Http\Controllers\Admin\WarekController;
@@ -207,16 +208,19 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
 
         Route::get('peninjau/{id}', [ManajemenProposalPeninjauController::class, "show"])->name('peninjau.tambah');
 
-        Route::delete('peninjau/{idUsulan}/delete-penilai', [ManajemenProposalPeninjauController::class, "deletepeninjau"])->name('peninjau.delete-peninjau');
+        Route::delete('peninjau/{idUsulan}/delete-penilai', [ManajemenProposalPeninjauController::class, "deletePeninjau"])->name('peninjau.delete-peninjau');
 
+        /**
+         * Wakil Rektor
+         */
+        Route::get('wakil-rektor', [ManajemenProposalWarekController::class, "index"])->name('wakil-rektor');
+
+        Route::post('wakil-rektor/{id}', [ManajemenProposalWarekController::class, "store"])->name('wakil-rektor.store');
+
+        Route::get('wakil-rektor/{id}', [ManajemenProposalWarekController::class, "show"])->name('wakil-rektor.tambah');
+
+        Route::delete('wakil-rektor/{idUsulan}/delete-penilai', [ManajemenProposalWarekController::class, "deleteWarek"])->name('wakil-rektor.delete-warek');
         
-        Route::get('wakil-rektor', function(){
-            return view('admin.manajemen-proposal.wakil-rektor');
-        })->name('wakil-rektor');
-
-        Route::get('wakil-rektor/{id}', function(){
-            return view('admin.manajemen-proposal.tambah-wakil-rektor');
-        })->name('wakil-rektor.tambah');
     });
 });
 
