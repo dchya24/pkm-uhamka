@@ -14,7 +14,7 @@
         <div class="modal-body">
             <div class="row mb-2">
                 <p>Unduh format form penilaian :
-                    <a href="S_Penilaian.html" target="_blank">
+                    <a href="{{url($detail->jenisPkm->form_administrasi)}}" target="_blank">
                     <button type="button" class="btn rounded-pill btn-primary btn-sm">
                         <i class="mdi mdi-file"></i> Unduh
                     </button>

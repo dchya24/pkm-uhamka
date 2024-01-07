@@ -66,7 +66,7 @@
 									name="add-tinjauan">
 									<h5>
 										Unduh format nilai : 
-										<a href="/assets/excel/Penilaian.xlsx" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+                    <a href="{{url($detail->jenisPkm->form_peninjau)}}" target="_blank">
 											<i class="mdi mdi-file"></i> Unduh
 										</a> 
 									</h5>                        
