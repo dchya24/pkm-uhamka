@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Informasi;
+use App\Models\Sertifikat;
 use App\Models\usulan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -26,7 +27,8 @@ class DashboardController extends Controller
 
     public function sertifikat(){
         // TODO sertifikat
-        return view("mahasiswa.sertifikat");
+        $sertifikat = Sertifikat::all();
+        return view("mahasiswa.sertifikat", compact("sertifikat"));
     }
 
     public function profile(){

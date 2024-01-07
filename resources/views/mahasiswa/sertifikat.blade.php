@@ -41,12 +41,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>
-                  <a href="download.html">1803015016</a>
-                </td>
-              </tr>
+               @forelse ($sertifikat as $item)
+                   <tr>
+                    <td>{{$loop->index + 1}}</td>
+                    <td>
+                      <a href="{{url($item->file)}}" target="_blank">
+                        {{$item->nama}}
+                      </a>
+                    </td>
+                   </tr>
+               @empty
+                  <tr>
+                    <td class="text-center fw-bold" colspan="2">
+                      Tidak ada Sertifikat!
+                    </td>
+                  </tr>
+               @endforelse
             </tbody>
           </table>
         </div>
@@ -92,7 +102,7 @@
           responsive: true,
           lengthChange: false,
           autoWidth: false,
-          searching: false
+          searching: true
         })
         .buttons()
         .container()

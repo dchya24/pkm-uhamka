@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ManajemenProposal\RekomendasiController;
 use App\Http\Controllers\Admin\ManajemenProposal\WarekController as ManajemenProposalWarekController;
 use App\Http\Controllers\Admin\PenilaiController;
 use App\Http\Controllers\Admin\PeninjauController;
+use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\Admin\WarekController;
 use App\Http\Controllers\Administrasi\AdministrasiController;
 use App\Http\Controllers\Login\AdministratorLoginController;
@@ -122,10 +123,9 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
     });
 
 
-    Route::get("sertifikat", function(){
-        // TODO sertifikat module
-        return view("admin.sertifikat");
-    })->name("sertifikat");
+    Route::post("sertifikat", [SertifikatController::class, "store"])->name("sertifikat.store");
+    Route::get("sertifikat", [SertifikatController::class, "index"])->name("sertifikat");
+    Route::delete("sertifikat/{id}", [SertifikatController::class, "destroy"])->name("sertifikat.destroy");
 
     Route::prefix('data-mahasiswa')->group(function(){
         Route::post("", [DataMahasiswaController::class, "store"])->name('data-mahasiswa.store');

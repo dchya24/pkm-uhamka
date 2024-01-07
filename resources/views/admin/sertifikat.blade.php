@@ -29,20 +29,40 @@
             <thead>
               <tr class="text-center">
                 <th>Sertifikat</th>
+                <th>Unduh</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              <tr class="text-center">
-                <td>1803015012.pdf</td>
-                
-                <td>
+              @forelse ($sertifikat as $item)
+                  <tr>
+                    <td>{{$item->nama}}</td>
+                    <td>
+                      <a href="{{url($item->file)}}" class="btn btn-primary btn-sm rounded-pill waves-effect waves-light" target="_blank">
+                        Unduh
+                      </a>
+                    </td>
+                    <td>
+                      <form 
+                        action="{{route('admin.sertifikat.destroy', $item->id)}}"
+                        method="POST"
+                        class="form form-inline my-0">
+                        @csrf
+                        @method('DELETE')
 
-                  <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+                        <button 
+                          type="submit" 
+                          class="btn btn-danger btn-sm rounded-pill waves-effect waves-light">
+                          Hapus
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+              @empty
+                  <tr>
+                    <td class="text-center fw-bold" colspan="3">Tidak ada Sertifikat!</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
@@ -50,9 +70,6 @@
     </div>
   </div>
   <!--/ Content -->
-
-  @include('admin.component.modal-add-informasi')
-  @include('admin.component.modal-edit-informasi')
 
 
 @endsection
@@ -105,4 +122,18 @@
   <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
   <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
   <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+  <script>
+    $(function () {
+      $('#example1')
+        .DataTable({
+          responsive: true,
+          lengthChange: false,
+          autoWidth: false,
+          searching: true
+        })
+        .buttons()
+        .container()
+        .appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+  </script>
 @endsection
