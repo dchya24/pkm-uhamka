@@ -32,7 +32,17 @@ class PenilaiSubstansiController extends Controller
     public function penilaian(){
         $penilai = Auth::guard('penilai')->user();
 
-        $usulan = usulan::where('penilai_substansi_id', $penilai->id)->get();
+        $usulan = usulan::where('penilai_substansi_id', $penilai->id);
+
+        if(!empty($_GET['status'])){
+            $usulan->where('status_penilaian_substansi', $_GET['status']);
+        }
+        else {
+            $usulan->where('status_penilaian_substansi', 'sedang dinilai');
+        }
+
+        $usulan = $usulan->paginate(4);
+        dd($usulan);
 
         return view("penilai-substansi.penilaian-proposal", compact('usulan', 'penilai'));
     }
