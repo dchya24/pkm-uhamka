@@ -42,7 +42,6 @@ class PenilaiSubstansiController extends Controller
         }
 
         $usulan = $usulan->paginate(4);
-        dd($usulan);
 
         return view("penilai-substansi.penilaian-proposal", compact('usulan', 'penilai'));
     }
