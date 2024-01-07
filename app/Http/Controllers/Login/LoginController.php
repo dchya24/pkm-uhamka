@@ -10,18 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    protected function checkAuth(){
-        if(
-            Auth::guard('penilai')->check() ||
-            Auth::guard('peninjau')->check() ||
-            Auth::guard('mahasiswa')->check()
-        ){
-            dd("Has login");
-        };
-    }
-
     public function index(): View {
-        $this->checkAuth();
         return view('login.index');
     }
 

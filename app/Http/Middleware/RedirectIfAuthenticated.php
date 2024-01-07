@@ -17,24 +17,13 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
-        $guards = empty($guards) ? [null] : $guards;
+        $guards = empty($guards) ? ["mahasiswa", "penilai", "peninjau", "admin"] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                switch ($guard) {
-                    case 'admin':
-                        return redirect('admin/dashboard');
-                        break;
-                    case 'penilai':
-                        return redirect('penilai/dashboard');
-                        break;
-                    case 'peninjau':
-                        return redirect('peninjau/dashboard');
-                        break;
-                    default:
-                        return redirect("login");
-                        break;
-                }
+                $providers = config('auth.providers')[$guard];
+
+                return redirect($providers['redirectTo'] ?? RouteServiceProvider::HOME);
             }
         }
 

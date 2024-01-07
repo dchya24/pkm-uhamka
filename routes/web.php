@@ -73,7 +73,7 @@ Route::post("penilai/logout", [PenilaiLoginController::class, "logout"])
     ->name("penilai.logout");
 
 Route::prefix('login')->group(function () {
-    Route::get("", [LoginController::class, "index"])->name('login');
+    Route::middleware("guest")->get("", [LoginController::class, "index"])->name('login');
 
     Route::middleware("guest:mahasiswa")->group(function(){
         Route::post("mahasiswa", [MahasiswaLoginController::class, "login"])->name('login.mahasiswa.attempt');
