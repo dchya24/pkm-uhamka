@@ -265,7 +265,7 @@
                           >Unggah Lembar Bimbingan</label
                         >
                         <div class="col-xl-10">
-                          <input class="form-control" type="file" id="formFile" />
+                          <input class="form-control" type="file" id="formFile" name="lembar_bimbingan" />
                           <label for="">Maks.5 MB | Tipe File : PDF</label>
                         </div>
                       </div>
