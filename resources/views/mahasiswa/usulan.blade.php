@@ -222,7 +222,7 @@
 										<hr>
 										<p class="fw-bold">
 											Status :
-											@if($detail->status_penilaian_substansi === 'sedang dinilai') 
+											@if($detail->status_penilaian_substansi === 'sedang dinilai' ) 
 												<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
 											@elseif($detail->status_penilaian_substansi === 'minor') 
 												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MINOR</span> 
@@ -231,7 +231,7 @@
 												<span class="badge rounded-pill bg-label-success text-md-end text-dark">MAYOR</span>
 											@endif
 										</p>
-										@if(!$detail->status_penilaian_substansi && $detail->status_penilaian_substansi !== "sedang_dinilai") 
+										@if($detail->status_penilaian_substansi  !== null && $detail->status_penilaian_substansi !== "sedang_dinilai") 
 											<label class="fw-bold">Unduh nilai : 
 												<a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 													<i class="mdi mdi-file"></i> Unduh
@@ -584,99 +584,101 @@
 							</div>
 
 							<!-- Rekomendasi info -->
-							<div id="Rekomendasi-usulan" class="content">
-									<div class="content-header mb-3">
-											<h5 class="mb-1 pb-2">Rekomendasi usulan </h6>   
-												<div>                                
-													<p class="fw-bold">
-														Status : 
-														@if($detail->satus_rekomendasi === null)
-															<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang Diputuskan</span> 
-														@elseif($detail->status_rekomendasi === 'internal')
-															<span class="badge rounded-pill bg-label-info text-md-end text-dark">Internal</span> 
-														@elseif($detail->status_rekomendasi === 'belmawa')
-															<span class="badge rounded-pill bg-label-success text-md-end text-dark">Belmawa</span> 
-														@endif
-													</p>
-												</div> 
-
-												<!-- grup Rekomendasi internal-->
-
-												<div>
-													@if($detail->status_rekomendasi === 'internal')
-														{{-- Grup rekomendasi Internal --}}
-														<Label class="fw-bold">Tautan grup whatsapp Rekomendasi internal :
-															<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
-																<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
-															</a> 
-														</Label> 
-													@elseif($detail->status_rekomendasi === 'belmawa')
-														{{-- Grup rekomendasi ke belmawa --}}
-														<Label class="fw-bold">Tautan grup whatsapp Rekomendasi kemendikbudristek :
-															<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
-																<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
-															</a> 
-														</Label>  
-													@endif
-												</div>
-
-												<div>                                      
-														<hr>
-														<p class="fw-bold">Nilai substansi :
-															<a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-																<i class="mdi mdi-file"></i> Unduh
-															</a>                                         
+							@if($detail->status_rekomendasi !== null)
+								<div id="Rekomendasi-usulan" class="content">
+										<div class="content-header mb-3">
+												<h5 class="mb-1 pb-2">Rekomendasi usulan </h6>   
+													<div>                                
+														<p class="fw-bold">
+															Status : 
+															@if($detail->satus_rekomendasi === null)
+																<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang Diputuskan</span> 
+															@elseif($detail->status_rekomendasi === 'internal')
+																<span class="badge rounded-pill bg-label-info text-md-end text-dark">Internal</span> 
+															@elseif($detail->status_rekomendasi === 'belmawa')
+																<span class="badge rounded-pill bg-label-success text-md-end text-dark">Belmawa</span> 
+															@endif
 														</p>
-												</div>
-												
-												<div>
-													<p class="fw-bold">Nilai administrasi : 
-														<a href="{{url($detail->form_penilaian_administrasi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-															<i class="mdi mdi-file"></i> Unduh
-														</a> 
-													</p>
-												</div>
+													</div> 
 
-												<div>
-													<p class="fw-bold">Nilai tinjauan : 
-														<a href="{{url($detail->form_penilaian_peninjau)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-															<i class="mdi mdi-file"></i> Unduh
-														</a> 
-													</p>
+													<!-- grup Rekomendasi internal-->
+
+													<div>
+														@if($detail->status_rekomendasi === 'internal')
+															{{-- Grup rekomendasi Internal --}}
+															<Label class="fw-bold">Tautan grup whatsapp Rekomendasi internal :
+																<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+																	<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
+																</a> 
+															</Label> 
+														@elseif($detail->status_rekomendasi === 'belmawa')
+															{{-- Grup rekomendasi ke belmawa --}}
+															<Label class="fw-bold">Tautan grup whatsapp Rekomendasi kemendikbudristek :
+																<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+																	<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
+																</a> 
+															</Label>  
+														@endif
+													</div>
+
+													<div>                                      
+															<hr>
+															<p class="fw-bold">Nilai substansi :
+																<a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+																	<i class="mdi mdi-file"></i> Unduh
+																</a>                                         
+															</p>
+													</div>
 													
-													<p class="fw-bold">Komentar peninjau : </p>
-													<p class="fst-italic">
-														"{{$detail->komentar_ke_mahasiswa}}"
-													</p>
-												</div>
-												
-												<hr>
-									</div>
-									<div class="row g-4">                        
-											<div class="d-flex flex-column align-items-center">
-												@if($detail->status_rekomendasi !== null)
-													<?php $disabled = ''; ?>
-													<img
-														src="{{asset('assets/img/illustrations/tinjau_succes.png')}}"
-														alt="misc-under-maintenance"
-														class="img-fluid zindex-1"
-														width="400" />
-												@else
-													<img
-														src="{{asset('assets/img/illustrations/tinjau_delay.png')}}"
-														alt="misc-under-maintenance"
-														class="img-fluid zindex-1"
-														width="400" />
-												@endif
-												</div>
-									</div>
-									<div class="col-12 d-flex justify-content-between">
-											<button class="btn btn-outline-secondary" onclick="stepper3.prev()">
-												<i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
-												<span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
-											</button>
-									</div>
-							</div>
+													<div>
+														<p class="fw-bold">Nilai administrasi : 
+															<a href="{{url($detail->form_penilaian_administrasi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+																<i class="mdi mdi-file"></i> Unduh
+															</a> 
+														</p>
+													</div>
+
+													<div>
+														<p class="fw-bold">Nilai tinjauan : 
+															<a href="{{url($detail->form_penilaian_peninjau)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+																<i class="mdi mdi-file"></i> Unduh
+															</a> 
+														</p>
+														
+														<p class="fw-bold">Komentar peninjau : </p>
+														<p class="fst-italic">
+															"{{$detail->komentar_ke_mahasiswa}}"
+														</p>
+													</div>
+													
+													<hr>
+										</div>
+										<div class="row g-4">                        
+												<div class="d-flex flex-column align-items-center">
+													@if($detail->status_rekomendasi !== null)
+														<?php $disabled = ''; ?>
+														<img
+															src="{{asset('assets/img/illustrations/tinjau_succes.png')}}"
+															alt="misc-under-maintenance"
+															class="img-fluid zindex-1"
+															width="400" />
+													@else
+														<img
+															src="{{asset('assets/img/illustrations/tinjau_delay.png')}}"
+															alt="misc-under-maintenance"
+															class="img-fluid zindex-1"
+															width="400" />
+													@endif
+													</div>
+										</div>
+										<div class="col-12 d-flex justify-content-between">
+												<button class="btn btn-outline-secondary" onclick="stepper3.prev()">
+													<i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
+													<span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
+												</button>
+										</div>
+								</div>
+							@endif
 						</div>
 					</div>
 				@else

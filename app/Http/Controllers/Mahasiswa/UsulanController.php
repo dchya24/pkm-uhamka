@@ -67,15 +67,24 @@ class UsulanController extends Controller
     }
 
     public function index(Request $request){
-        $id = $request->has('id') ? $request->id : 1;
+        $id = $request->has('id') ? $request->id : null;
 
         $user = Auth::user();
+
+        if($id == null){
+            $detail = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
+                ->orderBy('id', 'desc')->first();
+
+        }
+        else{
+            $detail = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
+                ->where('id', $id)
+                ->first();
+        }
+
         $usulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
             ->whereNot('id', $id)
             ->select('id', 'usulan')->get();
-
-        $detail = usulan::where('usulan', $id)
-            ->first();
 
         return view("mahasiswa.usulan", compact("usulan", "detail"));
     }
