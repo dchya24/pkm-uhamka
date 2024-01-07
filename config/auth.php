@@ -83,18 +83,22 @@ return [
         'mahasiswa' => [
             'driver' => 'eloquent',
             'model' => App\Models\KetuaKelompok::class,
+            'redirectTo' => '/mahasiswa/dashboard',
         ],
         'peninjau' => [
             'driver' => 'eloquent',
             'model' => App\Models\Peninjau::class,
+            'redirectTo' => '/peninjau/dashboard',
         ],
         'penilai' => [
             'driver' => 'eloquent',
             'model' => App\Models\Penilai::class,
+            'redirectTo' => '/penilai/dashboard',
         ],
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\Administrator::class,
+            'redirectTo' => '/admin/dashboard',
         ],
         // 'users' => [
         //     'driver' => 'database',
