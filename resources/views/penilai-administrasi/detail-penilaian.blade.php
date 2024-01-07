@@ -217,9 +217,9 @@
                   <?php $disabled = ""; ?>
                   <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang dinilai</span>
                 @elseif($detail->status_penilaian_substansi === 'minor')
-                  <span class="badge rounded-pill bg-label-danger text-md-end text-dark">MINOR</span>
+                  <span class="badge rounded-pill bg-label-success text-md-end text-dark">MINOR</span>
                 @elseif($detail->status_penilaian_substansi === 'mayor')
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark">MAYOR</span>
+                  <span class="badge rounded-pill bg-label-danger text-md-end text-dark">MAYOR</span>
                 @endif
               </p>
               

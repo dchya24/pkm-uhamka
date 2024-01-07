@@ -69,14 +69,13 @@
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Ketua Pengusul</label>
                           <div class="col-xl-6">
                             <div class="input-group pt-2">
-                              <p>:&nbsp</p>
-                              <p>1803015016</p>
-                              <p>&nbsp /&nbsp</p>
-                              <p>Iwan Mahyudin</p> 
-                              <p>&nbsp /&nbsp</p>
-                              <p>FKIP</p>
-                              <p>&nbsp /&nbsp</p>
-                              <p>Teknik Informatika</p>                                        
+                              <p>{{$user->mahasiswa->nim}}</p>
+                              <p> &nbsp; / &nbsp; </p>
+                              <p>{{$user->mahasiswa->nama}}</p>
+                              <p> &nbsp; / &nbsp; </p>
+                              <p>{{$user->mahasiswa->fakultas}}</p>
+                              <p> &nbsp; / &nbsp; </p>
+                              <p>{{$user->mahasiswa->prodi}}</p>
                             </div>
                           </div>
                           <div class="col-xl-8 d-flex pt-2">
@@ -298,7 +297,7 @@
                           </p>
                           <hr>
                   </div>
-                  <div class="row g-4">
+                  <div class="row mt-1">
                       <div class="row mb-3">
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
                             >Judul Proposal
@@ -330,7 +329,7 @@
                         <div class="row mb-3">
                           <hr>
                           <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-                            >Tugas Ketua Kelompok <p>1803015016 <br> IWAN MAHYUDIN</p>
+                            >Tugas Ketua Kelompok <p>{{$user->mahasiswa->nim}} <br>{{$user->mahasiswa->nama}}</p>
                           </label>
                           <div class="col-xl-10">
                             <textarea

@@ -31,9 +31,9 @@
                   @if($item->status_penilaian_substansi == "sedang dinilai")
                     <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
                   @elseif($item->status_penilaian_substansi == "minor")
-                    <span class="badge rounded-pill bg-label-danger">MINOR</span>
+                    <span class="badge rounded-pill bg-label-success">MINOR</span>
                   @elseif($item->status_penilaian_substansi == "mayor")
-                    <span class="badge rounded-pill bg-label-success">MAYOR</span>
+                    <span class="badge rounded-pill bg-label-danger">MAYOR</span>
                   @endif
                 </div>
                 <div

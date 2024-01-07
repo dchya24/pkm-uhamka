@@ -87,7 +87,7 @@
                   @forelse ($rekomendasi as $item)
                       <tr>
                         <td>
-                          <a href="{{$item->link_group}}">{{$item->link_group}}</a>
+                          <a href="https://{{ $item->link_group }}" target="_blank">{{$item->link_group}}</a>
                         </td>
                         <td>{{$item->nama}}</td>
                         <td>
