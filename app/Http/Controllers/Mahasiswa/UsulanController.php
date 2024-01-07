@@ -17,6 +17,7 @@ class UsulanController extends Controller
         $dataMahasiswa = DataMahasiswa::where('keterangan', 1)->get();
         $jenisPkm = JenisPkm::all();
         $penilai = Penilai::select('id')->get();
+        $user = Auth::guard('mahasiswa')->user();
         
         $idsPenilai = [];
         foreach($penilai as $item){
@@ -24,7 +25,7 @@ class UsulanController extends Controller
         }
 
         $dataDosen = DataDosen::whereNotIn('id', $idsPenilai)->get();
-        return view("mahasiswa.kirim-usulan", compact("dataMahasiswa", "jenisPkm", "dataDosen"));
+        return view("mahasiswa.kirim-usulan", compact("dataMahasiswa", "jenisPkm", "dataDosen", "user"));
     }
 
     public function store(Request $request){
