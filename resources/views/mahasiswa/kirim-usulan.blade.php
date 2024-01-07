@@ -255,6 +255,8 @@
                             name="anggaran"
                             class="form-control"
                             id="anggaran"
+                            min="5000000"
+                            max="12000000"
                             placeholder="37000000 (contoh)"/>
                         </div>
                       </div>
@@ -444,6 +446,13 @@
   <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
   <script>
+    Swal.fire({
+      title: "Info",
+      text: "Batas anggaran usulan adalah Rp.5.000.000 - Rp.12.000.000",
+      icon: "warning",
+      showDenyButton: false,
+      showCancelButton: false,
+    });
 
     function selectAnggota(event){
       const resultId = event.srcElement.getAttribute('id');
