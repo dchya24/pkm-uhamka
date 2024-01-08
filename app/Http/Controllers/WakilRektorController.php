@@ -28,7 +28,16 @@ class WakilRektorController extends Controller
 
     public function penilaian(){
         $warek = Auth::guard('admin')->user();
-        $usulan = usulan::where('wakil_rektor_id', $warek->id)->get();
+        $usulan = usulan::where('wakil_rektor_id', $warek->id);
+
+        if(!empty($_GET['status'])){
+            $usulan->where('status_rekomendasi', $_GET['status']);
+        }
+        else {
+            $usulan->whereNull('status_rekomendasi');
+        }
+
+        $usulan = $usulan->paginate(4);
 
         return view("wakil-rektor.penilaian-proposal", compact("usulan"));
     }

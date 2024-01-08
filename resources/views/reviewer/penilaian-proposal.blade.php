@@ -11,15 +11,21 @@
           <p class="mb-0">Tekan detail jika ingin meninjau!</p>
         </div>
         <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
-          <select id="select2_course_select" class="select2 form-select" data-placeholder="All Courses">
-            <option value="all courses">Belum ditinjau</option>
-            <option value="ui/ux">Sudah ditinjau</option>
-          </select>
+          <form action="" name='filter-status'>
+            <select 
+              id="select2_course_select" 
+              class="select2 form-select" 
+              name="status"
+              onchange="document.forms['filter-status'].submit()">
+              <option value="waiting" @if(isset($_GET['status']) && $_GET['status'] =="waiting") selected @endif>Belum Diitinjau</option>
+              <option value="done" @if(isset($_GET['status']) && $_GET['status'] =="done") selected @endif>Sudah Ditinjau</option>
+            </select>
+          </form>
         </div>
       </div>
       <div class="card-body">
         <div class="row gy-4 mb-4">
-          @foreach ($usulan as $item)
+          @forelse ($usulan as $item)
             <div class="col-sm-7 col-lg-3">
               <div class="card p-2 shadow-none border">
                 <div class="card-body p-3 pt-2">
@@ -28,9 +34,9 @@
                   <p>{{ $item->jenisPkm->singkatan }}</p>
                   <div class="d-flex justify-content-between align-items-center mb-3">
                     @if($item->status_penilaian_peninjau == "waiting")
-                      <span class="badge rounded-pill bg-label-primary">Belum dinilai</span>
+                      <span class="badge rounded-pill bg-label-primary">Belum Ditinjau</span>
                     @elseif($item->status_penilaian_peninjau == "done")
-                      <span class="badge rounded-pill bg-label-success">Sudah Dinilai</span>
+                      <span class="badge rounded-pill bg-label-success">Sudah Ditinjau</span>
                     @endif
                   </div>
                   <div
@@ -44,7 +50,15 @@
                 </div>
               </div>
             </div>
-          @endforeach
+            @empty
+            <div class="col-sm-7 col-lg-12">
+              <div class="card p-2 shadow-none">
+                <div class="card-body p-3 pt-2">
+                  <h3 class="fw-bold text-center">Tidak ada Usulan</h3>
+                </div>
+              </div>
+            </div>
+            @endforelse
         </div>
 
         {{-- <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
@@ -74,6 +88,9 @@
             </li>
           </ul>
         </nav> --}}
+        <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
+          {{ $usulan->links() }}
+        </nav>
       </div>
     </div>
   </div>

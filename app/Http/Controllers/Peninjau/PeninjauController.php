@@ -17,7 +17,18 @@ class PeninjauController extends Controller
     public function penilaian(){
         $peninjau = Auth::guard('peninjau')->user();
 
-        $usulan = usulan::where('peninjau_id', $peninjau->id)->get();
+        $usulan = usulan::where('peninjau_id', $peninjau->id);
+
+        
+        if(!empty($_GET['status'])){
+            $usulan->where('status_penilaian_peninjau', $_GET['status']);
+        }
+        else {
+            $usulan->where('status_penilaian_peninjau', 'waiting');
+        }
+
+        $usulan = $usulan->paginate(4);
+
         return view("reviewer.penilaian-proposal", compact("usulan"));
     }
 

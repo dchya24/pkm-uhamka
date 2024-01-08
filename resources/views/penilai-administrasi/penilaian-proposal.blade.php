@@ -11,15 +11,21 @@
         <p class="mb-0">Tekan detail jika ingin menilai!</p>
       </div>
       <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
-        <select id="select2_course_select" class="select2 form-select" data-placeholder="All Courses">
-          <option value="all courses">Belum dinilai</option>
-          <option value="seo">Sudah dinilai</option>
-        </select>
+        <form action="" name='filter-status'>
+          <select 
+            id="select2_course_select" 
+            class="select2 form-select" 
+            name="status"
+            onchange="document.forms['filter-status'].submit()">
+            <option value="waiting" @if(isset($_GET['status']) && $_GET['status'] =="waiting") selected @endif>Belum dinilai</option>
+            <option value="done" @if(isset($_GET['status']) && $_GET['status'] =="done") selected @endif>Sudah Dinilai</option>
+          </select>
+        </form>
       </div>
     </div>
     <div class="card-body">
       <div class="row gy-4 mb-4">
-        @foreach ($usulan as $item)
+        @forelse ($usulan as $item)
           <div class="col-sm-7 col-lg-3">
             <div class="card p-2 shadow-none border">
               <div class="card-body p-3 pt-2">
@@ -44,10 +50,18 @@
               </div>
             </div>
           </div>
-        @endforeach
+          @empty
+          <div class="col-sm-7 col-lg-12">
+            <div class="card p-2 shadow-none">
+              <div class="card-body p-3 pt-2">
+                <h3 class="fw-bold text-center">Tidak ada Usulan</h3>
+              </div>
+            </div>
+          </div>
+          @endforelse
       </div>
 
-      <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
+      {{-- <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
         <ul class="pagination">
           <li class="page-item prev">
             <a class="page-link" href="javascript:void(0);"><i class="tf-icon mdi mdi-chevron-left"></i></a>
@@ -73,6 +87,9 @@
             ></a>
           </li>
         </ul>
+      </nav> --}}
+      <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
+        {{ $usulan->links() }}
       </nav>
     </div>
   </div>

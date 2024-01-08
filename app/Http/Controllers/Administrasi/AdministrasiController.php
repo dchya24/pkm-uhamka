@@ -34,7 +34,17 @@ class AdministrasiController extends Controller
     public function penilaian(){
         $penilai = Auth::guard('penilai')->user();
 
-        $usulan = usulan::where('penilai_administrasi_id', $penilai->id)->get();
+        $usulan = usulan::where('penilai_administrasi_id', $penilai->id);
+
+        if(!empty($_GET['status'])){
+            $usulan->where('status_penilaian_administrasi', $_GET['status']);
+        }
+        else {
+            $usulan->where('status_penilaian_administrasi', 'waiting');
+        }
+
+        $usulan = $usulan->paginate(4);
+
         return view("penilai-administrasi.penilaian-proposal", compact("usulan"));
     }
 

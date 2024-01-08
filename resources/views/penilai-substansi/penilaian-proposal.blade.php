@@ -17,16 +17,16 @@
             class="select2 form-select" 
             name="status"
             onchange="document.forms['filter-status'].submit()">
-            <option value="sedang_dinilai" @if($_GET['status'] =="sedang_dinilai") selected @endif>Belum dinilai</option>
-            <option value="minor" @if($_GET['status'] =="minor") selected @endif>Minor</option>
-            <option value="mayor" @if($_GET['status'] =="mayor") selected @endif>Mayor</option>
+            <option value="sedang_dinilai" @if(isset($_GET['status']) && $_GET['status'] =="sedang_dinilai") selected @endif>Belum dinilai</option>
+            <option value="minor" @if(isset($_GET['status']) && $_GET['status'] =="minor") selected @endif>Minor</option>
+            <option value="mayor" @if(isset($_GET['status']) && $_GET['status'] =="mayor") selected @endif>Mayor</option>
           </select>
         </form>
       </div>
     </div>
     <div class="card-body">
       <div class="row gy-4 mb-4">
-        @foreach ($usulan as $item)
+        @forelse ($usulan as $item)
           <div class="col-sm-7 col-lg-3">
             <div class="card p-2 shadow-none border">
               <div class="card-body p-3 pt-2">
@@ -53,7 +53,15 @@
               </div>
             </div>
           </div>
-        @endforeach
+        @empty
+        <div class="col-sm-7 col-lg-12">
+          <div class="card p-2 shadow-none">
+            <div class="card-body p-3 pt-2">
+              <h3 class="fw-bold text-center">Tidak ada Usulan</h3>
+            </div>
+          </div>
+        </div>
+        @endforelse
       </div>
 
       {{-- <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
