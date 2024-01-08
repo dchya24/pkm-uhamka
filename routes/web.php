@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\AdministratorController;
+use App\Http\Controllers\Admin\AksesHalamanController;
 use App\Http\Controllers\Admin\JenisPkmController;
 use App\Http\Controllers\Admin\KetuaKelompokController;
 use App\Http\Controllers\Admin\ManajemenInformasiController;
@@ -113,6 +114,7 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
         Route::put("{id}/update",[ManajemenInformasiController::class, "update"])->name("informasi.update");
     });
 
+    Route::post("akses-halaman", [AksesHalamanController::class, "ubahAksesHalaman"])->name("akses-halaman.update");
     Route::get("akses-halaman", [AdminController::class, "aksesHalamanPage"])->name("akses-halaman");
 
     Route::prefix("skema-pkm")->name('skema-pkm.')->group(function(){

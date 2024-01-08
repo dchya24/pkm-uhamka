@@ -27,232 +27,67 @@
                 </tr>
               </thead>
               <tbody class="justify-content-center align-middle text-center">
-                <tr>
-                  <td>Usulan 1</td>
-                  <td >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                </tr>
-                
-                <tr>
-                  <td>Usulan 2</td>
-                  <td >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                </tr> 
-
-                <tr>
-                  <td>Usulan 3</td>
-                  <td >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                </tr> 
-
-                <tr>
-                  <td>Usulan 4</td>
-                  <td >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                </tr> 
-
-                <tr>
-                  <td>Usulan 5</td>
-                  <td >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault" 
-                      />
-                  </td>
-                </tr> 
+                <form action="{{route('admin.akses-halaman.update')}}" method="POST" name="akses-halaman">
+                  @foreach ($aksesHalaman as $item)
+                      <tr>
+                        <td>
+                          {{ $item->usulan }}
+                        </td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox" value="1"
+                            name="{{$item->slug}}__buka_usulan"
+                            id="flexCheckDefault" 
+                            {{ $item->buka_usulan == 1 ? 'checked' : '' }} />
+                        </td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox" value="1"
+                            name="{{$item->slug}}__ubah_nilai_substansi"
+                            id="flexCheckDefault" 
+                            {{ $item->ubah_nilai_substansi == 1 ? 'checked' : '' }} />
+                        </td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox" value="1"
+                            name="{{$item->slug}}__ubah_nilai_administrasi"
+                            id="flexCheckDefault" 
+                            {{ $item->ubah_nilai_administrasi == 1 ? 'checked' : '' }} />
+                        </td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox" value="1"
+                            name="{{$item->slug}}__ubah_nilai_peninjauan"
+                            id="flexCheckDefault" 
+                            {{ $item->ubah_nilai_peninjauan == 1 ? 'checked' : '' }} />
+                        </td>
+                        <td>
+                          <input
+                            class="form-check-input"
+                            type="checkbox" value="1"
+                            name="{{$item->slug}}__ubah_rekomendasi"
+                            id="flexCheckDefault" 
+                            {{ $item->ubah_rekomendasi == 1 ? 'checked' : '' }} />
+                        </td>
+                      </tr>
+                  @endforeach
+                  @csrf
+                </form>
               </tbody>
             </table>
           </div>                  
           <div class="pb-5">
-            <a href="" type="button" class="btn rounded-pill btn-primary " style="float: right;">
+            <button 
+              type="button" 
+              class="btn rounded-pill btn-primary" 
+              style="float: right;"
+              onclick="document.forms['akses-halaman'].submit()">
               Ubah Akses
-            </a> 
+            </button> 
           </div>
         </div>
           <br>

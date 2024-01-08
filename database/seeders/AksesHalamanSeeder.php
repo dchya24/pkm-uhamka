@@ -17,6 +17,7 @@ class AksesHalamanSeeder extends Seeder
         for($i = 1; $i <=5; $i++){
             $arrayAksesHalaman[] = [
                 "usulan" => "usulan " . $i,
+                "buka_usulan" => false,
                 "ubah_nilai_substansi" => false,
                 "ubah_nilai_administrasi" => false,
                 "ubah_nilai_peninjauan" => false,

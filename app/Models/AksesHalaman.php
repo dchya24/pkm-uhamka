@@ -12,7 +12,7 @@ class AksesHalaman extends Model
     protected $table = 'akses_halaman';
     
     protected $fillable = [
-        "usulan", "ubah_nilai_substansi", 
+        "usulan", "ubah_nilai_substansi", "buka_usulan",
         "ubah_nilai_administrasi", "ubah_nilai_peninjauan",
         "ubah_rekomendasi", "slug"
     ];

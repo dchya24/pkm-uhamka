@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug');
             $table->string('usulan');
+            $table->string('buka_usulan');
             $table->string('ubah_nilai_substansi');
             $table->string('ubah_nilai_administrasi');
             $table->string('ubah_nilai_peninjauan');

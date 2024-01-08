@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AksesHalaman;
 use App\Models\KetuaKelompok;
 use App\Models\Penilai;
 use App\Models\usulan;
@@ -21,7 +22,9 @@ class AdminController extends Controller
     }
 
     public function aksesHalamanPage(){
-        return view("admin.akses-halaman");
+        $aksesHalaman = AksesHalaman::all();
+
+        return view("admin.akses-halaman", compact('aksesHalaman'));
     }
 
     public function skemaPkmPage(){
