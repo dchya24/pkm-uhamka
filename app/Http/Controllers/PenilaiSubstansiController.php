@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AksesHalaman;
 use App\Models\Informasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
@@ -49,8 +50,11 @@ class PenilaiSubstansiController extends Controller
     // TODO create detail and input nilai
     public function detailPenilaian($id){
         $detail = usulan::find($id);
+        $aksesHalaman = AksesHalaman::where('slug', 'usulan-' . $detail->usulan)->first();
 
-        return view("penilai-substansi.detail-penilaian", compact('detail'));
+        $hasEditUsulan = $aksesHalaman->ubah_nilai_substansi;
+
+        return view("penilai-substansi.detail-penilaian", compact('detail', 'hasEditUsulan'));
     }
 
     public function profile(){

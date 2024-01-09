@@ -326,11 +326,20 @@
 										<span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
 									</button>
 
-									<button class="btn btn-primary btn-next {{$disabled}}" data-bs-toggle="modal"
-									data-bs-target="#add-penilaian-substansi">
-										<span class="align-middle d-sm-inline-block d-none me-sm-1" >Nilai Usulan</span>
-										<i class="mdi mdi-arrow-right"></i>
-									</button>
+									@if($detail->status_penilaian_substansi === 'sedang dinilai') 
+										<button class="btn btn-primary btn-next" data-bs-toggle="modal"
+										data-bs-target="#add-penilaian-substansi">
+											<span class="align-middle d-sm-inline-block d-none me-sm-1" >Nilai Usulan</span>
+											<i class="mdi mdi-arrow-right"></i>
+										</button>
+									@else
+										<?php $disabled = $hasEditUsulan ? "" : "disabled"; ?>
+										<button class="btn btn-primary btn-next {{$disabled}}" data-bs-toggle="modal"
+											data-bs-target="#add-penilaian-substansi">
+											<span class="align-middle d-sm-inline-block d-none me-sm-1" >Ubah Nilai Usulan</span>
+											<i class="mdi mdi-arrow-right"></i>
+										</button>
+									@endif
 							</div>
 						</div>
 					</div>
