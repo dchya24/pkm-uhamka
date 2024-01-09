@@ -6,15 +6,17 @@
 <div class="container-xxl flex-grow-0 container-p-y">
 	<div class="col-md-12">
 		<!-- stepper usulan -->
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
-					<li class="nav-item">
-						<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN 1</a>
-					</li>
-				</ul>
+		@if($detail)
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
+						<li class="nav-item">
+							<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN {{$detail->usulan}}</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
+		@endif
 		<div class="h-100">
 			<div class="col-12 mb-4">
 				@if($detail)
@@ -231,7 +233,7 @@
 												<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MAYOR</span>
 											@endif
 										</p>
-										@if($detail->status_penilaian_substansi  !== null && $detail->status_penilaian_substansi !== "sedang_dinilai") 
+										@if($detail->status_penilaian_substansi  !== null && $detail->status_penilaian_substansi !== "sedang dinilai") 
 											<label class="fw-bold">Unduh nilai : 
 												<a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 													<i class="mdi mdi-file"></i> Unduh
@@ -682,7 +684,11 @@
 						</div>
 					</div>
 				@else
-				<h3>Kamu belum memiliki usulan</h3>
+					<div class="card">
+						<div class="card-body">
+							<h3>Kamu belum memiliki usulan</h3>
+						</div>
+					</div>
 				@endif
 			</div>
 			<!-- /Default Wizard -->

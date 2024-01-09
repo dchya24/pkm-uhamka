@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Mahasiswa;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseMahasiswaController;
+use App\Models\AksesHalaman;
 use App\Models\DataDosen;
 use App\Models\DataMahasiswa;
 use App\Models\JenisPkm;
@@ -11,9 +12,18 @@ use App\Models\usulan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UsulanController extends Controller
+class UsulanController extends BaseMahasiswaController
 {
     public function showKirimUsulanPage(){
+        $user = Auth::guard('mahasiswa')->user();
+
+        $getAccess = $this->getAksesKirimUsulan($user);
+
+        $aksesHalaman = $getAccess[0];
+        $oldUsulan = $getAccess[1]->first();
+
+        $canCreateUsulan = empty($oldUsulan) ? true : false;
+
         $dataMahasiswa = DataMahasiswa::where('keterangan', 1)->get();
         $jenisPkm = JenisPkm::all();
         $penilai = Penilai::select('id')->get();
@@ -25,7 +35,10 @@ class UsulanController extends Controller
         }
 
         $dataDosen = DataDosen::whereNotIn('id', $idsPenilai)->get();
-        return view("mahasiswa.kirim-usulan", compact("dataMahasiswa", "jenisPkm", "dataDosen", "user"));
+        return view("mahasiswa.kirim-usulan", compact(
+            "dataMahasiswa", "jenisPkm", "dataDosen", "user" , "canCreateUsulan", "oldUsulan",
+            "aksesHalaman"
+        ));
     }
 
     public function store(Request $request){
@@ -68,9 +81,11 @@ class UsulanController extends Controller
     }
 
     public function index(Request $request){
-        $id = $request->has('id') ? $request->id : null;
-
         $user = Auth::user();
+        $getAccess = $this->getAksesKirimUsulan($user);
+        $aksesHalaman = $getAccess[0];
+
+        $id = $request->has('id') ? $request->id : null;
 
         if($id == null){
             $detail = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
@@ -87,7 +102,7 @@ class UsulanController extends Controller
             ->whereNot('id', $id)
             ->select('id', 'usulan')->get();
 
-        return view("mahasiswa.usulan", compact("usulan", "detail"));
+        return view("mahasiswa.usulan", compact("usulan", "detail", "aksesHalaman"));
     }
 
     public function pengajuanAdministrasi(Request $request, $id){

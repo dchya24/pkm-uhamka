@@ -26,12 +26,22 @@
             <div>Usulan PKM</div>
           </a>
           <ul class="menu-sub">
-            <li class="menu-item">
-              <a href="{{ route("mahasiswa.kirim-usulan") }}" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-file-swap-outline"></i>
-                <div>Kirim usulan</div>
-              </a>
-            </li>
+            @if($aksesHalaman)
+              <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons mdi mdi-file-swap-outline"></i>
+                  <div>Kirim usulan</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route("mahasiswa.kirim-usulan") }}" class="menu-link">
+                        <i class="menu-icon tf-icons mdi mdi-file-swap-outline"></i>
+                        <div>{{$aksesHalaman->usulan}}</div>
+                      </a>
+                    </li>
+                </ul>
+              </li>
+            @endif
             <li class="menu-item">
               <a href="{{ route("mahasiswa.usulan") }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-clipboard-account"></i>

@@ -12,21 +12,26 @@
             <div class="card-body">
               <h4 class="card-title">Selamat Datang 🎉</h4>
               <div class="">
-                @if($usulan->last()->status_penilaian_substansi !== null && $usulan->last()->status_rekomendasi === null)
-                  <span class="badge rounded-pill bg-label-warning text-md-end text-dark">
-                    Usulan {{$usulan->last()->usulan}} : Usulan sedang dinilai, 
-                    <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                  </span>
-                @elseif($usulan->last()->status_rekomendasi !== null || $usulan->last()->status_penilaian_substansi == "mayor")
-                  <span class="badge rounded-pill bg-label-success text-md-end text-dark">
-                    Usulan {{$usulan->last()->usulan}} : Usulan kamu telah dinilai, 
-                    <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                  </span>
-                @else
-                  <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
-                    Usulan {{$usulan->last()->usulan}} : Usulan kamu belum dinilai, 
-                    <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                  </span>
+                @if($usulan->count() > 0)
+                  @if(
+                    $usulan->last()->status_penilaian_substansi !== "mayor"
+                    && $usulan->last()->status_penilaian_substansi !== null 
+                    && $usulan->last()->status_rekomendasi === null)
+                    <span class="badge rounded-pill bg-label-warning text-md-end text-dark">
+                      Usulan {{$usulan->last()->usulan}} : Usulan sedang dinilai, 
+                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
+                    </span>
+                  @elseif($usulan->last()->status_rekomendasi !== null || $usulan->last()->status_penilaian_substansi == "mayor")
+                    <span class="badge rounded-pill bg-label-success text-md-end text-dark">
+                      Usulan {{$usulan->last()->usulan}} : Usulan kamu telah dinilai, 
+                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
+                    </span>
+                  @else
+                    <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                      Usulan {{$usulan->last()->usulan}} : Usulan kamu belum dinilai,
+                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
+                    </span>
+                  @endif
                 @endif
                 <br>
               </div>
@@ -117,11 +122,11 @@
                     <td>Usulan {{$item->usulan}}</td>
                     <td>
                       @if($item->status_penilaian_substansi == "mayor")
-                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark ">
                           MAYOR
                         </span>
                       @elseif($item->status_penilaian_substansi == "minor")
-                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark">
                           MINOR
                         </span>
                       @else
@@ -139,7 +144,7 @@
                         <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
                           Sedang Dinilai
                         </span>
-                      @else
+                      @elseif($item->status_penilaian_administrasi == "waiting")
                         <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
                           Belum Dinilai
                         </span>

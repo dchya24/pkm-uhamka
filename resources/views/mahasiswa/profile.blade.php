@@ -26,7 +26,7 @@
                         name="NIM"
                         id="NIM"
                         disabled
-                        value="1803015016" />
+                        value="{{Auth::user()->mahasiswa->nim}}" />
                       <label for="NIM">Username/NIM</label>
                     </div>
                   </div>
@@ -37,7 +37,7 @@
                         type="text"
                         name="Nama Lengkap"
                         id="Nama Lengkap"
-                        value="iwan mahyudin"
+                        value="{{Auth::user()->mahasiswa->nama}}"
                         disabled />
                       <label for="Nama Lengkap">Nama Lengkap</label>
                     </div>
@@ -49,14 +49,18 @@
                         type="text"
                         id="email"
                         name="email"
-                        value="Fakultas Ekonomi Bisnis" 
+                        value="{{Auth::user()->mahasiswa->fakultas}}"
                         disabled/>
                       <label for="email">Fakultas</label>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-floating form-floating-outline">
-                      <input type="text" class="form-control" id="No_hp" name="No_hp" value="Teknik Informatika"
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        id="No_hp" name="No_hp" 
+                        value="{{Auth::user()->mahasiswa->prodi}}"
                       disabled />
                       <label for="Nomor Handphone">Program Studi</label>
                     </div>
