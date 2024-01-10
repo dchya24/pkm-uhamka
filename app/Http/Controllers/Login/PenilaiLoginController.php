@@ -35,10 +35,10 @@ class PenilaiLoginController extends Controller
             $user = Auth::guard('penilai')->user();
             $route = "";
 
-            if($user->id == 2){
+            if($user->jenis_penilai == 2){
                 $route = "penilai-substansi.dashboard";
             }
-            else if($user->id == 1){
+            else if($user->jenis_penilai == 1){
                 $route = "penilai-administrasi.dashboard";
             }
 
