@@ -38,7 +38,7 @@
     <div class="col-md-12">
       <ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN 1</a>
+          <a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>{{$detail->usulan}} </a>
         </li>
       </ul>
     </div>

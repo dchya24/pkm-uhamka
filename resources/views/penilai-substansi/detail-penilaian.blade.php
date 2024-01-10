@@ -5,8 +5,8 @@
 
 
 <!-- Main Content -->
-<div class="container-xxl flex-grow-0 container-p-y">
-		{{-- <!-- Header -->
+<div class="container-xxl flex-grow-1 container-p-y">
+		<!-- Header -->
 		<div class="row">
 			<div class="col-12">
 				<div class="card mb-4">
@@ -27,12 +27,14 @@
 									<h4>{{$detail->ketuaKelompok->nama}}</h4>
 									<p>
 										Status :
-										@if($detail->status_penilaian_substansi === 'sedang dinilai' || $detail->penilai_substansi_id !== null) 
+										@if($detail->status_penilaian_substansi === 'sedang dinilai') 
 											<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu Penilaian Anda</span>
+										@elseif($detail->status_penilaian_substansi === 'minor')
+											<span class="badge rounded-pill bg-label-success text-md-end text-dark">MINOR</span> 
+											<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap administrasi</span>
+										@elseif($detail->status_penilaian_substansi === 'mayor')
+											<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MAYOR</span>
 										@endif
-										<span class="badge rounded-pill bg-label-success text-md-end text-dark">MINOR</span> 
-										<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap administrasi</span>
-										<span class="badge rounded-pill bg-label-danger text-md-end text-dark">MAYOR</span>
 									</p>
 								</div>
 							</div>
@@ -41,23 +43,27 @@
 				</div>
 			</div>
 		</div>
-		<!--/ Header --> --}}
+		<!--/ Header -->
 
 		<!-- stepper usulan -->
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
 					<li class="nav-item">
-						<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN 1</a>
+						<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN {{$detail->usulan}}</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+
+		@include('penilai-substansi.modal-add-penilaian')
+
+
 		<div class="row">
 			<div class="col-12 mb-4">
 				<div class="bs-stepper wizard-numbered mt-2">
 					<div class="bs-stepper-header">
-						{{-- Data Usulan stepper --}}
+						<!-- Data Usulan stepper -->
 						<div class="step" data-target="#data-usulan">
 							<button type="button" class="step-trigger">
 								<span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
@@ -72,7 +78,7 @@
 						</div>
 						<div class="line"></div>
 
-						{{-- Data usulan substansi --}}
+						<!-- Data usulan substansi -->
 						<div class="step" data-target="#substansi-usulan">
 							<button type="button" class="step-trigger">
 								<span class="bs-stepper-circle"><i class="mdi mdi-check"></i></span>
@@ -348,7 +354,6 @@
 			<!-- /Default Wizard -->
 		</div>
 </div>
-@include('penilai-substansi.modal-add-penilaian')
 
 
 <!--/ Content -->
