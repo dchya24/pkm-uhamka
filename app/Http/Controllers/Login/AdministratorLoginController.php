@@ -31,4 +31,27 @@ class AdministratorLoginController extends Controller
         return view("login.administrator");
     }
 
+    public function login(Request $request){
+        $credentials = [
+            "username" => $request->username,
+            "password" => $request->password
+        ];
+
+        if(Auth::guard('admin')->attempt($credentials)){
+            $user = Auth::guard('admin')->user();
+            $route = "";
+
+            if($user->type == "admin"){
+                $route = "admin.dashboard";
+            }
+            else if($user->type == 'warek'){
+                $route = "wakil-rektor.dashboard";
+            }
+
+            return redirect()->route($route);
+        }
+
+        return redirect()->back()->withInput($request->only('username'));
+    }
+
 }
