@@ -373,7 +373,7 @@
 													>Upload proposal
 												</label>
 												<div class="col-sm-10">
-													<input class="form-control" type="file"  name="lembar_proposal" id="formFile" />
+													<input class="form-control" type="file"  name="lembar_proposal" id="formFile" accept=".pdf"/>
 													<label >Maks.5 MB | Tipe File : PDF | </label>
 													<br>
 													<label class="fw-bold">Nama File : Proposal_NIMKetua_Usulan 1/2/3/4</label>
@@ -388,7 +388,7 @@
 												>Upload lembar biodata dosen pembimbing
 												</label>
 												<div class="col-sm-10">
-												<input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" />
+												<input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" accept=".pdf"/>
 												<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah</label>
 												<br>
 													<label class="fw-bold">Nama File : Biodatadosen_NIMKetua_Usulan 1/2/3/4</label>
@@ -403,7 +403,7 @@
 													>Upload lembar biodata ketua & semua anggota
 												</label>
 												<div class="col-sm-10">
-													<input class="form-control" type="file" id="formFile" name="lembar_biodata_kelompok" />
+													<input class="form-control" type="file" id="formFile" name="lembar_biodata_kelompok" accept=".pdf"/>
 													<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah & jadikan 1 file saja (digabung)</label>
 													<br>
 														<label class="fw-bold">Nama File : Biodatakelompok_NIMKetua_Usulan 1/2/3/4</label>
@@ -417,7 +417,7 @@
 													>Upload lembar pengesahan
 												</label>
 												<div class="col-sm-10">
-													<input class="form-control" type="file" name="lembar_pengesahan" id="formFile" />
+													<input class="form-control" type="file" name="lembar_pengesahan" id="formFile" accept=".pdf" />
 													<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah (Cukup sampai TTD Dekan)</label>
 												</div>
 											</div>
