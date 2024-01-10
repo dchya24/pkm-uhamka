@@ -66,13 +66,15 @@ class PenilaiSubstansiController extends Controller
 
         $usulan->status_penilaian_substansi = $request->status_penilaian;
 
-        $lembar_penilaian = $request->file('form_penilaian_substansi');
+        if($request->hasFile('form_penilaian_substansi')){
+            $lembar_penilaian = $request->file('form_penilaian_substansi');
 
-        $nama_file = $lembar_penilaian->getClientOriginalName();
+            $nama_file = $lembar_penilaian->getClientOriginalName();
 
-        $lembar_penilaian->move('upload/penilaian/substansi', $nama_file);
+            $lembar_penilaian->move('upload/penilaian/substansi', $nama_file);
 
-        $usulan->form_penilaian_substansi = 'upload/penilaian/substansi/' . $nama_file;
+            $usulan->form_penilaian_substansi = 'upload/penilaian/substansi/' . $nama_file;
+        }
 
         $usulan->save();
 
