@@ -20,7 +20,7 @@
                   <div class="timeline-event">
                     <div class="timeline-header mb-1">
                       <h6 class="mb-2">{{ $item->judul }}</h6>
-                      <small class="text-muted">{{ $item->created_at->locale('id-ID')->format('d M Y') }}</small>
+                      <small class="text-muted">{{ $item->created_at->format('d M Y') }}</small>
                     </div>
                     <p class="mb-2">
                       {!! $item->description !!}
