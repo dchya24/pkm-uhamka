@@ -68,19 +68,19 @@
         </button>
       </div>
       <div class="card-body">
-        <table id="example2" class="table table-bordered table-striped text-center">
-          <thead>
-            <tr class="text-bold">
-              <th>Judul</th>
-              <th>Skema PKM</th>
-              <th>Usulan</th>
-              <th>Dosen Pembimbing</th>
-              <th>Ketua Kelompok</th>                        
-              <th>Check</th>
-            </tr>
-          </thead>
-          <tbody>
-            <form action="{{route('admin.manajemen-proposal.wakil-rektor.store', $warek->id)}}" method="POST" name="add-usulan">
+        <form action="{{route('admin.manajemen-proposal.wakil-rektor.store', $warek->id)}}" method="POST" name="add-usulan">
+          <table id="example2" class="table table-bordered table-striped text-center">
+            <thead>
+              <tr class="text-bold">
+                <th>Judul</th>
+                <th>Skema PKM</th>
+                <th>Usulan</th>
+                <th>Dosen Pembimbing</th>
+                <th>Ketua Kelompok</th>                        
+                <th>Check</th>
+              </tr>
+            </thead>
+            <tbody>
               @forelse ($listUsulan as $item)
                 <tr>
                   <td>{{$item->judul}}</td>
@@ -103,11 +103,11 @@
                     <td colspan="7" class="text-center text-bold">Tidak ada Usulan yang dinilai!</td>
                   </tr>
               @endforelse
-                <input type="hidden" name="warek_id" value="{{$warek->id}}">
-              @csrf
-            </form>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+          <input type="hidden" name="warek_id" value="{{$warek->id}}">
+        @csrf
+      </form>
       </div>
     </div>
   </div>

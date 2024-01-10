@@ -39,8 +39,10 @@
 												class="form-control" 
 												type="file" 
 												id="formFile"
-												name="form_penilaian_administrasi" />
-											<label for="">Maks.5 MB | Tipe File : PDF | <a>ADM_1803015016.pdf</a></label>
+												name="form_penilaian_administrasi" 
+                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                        required />
+											<label for="">Maks.5 MB | Tipe File : CSV, XLS, XLSX | <a>ADM_1803015016.xlsx</a></label>
 									</div>
 							</div>
 						</form>

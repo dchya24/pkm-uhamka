@@ -4,40 +4,49 @@
 @section('body')
  <!-- Content -->
  <div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Header -->
-    {{-- <div class="row">
-      <div class="col-12">
-        <div class="card mb-4">
-          <div class="user-profile-header-banner">
-            <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
-          </div>
-          <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
-            <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-              <img
-                src="../../assets/img/avatars/1.png"
-                alt="user image"
-                class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
-            </div>
-            <div class="flex-grow-1 mt-3 mt-sm-5">
-              <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
-                <div class="user-profile-info">
-                  <h4>Satria Eka Dawongso</h4>
-                  <p>Status : <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu peninjauan anda</span> </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-    <!--/ Header -->
+	<!-- Header -->
+	<div class="row">
+		<div class="col-12">
+			<div class="card mb-4">
+				<div class="user-profile-header-banner">
+					<img src="{{asset('assets/img/pages/profile-banner.png')}}" alt="Banner image" class="rounded-top img-fluid" />
+				</div>
+				<div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
+					<div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+						<img
+							src="{{asset('assets/img/avatars/1.png')}}"
+							alt="user image"
+							class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
+					</div>
+					<div class="flex-grow-1 mt-3 mt-sm-5">
+						<div
+							class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+							<div class="user-profile-info">
+								<h4>{{$detail->ketuaKelompok->nama}}</h4>
+								<p>
+									Status :
+									@if($detail->status_penilaian_peninjau === 'waiting') 
+										<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu Penilaian Anda</span>
+									@elseif($detail->status_penilaian_peninjau === 'done')
+										<span class="badge rounded-pill bg-label-success text-md-end text-dark">Sudah Dinilai</span> 
+										<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap rekomendasi</span>
+									@endif
+									</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ Header -->
 
     <!-- Navbar pills -->
     <div class="row">
 			<div class="col-md-12">
 				<ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
 					<li class="nav-item">
-						<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN 1</a>
+						<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN {{$detail->usulan}}</a>
 					</li>
 				</ul>
 			</div>
@@ -47,26 +56,26 @@
     <!-- Modal -->
     <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
       <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="backDropModalTitle">Tinjau usulan</h4>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col mb-4 mt-2">   
-								<form 
-									action="{{route('reviewer.penilaian.tambah-penilaian', $detail->id)}}" 
-									method="POST" 
-									enctype="multipart/form-data" 
-									name="add-tinjauan">
+				<form 
+				action="{{route('reviewer.penilaian.tambah-penilaian', $detail->id)}}" 
+				method="POST" 
+				enctype="multipart/form-data" 
+				name="add-tinjauan">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="backDropModalTitle">Tinjau usulan</h4>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col mb-4 mt-2">   
 									<h5>
 										Unduh format nilai : 
-                    <a href="{{url($detail->jenisPkm->form_peninjau)}}" target="_blank">
+										<a href="{{url($detail->jenisPkm->form_peninjau)}}" target="_blank">
 											<i class="mdi mdi-file"></i> Unduh
 										</a> 
 									</h5>                        
@@ -76,7 +85,7 @@
 										id="exampleFormControlTextarea1"
 										rows="5"
 										name="komentar_ke_mahasiswa"
-										placeholder="Berikan komentar terhadap usulan ini"></textarea>    
+										placeholder="Berikan komentar terhadap usulan ini" required>{{$detail->komentar_ke_mahasiswa}}</textarea>    
 									<hr>
 									<h5>Komentar usulan : (dikirim ke Wakil Rektor Kemahasiswaan)</h5>
 									<textarea
@@ -84,29 +93,34 @@
 										id="exampleFormControlTextarea1"
 										rows="5"
 										name="komentar_ke_warek"
-										placeholder="Berikan komentar terhadap usulan ini"></textarea>   
+										placeholder="Berikan komentar terhadap usulan ini" required>{{$detail->komentar_ke_warek}}</textarea>   
 									<br>   
 									<h5>Upload nilai </h5>
-									<input class="form-control" type="file" id="formFile" name="form_penilaian_peninjau"/>
-									<Label>Form penilaian -> excel only</Label>
-									@csrf
-								</form>    
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-              Tutup
-            </button>
-            <button 
-							type="button" 
-							class="btn btn-primary"
-							onclick="document.forms['add-tinjauan'].submit()">
-							Kirim tinjauan
-						</button>
-          </div>
-        </div>
-      </div>
+									<input 
+										class="form-control" 
+										type="file" 
+										id="formFile" 
+										name="form_penilaian_peninjau"
+										accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+									required />
+									<Label>Form penilaian -> excel only</Label>  
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+								Tutup
+							</button>
+							<button 
+								type="submit" 
+								class="btn btn-primary">
+								Kirim tinjauan
+							</button>
+						</div>
+					</div>
+					@csrf
+				</form>  
+			</div>
     </div>
 
       <!-- Main Content -->
@@ -547,20 +561,23 @@
                           <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                         </button>
                         
-                        @if($detail->status_penilaian_peninjau !== "done")
-													<button
-														type="button"
-														class="btn btn-primary"
-														data-bs-toggle="modal"
-														data-bs-target="#backDropModal">
-														Tinjau Usulan
-													</button>
-												@elseif($detail->status_penilaian_peninjau === "done")
-													<button class="btn btn-primary btn-next" disabled>
-														<span class="align-middle d-sm-inline-block d-none me-sm-1" >Selanjutnya</span>
-														<i class="mdi mdi-arrow-right"></i>
-													</button>
-												@endif
+												<?php 
+													$disabled = "";
+
+													if(
+														($detail->status_penilaian_administrasi == 'done' || $detail->status_penilaian_administrasi == 'rejected')
+														&& !$hasEditUsulan
+														) {
+															$disabled = "disabled";
+													}
+												?>
+												<button class="btn btn-primary btn-next" data-bs-toggle="modal"
+												data-bs-target="#backDropModal" {{$disabled}}>
+													<span class="align-middle d-sm-inline-block d-none me-sm-1" >
+														{{ $detail->status_penilaian_administrasi !=  'done' ? 'Nilai Usulan' : 'Ubah Nilai Usulan'}}
+													</span>
+													<i class="mdi mdi-arrow-right"></i>
+												</button>
                       </div>
                   </div>
                 </form>

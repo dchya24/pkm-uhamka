@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrasi;
 
 use App\Http\Controllers\Controller;
+use App\Models\AksesHalaman;
 use App\Models\Informasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
@@ -54,12 +55,21 @@ class AdministrasiController extends Controller
 
     public function detailPenilaian($id){
         $detail = usulan::find($id);
+        $aksesHalaman = AksesHalaman::where('slug', 'usulan-' . $detail->usulan)->first();
 
-        return view("penilai-administrasi.detail-penilaian", compact('detail'));
+        $hasEditUsulan = $aksesHalaman->ubah_nilai_substansi;
+
+        return view("penilai-administrasi.detail-penilaian", compact('detail', 'hasEditUsulan'));
     }
 
     public function tambahPenilaian(Request $request, $id){
         $usulan = usulan::find($id);
+
+        if(in_array($usulan->penilaian_administrasi, ['done', 'rejected'])){
+            if(file_exists($usulan->form_penilaian_administrasi)){
+                unlink($usulan->form_penilaian_administrasi);
+            }
+        }
 
         $form_penilaian_administrasi = $request->file('form_penilaian_administrasi');
         $form_penilaian_administrasi_name = $form_penilaian_administrasi->getClientOriginalName();

@@ -4,17 +4,17 @@
 @section('body')
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-  {{-- <!-- Header -->
+  <!-- Header -->
   <div class="row">
     <div class="col-12">
       <div class="card mb-4">
         <div class="user-profile-header-banner">
-          <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
+          <img src="{{asset('assets/img/pages/profile-banner.png')}}" alt="Banner image" class="rounded-top img-fluid" />
         </div>
         <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
           <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
             <img
-              src="../../assets/img/avatars/1.png"
+              src="{{asset('assets/img/avatars/1.png')}}"
               alt="user image"
               class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
           </div>
@@ -22,8 +22,16 @@
             <div
               class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
               <div class="user-profile-info">
-                <h4>Satria Eka Dawongso</h4>
-                <p>Status : <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu penilaian anda</span> </p>
+                <h4>{{$detail->ketuaKelompok->nama}}</h4>
+                <p>
+                  Status :
+                  @if($detail->status_penilaian_administrasi === 'waiting') 
+                    <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu Penilaian Anda</span>
+                  @elseif($detail->status_penilaian_administrasi === 'done')
+                    <span class="badge rounded-pill bg-label-success text-md-end text-dark">MINOR</span> 
+                    <span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut ke tahap tinjauan</span>
+                  @endif
+                </p>
               </div>
             </div>
           </div>
@@ -31,14 +39,14 @@
       </div>
     </div>
   </div>
-  <!--/ Header --> --}}
+  <!--/ Header -->
 
   <!-- Navbar pills -->
   <div class="row">
     <div class="col-md-12">
       <ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>{{$detail->usulan}} </a>
+          <a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN {{$detail->usulan}} </a>
         </li>
       </ul>
     </div>
@@ -223,9 +231,9 @@
                 @endif
               </p>
               
-              @if($detail->status_penilaian_substansi !== 'sedang dinilai' && $detail->penilai_substansi_id !== null) 
+              @if(in_array($detail->status_penilaian_substansi, ["minor", "mayor"])) 
                 <Label class="fw-bold">Unduh nilai : 
-                  <a href="/assets/pdf/HASIL_SUB_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+                  <a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
                     <i class="mdi mdi-file"></i> Unduh
                   </a> 
                 </Label>
@@ -344,19 +352,19 @@
                 <h5 class="mb-1 pb-2 fw-bold">Administrasi usulan </h6>
                 <p class="fw-bold">
                   Status : 
-                  <?php $disabled = ""; ?>
                   @if($detail->status_penilaian_administrasi == 'waiting')
                     <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Belum dinilai</span> 
                   @elseif($detail->status_penilaian_administrasi == 'done')
-                  <?php $disabled = "disabled"; ?>
                   <span class="badge rounded-pill bg-label-success text-md-end text-dark">Sudah dinilai</span>
                   @endif
                 </p>
-                <Label class="fw-bold">Unduh nilai : 
-                  &nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_administrasi)}}" target="_blank" title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </Label> 
+                @if(in_array($detail->status_penilaian_administrasi, ['done', 'rejected']))
+                  <Label class="fw-bold">Unduh nilai : 
+                    &nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_administrasi)}}" target="_blank" title="Read PDF">
+                      <i class="mdi mdi-file"></i> Unduh
+                    </a>
+                  </Label> 
+                @endif
                 <hr>
             </div>                  
               <div class="row g-4">
@@ -414,9 +422,21 @@
                   <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
                   <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                 </button>
+                <?php 
+                  $disabled = "";
+
+                  if(
+                    ($detail->status_penilaian_administrasi == 'done' || $detail->status_penilaian_administrasi == 'rejected')
+                    && !$hasEditUsulan
+                    ) {
+                      $disabled = "disabled";
+                  }
+                ?>
                 <button class="btn btn-primary btn-next" data-bs-toggle="modal"
                 data-bs-target="#backDropModal" {{$disabled}}>
-                  <span class="align-middle d-sm-inline-block d-none me-sm-1" >Nilai usulan</span>
+                  <span class="align-middle d-sm-inline-block d-none me-sm-1" >
+                    {{ $detail->status_penilaian_administrasi == 'waiting' ? 'Nilai Usulan' : 'Ubah Nilai Usulan'}}
+                  </span>
                   <i class="mdi mdi-arrow-right"></i>
                 </button>
               </div>

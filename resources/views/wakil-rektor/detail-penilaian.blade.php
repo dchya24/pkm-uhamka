@@ -5,32 +5,42 @@
  <!-- Content -->
  <div class="container-xxl flex-grow-1 container-p-y">
     <!-- Header -->
-    {{-- <div class="row">
-      <div class="col-12">
-        <div class="card mb-4">
-          <div class="user-profile-header-banner">
-            <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
-          </div>
-          <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
-            <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-              <img
-                src="../../assets/img/avatars/1.png"
-                alt="user image"
-                class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
-            </div>
-            <div class="flex-grow-1 mt-3 mt-sm-5">
-              <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
-                <div class="user-profile-info">
-                  <h4>Satria Eka Dawongso</h4>
-                  <p>Status : <span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu peninjauan anda</span> </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-    <!--/ Header -->
+		<div class="row">
+			<div class="col-12">
+				<div class="card mb-4">
+					<div class="user-profile-header-banner">
+						<img src="{{asset('assets/img/pages/profile-banner.png')}}" alt="Banner image" class="rounded-top img-fluid" />
+					</div>
+					<div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
+						<div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+							<img
+								src="{{asset('assets/img/avatars/1.png')}}"
+								alt="user image"
+								class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
+						</div>
+						<div class="flex-grow-1 mt-3 mt-sm-5">
+							<div
+								class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+								<div class="user-profile-info">
+									<h4>{{$detail->ketuaKelompok->nama}}</h4>
+									<p>
+										Status :
+										@if($detail->status_rekomendasi === null) 
+											<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu Rekomendasi Anda</span>
+										@elseif($detail->status_rekomendasi === 'internal')
+											<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sudah Dinilai</span> 
+										@elseif($detail->status_rekomendasi === 'belmawa')
+												<span class="badge rounded-pill bg-label-success text-md-end text-dark">Belmawa</span> 
+										@endif
+										</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ Header -->
 
 		<!-- Modal -->
 		<div class="modal fade" id="modal-rekomendasi" data-bs-backdrop="static" tabindex="-1">
@@ -82,7 +92,10 @@
 			<div class="col-md-12">
 				<ul class="nav nav-pills flex-column flex-sm-row mb-4 justify-content-center">
 					<li class="nav-item">
-						<a class="nav-link active"><i class="mdi me-1 mdi-20px"></i>USULAN 1</a>
+						<a class="nav-link active">
+							<i class="mdi me-1 mdi-20px"></i>
+							USULAN {{$detail->usulan}}
+						</a>
 					</li>
 				</ul>
 			</div>
