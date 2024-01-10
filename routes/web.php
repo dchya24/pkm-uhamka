@@ -249,6 +249,7 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
     Route::get('usulan', [UsulanController::class, "index"])->name("usulan");
 
     Route::get('profile', [MahasiswaDashboardController::class, "profile"])->name("profile");
+    Route::post('update-password', [MahasiswaDashboardController::class, "updatePassword"])->name("update-password");
 
     Route::get('faq', [MahasiswaDashboardController::class, "faq"])->name("faq");
 });

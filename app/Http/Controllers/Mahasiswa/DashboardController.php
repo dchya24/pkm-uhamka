@@ -7,7 +7,8 @@ use App\Models\Informasi;
 use App\Models\Sertifikat;
 use App\Models\usulan;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends BaseMahasiswaController
 {
@@ -51,9 +52,22 @@ class DashboardController extends BaseMahasiswaController
         return view("mahasiswa.profile", compact('aksesHalaman'));
     }
 
-    public function updateProfie(Request $request){
-        dd($request->all());
-        // TODO create logic update profile
+    public function updatePassword(Request $request){
+        $user = Auth::user();
+
+        if($request->newPassword != $request->confirmPassword){
+            return redirect()->back()->with('error', 'Password baru dan konfirmasi password tidak sama');
+        }
+
+        $check = Hash::check($request->currentPassword, $user->password);
+
+        if(!$check){
+            return redirect()->back()->with('error', 'Password saat ini tidak sesuai');
+        }
+        
+        $user->password = Hash::make($request->newPassword);
+        $user->save();
+        return redirect()->back()->with('success', 'Password berhasil diubah');
     }
 
     public function faq(){

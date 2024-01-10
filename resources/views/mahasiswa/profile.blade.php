@@ -77,12 +77,12 @@
     <div class="card mb-4">
       <h5 class="card-header">Ubah Password</h5>
       <div class="card-body">
-        <form id="formAccountSettings" method="POST" onsubmit="return false">
+        <form id="formAccountSettings" method="POST" action="{{route('mahasiswa.update-password')}}">
           <div class="row">
             <div class="mb-3 col-md-6 form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="password" name="currentPassword" id="currentPassword" />
+                  <input class="form-control" type="password" name="currentPassword" id="currentPassword" required />
                   <label for="currentPassword">Password Sekarang</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
@@ -93,7 +93,7 @@
             <div class="col-md-6 form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="password" id="newPassword" name="newPassword" />
+                  <input class="form-control" type="password" id="newPassword" name="newPassword" required />
                   <label for="newPassword">Password Baru</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
@@ -102,7 +102,7 @@
             <div class="col-md-6 form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
-                  <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" />
+                  <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" required />
                   <label for="confirmPassword">Konfirmasi password baru</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
@@ -111,7 +111,8 @@
           </div>
 
           <div class="mt-4">
-            <button class="btn btn-primary" id="ubah-password">Ubah</button>
+            @csrf
+            <button type="submit" class="btn btn-primary" id="ubah-password">Ubah</button>
           </div>
         </form>
       </div>
