@@ -255,7 +255,7 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
 
 
 
-Route::prefix("penilai-substansi")->name("penilai-substansi.")->group(function(){
+Route::prefix("penilai-substansi")->middleware("auth:penilai")->name("penilai-substansi.")->group(function(){
     Route::get('dashboard', [PenilaiSubstansiController::class, "index"])->name("dashboard");
 
     Route::get('informasi', [PenilaiSubstansiController::class, "informasi"])->name("informasi");
