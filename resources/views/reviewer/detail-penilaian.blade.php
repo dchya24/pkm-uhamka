@@ -446,11 +446,13 @@
 											<span class="badge rounded-pill bg-label-success text-md-end text-dark">Sudah dinilai</span>
 											@endif
 										</p>
-										<Label class="fw-bold">Unduh nilai : 
-											&nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_administrasi)}}" target="_blank" title="Read PDF">
-												<i class="mdi mdi-file"></i> Unduh
-											</a>
-										</Label> 
+										@if($detail->status_penilaian_administrasi == 'done')
+											<Label class="fw-bold">Unduh nilai : 
+												&nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_administrasi)}}" target="_blank" title="Read PDF">
+													<i class="mdi mdi-file"></i> Unduh
+												</a>
+											</Label> 
+										@endif
 										<hr>
 									</div>               
 									<div class="row g-4 mt-1">
@@ -523,9 +525,21 @@
 															@if($detail->status_penilaian_peninjau == 'waiting')
 																<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Menunggu penilaian anda</span>
 															@elseif($detail->status_penilaian_peninjau == 'done')
-																<span class="badge rounded-pill bg-label-success text-md-end text-dark">Sudah dinilai</span>
+																<span class="badge rounded-pill bg-label-success text-md-end text-dark">Lanjut Ke tahap rekomendasi</span>
 															@endif
 														</p>
+														
+														@if($detail->status_penilaian_peninjau == 'done')
+															<p>	
+																<Label class="fw-bold">Unduh nilai : 
+																	&nbsp; <a  class="btn rounded-pill btn-primary btn-sm" type="button" href="{{ url($detail->form_penilaian_peninjau)}}" target="_blank" title="Read PDF">
+																		<i class="mdi mdi-file"></i> Unduh
+																	</a>
+																</Label> 
+															</p>
+															<hr>
+														@endif
+
 														@if($detail->status_penilaian_peninjau === "done")
 															<Label class="fw-bold">Komentar anda: (Mahasiswa) </Label> 
 															<p class="fst-italic">
@@ -563,7 +577,6 @@
                         
 												<?php 
 													$disabled = "";
-
 													if(
 														($detail->status_penilaian_administrasi == 'done' || $detail->status_penilaian_administrasi == 'rejected')
 														&& !$hasEditUsulan

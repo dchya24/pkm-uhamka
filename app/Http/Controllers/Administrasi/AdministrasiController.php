@@ -58,7 +58,7 @@ class AdministrasiController extends Controller
         $detail = usulan::find($id);
         $aksesHalaman = AksesHalaman::where('slug', 'usulan-' . $detail->usulan)->first();
 
-        $hasEditUsulan = $aksesHalaman->ubah_nilai_substansi;
+        $hasEditUsulan = $aksesHalaman->ubah_nilai_administrasi;
 
         return view("penilai-administrasi.detail-penilaian", compact('detail', 'hasEditUsulan'));
     }
