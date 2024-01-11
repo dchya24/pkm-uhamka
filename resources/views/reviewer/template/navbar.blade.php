@@ -101,8 +101,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">Iwan Mahyudin</span>
-                            <small class="text-muted">Mahasiswa</small>
+                            <span class="fw-medium d-block">{{{Auth::user()->dosen->nama}}}</span>
+                            <small class="text-muted">Peninjau</small>
                           </div>
                         </div>
                       </a>

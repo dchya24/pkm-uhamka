@@ -8,6 +8,7 @@ use App\Models\Informasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PeninjauController extends Controller
 {
@@ -36,6 +37,26 @@ class PeninjauController extends Controller
     public function profile(){
         return view("reviewer.profile");
     }
+
+    public function updatePassword(Request $request){
+        $user = Auth::user();
+
+        if($request->newPassword != $request->confirmPassword){
+            return redirect()->back()->with('error', 'Password baru dan konfirmasi password tidak sama');
+        }
+
+        $check = Hash::check($request->currentPassword, $user->password);
+
+        if(!$check){
+            return redirect()->back()->with('error', 'Password saat ini tidak sesuai');
+        }
+        
+        $user->password = Hash::make($request->newPassword);
+        $user->save();
+        return redirect()->back()->with('success', 'Password berhasil diubah');
+    }
+
+    
     public function informasi(){ 
         $informasi = Informasi::where('untuk_peninjau', true)->get();
 
