@@ -8,9 +8,11 @@ use App\Models\DataDosen;
 use App\Models\DataMahasiswa;
 use App\Models\JenisPkm;
 use App\Models\Penilai;
+use App\Models\Rekomendasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsulanController extends BaseMahasiswaController
 {
@@ -99,11 +101,25 @@ class UsulanController extends BaseMahasiswaController
                 ->first();
         }
 
+        $linkGroup = null;
+        if($detail->status_rekomendasi){
+            $data = DB::table('rekomendasi')
+            ->where(DB::raw('LOWER(nama)'), 'like', '%' . strtolower($detail->status_rekomendasi) . '%')
+            ->first();
+            
+            if(substr($data->link_group, 0, 4) != "http"){
+                $linkGroup = "https://" . $data->link_group;
+            }
+            else{
+                $linkGroup = $data->link_group;
+            }
+        }
+
         $usulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
             ->whereNot('id', $id)
             ->select('id', 'usulan')->get();
 
-        return view("mahasiswa.usulan", compact("usulan", "detail", "aksesHalaman"));
+        return view("mahasiswa.usulan", compact("usulan", "detail", "aksesHalaman", "linkGroup"));
     }
 
     public function pengajuanAdministrasi(Request $request, $id){
