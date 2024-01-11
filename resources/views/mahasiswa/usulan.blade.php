@@ -609,14 +609,14 @@
 														@if($detail->status_rekomendasi === 'internal')
 															{{-- Grup rekomendasi Internal --}}
 															<Label class="fw-bold">Tautan grup whatsapp Rekomendasi internal :
-																<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+																<a href="{{$linkGroup}}" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
 																	<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
 																</a> 
 															</Label> 
 														@elseif($detail->status_rekomendasi === 'belmawa')
 															{{-- Grup rekomendasi ke belmawa --}}
 															<Label class="fw-bold">Tautan grup whatsapp Rekomendasi kemendikbudristek :
-																<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+																<a href="{{$linkGroup}}" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
 																	<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
 																</a> 
 															</Label>  
