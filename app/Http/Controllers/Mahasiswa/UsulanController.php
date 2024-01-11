@@ -63,6 +63,7 @@ class UsulanController extends BaseMahasiswaController
             "ketua_kelompok_id" => $user->data_mahasiswa_id,
             "tugas_ketua_kelompok" => $request->tugas_ketua,
             "lembar_bimbingan" => 'upload/lembar_bimbingan/' . $lembar_bimbinan_name,
+            "created_at" => now(),
         ];
 
         foreach($request->anggota_kelompok as $key => $item){

@@ -37,6 +37,7 @@ class ManajemenInformasiController extends Controller
             "untuk_penilai_administrasi" => $request->has('untuk_penilai_administrasi') ? 1 : 0,
             "untuk_peninjau" => $request->has('untuk_peninjau') ? 1 : 0,
             "untuk_warek" => $request->has('untuk_warek') ? 1 : 0,
+            "created_at" => now(),
         ]);
 
         return redirect()->back();

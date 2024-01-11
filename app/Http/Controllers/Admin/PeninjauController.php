@@ -23,7 +23,7 @@ class PeninjauController extends Controller
 
         if(!$checkDataDosen) abort(404); 
         
-        $checkDataPeninjau = Peninjau::where("nidn", $nidn)->first();
+        $checkDataPeninjau = Peninjau::where("username", $nidn)->first();
 
         if($checkDataPeninjau) abort(402);
 

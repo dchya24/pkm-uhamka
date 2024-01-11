@@ -34,7 +34,7 @@
             <tbody class="table-border-bottom-0">
               @forelse ($peninjau as $item)
                   <tr>
-                    <td>{{$item->nidn}}</td>
+                    <td>{{$item->username}}</td>
                     <td>{{$item->dosen->nama}}</td>
                     <td>
                       <button
