@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin\ManajemenProposal;
 
 use App\Http\Controllers\Controller;
+use App\Models\DataDosen;
+use App\Models\DataMahasiswa;
+use App\Models\JenisPkm;
+use App\Models\Penilai;
 use App\Models\usulan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManajemenProposalController extends Controller
 {

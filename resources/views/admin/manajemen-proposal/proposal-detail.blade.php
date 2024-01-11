@@ -77,15 +77,11 @@
                     <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Ketua Pengusul</label>
                         <div class="col-xl-6">
-                          <div class="input-group pt-2">
-                            <p>:&nbsp</p>
-                            <p>1803015016</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>Iwan Mahyudin</p> 
-                            <p>&nbsp /&nbsp</p>
-                            <p>FKIP</p>
-                            <p>&nbsp /&nbsp</p>
-                            <p>Teknik Informatika</p>                                        
+                          <div class="col-xl-10 d-flex">
+                            <p>:&nbsp;{{$usulan->ketuaKelompok->nim}} &nbsp;</p>
+                            <p>/&nbsp; {{$usulan->ketuaKelompok->nama}} &nbsp;</p>
+                            <p>/&nbsp; {{$usulan->ketuaKelompok->fakultas}} &nbsp;</p>
+                            <p>/&nbsp; {{$usulan->ketuaKelompok->prodi}} &nbsp;</p>
                           </div>
                         </div>
                         <div class="col-xl-8 d-flex pt-2">
@@ -96,103 +92,151 @@
                     <div class="row mb-3">
                       <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 1</label>
                       <div class="col-xl-2">
-                        <div class="input-group input-group-merge">
-                          <input
-                            type="number"
-                            id="basic-default-email"
-                            class="form-control"
-                            placeholder="NIM Ketua Pengusul" 
-                            value="1803021231"/>
-                        </div>
+                        <select
+                              name="anggota_kelompok[]"
+                              class="select2-nim form-select"
+                              onchange="selectAnggota(event)"
+                              id="anggota-1">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"
+                                    @if($item->id == $usulan->anggota_satu_id)
+                                    selected @endif> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
                       </div>
-                      <div class="col-xl-8 d-flex pt-2">
-                          <p>Iwan Mahyudin</p> 
-                          <p>&nbsp /&nbsp</p>
-                          <p>FKIP</p>
-                          <p>&nbsp /&nbsp</p>
-                          <p>Teknik Informatika</p>
-                      </div>
+                      <div class="col-xl-8 d-flex">
+												<p>:&nbsp;{{$usulan->anggotaSatu->nim}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaSatu->nama}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaSatu->fakultas}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaSatu->prodi}} &nbsp;</p>
+											</div>
                     </div>  
                     <div class="row mb-3">
                       <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 2</label>
                       <div class="col-xl-2">
                         <div class="input-group input-group-merge">
-                          <input
-                            type="number"
-                            id="basic-default-email"
-                            class="form-control"
-                            placeholder="NIM Ketua Pengusul" 
-                            value="1803021231"/>
+                          <select
+                              name="anggota_kelompok[]"
+                              class="select2-nim form-select"
+                              onchange="selectAnggota(event)"
+                              id="anggota-2">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"
+                                    @if($item->id == $usulan->anggota_dua_id)
+                                    selected @endif> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
                         </div>
                       </div>
-                      <div class="col-xl-8 d-flex pt-2">
-                          <p>Iwan Mahyudin</p> 
-                          <p>&nbsp /&nbsp</p>
-                          <p>FKIP</p>
-                          <p>&nbsp /&nbsp</p>
-                          <p>Teknik Informatika</p>
-                      </div>
+                      <div class="col-xl-8 d-flex" id="result-anggota-1">
+												<p>:&nbsp;{{$usulan->anggotaDua->nim}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaDua->nama}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaDua->fakultas}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaDua->prodi}} &nbsp;</p>
+											</div>
                     </div>  
                     <div class="row mb-3">
                       <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 3</label>
                       <div class="col-xl-2">
                         <div class="input-group input-group-merge">
-                          <input
-                            type="number"
-                            id="basic-default-email"
-                            class="form-control"
-                            placeholder="NIM Ketua Pengusul" 
-                            value="1803021231"/>
+                          <select
+                              name="anggota_kelompok[]"
+                              class="select2-nim form-select"
+                              onchange="selectAnggota(event)"
+                              id="anggota-3">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"
+                                    @if($item->id == $usulan->anggota_tiga_id)
+                                    selected @endif> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
                         </div>
                       </div>
-                      <div class="col-xl-8 d-flex pt-2">
-                          <p>Iwan Mahyudin</p> 
-                          <p>&nbsp /&nbsp</p>
-                          <p>FKIP</p>
-                          <p>&nbsp /&nbsp</p>
-                          <p>Teknik Informatika</p>
-                      </div>
+                      <div class="col-xl-8 d-flex">
+												<p>:&nbsp;{{$usulan->anggotaTiga->nim}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaTiga->nama}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaTiga->fakultas}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaTiga->prodi}} &nbsp;</p>
+											</div>
                     </div>  
                     <div class="row mb-3">
                       <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Anggota 4</label>
                       <div class="col-xl-2">
                         <div class="input-group input-group-merge">
-                          <input
-                            type="number"
-                            id="basic-default-email"
-                            class="form-control"
-                            placeholder="NIM Ketua Pengusul" 
-                            value="1803021231"/>
+                          <select
+                              name="anggota_kelompok[]"
+                              class="select2-nim form-select"
+                              onchange="selectAnggota(event)"
+                              id="anggota-4">
+                              <option value="">NIM - NAMA</option>
+                              @foreach ($dataMahasiswa as $item)
+                                  <option
+                                    value="{{$item->id}}"
+                                    data-fakultas="{{$item->fakultas}}"
+                                    data-prodi="{{$item->prodi}}"
+                                    @if($item->id == $usulan->anggota_empat_id)
+                                    selected @endif> 
+                                    {{$item->nim}} - {{$item->nama}}
+                                  </option>
+                              @endforeach
+                            </select>
                         </div>
                       </div>
-                      <div class="col-xl-8 d-flex pt-2">
-                          <p>Iwan Mahyudin</p> 
-                          <p>&nbsp /&nbsp</p>
-                          <p>FKIP</p>
-                          <p>&nbsp /&nbsp</p>
-                          <p>Teknik Informatika</p>
-                      </div>
+                      <div class="col-xl-8 d-flex">
+												<p>:&nbsp;{{$usulan->anggotaEmpat->nim}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaEmpat->nama}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaEmpat->fakultas}} &nbsp;</p>
+												<p>/&nbsp; {{$usulan->anggotaEmpat->prodi}} &nbsp;</p>
+											</div>
                     </div>  
 
                     <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-email">Dosem Pembimbing pengusul</label>
                         <div class="col-xl-2">
                           <div class="input-group input-group-merge">
-                            <input
-                              type="number"
-                              id="basic-default-email"
-                              class="form-control"
-                              placeholder="NIP/NIDN Dosen Pengusul" 
-                              value="2312121"/>
+                            <select
+                                  name="pembimbing_id"
+                                  class="select2-nim form-select "
+                                  onchange="selectPembimbing(event)"
+                                  id="anggota-5">
+                                  <option value="">NIDN - NAMA</option>
+                                  @foreach ($dataDosen as $item)
+                                    <option
+                                      value="{{$item->id}}"
+                                      data-fakultas="{{$item->fakultas}}"
+                                      data-prodi="{{$item->prodi}}"
+                                      @if($item->id == $usulan->pembimbing_id)
+                                      selected @endif> 
+                                      {{$item->nidn}} - {{$item->nama}}
+                                    </option>
+                                @endforeach
+                                </select>
                           </div>
                         </div>
-                        <div class="col-xl-8 d-flex pt-2">
-                          <p>Laksano</p> 
-                          <p>&nbsp /&nbsp</p>
-                          <p>FT</p>
-                          <p>&nbsp /&nbsp</p>
-                          <p>TI</p>
-                      </div>
+                        <div class="col-xl-8 d-flex">
+                          <p>:&nbsp;{{$usulan->pembimbing->nidn}} &nbsp;</p>
+                          <p>/&nbsp; {{$usulan->pembimbing->nama}} &nbsp;</p>
+                          <p>/&nbsp; {{$usulan->pembimbing->fakultas}} &nbsp;</p>
+                          <p>/&nbsp; {{$usulan->pembimbing->prodi}} &nbsp;</p>
+                        </div>
                     </div>     
 
                     <div class="row mb-3">
@@ -224,7 +268,7 @@
                             id="basic-default-email"
                             class="form-control"
                             placeholder="Tahun Pengajuan"
-                            value="2024"
+                            value="{{$usulan->tahun_pengajuan}}"
                             disabled />
                         </div>
                       </div>
@@ -239,10 +283,10 @@
                           type="text"
                           class="form-control"
                           id="dengan-rupiah"
-                          value="3000000"
+                          value="{{$usulan->anggaran}}"
                           step="1" 
-                          min="0" 
-                          max="4"/>
+                          min="5000000" 
+                          max="12000000"/>
                       </div>
                     </div>
 
@@ -252,7 +296,7 @@
                       >
                       <div class="col-xl-10">
                         <input class="form-control" type="file" id="formFile" />
-                        <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" target="_blank">
+                        <a href="{{url($usulan->lembar_bimbingan)}}" target="_blank">
                           LembarBimbingan_1803015016.pdf
                         </a> 
                       </div>
