@@ -94,6 +94,16 @@
 
     @section('script')
         <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
+        @if(Session::has('error'))
+            <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{Session::get('error')}}',
+                showCancelButton: false,
+            })
+            </script>
+        @endif
     @endsection
 	</body>
 </html>
