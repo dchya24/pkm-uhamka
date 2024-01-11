@@ -23,7 +23,6 @@ class LoginController extends Controller
 
         if($loginType == "penilai"){
             $penilaiLoginController = new PenilaiLoginController();
-
             $penilaiLoginController->login($request);
         }
         else if($loginType == "peninjau"){

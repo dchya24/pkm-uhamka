@@ -14,7 +14,7 @@ class PenilaiLoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware("guest:penilai")->except("logout");
+        $this->middleware("web")->except("logout");
     }
 
     public function username(){
@@ -25,29 +25,26 @@ class PenilaiLoginController extends Controller
         return Auth::guard('penilai');
     }
 
-    public function login($request){
+    public static function loginv2($request){
         $credentials = [
             "username" => $request->username,
             "password" => $request->password
         ];
 
-        $attempt = Auth::guard('penilai')->attempt($credentials);
-
-        if($attempt){
+        if( Auth::guard('penilai')->attempt($credentials)){
             $user = Auth::guard('penilai')->user();
             $route = "";
 
             if($user->jenis_penilai == 2){
-                $route = "penilai-substansi/dashboard";
-                return redirect()->to($route);
+                $route = "/penilai-substansi/dashboard";
+                return redirect()->itended($route);
             }
             else if($user->jenis_penilai == 1){
-                $route = "penilai-administrasi/dashboard";
-                return redirect()->to($route);
+                $route = "/penilai-administrasi/dashboard";
+                return redirect()->itended($route);
             }
-
         }
 
-        return redirect()->back()->withInput($request->only('username', 'remember'));
+        return view("login.peninjau")->with("error", "Username atau password salah");
     }
 }

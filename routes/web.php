@@ -185,9 +185,7 @@ Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(
     Route::prefix('manajemen-proposal')->name('manajemen-proposal.')->group( function(){
         Route::get('proposal', [ManajemenProposalController::class, "index"])->name('proposal');
 
-        Route::get('proposal/{id}', function(){
-            return view('admin.manajemen-proposal.proposal-detail');
-        })->name('proposal-detail');
+        Route::get('proposal/{id}', [ManajemenProposalController::class,  "show"])->name('proposal-detail');
 
         Route::get('penilai-substansi', [ManajemenProposalPenilaiSubstansiController::class, "index"])->name('penilai-substansi');
         Route::post('penilai-substansi/{id}', [ManajemenProposalPenilaiSubstansiController::class, "store"])->name('penilai-substansi.store');
