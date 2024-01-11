@@ -41,64 +41,6 @@
                     </li>
                     <li class="dropdown-notifications-list scrollable-container">
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                          <div class="d-flex gap-2">
-                            <div class="flex-shrink-0">
-                              <div class="avatar me-1">
-                                <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                              </div>
-                            </div>
-                            <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
-                              <h6 class="mb-1 text-truncate">Congratulation Lettie 🎉</h6>
-                              <small class="text-truncate text-body">Won the monthly best seller gold badge</small>
-                            </div>
-                            <div class="flex-shrink-0 dropdown-notifications-actions">
-                              <small class="text-muted">1h ago</small>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                          <div class="d-flex gap-2">
-                            <div class="flex-shrink-0">
-                              <div class="avatar me-1">
-                                <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
-                              </div>
-                            </div>
-                            <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
-                              <h6 class="mb-1 text-truncate">Charles Franklin</h6>
-                              <small class="text-truncate text-body">Accepted your connection</small>
-                            </div>
-                            <div class="flex-shrink-0 dropdown-notifications-actions">
-                              <small class="text-muted">12hr ago</small>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-menu-footer border-top p-2">
-                      <a href="M_Informasi.html" class="btn btn-primary d-flex justify-content-center">
-                        Lihat Semua Informasi
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ Notification -->
-
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="M_Akunsaya.html" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end py-0">
-                    <li class="dropdown-menu-header border-bottom">
-                      <div class="dropdown-header d-flex align-items-center py-3">
-                        <h6 class="mb-0 me-auto">Informasi</h6>
-                      </div>
-                    </li>
-                    <li class="dropdown-notifications-list scrollable-container">
-                      <ul class="list-group list-group-flush">
                         @forelse(session()->get('session_informasi') as $informasi)
                           <li class="list-group-item list-group-item-action dropdown-notifications-item">
                             <div class="d-flex gap-2">
@@ -130,8 +72,50 @@
                       </ul>
                     </li>
                     <li class="dropdown-menu-footer border-top p-2">
-                      <a href="{{route('penilai-administrasi.informasi')}}" class="btn btn-primary d-flex justify-content-center">
+                      <a href="{{route('penilai-substansi.informasi')}}" class="btn btn-primary d-flex justify-content-center">
                         Lihat Semua Informasi
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ Notification -->
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="{{route('penilai-substansi.profile')}}" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="{{route('penilai-substansi.profile')}}">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-medium d-block">{{Auth::guard('penilai')->user()->nama}}</span>
+                            <small class="text-muted">Penilai Substansi</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{{ route("penilai-substansi.profile") }}">
+                        <i class="mdi mdi-account-outline me-2"></i>
+                        <span class="align-middle">Akun Saya</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#" onclick="document.forms['penilai-logout'].submit()">
+                        <i class="mdi mdi-logout me-2"></i>
+                        <span class="align-middle">Keluar</span>
                       </a>
                     </li>
                   </ul>
@@ -139,6 +123,38 @@
                 <!--/ User -->
               </ul>
             </div>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="M_Akunsaya.html">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                      <div class="avatar avatar-online">
+                        <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      </div>
+                    </div>
+                    <div class="flex-grow-1">
+                      <span class="fw-medium d-block">Iwan Mahyudin</span>
+                      <small class="text-muted">Mahasiswa</small>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ route("penilai-substansi.profile") }}">
+                  <i class="mdi mdi-account-outline me-2"></i>
+                  <span class="align-middle">Akun Saya</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" onclick="document.forms['penilai-logout'].submit()">
+                  <i class="mdi mdi-logout me-2"></i>
+                  <span class="align-middle">Keluar</span>
+                </a>
+              </li>
+            </ul>
 
             <!-- Search Small Screens -->
             <div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
