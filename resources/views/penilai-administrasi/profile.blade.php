@@ -26,7 +26,7 @@
                           type="text"
                           name="username"
                           id="username"
-                          value="Substansi 1"
+                          value="{{Auth::user()->nama}}"
                           disabled />
                         <label for="NIM">username</label>
                       </div>
@@ -38,7 +38,7 @@
                           type="text"
                           name="Nama Lengkap"
                           id="Nama Lengkap"
-                          value="darsono mangunkusumo"
+                          value="{{Auth::user()->nama}}"
                           disabled />
                         <label for="Nama Lengkap">Nama Lengkap</label>
                       </div>
@@ -56,7 +56,7 @@
     <div class="card mb-4">
       <h5 class="card-header">Ubah Password</h5>
       <div class="card-body">
-        <form id="formAccountSettings" method="POST" onsubmit="return false">
+        <form id="formAccountSettings" method="POST" action="{{route('penilai-administrasi.ubah-password')}}">
           <div class="row">
             <div class="mb-3 col-md-6 form-password-toggle">
               <div class="input-group input-group-merge">
@@ -92,6 +92,7 @@
           <div class="mt-4">
             <button class="btn btn-primary" id="ubah-password">Ubah</button>
           </div>
+          @csrf
         </form>
       </div>
     </div>

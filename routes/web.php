@@ -266,6 +266,8 @@ Route::prefix("penilai-substansi")->middleware("auth:penilai")->name("penilai-su
     Route::get('penilaian-proposal/{id}', [PenilaiSubstansiController::class, "detailPenilaian"])->name("penilaian.detail");
 
     Route::get('profile', [PenilaiSubstansiController::class, "profile"])->name("profile");
+    Route::post('update-password', [PenilaiSubstansiController::class, "updatePassword"])->name("ubah-password");
+
 });
 
 Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai-administrasi.")->group(function(){
@@ -278,6 +280,8 @@ Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai
     Route::get('penilaian-proposal/{id}', [AdministrasiController::class, "detailPenilaian"])->name("penilaian.detail");
 
     Route::get('profile', [AdministrasiController::class, "profile"])->name("profile");
+    Route::post('update-password', [AdministrasiController::class, "updatePassword"])->name("ubah-password");
+
 });
 
 Route::prefix("peninjau")
@@ -295,6 +299,7 @@ Route::prefix("peninjau")
         Route::get('penilaian-proposal/{id}', [PeninjauPeninjauController::class, "detailPenilaian"])->name("penilaian.detail");
 
         Route::get('profile', [PeninjauPeninjauController::class, "profile"])->name("profile");
+        Route::post('update-password', [PeninjauPeninjauController::class, "updatePassword"])->name("ubah-password");
 
         Route::post("logout", [PeninjauLoginController::class, "logout"])->name("logout");
     });
@@ -314,4 +319,5 @@ Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
 
 
     Route::get('profile', [WakilRektorController::class, "profile"])->name("profile");
+    Route::post('update-password', [WakilRektorController::class, "updatePassword"])->name("ubah-password");
 });

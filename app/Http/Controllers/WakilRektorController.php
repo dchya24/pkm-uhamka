@@ -52,6 +52,24 @@ class WakilRektorController extends Controller
         return view("wakil-rektor.detail-penilaian", compact('detail'));
     }
 
+    public function updatePassword(Request $request){
+        $user = Auth::user();
+
+        if($request->newPassword != $request->confirmPassword){
+            return redirect()->back()->with('error', 'Password baru dan konfirmasi password tidak sama');
+        }
+
+        $check = Hash::check($request->currentPassword, $user->password);
+
+        if(!$check){
+            return redirect()->back()->with('error', 'Password saat ini tidak sesuai');
+        }
+        
+        $user->password = Hash::make($request->newPassword);
+        $user->save();
+        return redirect()->back()->with('success', 'Password berhasil diubah');
+    }
+
     public function buatRekomendasi(Request $request, $id){
         $status_rekomendasi = $request->status_rekomendasi;
 
