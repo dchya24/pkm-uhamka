@@ -52,13 +52,14 @@ class UsulanController extends BaseMahasiswaController
         $lembar_bimbinan_name = $lembar_bimbinan->getClientOriginalName();
         $lembar_bimbinan->move('upload/lembar_bimbingan', $lembar_bimbinan_name);
 
-        $countOldUsulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)->count();
+        $aksesHalaman = AksesHalaman::where('buka_usulan', 1)->first();
+        $intUsulan = explode("-", $aksesHalaman->slug)[1];
 
         $data = [
             "judul" => $request->judul,
             "pendahuluan" => $request->pendahuluan,
             "jenis_pkm_id" => $request->jenis_pkm_id,
-            "usulan" => $countOldUsulan + 1,
+            "usulan" => $intUsulan,
             "anggaran" => $request->anggaran,
             "tahun_pengajuan" => $request->has('tahun_pengajuan') ? $request->tahun_pengajuan : date("Y"),
             "pembimbing_id" => $request->pembimbing_id,
