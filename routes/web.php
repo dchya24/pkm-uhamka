@@ -305,7 +305,7 @@ Route::prefix("peninjau")
     });
 
 
-Route::prefix("wakil-rektor")->name("wakil-rektor.")->group(function() {
+Route::prefix("wakil-rektor")->name("wakil-rektor.")->middleware('auth:admin')->group(function() {
     Route::post("logout", [AdministratorLoginController::class, "logout"])->name('logout');
 
     Route::get('dashboard', [WakilRektorController::class, "index"])->name("dashboard");

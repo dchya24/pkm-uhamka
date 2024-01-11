@@ -31,18 +31,21 @@ class PenilaiLoginController extends Controller
             "password" => $request->password
         ];
 
-        if(Auth::guard('penilai')->attempt($credentials)){
+        $attempt = Auth::guard('penilai')->attempt($credentials);
+
+        if($attempt){
             $user = Auth::guard('penilai')->user();
             $route = "";
 
             if($user->jenis_penilai == 2){
-                $route = "penilai-substansi.dashboard";
+                $route = "penilai-substansi/dashboard";
+                return redirect()->to($route);
             }
             else if($user->jenis_penilai == 1){
-                $route = "penilai-administrasi.dashboard";
+                $route = "penilai-administrasi/dashboard";
+                return redirect()->to($route);
             }
 
-            return redirect()->route($route);
         }
 
         return redirect()->back()->withInput($request->only('username', 'remember'));

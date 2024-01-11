@@ -20,7 +20,7 @@ class RegisterController extends Controller
         $checkDataKetua = KetuaKelompok::where("nim", $nim)->first();
 
         if($checkDataKetua) {
-            dd("Akun sudah terdaftar");
+            return redirect()->back()->with("error", "Akun sudah terdaftar");
         };
 
 
@@ -36,7 +36,7 @@ class RegisterController extends Controller
 
     public function register(Request $request){
         if($request->password != $request->confirm_password){
-            dd("Password not same!");
+            return redirect()->back()->with("error", "Password tidak sama");
         }
 
         $decryptData = decrypt($request->token);

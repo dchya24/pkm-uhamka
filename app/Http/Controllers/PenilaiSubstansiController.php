@@ -63,7 +63,7 @@ class PenilaiSubstansiController extends Controller
     }
 
     public function updatePassword(Request $request){
-        $user = Auth::user();
+        $user = Auth::guard('penilai')->user();
 
         if($request->newPassword != $request->confirmPassword){
             return redirect()->back()->with('error', 'Password baru dan konfirmasi password tidak sama');

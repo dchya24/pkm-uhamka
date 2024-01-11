@@ -3,196 +3,228 @@
 
 @section('body')
   <!-- Main Content -->
-  <div class="container-xxl flex-grow-0 container-p-y">
-    <!-- Keterangan Semua Proposal  -->
-    <div class="col-md-12">
-      <div class="card">
-        <div class="d-flex row">
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title">Selamat Datang 🎉</h4>
-              <div class="">
-                @if($usulan->count() > 0)
-                  @if(
-                    $usulan->last()->status_penilaian_substansi !== "mayor"
-                    && $usulan->last()->status_penilaian_substansi !== null 
-                    && $usulan->last()->status_rekomendasi === null)
-                    <span class="badge rounded-pill bg-label-warning text-md-end text-dark">
-                      Usulan {{$usulan->last()->usulan}} : Usulan sedang dinilai, 
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                    </span>
-                  @elseif($usulan->last()->status_rekomendasi !== null || $usulan->last()->status_penilaian_substansi == "mayor")
-                    <span class="badge rounded-pill bg-label-success text-md-end text-dark">
-                      Usulan {{$usulan->last()->usulan}} : Usulan kamu telah dinilai, 
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                    </span>
-                  @else
-                    <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
-                      Usulan {{$usulan->last()->usulan}} : Usulan kamu belum dinilai,
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                    </span>
+  @if($aksesHalaman)
+    <div class="container-xxl flex-grow-0 container-p-y">
+      <!-- Keterangan Semua Proposal  -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="d-flex row">
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">Selamat Datang 🎉</h4>
+                <div class="">
+                  @if($usulan->count() > 0)
+                    @if(
+                      $usulan->last()->status_penilaian_substansi !== "mayor"
+                      && $usulan->last()->status_penilaian_substansi !== null 
+                      && $usulan->last()->status_rekomendasi === null)
+                      <span class="badge rounded-pill bg-label-warning text-md-end text-dark">
+                        Usulan {{$usulan->last()->usulan}} : Usulan sedang dinilai, 
+                        <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
+                      </span>
+                    @elseif($usulan->last()->status_rekomendasi !== null || $usulan->last()->status_penilaian_substansi == "mayor")
+                      <span class="badge rounded-pill bg-label-success text-md-end text-dark">
+                        Usulan {{$usulan->last()->usulan}} : Usulan kamu telah dinilai, 
+                        <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
+                      </span>
+                    @else
+                      <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                        Usulan {{$usulan->last()->usulan}} : Usulan kamu belum dinilai,
+                        <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
+                      </span>
+                    @endif
                   @endif
-                @endif
-                <br>
-              </div>
-              
-              <div class="d-flex justify-content-between pt-3">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="avatar avatar-md">
-                    <div class="avatar-initial bg-label-primary rounded">
-                      <i class="mdi mdi-laptop mdi-36px"></i>
-                    </div>
-                  </div>
-                  <div class="content-right">
-                    <p class="mb-0 fw-medium" style="font-size: 1rem">Ketua Kelompok</p>
-                    <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">
-                      {{$userInfo->mahasiswa->nama}}
-                    </span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="avatar avatar-md">
-                    <div class="avatar-initial bg-label-info rounded">
-                      <i class="mdi mdi-lightbulb-outline mdi-36px"></i>
-                    </div>
-                  </div>
-                  <div class="content-right">
-                    <p class="mb-0 fw-medium" style="font-size: 1rem">
-                      {{$userInfo->mahasiswa->fakultas}}
-                    </p>
-                    <span class="text-info mb-0 display-6" style="font-size: 1.3rem">
-                      {{$userInfo->mahasiswa->prodi}}
-                    </span>
-                  </div>
+                  <br>
                 </div>
                 
+                <div class="d-flex justify-content-between pt-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-md">
+                      <div class="avatar-initial bg-label-primary rounded">
+                        <i class="mdi mdi-laptop mdi-36px"></i>
+                      </div>
+                    </div>
+                    <div class="content-right">
+                      <p class="mb-0 fw-medium" style="font-size: 1rem">Ketua Kelompok</p>
+                      <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">
+                        {{$userInfo->mahasiswa->nama}}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-md">
+                      <div class="avatar-initial bg-label-info rounded">
+                        <i class="mdi mdi-lightbulb-outline mdi-36px"></i>
+                      </div>
+                    </div>
+                    <div class="content-right">
+                      <p class="mb-0 fw-medium" style="font-size: 1rem">
+                        {{$userInfo->mahasiswa->fakultas}}
+                      </p>
+                      <span class="text-info mb-0 display-6" style="font-size: 1.3rem">
+                        {{$userInfo->mahasiswa->prodi}}
+                      </span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 text-center text-md-end order-1 order-md-2">
+              <div class="card-body pb-0 px-0 px-md-4 ps-0">
+                <img
+                  src="{{ url('assets/img/illustrations/illustration-john-light.png') }}"
+                  height="180"
+                  alt="View Profile"
+                  data-app-light-img="illustrations/illustration-john-light.png"
+                  data-app-dark-img="illustrations/illustration-john-dark.png" />
               </div>
             </div>
           </div>
-          <div class="col-md-4 text-center text-md-end order-1 order-md-2">
-            <div class="card-body pb-0 px-0 px-md-4 ps-0">
-              <img
-                src="{{ url('assets/img/illustrations/illustration-john-light.png') }}"
-                height="180"
-                alt="View Profile"
-                data-app-light-img="illustrations/illustration-john-light.png"
-                data-app-dark-img="illustrations/illustration-john-dark.png" />
-            </div>
+        </div>
+      </div>
+      <!-- Keterangan Semua Proposal End  -->
+
+      <br />
+
+      <!-- Tabel Proposal -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="text-center pt-3">Proposal yang diajukan</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive text-nowrap">
+            <table id="example1" class="table table-bordered table-striped text-center ">
+              <thead>
+                <tr>
+                  <th style="width: 64%" >Judul</th>                          
+                  <th>Jenis PKM</th>
+                  <th>Usulan</th>
+                  <th>Substansi</th>
+                  <th>Administrasi</th>
+                  <th>Tinjauan</th>                          
+                  <th style="display: none;">Penyaluran</th>
+                  <th style="display: none;">Tahun Pengajuan</th>
+                  <th style="display: none;">Anggran yang diajukan</th>
+                  <th style="display: none;">Ketua Kelompok</th>
+                  <th style="display: none;">Dosen Pembimbing</th>
+                  <th style="display: none;">Angggota 1</th>
+                  <th style="display: none;">Angggota 2</th>
+                  <th style="display: none;">Angggota 3</th>
+                  <th style="display: none;">Angggota 4</th>
+                  <th style="display: none;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse ($usulan as $item)
+                    <tr>
+                      <td class='col-1'>{{$item->judul}}</td>
+                      <td>{{$item->jenisPkm->singkatan}}</td>
+                      <td>Usulan {{$item->usulan}}</td>
+                      <td>
+                        @if($item->status_penilaian_substansi == "mayor")
+                          <span class="badge rounded-pill bg-label-danger text-md-end text-dark ">
+                            MAYOR
+                          </span>
+                        @elseif($item->status_penilaian_substansi == "minor")
+                          <span class="badge rounded-pill bg-label-success text-md-end text-dark">
+                            MINOR
+                          </span>
+                        @else
+                          <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
+                            SEDANG DINILAI
+                          </span>
+                        @endif
+                      </td>
+                      <td>
+                        @if($item->status_penilaian_administrasi == "done")
+                          <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                            Sudah Dinilai
+                          </span>
+                        @elseif($item->status_penilaian_administrasi == "waiting")
+                          <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
+                            Sedang Dinilai
+                          </span>
+                        @elseif($item->status_penilaian_administrasi == "waiting")
+                          <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                            Belum Dinilai
+                          </span>
+                        @endif
+                      </td>
+                      <td>
+                        @if($item->status_penilaian_peninjau == "waiting")
+                          <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
+                            Sedang Dinilai
+                          </span>
+                        @elseif($item->status_penilaian_peninjau == "done")
+                          <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                            Sudah Dinilai
+                          </span>
+                        @endif
+                      </td>
+                      <td>{{$item->status_rekomendasi}}</td>
+                      <td>{{$item->tahun_pengajuan}}</td>
+                      <td>{{$item->anggaran}}</td>
+                      <td>{{$item->ketuaKelompok->nama}}</td>
+                      <td>{{$item->pembimbing->nama}}</td>
+                      <td>{{$item->anggotaSatu->nama}}</td>
+                      <td>{{$item->anggotaDua->nama}}</td>
+                      <td>{{$item->anggotaTiga->nama}}</td>
+                      <td>{{$item->anggotaEmpat->nama}}</td>
+                      <td>
+                        <a href="{{ route('mahasiswa.usulan', 'id='.$item->id)}}">
+                          <button
+                            type="button"
+                            class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">
+                            Lihat
+                          </button>
+                        </a>                                           
+                      </td>
+                    </tr>
+                @empty
+                  <tr>
+                    <td colspan="15" class="text-center font-weight bold">
+                      Tidak ada data!
+                    </td>
+                  </tr>
+                @endforelse
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    <!-- Keterangan Semua Proposal End  -->
-
-    <br />
-
-    <!-- Tabel Proposal -->
-    <div class="card">
-      <div class="card-header">
-        <h5 class="text-center pt-3">Proposal yang diajukan</h4>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive text-nowrap">
-          <table id="example1" class="table table-bordered table-striped text-center ">
-            <thead>
-              <tr>
-                <th style="width: 64%" >Judul</th>                          
-                <th>Jenis PKM</th>
-                <th>Usulan</th>
-                <th>Substansi</th>
-                <th>Administrasi</th>
-                <th>Tinjauan</th>                          
-                <th style="display: none;">Penyaluran</th>
-                <th style="display: none;">Tahun Pengajuan</th>
-                <th style="display: none;">Anggran yang diajukan</th>
-                <th style="display: none;">Ketua Kelompok</th>
-                <th style="display: none;">Dosen Pembimbing</th>
-                <th style="display: none;">Angggota 1</th>
-                <th style="display: none;">Angggota 2</th>
-                <th style="display: none;">Angggota 3</th>
-                <th style="display: none;">Angggota 4</th>
-                <th style="display: none;">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              @forelse ($usulan as $item)
-                  <tr>
-                    <td class='col-1'>{{$item->judul}}</td>
-                    <td>{{$item->jenisPkm->singkatan}}</td>
-                    <td>Usulan {{$item->usulan}}</td>
-                    <td>
-                      @if($item->status_penilaian_substansi == "mayor")
-                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark ">
-                          MAYOR
-                        </span>
-                      @elseif($item->status_penilaian_substansi == "minor")
-                        <span class="badge rounded-pill bg-label-success text-md-end text-dark">
-                          MINOR
-                        </span>
-                      @else
-                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
-                          SEDANG DINILAI
-                        </span>
-                      @endif
-                    </td>
-                    <td>
-                      @if($item->status_penilaian_administrasi == "done")
-                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                          Sudah Dinilai
-                        </span>
-                      @elseif($item->status_penilaian_administrasi == "waiting")
-                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
-                          Sedang Dinilai
-                        </span>
-                      @elseif($item->status_penilaian_administrasi == "waiting")
-                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
-                          Belum Dinilai
-                        </span>
-                      @endif
-                    </td>
-                    <td>
-                      @if($item->status_penilaian_peninjau == "waiting")
-                        <span class="badge rounded-pill bg-label-primary text-md-end text-dark">
-                          Sedang Dinilai
-                        </span>
-                      @elseif($item->status_penilaian_peninjau == "done")
-                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
-                          Sudah Dinilai
-                        </span>
-                      @endif
-                    </td>
-                    <td>{{$item->status_rekomendasi}}</td>
-                    <td>{{$item->tahun_pengajuan}}</td>
-                    <td>{{$item->anggaran}}</td>
-                    <td>{{$item->ketuaKelompok->nama}}</td>
-                    <td>{{$item->pembimbing->nama}}</td>
-                    <td>{{$item->anggotaSatu->nama}}</td>
-                    <td>{{$item->anggotaDua->nama}}</td>
-                    <td>{{$item->anggotaTiga->nama}}</td>
-                    <td>{{$item->anggotaEmpat->nama}}</td>
-                    <td>
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$item->id)}}">
-                        <button
-                          type="button"
-                          class="btn btn-sm rounded-pill btn-primary waves-effect waves-light">
-                          Lihat
-                        </button>
-                      </a>                                           
-                    </td>
-                  </tr>
-              @empty
-                <tr>
-                  <td colspan="15" class="text-center font-weight bold">
-                    Tidak ada data!
-                  </td>
-                </tr>
-              @endforelse
-            </tbody>
-          </table>
+  @else
+    <!--Under Maintenance -->
+    <div class="misc-wrapper">
+      <h3 class="mb-2 mx-2 pt-5">Fitur ini ditutup! 🚧</h3>
+      <p>oleh Admin PK2M UHAMKA</p>
+      <div class="d-flex justify-content-center mt-5">
+        <img
+          src="../../assets/img/illustrations/misc-under-maintenance-object.png"
+          alt="misc-under-maintenance"
+          class="img-fluid misc-object d-none d-lg-inline-block"
+          width="200" />
+        <img
+          src="../../assets/img/illustrations/misc-bg-light.png"
+          alt="misc-under-maintenance"
+          class="misc-bg d-none d-lg-inline-block"
+          data-app-light-img="illustrations/misc-bg-light.png"
+          data-app-dark-img="illustrations/misc-bg-dark.png" />
+        <div class="d-flex flex-column align-items-center">
+          <img
+            src="../../assets/img/illustrations/ComSoon.png"
+            alt="misc-under-maintenance"
+            class="img-fluid zindex-1"
+            width="400" />
+          <div>
+            <a href="/Mahasiswa/M_Dashboard.html" class="btn btn-primary text-center">Kembali</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- /Under Maintenance -->
+  @endif
   <!--/ Content -->
 @endsection
 

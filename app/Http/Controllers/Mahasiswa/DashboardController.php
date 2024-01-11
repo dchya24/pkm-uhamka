@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class DashboardController extends BaseMahasiswaController
 {
     public function dashboard(){
-        $userInfo = Auth::user();
+        $userInfo = Auth::guard('mahasiswa')->user();
         $getAccess = $this->getAksesKirimUsulan($userInfo);
         $aksesHalaman = $getAccess[0];
 
@@ -23,7 +23,7 @@ class DashboardController extends BaseMahasiswaController
     }
 
     public function informasi(){
-        $userInfo = Auth::user();
+        $userInfo = Auth::guard('mahasiswa')->user();
         $getAccess = $this->getAksesKirimUsulan($userInfo);
         $aksesHalaman = $getAccess[0];
 
@@ -35,7 +35,7 @@ class DashboardController extends BaseMahasiswaController
 
     public function sertifikat(){
         // TODO sertifikat
-        $userInfo = Auth::user();
+        $userInfo = Auth::guard('mahasiswa')->user();
         $getAccess = $this->getAksesKirimUsulan($userInfo);
         $aksesHalaman = $getAccess[0];
 
@@ -45,7 +45,7 @@ class DashboardController extends BaseMahasiswaController
 
     public function profile(){
         // TODO Profile
-        $userInfo = Auth::user();
+        $userInfo = Auth::guard('mahasiswa')->user();
         $getAccess = $this->getAksesKirimUsulan($userInfo);
         $aksesHalaman = $getAccess[0];
 
@@ -53,7 +53,7 @@ class DashboardController extends BaseMahasiswaController
     }
 
     public function updatePassword(Request $request){
-        $user = Auth::user();
+        $user = Auth::guard('mahasiswa')->user();
 
         if($request->newPassword != $request->confirmPassword){
             return redirect()->back()->with('error', 'Password baru dan konfirmasi password tidak sama');
@@ -71,7 +71,7 @@ class DashboardController extends BaseMahasiswaController
     }
 
     public function faq(){
-        $userInfo = Auth::user();
+        $userInfo = Auth::guard('mahasiswa')->user();
         $getAccess = $this->getAksesKirimUsulan($userInfo);
         $aksesHalaman = $getAccess[0];
 

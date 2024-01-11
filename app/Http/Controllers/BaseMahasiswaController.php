@@ -13,7 +13,10 @@ class BaseMahasiswaController extends Controller
             ->where('buka_usulan', true)
             ->first();
         
-        $intUsulan = explode("-", $aksesHalaman->slug)[1];
+        $intUsulan = 0;
+        if($aksesHalaman){
+            $intUsulan = explode("-", $aksesHalaman->slug)[1];
+        }
 
         $otherUsulan = usulan::where('ketua_kelompok_id', $user->data_mahasiswa_id)
             ->where("tahun_pengajuan", date("Y"))

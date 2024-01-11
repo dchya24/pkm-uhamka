@@ -36,8 +36,8 @@
                     </div>
                   </div>
                   <div class="flex-grow-1">
-                    <span class="fw-medium d-block">Iwan Mahyudin</span>
-                    <small class="text-muted">Mahasiswa</small>
+                    <span class="fw-medium d-block">{{Auth::guard('admin')->user()->name}}</span>
+                    <small class="text-muted">Administrator</small>
                   </div>
                 </div>
               </a>

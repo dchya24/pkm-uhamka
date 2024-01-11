@@ -26,7 +26,7 @@
                           type="text"
                           name="username"
                           id="username"
-                          value="{{Auth::user()->dosen->nidn}}"
+                          value="{{Auth::guard('peninjau')->user()->dosen->nidn}}"
                           disabled />
                         <label for="NIM">NIDN</label>
                       </div>
@@ -38,7 +38,7 @@
                           type="text"
                           name="Nama Lengkap"
                           id="Nama Lengkap"
-                          value="{{Auth::user()->dosen->nama}}"
+                          value="{{Auth::guard('peninjau')->user()->dosen->nama}}"
                           disabled />
                         <label for="Nama Lengkap">Nama Lengkap</label>
                       </div>

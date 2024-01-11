@@ -41,42 +41,38 @@
                     </li>
                     <li class="dropdown-notifications-list scrollable-container">
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                          <div class="d-flex gap-2">
-                            <div class="flex-shrink-0">
-                              <div class="avatar me-1">
-                                <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        @forelse(session()->get('session_informasi') as $informasi)
+                          <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                            <div class="d-flex gap-2">
+                              <div class="flex-shrink-0">
+                                <div class="avatar me-1">
+                                  <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                </div>
+                              </div>
+                              <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                <h6 class="mb-1 text-truncate">{{$informasi->judul}}</h6>
+                                <small class="text-truncate text-body">
+                                  {!! $informasi->description !!}
+                                </small>
+                              </div>
+                              <div class="flex-shrink-0 dropdown-notifications-actions">
+                                <small class="text-muted">
+                                  @if($informasi->created_at)
+                                    {{$informasi->created_at->diffforHumans()}}
+                                  @endif
+                                </small>
                               </div>
                             </div>
-                            <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
-                              <h6 class="mb-1 text-truncate">Congratulation Lettie 🎉</h6>
-                              <small class="text-truncate text-body">Won the monthly best seller gold badge</small>
-                            </div>
-                            <div class="flex-shrink-0 dropdown-notifications-actions">
-                              <small class="text-muted">1h ago</small>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                          <div class="d-flex gap-2">
-                            <div class="flex-shrink-0">
-                              <div class="avatar me-1">
-                                <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
-                              </div>
-                            </div>
-                            <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
-                              <h6 class="mb-1 text-truncate">Charles Franklin</h6>
-                              <small class="text-truncate text-body">Accepted your connection</small>
-                            </div>
-                            <div class="flex-shrink-0 dropdown-notifications-actions">
-                              <small class="text-muted">12hr ago</small>
-                            </div>
-                          </div>
-                        </li>
+                          </li>
+                        @empty
+                          <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                            <h6 class="mb-1 text-truncate">Tidak ada Informasi</h6>
+                          </li>
+                        @endif
                       </ul>
                     </li>
                     <li class="dropdown-menu-footer border-top p-2">
-                      <a href="M_Informasi.html" class="btn btn-primary d-flex justify-content-center">
+                      <a href="{{route('mahasiswa.informasi')}}" class="btn btn-primary d-flex justify-content-center">
                         Lihat Semua Informasi
                       </a>
                     </li>
@@ -101,7 +97,7 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">{{Auth::user()->mahasiswa->nama}}</span>
+                            <span class="fw-medium d-block">{{Auth::guard('mahasiswa')->user()->mahasiswa->nama}}</span>
                             <small class="text-muted">Mahasiswa</small>
                           </div>
                         </div>

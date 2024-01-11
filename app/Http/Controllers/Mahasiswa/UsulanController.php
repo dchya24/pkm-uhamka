@@ -42,7 +42,7 @@ class UsulanController extends BaseMahasiswaController
     }
 
     public function store(Request $request){
-        $user = Auth::user();
+        $user = Auth::guard('mahasiswa')->user();
 
         $anggota = ["satu", "dua", "tiga", "empat"];
 
@@ -82,7 +82,7 @@ class UsulanController extends BaseMahasiswaController
     }
 
     public function index(Request $request){
-        $user = Auth::user();
+        $user = Auth::guard('mahasiswa')->user();
         $getAccess = $this->getAksesKirimUsulan($user);
         $aksesHalaman = $getAccess[0];
 

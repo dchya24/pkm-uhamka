@@ -26,7 +26,7 @@
                           type="text"
                           name="username"
                           id="username"
-                          value="{{Auth::user()->nama}}"
+                          value="{{Auth::guard('penilai')->user()->username}}"
                           disabled />
                         <label for="NIM">username</label>
                       </div>
@@ -38,7 +38,7 @@
                           type="text"
                           name="Nama Lengkap"
                           id="Nama Lengkap"
-                          value="{{Auth::user()->nama}}"
+                          value="{{Auth::guard('penilai')->user()->nama}}"
                           disabled />
                         <label for="Nama Lengkap">Nama Lengkap</label>
                       </div>
