@@ -48,20 +48,6 @@
                         <td colspan="4" class="text-bold">Belum ada Peninjau</td>
                       </tr>
                     @endforelse
-                    <tr>
-                      <td>1</td>
-                      <td>Suryo Putro, S.T, M.T</td>
-                      <td>4</td>
-                      <td>
-                        <a href="{{ route('admin.manajemen-proposal.peninjau.tambah', 1) }}">
-                          <button
-                            type="button"
-                            class="btn btn-sm rounded-pill btn-info waves-effect waves-light">
-                            Detail
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
