@@ -578,7 +578,7 @@
 												<?php 
 													$disabled = "";
 													if(
-														($detail->status_penilaian_administrasi == 'done' || $detail->status_penilaian_administrasi == 'rejected')
+														($detail->status_penilaian_administrasi !== 'done' || $detail->status_penilaian_administrasi == 'rejected')
 														&& !$hasEditUsulan
 														) {
 															$disabled = "disabled";
@@ -587,7 +587,7 @@
 												<button class="btn btn-primary btn-next" data-bs-toggle="modal"
 												data-bs-target="#backDropModal" {{$disabled}}>
 													<span class="align-middle d-sm-inline-block d-none me-sm-1" >
-														{{ $detail->status_penilaian_administrasi !=  'done' ? 'Nilai Usulan' : 'Ubah Nilai Usulan'}}
+														{{ $detail->status_penilaian_peninjau !=  'done' ? 'Nilai Usulan' : 'Ubah Nilai Usulan'}}
 													</span>
 													<i class="mdi mdi-arrow-right"></i>
 												</button>
