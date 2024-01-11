@@ -86,7 +86,7 @@
 							@endif
 
 							{{-- Step rekomendasi --}}
-							@if(in_array($detail->status_penilaian_peninjau, ['done', 'rejected']))
+							@if(in_array($detail->status_penilaian_peninjau, ['done', 'rejected']) )
 								<div class="line"></div>
 								<div class="step" data-target="#Rekomendasi-usulan">
 									<button type="button" class="step-trigger">
@@ -586,14 +586,14 @@
 							</div>
 
 							<!-- Rekomendasi info -->
-							@if($detail->status_rekomendasi !== null)
+							@if(in_array($detail->status_penilaian_peninjau, ['done', 'rejected']) )
 								<div id="Rekomendasi-usulan" class="content">
 										<div class="content-header mb-3">
 												<h5 class="mb-1 pb-2">Rekomendasi usulan </h6>   
 													<div>                                
 														<p class="fw-bold">
 															Status : 
-															@if($detail->satus_rekomendasi === null)
+															@if($detail->status_rekomendasi === null)
 																<span class="badge rounded-pill bg-label-primary text-md-end text-dark">Sedang Diputuskan</span> 
 															@elseif($detail->status_rekomendasi === 'internal')
 																<span class="badge rounded-pill bg-label-info text-md-end text-dark">Internal</span> 
