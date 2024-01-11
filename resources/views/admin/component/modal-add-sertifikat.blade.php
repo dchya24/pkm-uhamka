@@ -13,19 +13,19 @@
       <div class="modal-body">
         <form 
           action="{{route('admin.sertifikat.store')}}" 
-          class="dropzone needsclick" 
-          id="dropzone-multi" 
+          {{-- class="dropzone needsclick"  --}}
+          {{-- id="dropzone-multi"  --}}
           method='POST' 
           enctype="multipart/form-data"
           name="add-sertifikat">
-          <div class="dz-message needsclick">
+          {{-- <div class="dz-message needsclick">
             Upload semua file sertifikat disni
             <span class="note needsclick">
               (Hanya tipe file PDF)
             </span>
-          </div>
-          <div class="fallback">
-            <input name="file[]" type="file" multiple/>
+          </div> --}}
+          <div class="form-control">
+            <input name="file[]" type="file" id="sertifikat" multiple/>
           </div>
           @csrf
         </form>

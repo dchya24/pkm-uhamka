@@ -46,7 +46,7 @@
               <div class="dropdown-divider"></div>
             </li>
             <li>
-              <a class="dropdown-item" href="/Admin/ManajemenAkun/A_Akunadministrasi.html">
+              <a class="dropdown-item" href="{{route('admin.manajemen-akun.administrator')}}">
                 <i class="mdi mdi-account-outline me-2"></i>
                 <span class="align-middle">Akun Saya</span>
               </a>
