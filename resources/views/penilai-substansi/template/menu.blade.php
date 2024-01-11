@@ -4,7 +4,7 @@
     <div class="container-xxl d-flex h-100">
       <ul class="menu-inner">
         <!-- Dashboards -->
-        <li class="menu-item active">
+        <li class="menu-item @if(Request::is('penilai-substansi/dashboard')) active @endif">
           <a class="menu-link" href="{{route('penilai-substansi.dashboard')}}">
             <i class="menu-icon tf-icons mdi mdi-notebook-outline"></i>
             Beranda
@@ -12,7 +12,7 @@
         </li>
 
         <!-- Informasi -->
-        <li class="menu-item">
+        <li class="menu-item @if(Request::is('penilai-substansi/informasi')) active @endif">
           <a class="menu-link" href="{{route('penilai-substansi.informasi')}}">
             <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
             <div>Informasi</div>
@@ -20,7 +20,7 @@
         </li>
 
         <!-- Penilaian Proposal -->
-        <li class="menu-item">
+        <li class="menu-item @if(Request::is('penilai-substansi/penilaian-proposal') || Request::is('penilai-substansi/penilaian-proposal/*')) active @endif"">
           <a href="{{route('penilai-substansi.penilaian-proposal')}}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-checkbox-marked-outline"></i>
             <div>Penilaian Proposal</div>
@@ -28,7 +28,7 @@
         </li>
 
         <!-- Tentang Akun -->
-        <li class="menu-item">
+        <li class="menu-item @if(Request::is('penilai-substansi/profile')) active @endif">
           <a href="{{route('penilai-substansi.profile')}}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
             <div>Akun Saya</div>
