@@ -25,7 +25,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table id="example1" class="table table-bordered table-striped text-center">
+          <table id="table-sertifikat" class="table table-bordered table-striped text-center">
             <thead>
               <tr class="text-center">
                 <th>Sertifikat</th>
@@ -122,18 +122,20 @@
   <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
   <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
   <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/dropzone/dropzone.js') }}"></script>
+  <script src="{{ asset('assets/js/forms-file-upload.js') }}"></script>
   <script>
     $(function () {
-      $('#example1')
+      $('#table-sertifikat')
         .DataTable({
           responsive: true,
-          lengthChange: false,
+          // lengthChange: false,
           autoWidth: false,
           searching: true
         })
         .buttons()
         .container()
-        .appendTo('#example1_wrapper .col-md-6:eq(0)');
+        .appendTo('#table-sertifikat_wrapper .col-md-6:eq(0)');
     });
   </script>
 @endsection
