@@ -101,8 +101,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">Iwan Mahyudin</span>
-                            <small class="text-muted">Mahasiswa</small>
+                            <span class="fw-medium d-block">{{Auth::guard('admin')->user()->nama}}</span>
+                            <small class="text-muted">Wakil Rektor</small>
                           </div>
                         </div>
                       </a>

@@ -6,6 +6,7 @@ use App\Models\Informasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class WakilRektorController extends Controller
 {
@@ -53,7 +54,7 @@ class WakilRektorController extends Controller
     }
 
     public function updatePassword(Request $request){
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
 
         if($request->newPassword != $request->confirmPassword){
             return redirect()->back()->with('error', 'Password baru dan konfirmasi password tidak sama');
