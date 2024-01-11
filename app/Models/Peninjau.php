@@ -25,6 +25,6 @@ class Peninjau extends Model
     }
 
     public function usulan(){
-        return $this->hasMany(Usulan::class, "peninjau_id", "id");
+        return $this->hasMany(usulan::class, "peninjau_id", "id");
     }
 }

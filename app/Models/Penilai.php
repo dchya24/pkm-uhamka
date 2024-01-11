@@ -29,10 +29,10 @@ class Penilai extends Model
     }
 
     public function penilaianSubstansi() {
-        return $this->hasMany(Usulan::class, "penilai_substansi_id");
+        return $this->hasMany(usulan::class, "penilai_substansi_id");
     }
     
     public function penilaianAdministrasi() {
-        return $this->hasMany(Usulan::class, "penilai_administrasi_id");
+        return $this->hasMany(usulan::class, "penilai_administrasi_id");
     }
 }

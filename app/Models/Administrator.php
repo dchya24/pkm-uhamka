@@ -20,6 +20,6 @@ class Administrator extends Model
     }
 
     public function usulan(){
-        return $this->hasMany(Usulan::class, "wakil_rektor_id", "id");
+        return $this->hasMany(usulan::class, "wakil_rektor_id", "id");
     }
 }
