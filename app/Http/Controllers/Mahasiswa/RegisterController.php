@@ -28,7 +28,9 @@ class RegisterController extends Controller
                 ->where("keterangan", 1)
                 ->first();
 
-        if(!$checkDataMahasiswa) abort(404); 
+        if(!$checkDataMahasiswa){
+            return redirect()->back()->with("error", "NIM tidak ditemukan");
+        }
 
 
         return redirect()->route('register.create-password', ["token" => encrypt($nim)]);
@@ -42,7 +44,7 @@ class RegisterController extends Controller
         $decryptData = decrypt($request->token);
 
         if($decryptData != $request->nim){
-            abort(403);
+            return redirect()->back()->with("error", "Data tidak valid");
         }
 
         $nim = $request->nim;

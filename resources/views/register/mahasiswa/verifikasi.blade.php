@@ -10,6 +10,12 @@
 <div class="position-relative">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner py-4">
+      @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Oops!</strong> {{session()->get('error')}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
       <!-- Login -->
       <div class="card p-2">
         <!-- Logo -->

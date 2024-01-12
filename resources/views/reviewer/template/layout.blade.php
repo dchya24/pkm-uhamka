@@ -116,17 +116,4 @@
     <!-- endbuild -->
 
     @yield("javascript")
-
-    @if(Session::has('error'))
-      <script>
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: '{{Session::get('error')}}',
-          showCancelButton: false,
-        })
-      </script>
-    @endif
-
-
   </body>
