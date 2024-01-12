@@ -11,6 +11,12 @@
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner py-4">
           <!-- Login -->
+          @if(session()->has('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Oops!</strong> {{session()->get('error')}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          @endif
           <div class="card p-2">
             <!-- Logo -->
             <div class="app-brand justify-content-center mt-5">
@@ -92,16 +98,7 @@
 
     @section('script')
         <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
-        @if(Session::has('error'))
-            <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '{{Session::get('error')}}',
-                showCancelButton: false,
-            })
-            </script>
-        @endif
+
     @endsection
 	</body>
 </html>

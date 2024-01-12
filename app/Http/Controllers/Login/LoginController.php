@@ -22,8 +22,17 @@ class LoginController extends Controller
         $loginType = $request->login_type;
 
         if($loginType == "penilai"){
-            $penilaiLoginController = new PenilaiLoginController();
-            $penilaiLoginController->login($request);
+            $credentials = [
+                "username" => $request->username,
+                "password" => $request->password
+            ];
+
+            if( Auth::guard('penilai')->attempt($credentials)){
+                return redirect()->intended("/penilai/dashboard");
+            }
+            else {
+                return redirect()->back()->with("error", "Username/NIDN atau password salah");
+            }
         }
         else if($loginType == "peninjau"){
             $peninjauLoginController = new PeninjauLoginController();
