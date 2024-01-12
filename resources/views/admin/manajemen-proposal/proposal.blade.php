@@ -64,12 +64,12 @@
                   <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
                     Detail
                   </a>
-                  <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" name="delete-proposal-{{$item->id}}" class="form-inline mt-1" method="POST">
+                  <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" name="delete-proposal-{{$item->id}}" class="form-inline m-0" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$item->id}}">
                   </form>
-                  <button class="btn btn-danger rounded-pill btn-xs" data-form_name="delete-proposal-{{$item->id}}" onclick="confirmDelete(this)">
+                  <button class="btn btn-danger rounded-pill btn-xs mt-1" data-form_name="delete-proposal-{{$item->id}}" onclick="confirmDelete(this)">
                     Delete
                   </button>
                 </td>
@@ -106,19 +106,6 @@
                   @if($item->pembimbing)
                     {{$item->pembimbing->nama}}
                   @endif
-                </td>
-                <td>
-                  @if($item->ketuaKelompok)
-                    {{$item->ketuaKelompok->nim}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->ketuaKelompok)
-                    {{$item->ketuaKelompok->nama}}
-                  @endif
-                </td>
-                <td>
-                    {{$item->tugas_ketua_kelompok}}
                 </td>
                 <td>
                   @if($item->ketuaKelompok)
@@ -185,6 +172,17 @@
                 </td>
                 <td>
                     {{$item->tugas_anggota_empat}}
+                </td>
+                <td>{{$item->pendahulan}}</td>
+                <td>
+                  <a href="https://{{$item->lembar_proposal}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  <a href="https://{{$item->lembar_bimbingan}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
                 </td>
                 <td>
                   <a href="https://{{$item->lembar_biodata_dospem}}" target="_blank" rel="noopener noreferrer">
