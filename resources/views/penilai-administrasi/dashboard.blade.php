@@ -21,7 +21,7 @@
                 </div>
                 <div class="content-right">
                   <p class="mb-0 fw-medium" style="font-size: 1rem">Usulan belum dinilai</p>
-                  <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">08</span>
+                  <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">{{$countBelumDinilai}}</span>
                 </div>
               </div>
               <div class="d-flex align-items-center gap-3">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="content-right">
                   <p class="mb-0 fw-medium" style="font-size: 1rem">Sudah diinilai</p>
-                  <span class="text-success mb-0 display-6" style="font-size: 1.3rem">07</span>
+                  <span class="text-success mb-0 display-6" style="font-size: 1.3rem">{{$countDataDiNilai}}</span>
                 </div>
               </div>
             </div>
