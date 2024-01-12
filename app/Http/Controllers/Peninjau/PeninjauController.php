@@ -13,7 +13,16 @@ use Illuminate\Support\Facades\Hash;
 class PeninjauController extends Controller
 {
     public function index(){
-        return view("reviewer.dashboard");
+        $peninjau = Auth::guard('peninjau')->user();
+
+        $usulan = usulan::where('peninjau_id', $peninjau->id)->get();
+        $countBelumDinilai = usulan::where('peninjau_id', $peninjau->id)
+            ->where('status_penilaian_peninjau', 'waiting')
+            ->count();
+        $countDataDiNilai = usulan::where('peninjau_id', $peninjau->id)
+            ->whereIn('status_penilaian_peninjau', ['done', 'rejected'])
+            ->count();
+        return view("reviewer.dashboard", compact("usulan", "countBelumDinilai", "countDataDiNilai"));
     }
 
     public function penilaian(){

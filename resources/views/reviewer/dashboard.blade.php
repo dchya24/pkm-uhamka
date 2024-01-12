@@ -20,30 +20,8 @@
                     </div>
                   </div>
                   <div class="content-right">
-                    <p class="mb-0 fw-medium" style="font-size: 1rem">Menunggu Revisi</p>
-                    <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">08</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="avatar avatar-md">
-                    <div class="avatar-initial bg-label-info rounded">
-                      <i class="mdi mdi-lightbulb-outline mdi-36px"></i>
-                    </div>
-                  </div>
-                  <div class="content-right">
-                    <p class="mb-0 fw-medium" style="font-size: 1rem">Sudah Direvisi</p>
-                    <span class="text-info mb-0 display-6" style="font-size: 1.3rem">07</span>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="avatar avatar-md">
-                    <div class="avatar-initial bg-label-danger rounded">
-                      <i class="mdi mdi-alert mdi-36px"></i>
-                    </div>
-                  </div>
-                  <div class="content-right">
-                    <p class="mb-0 fw-medium" style="font-size: 1rem">Tidak Diloloskan</p>
-                    <span class="text-danger mb-0 display-6" style="font-size: 1.3rem">07</span>
+                    <p class="mb-0 fw-medium" style="font-size: 1rem">Usulan belum dinilai</p>
+                    <span class="text-primary mb-0 display-6" style="font-size: 1.3rem">{{$countBelumDinilai}}</span>
                   </div>
                 </div>
                 <div class="d-flex align-items-center gap-3">
@@ -53,8 +31,8 @@
                     </div>
                   </div>
                   <div class="content-right">
-                    <p class="mb-0 fw-medium" style="font-size: 1rem">Diloloskan</p>
-                    <span class="text-success mb-0 display-6" style="font-size: 1.3rem">07</span>
+                    <p class="mb-0 fw-medium" style="font-size: 1rem">Sudah diinilai</p>
+                    <span class="text-success mb-0 display-6" style="font-size: 1.3rem">{{$countDataDiNilai}}</span>
                   </div>
                 </div>
               </div>
@@ -105,150 +83,65 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>PKM-TD</td>
-                <td>Usulan 1</td>
-                <td>Belum ditinjau</td>
-                <td>
-                  <a href="/Reviewer/R_IDtinjauan_belumdinilai.html">
-                    <button class="btn btn-primary rounded btn-xs">Detail</button>
-                  </a>
-                </td>
-                <td>
-                  Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                  budidaya ikan lele
-                </td>
-                <td>2024</td>
-                <td>37000000</td>
-                <td>Isa Faqihuddin, S.T, M.T</td>
-                <td>Hakim laksanmono</td>
-                <td>Rifaldi</td>
-                <td>Gendut wijaya</td>
-                <td>anton siuta</td>
-                <td></td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>PKM-TD</td>
-                <td>Usulan 1</td>
-                <td>sudah ditinjau</td>
-                <td>
-                  <a href="/Reviewer/R_IDtinjauan_dinilai.html">
-                    <button class="btn btn-primary rounded btn-xs">Detail</button>
-                  </a>
-                </td>
-                <td>
-                  Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                  budidaya ikan lele
-                </td>
-                <td>2024</td>
-                <td>37000000</td>
-                <td>Isa Faqihuddin, S.T, M.T</td>
-                <td>Hakim laksanmono</td>
-                <td>Rifaldi</td>
-                <td>Gendut wijaya</td>
-                <td>anton siuta</td>
-                <td></td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-                <td>
-                  <a
-                    class="btn rounded-pill btn-primary btn-xs"
-                    type="button"
-                    href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                    target="_blank"
-                    title="Read PDF">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a>
-                </td>
-              </tr>
+              @forelse ($usulan as $item)
+                <tr>
+                  <td>{{$item->jenisPkm->singkatan}}</td>
+                  <td>Usulan {{$item->usulan}}</td>
+                  <td>
+                    @if($item->status_penilaian_administrasi == "waiting")
+                      <span class="badge bg-label-danger">Belum Ditinjau</span>
+                    @elseif(in_array($item->status_penilaian_administrasi,["done", 'rejected']))
+                      <span class="badge bg-label-success">Sudah Ditinjau</span>
+                    @endif                  
+                  </td>
+                  </td>
+                  <td>
+                    <a href="{{route('reviewer.penilaian.tambah-penilaian', $item->id)}}">
+                      <button class="btn btn-primary rounded btn-xs">Detail</button>
+                    </a>
+                  </td>
+                  <td>
+                    {{$item->judul}}
+                  </td>
+                  <td>{{$item->tahun_pengajuan}}</td>
+                  <td>{{$item->anggaran}}</td>
+                  <td>{{$item->pembimbing->nama}}</td>
+                  <td>{{$item->ketuaKelompok->nama}}</td>
+                  <td>{{$item->anggotaSatu->nama}}</td>
+                  <td>{{$item->anggotaDua->nama}}</td>
+                  <td>{{$item->anggotaTiga->nama}}</td>
+                  <td>{{$item->anggotaEmpat->nama}}</td>
+                  <td>
+                    <a class="btn btn-primary rounded btn-xs" href="https://{{$item->lembar_proposal}}" target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a class="btn btn-primary rounded btn-xs" href="https://{{$item->lembar_bimbingan}}" target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a class="btn btn-primary rounded btn-xs" href="https://{{$item->lembar_biodata_dospem}}" target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a class="btn btn-primary rounded btn-xs" href="https://{{$item->lembar_biodata_anggota}}" target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a class="btn btn-primary rounded btn-xs" href="https://{{$item->lembar_pengesahan}}" target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                </tr>
+              @empty
+                  <tr>
+                    <td class="text-center fw-bold">Tidak Ada Data!</td>
+                  </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
