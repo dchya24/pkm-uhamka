@@ -3,7 +3,7 @@
         <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
           <div class="container-xxl">
             <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-              <a href="M_Dashboard.html" class="app-brand-link gap-2">
+              <a href="{{route('penilai-substansi.dashboard')}}" class="app-brand-link gap-2">
                 <img src="../../assets/img/Logo/uhamka.png" alt class="w-px-40 h-auto rounded-circle" />
                 <span class="app-brand-text demo menu-text fw-bold">PKM UHAMKA</span>
               </a>
