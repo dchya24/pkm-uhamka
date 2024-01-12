@@ -1,5 +1,6 @@
 @extends('admin.template.layout')
 
+@section("title", "Admin |  Akun Wakil Rektor")
 @section('body')
   <!-- Main Content -->
   <div class="container-xxl flex-grow-1 container-p-y">
@@ -24,7 +25,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table id="example1" class="table table-bordered table-striped text-center">
+          <table id="table-wakil-rektor" class="table table-bordered table-striped text-center">
             <thead>
               <tr class="text-center">
                 <th>Username</th>
@@ -147,5 +148,39 @@
 
         document.forms["edit_warek"].action = url;
       }
+
+      $(document).ready(function(){
+        $('#table-wakil-rektor').DataTable({
+          responsive: true,
+          lengthChange: false,
+          autoWidth: false,
+          searching: true,        
+          dom: 'Bfrtip',
+          buttons: [
+              {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [0, 1] // Adjust the column indices as needed
+                },
+                customizeData: function (data) {
+                    // Iterate over the rows in the exported data
+                    data.body.forEach(function (row) {
+                      console.log(row);
+                        // Assuming the column index is 1 (adjust as needed)
+                        var columnValue = row[1];
+
+                        // Check if the column value contains a button with <a> tag
+                        var match = /<a.*?>(.*?)<\/a>/i.exec(columnValue);
+
+                        // If it's a button with <a> tag, replace it with the href value
+                        if (match) {
+                            row[1] = match[1];
+                        }
+                      });
+                  }
+              }
+          ]
+        });
+      })
     </script>
 @endsection

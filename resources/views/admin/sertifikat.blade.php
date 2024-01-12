@@ -125,17 +125,52 @@
   <script src="{{ asset('assets/vendor/libs/dropzone/dropzone.js') }}"></script>
   <script src="{{ asset('assets/js/forms-file-upload.js') }}"></script>
   <script>
-    $(function () {
-      $('#table-sertifikat')
-        .DataTable({
+    // $(function () {
+    //   $('#table-sertifikat')
+    //     .DataTable({
+    //       responsive: true,
+    //       // lengthChange: false,
+    //       autoWidth: false,
+    //       searching: true
+    //     })
+    //     .buttons()
+    //     .container()
+    //     .appendTo('#table-sertifikat_wrapper .col-md-6:eq(0)');
+    // });
+
+    $(document).ready(function(){
+        $('#table-sertifikat').DataTable({
           responsive: true,
-          // lengthChange: false,
+          lengthChange: false,
           autoWidth: false,
-          searching: true
+          searching: true,        
+          dom: 'Bfrtip',
+          buttons: [
+              {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [0, 1] // Adjust the column indices as needed
+                },
+                customizeData: function (data) {
+                    // Iterate over the rows in the exported data
+                    data.body.forEach(function (row) {
+                      console.log(row);
+                        // Assuming the column index is 1 (adjust as needed)
+                        var columnValue = row[1];
+
+                        // Check if the column value contains a button with <a> tag
+                        var match = /<a.*?>(.*?)<\/a>/i.exec(columnValue);
+
+                        // If it's a button with <a> tag, replace it with the href value
+                          row[1] = `{{url('upload/sertifikat/${row[0]}')}}`;
+                      });
+                  }
+              }
+          ]
         })
         .buttons()
         .container()
         .appendTo('#table-sertifikat_wrapper .col-md-6:eq(0)');
-    });
+    })
   </script>
 @endsection
