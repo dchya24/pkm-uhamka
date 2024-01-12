@@ -23,7 +23,7 @@ class ManajemenInformasiController extends Controller
             $fileName = $file->getClientOriginalName();
             $fileUpload = "upload/informasi/" . $fileName;
             
-            $file->move("upload/informasi", $fileName);
+            $file->move(public_path("upload/informasi"), $fileName);
         }
 
         $data["file"] = $fileUpload;
@@ -79,7 +79,7 @@ class ManajemenInformasiController extends Controller
 
             unlink($informasi->file);
             
-            $file->move("upload/informasi", $fileName);
+            $file->move(public_path("upload/informasi"), $fileName);
 
             $informasi->file = $fileUpload;
         }

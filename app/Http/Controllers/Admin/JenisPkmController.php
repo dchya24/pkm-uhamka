@@ -32,9 +32,9 @@ class JenisPkmController extends Controller
         $formAdministrasiFileName = "form_administrasi_" . $request->singkatan . '_' . $jenisPkm->id . '.' . $formAdministrasi->getClientOriginalExtension();
         $formPeninjauFileName = "form_peninjau_" . $request->singkatan . '_' . $jenisPkm->id . '.' . $formPeninjau->getClientOriginalExtension();
 
-        $formSubstansi->move("upload/jenis-pkm", $formSubstansiFileName);
-        $formAdministrasi->move("upload/jenis-pkm", $formAdministrasiFileName);
-        $formPeninjau->move("upload/jenis-pkm", $formPeninjauFileName);
+        $formSubstansi->move(public_path("upload/jenis-pkm"), $formSubstansiFileName);
+        $formAdministrasi->move(public_path("upload/jenis-pkm"), $formAdministrasiFileName);
+        $formPeninjau->move(public_path("upload/jenis-pkm"), $formPeninjauFileName);
 
         $jenisPkm->form_substansi = "upload/jenis-pkm/" . $formSubstansiFileName;
         $jenisPkm->form_administrasi = "upload/jenis-pkm/" . $formAdministrasiFileName;
@@ -58,7 +58,7 @@ class JenisPkmController extends Controller
 
             $tujuan = "upload/jenis-pkm/";
 
-            $file->move($tujuan, $fileName);
+            $file->move(public_path($tujuan), $fileName);
 
             $jenisPkm->form_substansi = $tujuan .  $fileName;
         }
@@ -69,7 +69,7 @@ class JenisPkmController extends Controller
 
             $tujuan = "upload/jenis-pkm/";
 
-            $file->move($tujuan, $fileName);
+            $file->move(public_path($tujuan), $fileName);
 
             $jenisPkm->form_administrasi = $tujuan .  $fileName;
         }
@@ -80,7 +80,7 @@ class JenisPkmController extends Controller
 
             $tujuan = "upload/jenis-pkm/";
 
-            $file->move($tujuan, $fileName);
+            $file->move(public_path($tujuan), $fileName);
 
             $jenisPkm->form_peninjau = $tujuan .  $fileName;
         }

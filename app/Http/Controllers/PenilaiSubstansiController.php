@@ -90,7 +90,7 @@ class PenilaiSubstansiController extends Controller
 
             $nama_file = $lembar_penilaian->getClientOriginalName();
 
-            $lembar_penilaian->move('upload/penilaian/substansi', $nama_file);
+            $lembar_penilaian->move(public_path('upload/penilaian/substansi'), $nama_file);
 
             $usulan->form_penilaian_substansi = 'upload/penilaian/substansi/' . $nama_file;
         }

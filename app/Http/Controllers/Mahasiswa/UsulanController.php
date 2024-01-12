@@ -50,7 +50,7 @@ class UsulanController extends BaseMahasiswaController
 
         $lembar_bimbinan = $request->file('lembar_bimbingan');
         $lembar_bimbinan_name = $lembar_bimbinan->getClientOriginalName();
-        $lembar_bimbinan->move('upload/lembar_bimbingan', $lembar_bimbinan_name);
+        $lembar_bimbinan->move(public_path('upload/lembar_bimbingan'), $lembar_bimbinan_name);
 
         $aksesHalaman = AksesHalaman::where('buka_usulan', 1)->first();
         $intUsulan = explode("-", $aksesHalaman->slug)[1];
@@ -136,10 +136,10 @@ class UsulanController extends BaseMahasiswaController
         $lembar_biodata_kelompok_name = $lembar_biodata_kelompok->getClientOriginalName(); 
         $lembar_pengesahan_name = $lembar_pengesahan->getClientOriginalName();
 
-        $lembar_proposal->move('upload/lembar_proposal', $lembar_proposal_name);
-        $lembar_biodata_dospem->move('upload/lembar_biodata_dospem', $lembar_biodata_dospem_name);
-        $lembar_biodata_kelompok->move('upload/lembar_biodata_kelompok', $lembar_biodata_kelompok_name);
-        $lembar_pengesahan->move('upload/lembar_pengesahan', $lembar_pengesahan_name); 
+        $lembar_proposal->move(public_path('upload/lembar_proposal'), $lembar_proposal_name);
+        $lembar_biodata_dospem->move(public_path('upload/lembar_biodata_dospem'), $lembar_biodata_dospem_name);
+        $lembar_biodata_kelompok->move(public_path('upload/lembar_biodata_kelompok'), $lembar_biodata_kelompok_name);
+        $lembar_pengesahan->move(public_path('upload/lembar_pengesahan'), $lembar_pengesahan_name); 
 
         $usulan->lembar_proposal = 'upload/lembar_proposal/' . $lembar_proposal_name;
         $usulan->lembar_biodata_dospem = 'upload/lembar_biodata_dospem/' . $lembar_biodata_dospem_name;
