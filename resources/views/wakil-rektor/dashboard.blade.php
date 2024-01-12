@@ -79,7 +79,7 @@
               <th>Aksi</th>
               <th>Judul</th>
               <th>Tahun Pengajuan</th>
-              <th>Anggran yang diajukan</th>
+              <th>Anggaran yang diajukan</th>
               <th>Dosen Pembimbing</th>
               <th>Ketua Kelompok</th>
               <th>Angggota 1</th>
@@ -90,102 +90,47 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>
-              <td>Belum dinilai</td>
-              <td>
-                <a href="/P_Substansi/S_idPenilaian.html">
-                  <button class="btn btn-primary rounded btn-xs">Detail</button>
-                </a>
-              </td>
-              <td>
-                Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                budidaya ikan lele
-              </td>
-              <td>2024</td>
-              <td>37000000</td>
-              <td>Isa Faqihuddin, S.T, M.T</td>
-              <td>Hakim laksanmono</td>
-              <td>Rifaldi</td>
-              <td>Gendut wijaya</td>
-              <td>anton siuta</td>
-              <td></td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-xs"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>
-              <td>Minor</td>
-              <td>
-                <a href="/P_Substansi/S_idPenilaian_minor.html">
-                  <button class="btn btn-primary rounded btn-xs">Detail</button>
-                </a>
-              </td>
-              <td>
-                Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                budidaya ikan lele
-              </td>
-              <td>2024</td>
-              <td>37000000</td>
-              <td>Isa Faqihuddin, S.T, M.T</td>
-              <td>Hakim laksanmono</td>
-              <td>Rifaldi</td>
-              <td>Gendut wijaya</td>
-              <td>anton siuta</td>
-              <td></td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-xs"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>PKM-TD</td>
-              <td>Usulan 1</td>
-              <td>Mayor</td>
-              <td>
-                <a href="/P_Substansi/S_idPenilaian_mayor.html">
-                  <button class="btn btn-primary rounded btn-xs">Detail</button>
-                </a>
-              </td>
-              <td>
-                Pengabdian desa singjaya untuk memajukan pendapatan ekonomi keluarga menengah dengan
-                budidaya ikan lele
-              </td>
-              <td>2024</td>
-              <td>37000000</td>
-              <td>Isa Faqihuddin, S.T, M.T</td>
-              <td>Hakim laksanmono</td>
-              <td>Rifaldi</td>
-              <td>Gendut wijaya</td>
-              <td>anton siuta</td>
-              <td></td>
-              <td>
-                <a
-                  class="btn rounded-pill btn-primary btn-xs"
-                  type="button"
-                  href="/assets/pdf/HASIL_SUB_VGK122.pdf"
-                  target="_blank"
-                  title="Read PDF">
-                  <i class="mdi mdi-file"></i> Unduh
-                </a>
-              </td>
-            </tr>
+            @forelse ($usulan as $item)
+                <tr>
+                  <td>{{$item->jenisPkm->singkatan}}</td>
+                  <td>
+                    Usulan {{$item->usulan}}
+                  </td>
+                  <td>{{$item->status_rekomendasi}}</td>
+                  <td>
+                    <a href="{{route('wakil-rektor.penilaian.detail', $item->id)}}" class="btn btn-primary rounded btn-xs">
+                        Detail
+                    </a>
+                  </td>
+                  <td>
+                    {{$item->judul}}
+                  </td>
+                  <td>{{$item->tahun_pengajuan}}</td>
+                  <td>{{$item->anggaran}}</td>
+                  <td>
+                    {{$item->pembimbing->nama}}
+                  </td>
+                  <td>
+                    {{$item->ketuaKelompok->nama}}
+                  </td>
+                  <td>{{$item->anggotaSatu->nama}}</td>
+                  <td>{{$item->anggotaDua->nama}}</td>
+                  <td>{{$item->anggotaTiga->nama}}</td>
+                  <td>{{$item->anggotaEmpat->nama}}</td>
+                  <td>
+                    <a
+                      class="btn rounded-pill btn-primary btn-xs"
+                      type="button"
+                      href="{{$item->lembar_bimbingan}}"
+                      target="_blank"
+                      title="Read PDF">
+                      <i class="mdi mdi-file"></i> Unduh
+                    </a>
+                  </td>
+                </tr>
+            @empty
+                
+            @endforelse
           </tbody>
         </table>
       </div>
@@ -227,10 +172,10 @@
     $(function () {
       $('#example1')
         .DataTable({
-          responsive: true,
-          lengthChange: false,
-          autoWidth: false,
-          searching: false
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            searching: true
         })
         .buttons()
         .container()
