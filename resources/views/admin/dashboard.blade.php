@@ -130,7 +130,7 @@
                 @forelse ($allUsulan as $item)
                     <tr>
                       <td>
-                        <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
+                        <a href="{{route('admin.manajemen-proposal.proposal')}}" type="button" class="btn rounded-pill btn-primary btn-xs">
                           Detail
                         </a>
                       </td>

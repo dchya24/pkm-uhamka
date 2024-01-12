@@ -59,6 +59,7 @@
             <tbody>
               @forelse ($usulan as $item)
               <tr>
+                <td>{{$item->judul}}</td>
                 <td>
                   <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
                     Detail
@@ -72,7 +73,6 @@
                     </button>
                   </form>
                 </td>
-                <td>{{$item->judul}}</td>
                 <td>{{$item->jenisPkm->singkatan}}</td>
                 <td>Usulan {{$item->usulan}}</td>
                 <td>{{$item->tahun_pengajuan}}</td>
