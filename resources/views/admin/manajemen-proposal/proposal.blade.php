@@ -57,98 +57,191 @@
               </tr>
             </thead>
             <tbody>
+              @forelse ($usulan as $item)
               <tr>
                 <td>
-                  <a href="{{route('admin.manajemen-proposal.proposal-detail', 1)}}" type="button" class="btn rounded-pill btn-primary btn-xs" target="_blank">
-                    Detil
-                  </a> 
+                  <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
+                    Detail
+                  </a>
+                  <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" class="form-inline mt-1" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" value="{{$item->id}}">
+                    <button class="btn btn-danger rounded-pill btn-xs">
+                      Delete
+                    </button>
+                  </form>
                 </td>
-                <td>Pembingaaadsadsa dajdsadas dasd as</td>
+                <td>{{$item->judul}}</td>
+                <td>{{$item->jenisPkm->singkatan}}</td>
+                <td>Usulan {{$item->usulan}}</td>
+                <td>{{$item->tahun_pengajuan}}</td>
+                <td>{{$item->anggaran}}</td>
                 <td>
-                  PKM-TD
-                </td>
-                <td>Usulan 1</td>
-                <td>2024</td>
-                <td>730000000</td>
-
-                <td>Ahamad Darto</td>
-                <td>Suinta Golo</td>
-                <td>Isa faqihuddin</td>
-                <td>Suryatno</td>
-
-                <td>87312312</td>
-                <td>darsono</td>
-
-                <td>87312312</td>
-                <td>darsono</td>                            
-                <td>
-                  dasdasdas
-                </td>
-
-                <td>87312312</td>
-                <td>darsono</td>                            
-                <td>1.dsadasdsada</td>
-
-                <td>87312312</td>
-                <td>darsono</td>                            
-                <td>1.dsadasdsada</td>
-
-                <td>87312312</td>                            
-                <td>darsono</td>                            
-                <td>1.dsadasdsada</td>
-
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td>1.dsadasdasdasdsa</td>
-                <td>
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                  @if($item->penilaiSubstansi)
+                    {{$item->penilaiSubstansi->nama}}
+                  @endif
                 </td>
                 <td>
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                  @if($item->penilaiAdministrasi)
+                    {{$item->penilaiAdministrasi->nama}}
+                  @endif
                 </td>
                 <td>
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                  @if($item->penilaiPeninjau)
+                    {{$item->penilaiPeninjau->dosen->nama}}
+                  @endif
                 </td>
                 <td>
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                  @if($item->wakilRektor)
+                    {{$item->wakilRektor->nama}}
+                  @endif
                 </td>
                 <td>
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                  @if($item->pembimbing)
+                    {{$item->pembimbing->nidn}}
+                  @endif
                 </td>
-                <td>MINOR/MAYOR</td>
-                <td>MINOR/MAYOR</td>
-                <td>MINOR/MAYOR</td>
                 <td>
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                  @if($item->pembimbing)
+                    {{$item->pembimbing->nama}}
+                  @endif
                 </td>
-                <td>  
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                <td>
+                  @if($item->ketuaKelompok)
+                    {{$item->ketuaKelompok->nim}}
+                  @endif
                 </td>
-                <td>  
-                  <a href="/assets/pdf/HASIL_ADM_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
-                    <i class="mdi mdi-file"></i> Unduh
-                  </a> 
+                <td>
+                  @if($item->ketuaKelompok)
+                    {{$item->ketuaKelompok->nama}}
+                  @endif
                 </td>
-                <td>dkjlasjndklasdasdas</td>
-                <td>dasdashdas</td>
-                <td>Internal</td>
+                <td>
+                    {{$item->tugas_ketua_kelompok}}
+                </td>
+                <td>
+                  @if($item->ketuaKelompok)
+                    {{$item->ketuaKelompok->nim}}
+                  @endif
+                </td>
+                <td>
+                  @if($item->ketuaKelompok)
+                    {{$item->ketuaKelompok->nama}}
+                  @endif
+                </td>
+                <td>
+                    {{$item->tugas_ketua_kelompok}}
+                </td>
+                <td>
+                  @if($item->anggotaSatu)
+                    {{$item->anggotaSatu->nim}}
+                  @endif
+                </td>
+                <td>
+                  @if($item->anggotaSatu)
+                    {{$item->anggotaSatu->nama}}
+                  @endif
+                </td>
+                <td>
+                    {{$item->tugas_anggota_satu}}
+                </td>
+                
+                <td>
+                  @if($item->anggotaDua)
+                    {{$item->anggotaDua->nim}}
+                  @endif
+                </td>
+                <td>
+                  @if($item->anggotaDua)
+                    {{$item->anggotaDua->nama}}
+                  @endif
+                </td>
+                <td>
+                    {{$item->tugas_anggota_dua}}
+                </td>
+                <td>
+                  @if($item->anggotaTiga)
+                    {{$item->anggotaTiga->nim}}
+                  @endif
+                </td>
+                <td>
+                  @if($item->anggotaTiga)
+                    {{$item->anggotaTiga->nama}}
+                  @endif
+                </td>
+                <td>
+                    {{$item->tugas_anggota_tiga}}
+                </td>
+                <td>
+                  @if($item->anggotaTiga)
+                    {{$item->anggotaEmpat->nim}}
+                  @endif
+                </td>
+                <td>
+                  @if($item->anggotaEmpat)
+                    {{$item->anggotaEmpat->nama}}
+                  @endif
+                </td>
+                <td>
+                    {{$item->tugas_anggota_empat}}
+                </td>
+                <td>
+                  <a href="https://{{$item->lembar_biodata_dospem}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  <a href="https://{{$item->lembar_biodata_anggota}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  <a href="https://{{$item->lembar_pengesahan}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  {{$item->status_penilaian_substansi}}
+                </td>
+                <td>
+                  {{$item->status_penilaian_administrasi}}
+                </td>
+                <td>
+                  {{$item->status_penilaian_peninjau}}
+                </td>
+                <td>
+                  <a href="https://{{$item->form_penilaian_substansi}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  <a href="https://{{$item->form_penilaian_administrasi}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  <a href="https://{{$item->form_penilaian_peninjau}}" target="_blank" rel="noopener noreferrer">
+                    Unduh
+                  </a>
+                </td>
+                <td>
+                  {{$item->komentar_ke_mahasiswa}}
+                </td>
+                <td>
+                  {{$item->komentar_ke_warek}}
+                </td>
+                <td>
+                  {{$item->status_rekomendasi}}
+                </td>
               </tr>
+          @empty
+              <tr>
+                <td class="fw-bold" colspan="12">
+                  Belum ada usulan!
+                </td>
+              </tr>
+          @endforelse
             </tbody>
           </table>
         </div>

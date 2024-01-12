@@ -185,7 +185,10 @@ Route::prefix('administrator')->name('admin.')->middleware(["auth:admin", "admin
     Route::prefix('manajemen-proposal')->name('manajemen-proposal.')->group( function(){
         Route::get('proposal', [ManajemenProposalController::class, "index"])->name('proposal');
 
+        Route::post('proposal/{id}', [ManajemenProposalController::class,  "update"])->name('proposal-update');
+
         Route::get('proposal/{id}', [ManajemenProposalController::class,  "show"])->name('proposal-detail');
+        Route::delete('proposal', [ManajemenProposalController::class,  "destroy"])->name('proposal-delete');
 
         Route::get('penilai-substansi', [ManajemenProposalPenilaiSubstansiController::class, "index"])->name('penilai-substansi');
         Route::post('penilai-substansi/{id}', [ManajemenProposalPenilaiSubstansiController::class, "store"])->name('penilai-substansi.store');

@@ -85,7 +85,7 @@ class usulan extends Model
     }
 
     public function penilaiPeninjau(){
-        return $this->belongsTo(Penilai::class, "penilai_peninjau_id");
+        return $this->belongsTo(Peninjau::class, "peninjau_id");
     }
 
     public function wakilRektor(){
