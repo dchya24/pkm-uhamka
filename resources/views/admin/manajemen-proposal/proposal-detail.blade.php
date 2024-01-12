@@ -64,7 +64,10 @@
 
 
             
-            <form method="POST" action="{{route('admin.manajemen-proposal.proposal-update', $usulan->id)}}">    
+            <form 
+            method="POST" 
+            action="{{route('admin.manajemen-proposal.proposal-update', $usulan->id)}}" 
+            enctype="multipart/form-data">    
 
               <!-- Proposal Details -->
               {{-- Data Usulam --}}
