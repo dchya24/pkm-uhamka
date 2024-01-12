@@ -101,7 +101,7 @@ Route::prefix('register')->middleware("guest")->group(function () {
     Route::get("confirm", [RegisterController::class, "confirmPage"])->name('register.confirm');
 });
 
-Route::prefix('administrator')->name('admin.')->middleware("auth:admin")->group(function(){
+Route::prefix('administrator')->name('admin.')->middleware(["auth:admin", "admin:admin"])->group(function(){
     Route::post("logout", [AdministratorLoginController::class, "logout"])->name('logout');
 
     Route::get("dashboard", [AdminController::class, "dashboardPage"])->name("dashboard");
@@ -303,7 +303,7 @@ Route::prefix("peninjau")
     });
 
 
-Route::prefix("wakil-rektor")->name("wakil-rektor.")->middleware('auth:admin')->group(function() {
+Route::prefix("wakil-rektor")->name("wakil-rektor.")->middleware(['auth:admin', 'admin:warek'])->group(function() {
     Route::post("logout", [AdministratorLoginController::class, "logout"])->name('logout');
 
     Route::get('dashboard', [WakilRektorController::class, "index"])->name("dashboard");
