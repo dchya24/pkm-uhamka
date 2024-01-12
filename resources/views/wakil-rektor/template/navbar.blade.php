@@ -43,26 +43,28 @@
                       <ul class="list-group list-group-flush">
                         @forelse(session()->get('session_informasi') as $informasi)
                           <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                            <div class="d-flex gap-2">
-                              <div class="flex-shrink-0">
-                                <div class="avatar me-1">
-                                  <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            <a href="{{route('wakil-rektor.informasi')}}">
+                              <div class="d-flex gap-2">
+                                <div class="flex-shrink-0">
+                                  <div class="avatar me-1">
+                                    <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                  </div>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                  <h6 class="mb-1 text-truncate">{{$informasi->judul}}</h6>
+                                  <small class="text-truncate text-body">
+                                    {!! $informasi->description !!}
+                                  </small>
+                                </div>
+                                <div class="flex-shrink-0 dropdown-notifications-actions">
+                                  <small class="text-muted">
+                                    @if($informasi->created_at)
+                                      {{$informasi->created_at->diffforHumans()}}
+                                    @endif
+                                  </small>
                                 </div>
                               </div>
-                              <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
-                                <h6 class="mb-1 text-truncate">{{$informasi->judul}}</h6>
-                                <small class="text-truncate text-body">
-                                  {!! $informasi->description !!}
-                                </small>
-                              </div>
-                              <div class="flex-shrink-0 dropdown-notifications-actions">
-                                <small class="text-muted">
-                                  @if($informasi->created_at)
-                                    {{$informasi->created_at->diffforHumans()}}
-                                  @endif
-                                </small>
-                              </div>
-                            </div>
+                            </a>
                           </li>
                         @empty
                           <li class="list-group-item list-group-item-action dropdown-notifications-item">
