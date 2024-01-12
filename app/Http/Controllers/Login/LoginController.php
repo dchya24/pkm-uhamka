@@ -31,13 +31,21 @@ class LoginController extends Controller
                 return redirect()->intended("/penilai/dashboard");
             }
             else {
-                return redirect()->back()->with("error", "Username/NIDN atau password salah");
+                return redirect()->back()->with("error", "Username atau password salah");
             }
         }
         else if($loginType == "peninjau"){
-            $peninjauLoginController = new PeninjauLoginController();
+            $credentials = [
+                "username" => $request->username,
+                "password" => $request->password
+            ];
 
-            $peninjauLoginController->login($request);
+            if( Auth::guard('peninjau')->attempt($credentials)){
+                return redirect()->intended("/peninjau/dashboard");
+            }
+            else {
+                return redirect()->back()->with("error", "NIDN atau password salah");
+            }
         }
     }
 }
