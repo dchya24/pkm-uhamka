@@ -693,7 +693,7 @@
 												
 												<p class="fw-bold">Komentar peninjau : </p>
 												<p class="fst-italic">
-													"{{$detail->komentar_ke_mahasiswa}}"
+													"{{$detail->komentar_ke_warek}}"
 												</p>
 											</div>
 											
