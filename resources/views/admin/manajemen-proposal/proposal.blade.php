@@ -64,14 +64,14 @@
                   <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
                     Detail
                   </a>
-                  <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" class="form-inline mt-1" method="POST">
+                  <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" name="delete-proposal-{{$item->id}}" class="form-inline mt-1" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$item->id}}">
-                    <button class="btn btn-danger rounded-pill btn-xs">
-                      Delete
-                    </button>
                   </form>
+                  <button class="btn btn-danger rounded-pill btn-xs" data-form_name="delete-proposal-{{$item->id}}" onclick="confirmDelete(this)">
+                    Delete
+                  </button>
                 </td>
                 <td>{{$item->jenisPkm->singkatan}}</td>
                 <td>Usulan {{$item->usulan}}</td>
@@ -305,5 +305,26 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
+    <script>
+      function confirmDelete(e){
+        // e.preventDefault()
+
+        form_name = e.attributes['data-form_name'].value
+
+        Swal.fire({
+          title: 'Apakah anda yakin?',
+          text: "Data yang dihapus tidak dapat dikembalikan!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Ya, hapus!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.forms[form_name].submit()
+          }
+        
+        })
+      }
+    </script>
   @endsection
 @endsection
