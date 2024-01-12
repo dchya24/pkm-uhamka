@@ -254,7 +254,7 @@ Route::prefix('mahasiswa')->name("mahasiswa.")->middleware("auth:mahasiswa")->gr
 
 
 
-Route::prefix("penilai-substansi")->middleware("auth:penilai")->name("penilai-substansi.")->group(function(){
+Route::prefix("penilai-substansi")->middleware(["auth:penilai", "penilai:substansi"])->name("penilai-substansi.")->group(function(){
     Route::get('dashboard', [PenilaiSubstansiController::class, "index"])->name("dashboard");
 
     Route::get('informasi', [PenilaiSubstansiController::class, "informasi"])->name("informasi");
@@ -268,7 +268,7 @@ Route::prefix("penilai-substansi")->middleware("auth:penilai")->name("penilai-su
 
 });
 
-Route::prefix("penilai-administrasi")->middleware("auth:penilai")->name("penilai-administrasi.")->group(function(){
+Route::prefix("penilai-administrasi")->middleware(["auth:penilai", "penilai:administrasi"])->name("penilai-administrasi.")->group(function(){
     Route::get('dashboard', [AdministrasiController::class, "index"])->name("dashboard");
 
     Route::get('informasi', [AdministrasiController::class, "informasi"])->name("informasi");
