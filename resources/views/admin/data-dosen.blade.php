@@ -148,7 +148,7 @@
         document.getElementById("edit_fakultas").value = fakultas;
         document.getElementById("edit_prodi").value = prodi;
         document.getElementById("edit_keterangan").value = keterangan;
-        const url = window.BASE_URL + `/admin/data-dosen/${nidn}/update`;
+        const url = window.BASE_URL + `/administrator/data-dosen/${nidn}/update`;
 
         document.forms["edit_dosen"].action = url;
       }
