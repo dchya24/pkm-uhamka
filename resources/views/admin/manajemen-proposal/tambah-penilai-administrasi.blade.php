@@ -11,7 +11,7 @@
       <h3 class="text-center pt-3">Penambahan Penilai Administrasi pada Usulan </h3>                 
         <Label>Nama Penilai Administrasi : {{$penilaiAdministrasi->nama}} </Label>
         <br>
-        <label for="">Jumlah Usulan yang dinilai : {{$penilaiAdministrasi->penilaianSubstansi->count()}}</label>
+        <label for="">Jumlah Usulan yang dinilai : {{$penilaiAdministrasi->penilaianAdministrasi->count()}}</label>
         <br>
       
     </div>
