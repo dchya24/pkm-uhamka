@@ -25,24 +25,26 @@
                   </thead>
                   <tbody>
                     @forelse ($peninjau as $item)
-                      <td>{{$loop->index + 1}}</td>
-                      <td>{{ $item->dosen->nama }}</td>
-                      <td>
-                        @if ($item->usulan->count() == 0)
-                          <span class="text-danger">Belum ada proposal yang dinilai</span>
-                        @else
-                          {{ $item->usulan->count() }}
-                        @endif
-                      </td>
-                      <td>
-                        <a href="{{ route('admin.manajemen-proposal.peninjau.tambah', $item->id) }}">
-                          <button
-                            type="button"
-                            class="btn btn-sm rounded-pill btn-info waves-effect waves-light">
-                            Detail
-                          </button>
-                        </a>
-                      </td>
+                      <tr>
+                        <td>{{$loop->index + 1}}</td>
+                        <td>{{ $item->dosen->nama }}</td>
+                        <td>
+                          @if ($item->usulan->count() == 0)
+                            <span class="text-danger">Belum ada proposal yang dinilai</span>
+                          @else
+                            {{ $item->usulan->count() }}
+                          @endif
+                        </td>
+                        <td>
+                          <a href="{{ route('admin.manajemen-proposal.peninjau.tambah', $item->id) }}">
+                            <button
+                              type="button"
+                              class="btn btn-sm rounded-pill btn-info waves-effect waves-light">
+                              Detail
+                            </button>
+                          </a>
+                        </td>
+                      <tr>
                     @empty
                       <tr>
                         <td colspan="4" class="text-bold">Belum ada Peninjau</td>
