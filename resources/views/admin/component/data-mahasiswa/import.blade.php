@@ -13,9 +13,16 @@
       <div class="modal-body">
         <div class="mb-4">
           <div class="card-body">
-            <div class="form-floating form-floating-outline mb-4">
-              <input class="form-control" type="file" id="formFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
-            </div>
+            <form 
+            action="{{route('admin.data-mahasiswa.import')}}" 
+            method="POST" 
+            name="import-mahasiswa"
+            enctype="multipart/form-data">
+              <div class="form-floating form-floating-outline mb-4">
+                <input class="form-control" type="file" id="formFile" name="data_mahasiswa" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
+                @csrf
+              </div>
+            </form>
           </div>
         </div>
         <!-- /Product Information -->
@@ -24,7 +31,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary">Import</button>
+        <button type="button" onclick="document.forms['import-mahasiswa'].submit()" class="btn btn-primary">Import</button>
       </div>
     </div>
   </div>

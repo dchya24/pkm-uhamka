@@ -12,8 +12,8 @@
           <table id="example1" class="table table-bordered table-striped text-center">
             <thead>
               <tr class="text-bold">
-                <th>Aksi</th>
                 <th>Judul</th>
+                <th>Aksi</th>
                 <th>Jenis PKM</th>
                 <th>Usulan</th>
                 <th>Tahun Pengajuan</th>

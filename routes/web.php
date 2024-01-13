@@ -130,6 +130,7 @@ Route::prefix('administrator')->name('admin.')->middleware(["auth:admin", "admin
     Route::delete("sertifikat/{id}", [SertifikatController::class, "destroy"])->name("sertifikat.destroy");
 
     Route::prefix('data-mahasiswa')->group(function(){
+        Route::post("import", [DataMahasiswaController::class, "importData"])->name('data-mahasiswa.import');
         Route::post("", [DataMahasiswaController::class, "store"])->name('data-mahasiswa.store');
         Route::get("", [DataMahasiswaController::class, "index"])->name('data-mahasiswa');
         Route::delete("{nim}/delete", [DataMahasiswaController::class, "delete"])->name('data-mahasiswa.delete');
@@ -137,6 +138,7 @@ Route::prefix('administrator')->name('admin.')->middleware(["auth:admin", "admin
     });
 
     Route::prefix('data-dosen')->group(function (){
+        Route::post("import", [DataDosenController::class, "importData"])->name('data-dosen.import');
         Route::post("", [DataDosenController::class, "store"])->name("data-dosen.store");
         Route::get("", [DataDosenController::class, "index"])->name("data-dosen");
         Route::put("{nidn}/update", [DataDosenController::class, "update"])->name("data-dosen.update");
