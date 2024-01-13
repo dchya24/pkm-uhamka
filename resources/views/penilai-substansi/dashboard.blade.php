@@ -26,24 +26,24 @@
               </div>
               <div class="d-flex align-items-center gap-3">
                 <div class="avatar avatar-md">
-                  <div class="avatar-initial bg-label-danger rounded">
-                    <i class="mdi mdi-alert mdi-36px"></i>
-                  </div>
-                </div>
-                <div class="content-right">
-                  <p class="mb-0 fw-medium" style="font-size: 1rem">MINOR</p>
-                  <span class="text-danger mb-0 display-6" style="font-size: 1.3rem">{{$countDataMinor}}</span>
-                </div>
-              </div>
-              <div class="d-flex align-items-center gap-3">
-                <div class="avatar avatar-md">
                   <div class="avatar-initial bg-label-success rounded">
                     <i class="mdi mdi-check-decagram-outline mdi-36px"></i>
                   </div>
                 </div>
                 <div class="content-right">
+                  <p class="mb-0 fw-medium" style="font-size: 1rem">MINOR</p>
+                  <span class="text-success mb-0 display-6" style="font-size: 1.3rem">{{$countDataMinor}}</span>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar avatar-md">
+                  <div class="avatar-initial bg-label-danger rounded">
+                    <i class="mdi mdi-alert mdi-36px"></i>
+                  </div>
+                </div>
+                <div class="content-right">
                   <p class="mb-0 fw-medium" style="font-size: 1rem">MAYOR</p>
-                  <span class="text-success mb-0 display-6" style="font-size: 1.3rem">{{$countDataMayor}}</span>
+                  <span class="text-danger mb-0 display-6" style="font-size: 1.3rem">{{$countDataMayor}}</span>
                 </div>
               </div>
             </div>
@@ -96,11 +96,11 @@
                   <td>Usulan {{$item->usulan}}</td>
                   <td>
                     @if($item->status_penilaian_substansi == "mayor")
-                        <span class="badge rounded-pill bg-label-success text-md-end text-dark ">
+                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark ">
                           MAYOR
                         </span>
                       @elseif($item->status_penilaian_substansi == "minor")
-                        <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
+                        <span class="badge rounded-pill bg-label-success text-md-end text-dark">
                           MINOR
                         </span>
                       @else
