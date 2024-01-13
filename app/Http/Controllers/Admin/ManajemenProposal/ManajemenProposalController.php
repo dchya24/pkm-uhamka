@@ -69,7 +69,8 @@ class ManajemenProposalController extends Controller
 
         if($request->hasFile('lembar_proposal')){
             $lembar_proposal_file = $request->file('lembar_proposal');
-            $this->uploadFile(
+
+            $filename = $this->uploadFile(
                 $lembar_proposal_file, 
                 "lembar_proposal", 
                 $usulan->lembar_proposal);
@@ -78,7 +79,7 @@ class ManajemenProposalController extends Controller
 
         if($request->hasFile('lembar_biodata_dospem')){
             $lembar_biodata_dospem_file = $request->file('lembar_biodata_dospem');
-            $this->uploadFile(
+            $filename = $this->uploadFile(
                 $lembar_biodata_dospem_file, 
                 "lembar_biodata_dospem", 
                 $usulan->lembar_biodata_dospem);
@@ -87,7 +88,7 @@ class ManajemenProposalController extends Controller
 
         if($request->hasFile('lembar_biodata_kelompok')){
             $lembar_biodata_kelompok_file = $request->file('lembar_biodata_kelompok');
-            $this->uploadFile(
+            $filename = $this->uploadFile(
                 $lembar_biodata_kelompok_file, 
                 "lembar_biodata_kelompok", 
                 $usulan->lembar_biodata_kelompok);
@@ -96,11 +97,11 @@ class ManajemenProposalController extends Controller
         
         if($request->hasFile('lembar_pengesahan')){
             $lembar_pengesahan_file = $request->file('lembar_pengesahan');
-            $this->uploadFile(
+            $filename = $this->uploadFile(
                 $lembar_pengesahan_file, 
                 "lembar_pengesahan", 
                 $usulan->lembar_pengesahan);
-            $data["lembar_biodata_kelompok"] = $filename;
+            $data["lembar_pengesahan"] = $filename;
         }
 
         $update = Usulan::where('id', $id)->update($data);
@@ -116,9 +117,9 @@ class ManajemenProposalController extends Controller
         }
 
         $file_name = $file->getClientOriginalName();
-        $file->move($dirpath, $file_name);
+        $file->move('upload/' . $dirpath, $file_name);
 
-        $filename = $dirpath . "/" . $file_name;
+        $filename = 'upload/' . $dirpath . "/" . $file_name;
 
         return $filename;
     }
