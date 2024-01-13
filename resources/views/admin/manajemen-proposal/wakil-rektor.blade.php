@@ -62,14 +62,14 @@
                 <h4 class="">Link grup rekomendasi usulan</h4>
               </div>
               <div class="col-sm">                      
-                <button
+                {{-- <button
                   type="button"
                   class="btn btn-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#Tambah_Akunmahasiswa"
                   style="float: right">
                   Tambahkan Link
-                </button>      
+                </button>       --}}
               </div>
             </div>
           </div>
@@ -103,9 +103,9 @@
                             Edit
                           </button>
 
-                          <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
+                          {{-- <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light">
                             Hapus
-                          </button>
+                          </button> --}}
                         </td>
                       </tr>
                   @empty
