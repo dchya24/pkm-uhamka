@@ -119,7 +119,14 @@ class DataMahasiswaController extends Controller
 
         $placeholders = [];
         foreach ($values as $rowValues) {
-            $placeholders[] = '(' . implode(', ', array_fill(0, count($rowValues), '?')) . ')';
+            // $placeholders[] = '(' . implode(', ', array_fill(0, count($rowValues), '?')) . ')';
+            $data = "(";
+            $data .= '"' . $rowValues["nim"] . '", ';
+            $data .= '"' . $rowValues["nama"] . '", ';
+            $data .= '"' . $rowValues["fakultas"] . '", ';
+            $data .= '"' . $rowValues["prodi"] . '", ';
+            $data .=  $rowValues["keterangan"];
+            $placeholders[] = $data . ")";
         }
 
         $queryText .= implode(', ', $placeholders);
@@ -135,6 +142,6 @@ class DataMahasiswaController extends Controller
         $flatValues = array_merge(...array_map('array_values', $values));
 
         // Execute the query with the flattened values array
-        DB::statement($queryText, $flatValues);
+        DB::statement($queryText);
     }
 }
