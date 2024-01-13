@@ -9,7 +9,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive text-nowrap">
-          <table id="example1" class="table table-bordered table-striped text-center">
+          <table id="table-proposal" class="table table-bordered table-striped text-center">
             <thead>
               <tr class="text-bold">
                 <th>Judul</th>
@@ -58,188 +58,204 @@
             </thead>
             <tbody>
               @forelse ($usulan as $item)
-              <tr>
-                <td>{{$item->judul}}</td>
-                <td>
-                  <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
-                    Detail
-                  </a>
-                  <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" name="delete-proposal-{{$item->id}}" class="form-inline m-0" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="id" value="{{$item->id}}">
-                  </form>
-                  <button class="btn btn-danger rounded-pill btn-xs mt-1" data-form_name="delete-proposal-{{$item->id}}" onclick="confirmDelete(this)">
-                    Delete
-                  </button>
-                </td>
-                <td>{{$item->jenisPkm->singkatan}}</td>
-                <td>Usulan {{$item->usulan}}</td>
-                <td>{{$item->tahun_pengajuan}}</td>
-                <td>{{$item->anggaran}}</td>
-                <td>
-                  @if($item->penilaiSubstansi)
-                    {{$item->penilaiSubstansi->nama}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->penilaiAdministrasi)
-                    {{$item->penilaiAdministrasi->nama}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->penilaiPeninjau)
-                    {{$item->penilaiPeninjau->dosen->nama}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->wakilRektor)
-                    {{$item->wakilRektor->nama}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->pembimbing)
-                    {{$item->pembimbing->nidn}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->pembimbing)
-                    {{$item->pembimbing->nama}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->ketuaKelompok)
-                    {{$item->ketuaKelompok->nim}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->ketuaKelompok)
-                    {{$item->ketuaKelompok->nama}}
-                  @endif
-                </td>
-                <td>
-                    {{$item->tugas_ketua_kelompok}}
-                </td>
-                <td>
-                  @if($item->anggotaSatu)
-                    {{$item->anggotaSatu->nim}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->anggotaSatu)
-                    {{$item->anggotaSatu->nama}}
-                  @endif
-                </td>
-                <td>
-                    {{$item->tugas_anggota_satu}}
-                </td>
-                
-                <td>
-                  @if($item->anggotaDua)
-                    {{$item->anggotaDua->nim}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->anggotaDua)
-                    {{$item->anggotaDua->nama}}
-                  @endif
-                </td>
-                <td>
-                    {{$item->tugas_anggota_dua}}
-                </td>
-                <td>
-                  @if($item->anggotaTiga)
-                    {{$item->anggotaTiga->nim}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->anggotaTiga)
-                    {{$item->anggotaTiga->nama}}
-                  @endif
-                </td>
-                <td>
-                    {{$item->tugas_anggota_tiga}}
-                </td>
-                <td>
-                  @if($item->anggotaTiga)
-                    {{$item->anggotaEmpat->nim}}
-                  @endif
-                </td>
-                <td>
-                  @if($item->anggotaEmpat)
-                    {{$item->anggotaEmpat->nama}}
-                  @endif
-                </td>
-                <td>
-                    {{$item->tugas_anggota_empat}}
-                </td>
-                <td>{{$item->pendahulan}}</td>
-                <td>
-                  <a href="https://{{$item->lembar_proposal}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  <a href="https://{{$item->lembar_bimbingan}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  <a href="https://{{$item->lembar_biodata_dospem}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  <a href="https://{{$item->lembar_biodata_anggota}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  <a href="https://{{$item->lembar_pengesahan}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  {{$item->status_penilaian_substansi}}
-                </td>
-                <td>
-                  {{$item->status_penilaian_administrasi}}
-                </td>
-                <td>
-                  {{$item->status_penilaian_peninjau}}
-                </td>
-                <td>
-                  <a href="https://{{$item->form_penilaian_substansi}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  <a href="https://{{$item->form_penilaian_administrasi}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  <a href="https://{{$item->form_penilaian_peninjau}}" target="_blank" rel="noopener noreferrer">
-                    Unduh
-                  </a>
-                </td>
-                <td>
-                  {{$item->komentar_ke_mahasiswa}}
-                </td>
-                <td>
-                  {{$item->komentar_ke_warek}}
-                </td>
-                <td>
-                  {{$item->status_rekomendasi}}
-                </td>
-              </tr>
-          @empty
-              <tr>
-                <td class="fw-bold" colspan="12">
-                  Belum ada usulan!
-                </td>
-              </tr>
-          @endforelse
+                <tr>
+                  <td>{{$item->judul}}</td>
+                  <td>
+                    <a href="{{route('admin.manajemen-proposal.proposal-detail', $item->id)}}" type="button" class="btn rounded-pill btn-primary btn-xs">
+                      Detail
+                    </a>
+                    <form action="{{route('admin.manajemen-proposal.proposal-delete')}}" name="delete-proposal-{{$item->id}}" class="form-inline m-0" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <input type="hidden" name="id" value="{{$item->id}}">
+                    </form>
+                    <button class="btn btn-danger rounded-pill btn-xs mt-1" data-form_name="delete-proposal-{{$item->id}}" onclick="confirmDelete(this)">
+                      Delete
+                    </button>
+                  </td>
+                  <td>{{$item->jenisPkm->singkatan}}</td>
+                  <td>Usulan {{$item->usulan}}</td>
+                  <td>{{$item->tahun_pengajuan}}</td>
+                  <td>{{$item->anggaran}}</td>
+                  <td>
+                    @if($item->penilaiSubstansi)
+                      {{$item->penilaiSubstansi->nama}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->penilaiAdministrasi)
+                      {{$item->penilaiAdministrasi->nama}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->penilaiPeninjau)
+                      {{$item->penilaiPeninjau->dosen->nama}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->wakilRektor)
+                      {{$item->wakilRektor->nama}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->pembimbing)
+                      {{$item->pembimbing->nidn}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->pembimbing)
+                      {{$item->pembimbing->nama}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->ketuaKelompok)
+                      {{$item->ketuaKelompok->nim}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->ketuaKelompok)
+                      {{$item->ketuaKelompok->nama}}
+                    @endif
+                  </td>
+                  <td>
+                      {{$item->tugas_ketua_kelompok}}
+                  </td>
+                  <td>
+                    @if($item->anggotaSatu)
+                      {{$item->anggotaSatu->nim}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->anggotaSatu)
+                      {{$item->anggotaSatu->nama}}
+                    @endif
+                  </td>
+                  <td>
+                      {{$item->tugas_anggota_satu}}
+                  </td>
+                  
+                  <td>
+                    @if($item->anggotaDua)
+                      {{$item->anggotaDua->nim}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->anggotaDua)
+                      {{$item->anggotaDua->nama}}
+                    @endif
+                  </td>
+                  <td>
+                      {{$item->tugas_anggota_dua}}
+                  </td>
+                  <td>
+                    @if($item->anggotaTiga)
+                      {{$item->anggotaTiga->nim}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->anggotaTiga)
+                      {{$item->anggotaTiga->nama}}
+                    @endif
+                  </td>
+                  <td>
+                      {{$item->tugas_anggota_tiga}}
+                  </td>
+                  <td>
+                    @if($item->anggotaTiga)
+                      {{$item->anggotaEmpat->nim}}
+                    @endif
+                  </td>
+                  <td>
+                    @if($item->anggotaEmpat)
+                      {{$item->anggotaEmpat->nama}}
+                    @endif
+                  </td>
+                  <td>
+                      {{$item->tugas_anggota_empat}}
+                  </td>
+                  <td>{{$item->pendahuluan}}</td>
+                  <td>
+                    <a href=
+                      "@if($item->lembar_proposal) {{url($item->lembar_proposal)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->lembar_bimbingan) {{url($item->lembar_bimbingan)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->lembar_biodata_dospem) {{url($item->lembar_biodata_dospem)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->lembar_biodata_anggota) {{url($item->lembar_biodata_anggota)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->lembar_pengesahan) {{url($item->lembar_pengesahan)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    {{$item->status_penilaian_substansi}}
+                  </td>
+                  <td>
+                    {{$item->status_penilaian_administrasi}}
+                  </td>
+                  <td>
+                    {{$item->status_penilaian_peninjau}}
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->form_penilaian_substansi) {{url($item->form_penilaian_substansi)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->form_penilaian_administrasi) {{url($item->form_penilaian_administrasi)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    <a href=
+                      "@if($item->form_penilaian_peninjau) {{url($item->form_penilaian_peninjau)}} @else # @endif" 
+                      target="_blank" rel="noopener noreferrer">
+                      Unduh
+                    </a>
+                  </td>
+                  <td>
+                    {{$item->komentar_ke_mahasiswa}}
+                  </td>
+                  <td>
+                    {{$item->komentar_ke_warek}}
+                  </td>
+                  <td>
+                    {{$item->status_rekomendasi}}
+                  </td>
+                </tr>
+            @empty
+                <tr>
+                  <td class="fw-bold" colspan="12">
+                    Belum ada usulan!
+                  </td>
+                </tr>
+            @endforelse
             </tbody>
           </table>
         </div>
@@ -323,6 +339,68 @@
         
         })
       }
+
+      $(document).ready(function(){
+        window.array = []
+        for(var i = 2; i <= 41; i++){
+          window.array.push(i);
+        }
+        $('#table-proposal').DataTable({
+          responsive: true,
+          lengthChange: false,
+          autoWidth: false,
+          searching: true,        
+          dom: 'Bfrtip',
+          buttons: [
+              {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [0, ...window.array], // Adjust the column indices as needed
+                    format: {
+                        body: function ( data, row, column, node ) {
+                            // Strip $ from salary column to make it numeric
+                            var match = /<a.*?>(.*?)<\/a>/i.exec(node);
+
+                            if(match){
+                              console.log(match);
+                              return match[1]
+                            }
+                            
+                            return data
+                        }
+                    }
+                },
+                customizeData: function (data) {
+                    // Iterate over the rows in the exported data
+                    data.body.forEach(function (row) {
+                      const linkArrayIndex = [27,28,29,30,31,35,36,37];
+
+                      linkArrayIndex.forEach(function(index){
+                        
+                        // Assuming the column index is 1 (adjust as needed)
+                        var htmlString = row[index];
+                        var parser = new DOMParser();
+
+                        // Parse the string into a DOM document
+                        var doc = parser.parseFromString(htmlString, 'text/html');
+
+                        // Get the first element in the document
+                        var element = doc.body.firstChild;
+
+                        // Now 'element' is a DOM element that you can use
+                        console.log(element.attributes.href.value.trim());
+                        row[index] = element.attributes.href.value.trim();
+                      })
+
+                    });
+                  }
+              }
+          ]
+        })
+        .buttons()
+        .container()
+        .appendTo('#table-sertifikat_wrapper .col-md-6:eq(0)');
+      })
     </script>
   @endsection
 @endsection
