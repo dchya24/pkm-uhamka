@@ -51,7 +51,7 @@ class AdministratorLoginController extends Controller
             return redirect()->route($route);
         }
 
-        return redirect()->back()->withInput($request->only('username'));
+        return redirect()->back()->with("error", "Username atau password salah");
     }
 
 }

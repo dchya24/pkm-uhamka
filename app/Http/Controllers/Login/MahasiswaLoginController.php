@@ -31,4 +31,17 @@ class MahasiswaLoginController extends Controller
         return Auth::guard('mahasiswa');
     }
 
+    public function login(Request $request){
+        $credentials = [
+            "nim" => $request->nim,
+            "password" => $request->password
+        ];
+
+        if(Auth::guard('mahasiswa')->attempt($credentials)){
+            return redirect()->route("mahasiswa.dashboard");
+        }
+
+        return redirect()->back()->with("error", "Username atau password salah");
+    }
+
 }
