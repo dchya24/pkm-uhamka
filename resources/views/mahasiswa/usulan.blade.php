@@ -103,6 +103,13 @@
 							@endif
 						</div>
 						<div class="bs-stepper-content">
+							@foreach($errors->all() as $error)
+								<div class="alert alert-danger alert-dimissible fade show" role="alert">
+									<strong>Oops!</strong> 
+									{{$error}}
+									<button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+							@endforeach
 							<!-- Proposal Details -->
 							<div id="data-usulan" class="content">
 								<div class="content-header mb-3">

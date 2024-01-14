@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\BaseMahasiswaController;
+use App\Http\Requests\KirimUsulanRequest;
 use App\Models\AksesHalaman;
 use App\Models\DataDosen;
 use App\Models\DataMahasiswa;
@@ -43,7 +44,7 @@ class UsulanController extends BaseMahasiswaController
         ));
     }
 
-    public function store(Request $request){
+    public function store(KirimUsulanRequest $request){
         $user = Auth::guard('mahasiswa')->user();
 
         $anggota = ["satu", "dua", "tiga", "empat"];
