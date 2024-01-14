@@ -31,7 +31,6 @@
                 <th>Username</th>
                 <th>Nama Lengkap</th>
                 <th>Jenis Penilai</th>
-                <th>Password</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -41,7 +40,6 @@
                     <td>{{$item->username}}</td>
                     <td>{{$item->nama}}</td>
                     <td>{{$item->tipePenilai()}}</td>
-                    <td>{{$item->password}}</td>
                     <td>
                       <button
                         type="button"

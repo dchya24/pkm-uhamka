@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Akun Administrator</h4>
+        <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Akun Wakil Rektor</h4>
         <button
           type="button"
           class="btn-close"
