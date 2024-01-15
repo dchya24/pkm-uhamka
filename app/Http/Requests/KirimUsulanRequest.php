@@ -26,6 +26,7 @@ class KirimUsulanRequest extends FormRequest
             "judul" => "required|string",
             "jenis_pkm_id" => "required|integer",
             "anggaran" => "required|integer|min:5000000|max:12000000",
+            "pembimbing_id" => "required|integer",
         ];
     }
 
@@ -47,6 +48,7 @@ class KirimUsulanRequest extends FormRequest
             "anggaran.integer" => "Anggaran harus berupa integer",
             "anggaran.min" => "Anggaran minimal Rp. 5.000.000",
             "anggaran.max" => "Anggaran maksimal Rp. 12.000.000",
+            "pembimbing_id.required" => "Pembimbing tidak boleh kosong",
         ];
     }
 }

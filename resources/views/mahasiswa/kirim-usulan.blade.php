@@ -562,12 +562,14 @@
       const judul = form['judul'].value;
       const pendahuluan = form['pendahuluan'].value;
       const jenis_pkm_id = form['jenis_pkm_id'].value;
+      const pembimbing_id = form['pembimbing_id'].value;
       console.log(anggaran)
 
       if(
         anggaran == "" || lembar_bimbingan == "" 
         || judul == "" || pendahuluan == ""
         || jenis_pkm_id == "" || jenis_pkm_id == null
+        || pembimbing_id == "" || pembimbing_id == null
       ){
           Swal.fire({
             title: "Oops!",
