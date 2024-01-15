@@ -71,6 +71,10 @@ class UsulanController extends BaseMahasiswaController
         ];
 
         foreach($request->anggota_kelompok as $key => $item){
+            if($item == null){
+                continue;
+            }
+
             $data["anggota_" . $anggota[$key] . "_id"] = $item;
             $data["tugas_anggota_" . $anggota[$key]] = $request->tugas_anggota[$key];
         }

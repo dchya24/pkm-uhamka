@@ -60,17 +60,66 @@ class usulan extends Model
         return $this->belongsTo(DataMahasiswa::class, "anggota_satu_id");
     }
 
+    public function getAnggotaSatu(){
+        $nullData =  [
+            "nama" => null,
+            "nim" => null,
+            "fakultas" => null,
+            "prodi" => null,
+            "keterangan" => null,
+        ];
+
+        return $this->anggotaSatu ? $this->anggotaSatu : $nullData;
+    }
+
     public function anggotaDua(){
         return $this->belongsTo(DataMahasiswa::class, "anggota_dua_id");
+    }
+
+    public function getAnggotaDua(){
+        $nullData =  [
+            "nama" => null,
+            "nim" => null,
+            "fakultas" => null,
+            "prodi" => null,
+            "keterangan" => null,
+        ];
+
+        return $this->anggotaDua ? $this->anggotaDua : (object) $nullData;
     }
 
     public function anggotaTiga(){
         return $this->belongsTo(DataMahasiswa::class, "anggota_tiga_id");
     }
 
+    public function getAnggotaTiga(){
+        $nullData =  [
+            "nama" => null,
+            "nim" => null,
+            "fakultas" => null,
+            "prodi" => null,
+            "keterangan" => null,
+        ];
+
+        return $this->anggotaTiga ? $this->anggotaTiga : (object) $nullData;
+    }
+
     public function anggotaEmpat(){
         return $this->belongsTo(DataMahasiswa::class, "anggota_empat_id");
     }
+
+    public function getAnggotaEmpat(){
+        $nullData =  [
+            "nama" => null,
+            "nim" => null,
+            "fakultas" => null,
+            "prodi" => null,
+            "keterangan" => null,
+        ];
+
+        return $this->anggotaEmpat ? $this->anggotaEmpat : (object) $nullData;
+    }
+    
 
     public function pembimbing(){
         return $this->belongsTo(DataDosen::class, "pembimbing_id");

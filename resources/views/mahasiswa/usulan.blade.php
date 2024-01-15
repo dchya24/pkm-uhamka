@@ -130,40 +130,52 @@
 									<div class="row mb-3">
 											<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 1 Pengusul</label>
 											<div class="col-xl-10 d-flex">
-												<p>:&nbsp;{{$detail->anggotaSatu->nim}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaSatu->nama}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaSatu->fakultas}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaSatu->prodi}} &nbsp;</p>
+												<p>:</p>
+												@if($detail->anggota_satu_id)
+													<p>&nbsp; {{$detail->getAnggotaSatu()->nim}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaSatu()->nama}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaSatu()->fakultas}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaSatu()->prodi}} &nbsp;</p>
+												@endif
 											</div>
 									</div>                                
 									
 									<div class="row mb-3">
 											<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 2 Pengusul</label>
 											<div class="col-xl-10 d-flex">
-												<p>:&nbsp;{{$detail->anggotaDua->nim}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaDua->nama}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaDua->fakultas}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaDua->prodi}} &nbsp;</p>
+												<p>:</p>
+												@if($detail->anggota_dua_id)
+													<p>&nbsp; {{$detail->getAnggotaDua()->nim}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaDua()->nama}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaDua()->fakultas}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaDua()->prodi}} &nbsp;</p>
+												@endif
 											</div>
 									</div>
 									
 									<div class="row mb-3">
 											<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 3 Pengusul</label>
 											<div class="col-xl-10 d-flex">
-												<p>:&nbsp;{{$detail->anggotaTiga->nim}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaTiga->nama}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaTiga->fakultas}} &nbsp;</p>
-												<p>/&nbsp; {{$detail->anggotaTiga->prodi}} &nbsp;</p>
+												<p>:</p>
+												@if($detail->anggota_tiga_id)
+													<p>&nbsp; {{$detail->getAnggotaTiga()->nim}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaTiga()->nama}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaTiga()->fakultas}} &nbsp;</p>
+													<p>/&nbsp; {{$detail->getAnggotaTiga()->prodi}} &nbsp;</p>
+												@endif
 											</div>
 									</div>
 
 									<div class="row mb-3">
 										<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 4 Pengusul</label>
 										<div class="col-xl-10 d-flex">
-											<p>:&nbsp;{{$detail->anggotaEmpat->nim}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaEmpat->nama}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaEmpat->fakultas}} &nbsp;</p>
-											<p>/&nbsp; {{$detail->anggotaEmpat->prodi}} &nbsp;</p>
+											<p>:</p>
+											@if($detail->anggota_empat_id)
+												<p>&nbsp; {{$detail->getAnggotaEmpat()->nim}} &nbsp;</p>
+												<p>/&nbsp; {{$detail->getAnggotaEmpat()->nama}} &nbsp;</p>
+												<p>/&nbsp; {{$detail->getAnggotaEmpat()->fakultas}} &nbsp;</p>
+												<p>/&nbsp; {{$detail->getAnggotaEmpat()->prodi}} &nbsp;</p>
+											@endif
 										</div>
 									</div>
 
@@ -295,7 +307,7 @@
 											</div>
 											<div class="row mb-3">
 												<label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 1 <p> {{$detail->anggotaSatu->nim}} <br> {{$detail->anggotaSatu->nama}}</p>
+													>Tugas Anggota 1 <p> {{$detail->getAnggotaSatu()->nim}} <br> {{$detail->getAnggotaSatu()->nama}}</p>
 												</label>
 												<div class="col-xl-10">
 													<textarea
@@ -307,7 +319,7 @@
 											</div>
 											<div class="row mb-3">
 												<label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 2 <p> {{$detail->anggotaDua->nim}} <br> {{$detail->anggotaDua->nama}}</p>
+													>Tugas Anggota 2 <p> {{$detail->getAnggotaDua()->nim}} <br> {{$detail->getAnggotaDua()->nama}}</p>
 												</label>
 												<div class="col-xl-10">
 													<textarea
@@ -319,7 +331,7 @@
 											</div>
 											<div class="row mb-3">
 												<label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 3 <p> {{$detail->anggotaTiga->nim}} <br> {{$detail->anggotaTiga->nama}}</p>
+													>Tugas Anggota 3 <p> {{$detail->getAnggotaTiga()->nim}} <br> {{$detail->getAnggotaTiga()->nama}}</p>
 												</label>
 												<div class="col-xl-10">
 													<textarea
@@ -331,7 +343,7 @@
 											</div>
 											<div class="row mb-3">
 												<label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 4  <p> {{$detail->anggotaEmpat->nim}} <br> {{$detail->anggotaEmpat->nama}}</p>
+													>Tugas Anggota 4  <p> {{$detail->getAnggotaEmpat()->nim}} <br> {{$detail->getAnggotaEmpat()->nama}}</p>
 												</label>
 												<div class="col-xl-10">
 													<textarea

@@ -139,10 +139,10 @@
                 </td>
                 <td>{{$item->pembimbing->nama}}</td>
                 <td>{{$item->ketuaKelompok->nama}}</td>
-                <td>{{$item->anggotaSatu->nama}}</td>
-                <td>{{$item->anggotaDua->nama}}</td>
-                <td>{{$item->anggotaTiga->nama}}</td>
-                <td>{{$item->anggotaEmpat->nama}}</td>
+                <td>{{$item->getAnggotaSatu()->nama}}</td>
+                <td>{{$item->getAnggotaDua()->nama}}</td>
+                <td>{{$item->getAnggotaTiga()->nama}}</td>
+                <td>{{$item->getAnggotaEmpat()->nama}}</td>
               </tr>
             @empty
               <tr>

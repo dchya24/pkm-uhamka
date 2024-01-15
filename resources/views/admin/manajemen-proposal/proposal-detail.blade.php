@@ -103,7 +103,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->anggota_satu_id)
+                                  @if($item->id == $usulan->getAnggotaSatu()_id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -111,10 +111,10 @@
                           </select>
                     </div>
                     <div class="col-xl-8 d-flex"  id="result-anggota-1">
-                      <p>:&nbsp;{{$usulan->anggotaSatu->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaSatu->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaSatu->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaSatu->prodi}} &nbsp;</p>
+                      <p>:&nbsp;{{$usulan->getAnggotaSatu()->nim}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaSatu()->nama}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaSatu()->fakultas}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaSatu()->prodi}} &nbsp;</p>
                     </div>
                   </div>  
                   <div class="row mb-3">
@@ -132,7 +132,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->anggota_dua_id)
+                                  @if($item->id == $usulan->getAnggotaDua()_id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -141,10 +141,10 @@
                       </div>
                     </div>
                     <div class="col-xl-8 d-flex" id="result-anggota-1">
-                      <p>:&nbsp;{{$usulan->anggotaDua->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaDua->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaDua->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaDua->prodi}} &nbsp;</p>
+                      <p>:&nbsp;{{$usulan->getAnggotaDua()->nim}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaDua()->nama}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaDua()->fakultas}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaDua()->prodi}} &nbsp;</p>
                     </div>
                   </div>  
                   <div class="row mb-3">
@@ -162,7 +162,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->anggota_tiga_id)
+                                  @if($item->id == $usulan->getAnggotaTiga()_id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -171,10 +171,10 @@
                       </div>
                     </div>
                     <div class="col-xl-8 d-flex" id="result-anggota-3">
-                      <p>:&nbsp;{{$usulan->anggotaTiga->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaTiga->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaTiga->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaTiga->prodi}} &nbsp;</p>
+                      <p>:&nbsp;{{$usulan->getAnggotaTiga()->nim}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaTiga()->nama}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaTiga()->fakultas}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaTiga()->prodi}} &nbsp;</p>
                     </div>
                   </div>  
                   <div class="row mb-3">
@@ -192,7 +192,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->anggota_empat_id)
+                                  @if($item->id == $usulan->getAnggotaEmpat()_id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -201,10 +201,10 @@
                       </div>
                     </div>
                     <div class="col-xl-8 d-flex" id="result-anggota-4">
-                      <p>:&nbsp;{{$usulan->anggotaEmpat->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaEmpat->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaEmpat->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->anggotaEmpat->prodi}} &nbsp;</p>
+                      <p>:&nbsp;{{$usulan->getAnggotaEmpat()->nim}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaEmpat()->nama}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaEmpat()->fakultas}} &nbsp;</p>
+                      <p>/&nbsp; {{$usulan->getAnggotaEmpat()->prodi}} &nbsp;</p>
                     </div>
                   </div>  
 
@@ -395,7 +395,7 @@
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 1 <p> {{$usulan->anggotaSatu->nim}} <br> {{$usulan->anggotaSatu->nama}}</p>
+													>Tugas Anggota 1 <p> {{$usulan->getAnggotaSatu()->nim}} <br> {{$usulan->getAnggotaSatu()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
@@ -407,7 +407,7 @@
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 2 <p> {{$usulan->anggotaDua->nim}} <br> {{$usulan->anggotaDua->nama}}</p>
+													>Tugas Anggota 2 <p> {{$usulan->getAnggotaDua()->nim}} <br> {{$usulan->getAnggotaDua()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
@@ -419,7 +419,7 @@
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 3 <p> {{$usulan->anggotaTiga->nim}} <br> {{$usulan->anggotaTiga->nama}}</p>
+													>Tugas Anggota 3 <p> {{$usulan->getAnggotaTiga()->nim}} <br> {{$usulan->getAnggotaTiga()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
@@ -431,7 +431,7 @@
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 4  <p> {{$usulan->anggotaEmpat->nim}} <br> {{$usulan->anggotaEmpat->nama}}</p>
+													>Tugas Anggota 4  <p> {{$usulan->getAnggotaEmpat()->nim}} <br> {{$usulan->getAnggotaEmpat()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea

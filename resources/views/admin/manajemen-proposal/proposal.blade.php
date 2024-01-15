@@ -121,13 +121,13 @@
                       {{$item->tugas_ketua_kelompok}}
                   </td>
                   <td>
-                    @if($item->anggotaSatu)
-                      {{$item->anggotaSatu->nim}}
+                    @if($item->getAnggotaSatu())
+                      {{$item->getAnggotaSatu()->nim}}
                     @endif
                   </td>
                   <td>
-                    @if($item->anggotaSatu)
-                      {{$item->anggotaSatu->nama}}
+                    @if($item->getAnggotaSatu())
+                      {{$item->getAnggotaSatu()->nama}}
                     @endif
                   </td>
                   <td>
@@ -135,39 +135,39 @@
                   </td>
                   
                   <td>
-                    @if($item->anggotaDua)
-                      {{$item->anggotaDua->nim}}
+                    @if($item->getAnggotaDua())
+                      {{$item->getAnggotaDua()->nim}}
                     @endif
                   </td>
                   <td>
-                    @if($item->anggotaDua)
-                      {{$item->anggotaDua->nama}}
+                    @if($item->getAnggotaDua())
+                      {{$item->getAnggotaDua()->nama}}
                     @endif
                   </td>
                   <td>
                       {{$item->tugas_anggota_dua}}
                   </td>
                   <td>
-                    @if($item->anggotaTiga)
-                      {{$item->anggotaTiga->nim}}
+                    @if($item->getAnggotaTiga())
+                      {{$item->getAnggotaTiga()->nim}}
                     @endif
                   </td>
                   <td>
-                    @if($item->anggotaTiga)
-                      {{$item->anggotaTiga->nama}}
+                    @if($item->getAnggotaTiga())
+                      {{$item->getAnggotaTiga()->nama}}
                     @endif
                   </td>
                   <td>
                       {{$item->tugas_anggota_tiga}}
                   </td>
                   <td>
-                    @if($item->anggotaTiga)
-                      {{$item->anggotaEmpat->nim}}
+                    @if($item->getAnggotaTiga())
+                      {{$item->getAnggotaEmpat()->nim}}
                     @endif
                   </td>
                   <td>
-                    @if($item->anggotaEmpat)
-                      {{$item->anggotaEmpat->nama}}
+                    @if($item->getAnggotaEmpat())
+                      {{$item->getAnggotaEmpat()->nama}}
                     @endif
                   </td>
                   <td>
