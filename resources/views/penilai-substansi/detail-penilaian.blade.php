@@ -93,6 +93,14 @@
 						</div>
 					</div>
 					<div class="bs-stepper-content">
+						
+						@foreach($errors->all() as $error)
+							<div class="alert alert-danger alert-dimissible fade show" role="alert">
+							<strong>Oops!</strong> 
+							{{$error}}
+							<button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+						@endforeach
 						<!-- Proposal Details -->
 						<div id="data-usulan" class="content">
 							<div class="content-header mb-3">
@@ -113,40 +121,52 @@
 								<div class="row mb-3">
 									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 1 Pengusul</label>
 									<div class="col-xl-10 d-flex">
-										<p>:&nbsp;{{$detail->getAnggotaSatu()->nim}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaSatu()->nama}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaSatu()->fakultas}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaSatu()->prodi}} &nbsp;</p>
+										:
+										@if($detail->anggota_satu_id)
+											<p>:&nbsp;{{$detail->getAnggotaSatu()->nim}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaSatu()->nama}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaSatu()->fakultas}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaSatu()->prodi}} &nbsp;</p>
+										@endif
 									</div>
 								</div>                                
 								
 								<div class="row mb-3">
 									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 2 Pengusul</label>
 									<div class="col-xl-10 d-flex">
-										<p>:&nbsp;{{$detail->getAnggotaDua()->nim}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaDua()->nama}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaDua()->fakultas}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaDua()->prodi}} &nbsp;</p>
+										:
+										@if($detail->anggota_dua_id)
+											<p>:&nbsp;{{$detail->getAnggotaDua()->nim}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaDua()->nama}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaDua()->fakultas}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaDua()->prodi}} &nbsp;</p>
+										@endif
 									</div>
 								</div>
 								
 								<div class="row mb-3">
 									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 3 Pengusul</label>
 									<div class="col-xl-10 d-flex">
-										<p>:&nbsp;{{$detail->getAnggotaTiga()->nim}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaTiga()->nama}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaTiga()->fakultas}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaTiga()->prodi}} &nbsp;</p>
+										:
+										@if($detail->anggota_tiga_id)
+											<p>:&nbsp;{{$detail->getAnggotaTiga()->nim}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaTiga()->nama}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaTiga()->fakultas}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaTiga()->prodi}} &nbsp;</p>
+										@endif
 									</div>
 								</div>
 
 								<div class="row mb-3">
 									<label class="col-xl-2 fw-bold" for="basic-default-email">Anggota 4 Pengusul</label>
 									<div class="col-xl-10 d-flex">
-										<p>:&nbsp;{{$detail->getAnggotaEmpat()->nim}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaEmpat()->nama}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaEmpat()->fakultas}} &nbsp;</p>
-										<p>/&nbsp; {{$detail->getAnggotaEmpat()->prodi}} &nbsp;</p>
+										:
+										@if($detail->anggota_empat_id)
+											<p>:&nbsp;{{$detail->getAnggotaEmpat()->nim}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaEmpat()->nama}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaEmpat()->fakultas}} &nbsp;</p>
+											<p>/&nbsp; {{$detail->getAnggotaEmpat()->prodi}} &nbsp;</p>
+										@endif
 									</div>
 								</div>
 
@@ -399,5 +419,42 @@
         .container()
         .appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
+
+	function submitPenilaian(){
+		var fileInput = document.getElementById('formFile');
+      
+		if (fileInput.files.length === 0) {
+			Swal.fire({
+				title: "Oops!",
+				text: "Tidak ada file yang dipilih",
+			});
+			return;
+		}
+
+		var file = fileInput.files[0];
+
+		var maxSizeInBytes = 1024 * 1024 * 5; // 1 MB
+		if (file.size > maxSizeInBytes) {
+			Swal.fire({
+				title: "Oops!",
+				text: "File tidak boleh lebih dari 5 MB",
+			});
+			return;
+		}
+
+		var allowedExtensions = ['csv', 'xls', 'xlsx'];
+		var fileName = file.name.toLowerCase();
+		var fileExtension = fileName.split('.').pop();
+		
+		if (!allowedExtensions.includes(fileExtension)) {
+			Swal.fire({
+				title: "Oops!",
+				text: "File harus berupa .csv, .xls, atau .xlsx",
+			});
+			return;
+		}
+
+		document.forms['form-tambah-penilaian'].submit()
+	}
   </script>
 @endsection

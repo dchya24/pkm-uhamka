@@ -81,6 +81,13 @@ class PenilaiSubstansiController extends Controller
     }
 
     public function tambahPenilaian(Request $request, $id){
+        validator()->make($request->all(), [
+            'form_penilaian_substansi' => 'required|max:5120',
+        ],[
+            'form_penilaian_substansi.required' => 'Form penilaian tidak boleh kosong',
+            'form_penilaian_substansi.max' => 'Form penilaian maksimal berukuran 5MB',
+        ])->validate();
+
         $usulan = usulan::find($id);
 
         $usulan->status_penilaian_substansi = $request->status_penilaian;

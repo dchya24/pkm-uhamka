@@ -2,7 +2,13 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="backDropModalTitle">Tambahkan Nilai</h4>
+        <h4 class="modal-title" id="backDropModalTitle">
+          @if($detail->status_penilaian_substansi === 'sedang dinilai') 
+            Kirim nilai
+          @else
+            Ubah Nilai
+          @endif
+        </h4>
         <button
           type="button"
           class="btn-close"
@@ -33,6 +39,16 @@
                         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                         required/>
                       <label for="">Maks.5 MB | Tipe File : .csv, .xls, .xslx</label>
+                      <p>
+                        @if($detail->form_penilaian_substansi)
+                          <a href="{{ $detail->form_penilaian_substansi ? url($detail->form_penilaian_substansi): '#'}}" target="_blank">
+                            <?php 
+                              $file = explode("/", $detail->form_penilaian_substansi);  
+                            ?>
+                            {{$file[3]}}
+                          </a> 
+                        @endif
+                      </p>
                   </div>
               </div>
           
@@ -56,7 +72,14 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" ">
           Tutup
         </button>
-        <button type="button" onclick="document.forms['form-tambah-penilaian'].submit()" class="btn btn-primary">Tambah nilai</button>
+        <button type="button" onclick="submitPenilaian()" class="btn btn-primary">
+          @if($detail->status_penilaian_substansi === 'sedang dinilai') 
+            Kirim nilai
+          @else
+            Ubah Nilai
+          @endif
+        </button>
+
       </div>
     </div>
   </div>
