@@ -392,7 +392,7 @@
 													>Upload proposal
 												</label>
 												<div class="col-sm-10">
-													<input class="form-control" type="file"  name="lembar_proposal" id="formFile" accept=".pdf"/>
+													<input class="form-control" type="file"  name="lembar_proposal" id="lembar_proposal" accept=".pdf"/>
 													<label >Maks.5 MB | Tipe File : PDF | </label>
 													<br>
 													<label class="fw-bold">Nama File : Proposal_NIMKetua_Usulan 1/2/3/4</label>
@@ -407,7 +407,7 @@
 												>Upload lembar biodata dosen pembimbing
 												</label>
 												<div class="col-sm-10">
-												<input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" accept=".pdf"/>
+												<input class="form-control" type="file" name="lembar_biodata_dospem" id="lembar_biodata_dospem" accept=".pdf"/>
 												<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah</label>
 												<br>
 													<label class="fw-bold">Nama File : Biodatadosen_NIMKetua_Usulan 1/2/3/4</label>
@@ -422,7 +422,7 @@
 													>Upload lembar biodata ketua & semua anggota
 												</label>
 												<div class="col-sm-10">
-													<input class="form-control" type="file" id="formFile" name="lembar_biodata_kelompok" accept=".pdf"/>
+													<input class="form-control" type="file" id="lembar_biodata_kelompok" name="lembar_biodata_kelompok" accept=".pdf"/>
 													<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah & jadikan 1 file saja (digabung)</label>
 													<br>
 														<label class="fw-bold">Nama File : Biodatakelompok_NIMKetua_Usulan 1/2/3/4</label>
@@ -436,7 +436,7 @@
 													>Upload lembar pengesahan
 												</label>
 												<div class="col-sm-10">
-													<input class="form-control" type="file" name="lembar_pengesahan" id="formFile" accept=".pdf" />
+													<input class="form-control" type="file" name="lembar_pengesahan" id="lembar_pengesahan" accept=".pdf" />
 													<label for="">Maks.5 MB | Tipe File : PDF -> Wajib TTD basah (Cukup sampai TTD Dekan)</label>
 												</div>
 											</div>
@@ -447,7 +447,7 @@
 											<i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
 											<span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
 										</button>
-										<button class="btn btn-primary btn-next" onclick="document.forms['pengajuan_administrasi'].submit()">
+										<button class="btn btn-primary btn-next" onclick="submitUsulan()">
 											<span class="align-middle d-sm-inline-block d-none me-sm-1" >Kirim usulan</span>
 											
 										</button>
@@ -742,7 +742,7 @@
 <script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
 <script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
 <!-- Vendors JS -->
-<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+{{-- <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> --}}
 
   <script>
     $(function () {
@@ -757,5 +757,68 @@
         .container()
         .appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
+
+	function submitUsulan(){
+		var lembar_pengesahan = document.getElementById('lembar_pengesahan');
+		var lembar_biodata_dospem = document.getElementById('lembar_biodata_dospem');
+		var lembar_biodata_kelompok = document.getElementById('lembar_biodata_kelompok');
+		var lembar_proposal = document.getElementById('lembar_proposal');
+        
+		if (
+			lembar_pengesahan.files.length === 0 || 
+			lembar_biodata_dospem.files.length === 0 || 
+			lembar_biodata_kelompok.files.length === 0 || 
+			lembar_proposal.files.length === 0
+			) {
+			Swal.fire({
+			title: "Oops!",
+			icon: "error",
+			text: "Semua File harus diisi!",
+			});
+			return;
+		}
+
+		var maxSizeInBytes = 1024 * 1024 * 5; // 1 MB
+		if (
+			(lembar_pengesahan.files[0].size > maxSizeInBytes) &&
+			(lembar_biodata_dospem.files[0].size > maxSizeInBytes) &&
+			(lembar_biodata_kelompok.files[0].size > maxSizeInBytes) &&
+			(lembar_proposal.files[0].size > maxSizeInBytes)
+			) {
+			Swal.fire({
+			title: "Oops!",
+			icon: "error",
+			text: "File tidak boleh lebih dari 5 MB",
+			});
+			return;
+		}
+
+		var allowedExtensions = ['pdf'];
+		var fileLembarProposal = lembar_proposal.files[0].name.toLowerCase();
+		var fileLembarPengesahan = lembar_pengesahan.files[0].name.toLowerCase();
+		var fileLembarBiodataDospem = lembar_biodata_dospem.files[0].name.toLowerCase();
+		var fileLembarBiodataKelompok = lembar_biodata_kelompok.files[0].name.toLowerCase();
+
+		var fileLembarProposalExtension = fileLembarProposal.split('.').pop();
+		var fileLembarPengesahanExtension = fileLembarPengesahan.split('.').pop();
+		var fileLembarBiodataDospemExtension = fileLembarBiodataDospem.split('.').pop();
+		var fileLembarBiodataKelompokExtension = fileLembarBiodataKelompok.split('.').pop();
+
+		
+		if (
+			!allowedExtensions.includes(fileLembarProposalExtension) ||
+			!allowedExtensions.includes(fileLembarPengesahanExtension) ||
+			!allowedExtensions.includes(fileLembarBiodataDospemExtension) ||
+			!allowedExtensions.includes(fileLembarBiodataKelompokExtension)
+		) {
+			Swal.fire({
+			title: "Oops!",
+			text: "File harus berupa pdf",
+			icon: "error",
+			});
+			return;
+		}
+		document.forms['pengajuan_administrasi'].submit();
+	}
   </script>
 @endsection

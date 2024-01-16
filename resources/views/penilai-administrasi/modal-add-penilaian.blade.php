@@ -4,7 +4,13 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="backDropModalTitle">Ubah Nilai usulan</h4>
+          <h4 class="modal-title" id="backDropModalTitle">
+            @if(!in_array($detail->status_penilaian_administrasi, ["done", "rejected"])) 
+              Kirim Nilai Usulan
+            @else
+              Ubah Nilai Usulan
+            @endif
+          </h4>
           <button
             type="button"
             class="btn-close"
@@ -43,6 +49,16 @@
                         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                         required />
 											<label for="">Maks.5 MB | Tipe File : CSV, XLS, XLSX | <a>ADM_1803015016.xlsx</a></label>
+                      <p>
+                        @if($detail->form_penilaian_administrasi)
+                          <a href="{{ $detail->form_penilaian_administrasi ? url($detail->form_penilaian_administrasi): '#'}}" target="_blank">
+                            <?php 
+                              $file = explode("/", $detail->form_penilaian_administrasi);  
+                            ?>
+                            {{$file[3]}}
+                          </a> 
+                        @endif
+                      </p>
 									</div>
 							</div>
 						</form>
@@ -54,8 +70,12 @@
           <button 
             type="button" 
             class="btn btn-primary" 
-            onclick="document.forms['add_penilaian_adm'].submit()">
-            Nilai Usulan
+            onclick="submitPenilaian()">
+            @if(!in_array($detail->status_penilaian_administrasi, ["done", "rejected"])) 
+              Kirim Nilai Usulan
+            @else
+              Ubah Nilai Usulan
+            @endif
 					</button>
         </div>
       </div>

@@ -82,6 +82,12 @@ class AdministrasiController extends Controller
     }
 
     public function tambahPenilaian(Request $request, $id){
+        validator()->make($request->all(), [
+            'form_penilaian_administrasi' => 'required|max:5120',
+        ],[
+            'form_penilaian_administrasi.required' => 'Form penilaian tidak boleh kosong',
+            'form_penilaian_administrasi.max' => 'Form penilaian maksimal berukuran 5MB',
+        ])->validate();
         $usulan = usulan::find($id);
 
         if(in_array($usulan->penilaian_administrasi, ['done', 'rejected'])){

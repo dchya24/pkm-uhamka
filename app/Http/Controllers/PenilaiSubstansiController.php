@@ -93,6 +93,12 @@ class PenilaiSubstansiController extends Controller
         $usulan->status_penilaian_substansi = $request->status_penilaian;
 
         if($request->hasFile('form_penilaian_substansi')){
+            if(in_array($usulan->form_penilaian_substansi, ['minor', 'mayor'])){
+                if(file_exists($usulan->form_penilaian_substansi)){
+                    unlink($usulan->form_penilaian_substansi);
+                }
+            }
+
             $lembar_penilaian = $request->file('form_penilaian_substansi');
 
             $nama_file = $lembar_penilaian->getClientOriginalName();

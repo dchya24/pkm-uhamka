@@ -426,6 +426,7 @@
 		if (fileInput.files.length === 0) {
 			Swal.fire({
 				title: "Oops!",
+				icon: "error",
 				text: "Tidak ada file yang dipilih",
 			});
 			return;
@@ -437,6 +438,7 @@
 		if (file.size > maxSizeInBytes) {
 			Swal.fire({
 				title: "Oops!",
+				icon: "error",
 				text: "File tidak boleh lebih dari 5 MB",
 			});
 			return;
@@ -449,6 +451,7 @@
 		if (!allowedExtensions.includes(fileExtension)) {
 			Swal.fire({
 				title: "Oops!",
+				icon: "error",
 				text: "File harus berupa .csv, .xls, atau .xlsx",
 			});
 			return;
