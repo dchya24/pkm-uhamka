@@ -88,9 +88,9 @@
                   <td>{{$item->jenisPkm->singkatan}}</td>
                   <td>Usulan {{$item->usulan}}</td>
                   <td>
-                    @if($item->status_penilaian_administrasi == "waiting")
+                    @if($item->status_penilaian_peninjau == "waiting")
                       <span class="badge bg-label-danger">Belum Ditinjau</span>
-                    @elseif(in_array($item->status_penilaian_administrasi,["done", 'rejected']))
+                    @elseif(in_array($item->status_penilaian_peninjau,["done", 'rejected']))
                       <span class="badge bg-label-success">Sudah Ditinjau</span>
                     @endif                  
                   </td>
