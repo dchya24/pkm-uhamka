@@ -76,7 +76,7 @@ class PeninjauController extends Controller
         $detail = usulan::find($id);
         $aksesHalaman = AksesHalaman::where('slug', 'usulan-' . $detail->usulan)->first();
 
-        $hasEditUsulan = $aksesHalaman->ubah_nilai_peninjau;
+        $hasEditUsulan = $aksesHalaman->ubah_nilai_peninjauan;
 
         return view("reviewer.detail-penilaian", compact('detail', 'hasEditUsulan'));
     }

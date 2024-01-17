@@ -103,7 +103,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->getAnggotaSatu()_id)
+                                  @if($item->id == $usulan->getAnggotaSatu()->id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -111,10 +111,13 @@
                           </select>
                     </div>
                     <div class="col-xl-8 d-flex"  id="result-anggota-1">
-                      <p>:&nbsp;{{$usulan->getAnggotaSatu()->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaSatu()->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaSatu()->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaSatu()->prodi}} &nbsp;</p>
+                      :
+                      @if($usulan->anggota_satu_id)
+                        <p>&nbsp;{{$usulan->getAnggotaSatu()->nim}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaSatu()->nama}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaSatu()->fakultas}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaSatu()->prodi}} &nbsp;</p>
+                      @endif
                     </div>
                   </div>  
                   <div class="row mb-3">
@@ -132,7 +135,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->getAnggotaDua()_id)
+                                  @if($item->id == $usulan->getAnggotaDua()->id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -141,10 +144,13 @@
                       </div>
                     </div>
                     <div class="col-xl-8 d-flex" id="result-anggota-1">
-                      <p>:&nbsp;{{$usulan->getAnggotaDua()->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaDua()->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaDua()->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaDua()->prodi}} &nbsp;</p>
+                      :
+                      @if($usulan->anggota_dua_id)
+                        <p>&nbsp;{{$usulan->getAnggotaDua()->nim}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaDua()->nama}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaDua()->fakultas}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaDua()->prodi}} &nbsp;</p>
+                      @endif
                     </div>
                   </div>  
                   <div class="row mb-3">
@@ -162,7 +168,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->getAnggotaTiga()_id)
+                                  @if($item->id == $usulan->getAnggotaTiga()->id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -171,10 +177,13 @@
                       </div>
                     </div>
                     <div class="col-xl-8 d-flex" id="result-anggota-3">
-                      <p>:&nbsp;{{$usulan->getAnggotaTiga()->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaTiga()->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaTiga()->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaTiga()->prodi}} &nbsp;</p>
+                      :
+                      @if($usulan->anggota_tiga_id)
+                        <p>&nbsp;{{$usulan->getAnggotaTiga()->nim}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaTiga()->nama}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaTiga()->fakultas}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaTiga()->prodi}} &nbsp;</p>
+                      @endif
                     </div>
                   </div>  
                   <div class="row mb-3">
@@ -192,7 +201,7 @@
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
                                   data-prodi="{{$item->prodi}}"
-                                  @if($item->id == $usulan->getAnggotaEmpat()_id)
+                                  @if($item->id == $usulan->getAnggotaEmpat()->id)
                                   selected @endif> 
                                   {{$item->nim}} - {{$item->nama}}
                                 </option>
@@ -201,10 +210,13 @@
                       </div>
                     </div>
                     <div class="col-xl-8 d-flex" id="result-anggota-4">
-                      <p>:&nbsp;{{$usulan->getAnggotaEmpat()->nim}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaEmpat()->nama}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaEmpat()->fakultas}} &nbsp;</p>
-                      <p>/&nbsp; {{$usulan->getAnggotaEmpat()->prodi}} &nbsp;</p>
+                      :
+                      @if($usulan->anggota_empat_id)
+                        <p>&nbsp;{{$usulan->getAnggotaEmpat()->nim}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaEmpat()->nama}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaEmpat()->fakultas}} &nbsp;</p>
+                        <p>/&nbsp; {{$usulan->getAnggotaEmpat()->prodi}} &nbsp;</p>
+                      @endif
                     </div>
                   </div>  
 

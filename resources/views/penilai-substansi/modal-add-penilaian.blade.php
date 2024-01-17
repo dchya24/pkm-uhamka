@@ -58,10 +58,24 @@
                   </label>
                   <div class="col-sm-9">
                       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                          <input type="radio" class="btn-check" value="minor" name="status_penilaian" id="status_penilaian1" checked/>
+                        <?php
+                          $status_penilaian = $detail->status_penilaian_substansi;
+                          $checkedMinor = $status_penilaian === 'minor' ? 'checked' : '';
+                          $checkedMayor = $status_penilaian === 'mayor' ? 'checked' : '';
+                        ?>
+                          <input 
+                            type="radio" 
+                            class="btn-check" 
+                            value="minor" 
+                            name="status_penilaian" 
+                            id="status_penilaian1" {{$checkedMinor}}/>
                           <label class="btn btn-outline-success" for="status_penilaian1">Minor</label>
 
-                          <input type="radio" class="btn-check" value='mayor' name="status_penilaian" id="status_penilaian2" />
+                          <input type="radio" 
+                            class="btn-check" 
+                            value='mayor' 
+                            name="status_penilaian" 
+                            id="status_penilaian2" {{$checkedMayor}} />
                           <label class="btn btn-outline-danger" for="status_penilaian2">Mayor</label>
                       </div>
                   </div>

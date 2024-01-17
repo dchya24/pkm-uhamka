@@ -495,7 +495,7 @@
 	<script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
 	<script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
 	<!-- Vendors JS -->
-	<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+	{{-- <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> --}}
 
   <script>
     $(function () {

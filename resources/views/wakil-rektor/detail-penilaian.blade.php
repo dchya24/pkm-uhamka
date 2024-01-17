@@ -622,7 +622,7 @@
 												Tinjau Usulan
 											</button>
 										@elseif($detail->status_penilaian_peninjau === "done")
-											<button class="btn btn-primary btn-next" disabled>
+											<button class="btn btn-primary btn-next">
 												<span class="align-middle d-sm-inline-block d-none me-sm-1" >Selanjutnya</span>
 												<i class="mdi mdi-arrow-right"></i>
 											</button>
@@ -653,14 +653,14 @@
 												@if($detail->status_rekomendasi === 'internal')
 													{{-- Grup rekomendasi Internal --}}
 													<Label class="fw-bold">Tautan grup whatsapp Rekomendasi internal :
-														<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+														<a href="https://{{$linkGroup->link_group}}" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
 															<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
 														</a> 
 													</Label> 
 												@elseif($detail->status_rekomendasi === 'belmawa')
 													{{-- Grup rekomendasi ke belmawa --}}
 													<Label class="fw-bold">Tautan grup whatsapp Rekomendasi kemendikbudristek :
-														<a href="https://youtu.be/XSo-6TAcKlA?si=UabjN8-qs1zBLlHo" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
+														<a href="https://{{$linkGroup->link_group}}" target="_blank"  type="button" class="btn rounded-pill btn-primary btn-sm">
 															<i class="mdi mdi-whatsapp"></i> Grup Whatsapp
 														</a> 
 													</Label>  

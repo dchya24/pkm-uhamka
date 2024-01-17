@@ -482,13 +482,13 @@
 
   <script>
     @if($canCreateUsulan)
-      Swal.fire({
-        title: "Info",
-        text: "Batas anggaran usulan adalah Rp.5.000.000 - Rp.12.000.000",
-        icon: "info",
-        showDenyButton: false,
-        showCancelButton: false,
-      });
+      // Swal.fire({
+      //   title: "Info",
+      //   text: "Batas anggaran usulan adalah Rp.5.000.000 - Rp.12.000.000",
+      //   icon: "info",
+      //   showDenyButton: false,
+      //   showCancelButton: false,
+      // });
     @endif
   
     function selectAnggota(event){

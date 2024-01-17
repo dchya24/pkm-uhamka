@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Informasi;
+use App\Models\Rekomendasi;
 use App\Models\usulan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class WakilRektorController extends Controller
@@ -50,7 +52,13 @@ class WakilRektorController extends Controller
     public function detailPenilaian($id){
         $detail = usulan::find($id);
 
-        return view("wakil-rektor.detail-penilaian", compact('detail'));
+        $linkGroup = null;
+
+        if($detail->status_rekomendasi !== null){
+            $linkGroup = Rekomendasi::where(DB::raw('LOWER(`nama`)'), strtolower($detail->status_rekomendasi))->first();
+        }
+
+        return view("wakil-rektor.detail-penilaian", compact('detail',"linkGroup"));
     }
 
     public function updatePassword(Request $request){

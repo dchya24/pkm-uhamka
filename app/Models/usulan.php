@@ -62,6 +62,7 @@ class usulan extends Model
 
     public function getAnggotaSatu(){
         $nullData =  [
+            "id" => null,
             "nama" => null,
             "nim" => null,
             "fakultas" => null,
@@ -78,6 +79,7 @@ class usulan extends Model
 
     public function getAnggotaDua(){
         $nullData =  [
+            "id" => null,
             "nama" => null,
             "nim" => null,
             "fakultas" => null,
@@ -94,6 +96,7 @@ class usulan extends Model
 
     public function getAnggotaTiga(){
         $nullData =  [
+            "id" => null,
             "nama" => null,
             "nim" => null,
             "fakultas" => null,
@@ -110,6 +113,7 @@ class usulan extends Model
 
     public function getAnggotaEmpat(){
         $nullData =  [
+            "id" => null,
             "nama" => null,
             "nim" => null,
             "fakultas" => null,
