@@ -780,9 +780,9 @@
 
 		var maxSizeInBytes = 1024 * 1024 * 5; // 1 MB
 		if (
-			(lembar_pengesahan.files[0].size > maxSizeInBytes) &&
-			(lembar_biodata_dospem.files[0].size > maxSizeInBytes) &&
-			(lembar_biodata_kelompok.files[0].size > maxSizeInBytes) &&
+			(lembar_pengesahan.files[0].size > maxSizeInBytes) ||
+			(lembar_biodata_dospem.files[0].size > maxSizeInBytes) ||
+			(lembar_biodata_kelompok.files[0].size > maxSizeInBytes) ||
 			(lembar_proposal.files[0].size > maxSizeInBytes)
 			) {
 			Swal.fire({
