@@ -545,7 +545,7 @@
         return;
       }
 
-      document.forms['form-tambah-penilaian'].submit()
+      document.forms['add_penilaian_adm'].submit()
     }
   </script>
 @endsection
