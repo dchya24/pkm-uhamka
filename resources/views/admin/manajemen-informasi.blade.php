@@ -46,10 +46,12 @@
                         <td>{{$item->dikirimKepada()}}</td>
                         <td>{!! $item->description !!}</td>
                         <td>
-                          <a href="{{url($item->file)}}" class="btn rounded-pill btn-primary btn-sm" type="button" download>
-                            <i class="mdi mdi-file"></i>
-                            Unduh
-                          </a>
+                          @if($item->file !== "")
+                            <a href="{{url($item->file)}}" class="btn rounded-pill btn-primary btn-sm" type="button" download>
+                              <i class="mdi mdi-file"></i>
+                              Unduh
+                            </a>
+                          @endif
                         </td>
                         <td class="">
                           <button
@@ -152,12 +154,37 @@
 <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
   function submit(){
     const descriptionText = window.quillDescription.root.innerHTML;
     const description = document.querySelector("input[name='description']");
-    description.value = descriptionText
+    const judul = document.getElementById("input_judul").value;
+    description.value = descriptionText;
+
+    const arrTo = ["mahasiswa", "penilai_substansi", "penilai_administrasi", "peninjau", "warek"];
+
+    countChecked = 0;
+    arrTo.forEach((item) => {
+      const checkbox = document.querySelector(`input[name='untuk_${item}']`);;
+      if(checkbox.checked){
+        countChecked++;
+      }
+    })
+
+    if(
+      (descriptionText === "" || descriptionText === "<p><br></p>")
+      || (judul == "" || judul == null || countChecked == 0)
+    ){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Data tidak boleh kosong!',
+      })
+
+      return false;
+    }
 
     document.forms['Tambah_Informasi'].submit() ;
   }

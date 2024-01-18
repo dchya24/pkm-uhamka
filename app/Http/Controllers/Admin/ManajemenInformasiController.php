@@ -15,9 +15,7 @@ class ManajemenInformasiController extends Controller
     }
 
     public function store(Request $request){
-        $data = $request->except('_token', "file");
-
-        $fileUpload = null;
+        $fileUpload = "";
         if($request->hasFile('file')){
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
@@ -25,8 +23,6 @@ class ManajemenInformasiController extends Controller
             
             $file->move(public_path("upload/informasi"), $fileName);
         }
-
-        $data["file"] = $fileUpload;
 
         $createInformasi = Informasi::insert([
             "judul" => $request->judul,

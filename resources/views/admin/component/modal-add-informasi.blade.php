@@ -20,11 +20,11 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="ecommerce-product-name"
+                  id="input_judul"
                   placeholder="Product title"
                   name="judul"
                   aria-label="Product title" />
-                <label for="ecommerce-product-name">Judul</label>
+                <label for="input_judul">Judul</label>
               </div>
               <!-- Komentas -->
               <div>
