@@ -2,22 +2,21 @@
 <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Sertifikat</h4>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form 
-          action="{{route('admin.sertifikat.store')}}" 
-          {{-- class="dropzone needsclick"  --}}
-          {{-- id="dropzone-multi"  --}}
-          method='POST' 
-          enctype="multipart/form-data"
-          name="add-sertifikat">
+      
+      <form 
+        action="{{route('admin.sertifikat.store')}}" 
+        method='POST' 
+        enctype="multipart/form-data"
+        name="add-sertifikat">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Sertifikat</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           {{-- <div class="dz-message needsclick">
             Upload semua file sertifikat disni
             <span class="note needsclick">
@@ -25,22 +24,21 @@
             </span>
           </div> --}}
           <div class="form-control">
-            <input name="file[]" type="file" id="sertifikat" multiple/>
+            <input name="file[]" type="file" id="sertifikat" multiple required />
           </div>
           @csrf
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-          Tutup
-        </button>
-        <button 
-          type="button" 
-          class="btn btn-primary"
-          onclick="document.forms['add-sertifikat'].submit()">
-          Submit
-        </button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Tutup
+          </button>
+          <button 
+            type="submit" 
+            class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

@@ -19,7 +19,7 @@
                   type="number"
                   class="form-control"
                   name="nidn"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>NIDN/NIP</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -27,7 +27,7 @@
                   type="text"
                   class="form-control"
                   name="nama"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Nama Lengkap</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -35,7 +35,7 @@
                   type="text"
                   class="form-control"
                   name="fakultas"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Fakultas</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -43,7 +43,7 @@
                   type="text"
                   class="form-control"
                   name="prodi"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Program Studi</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -51,7 +51,7 @@
                   id="select2Basic"
                   class="select2 form-select form-select-lg"
                   name="keterangan"
-                  data-allow-clear="true">
+                  data-allow-clear="true" required>
                   <option value="0">Tidak Aktif</option>
                   <option value="1">Aktif</option>
                 </select>
