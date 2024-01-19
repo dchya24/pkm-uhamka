@@ -142,6 +142,6 @@ class usulan extends Model
     }
 
     public function wakilRektor(){
-        return $this->belongsTo(DataDosen::class, "wakil_rektor_id");
+        return $this->belongsTo(Administrator::class, "wakil_rektor_id");
     }
 }
