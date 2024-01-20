@@ -172,5 +172,22 @@
         .container()
         .appendTo('#table-sertifikat_wrapper .col-md-6:eq(0)');
     })
+
+    function submitAdd(e){
+      e.preventDefault();
+      e.target.disabled = true;
+
+      if(document.getElementById("add-sertifikat").checkValidity()){
+        document.getElementById("add-sertifikat").submit();
+      }
+      else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Tidak Boleh Ada Data Yang Kosong",
+          icon: "error",
+        });
+        e.target.disabled = false;
+      }
+    }
   </script>
 @endsection

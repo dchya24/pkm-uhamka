@@ -3,7 +3,11 @@
   <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <form action="{{route('admin.skema-pkm.store')}}" method="POST" name="add-jenis-pkm" enctype="multipart/form-data">
+      <form action="{{route('admin.skema-pkm.store')}}" 
+      method="POST" 
+      id="add-jenis-pkm" 
+      name="add-jenis-pkm" 
+      enctype="multipart/form-data">
         <div class="modal-header">
           <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Skema Pkm</h4>
           <button
@@ -76,7 +80,7 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             Tutup
           </button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="button" onclick="submitAdd(event)" class="btn btn-primary">Simpan</button>
         </div>
       </form>
     </div>

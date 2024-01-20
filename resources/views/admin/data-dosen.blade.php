@@ -153,8 +153,21 @@
         document.forms["edit_dosen"].action = url;
       }
 
-      function submitEdit(){
-        $("#form-edit").submit();
+      function submitAdd(e){
+        e.preventDefault();
+        e.target.disabled = true;
+
+        if(document.getElementById("add-dosen").checkValidity()){
+          document.getElementById("add-dosen").submit();
+        }
+        else {
+          Swal.fire({
+            title: "Oops!",
+            text: "Tidak Boleh Ada Data Yang Kosong",
+            icon: "error",
+          });
+          e.target.disabled = false;
+        }
       }
   </script>
 @endsection

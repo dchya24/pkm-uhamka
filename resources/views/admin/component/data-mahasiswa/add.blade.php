@@ -10,7 +10,11 @@
           data-bs-dismiss="modal"
           aria-label="Close"></button>
       </div>
-      <form action="{{ route('admin.data-mahasiswa.store')}}" method="POST">
+      <form 
+        action="{{ route('admin.data-mahasiswa.store')}}" 
+        method="POST"
+        name="form-add"
+        id="form-add">
         <div class="modal-body">
           <div class="mb-4">
             <div class="card-body">
@@ -66,7 +70,7 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             Tutup
           </button>
-          <button type="submit" class="btn btn-primary">Tambah</button>
+          <button type="button" onclick="submitAdd(event)" class="btn btn-primary">Tambah</button>
         </div>
       </form>
     </div>

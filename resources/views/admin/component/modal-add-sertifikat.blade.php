@@ -7,6 +7,7 @@
         action="{{route('admin.sertifikat.store')}}" 
         method='POST' 
         enctype="multipart/form-data"
+        id="add-sertifikat"
         name="add-sertifikat">
         <div class="modal-header">
           <h4 class="modal-title" id="exampleModalLabel3">Tambahkan Sertifikat</h4>
@@ -33,7 +34,8 @@
             Tutup
           </button>
           <button 
-            type="submit" 
+            type="button"
+            onclick="submitAdd(event)" 
             class="btn btn-primary">
             Submit
           </button>

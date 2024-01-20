@@ -142,6 +142,23 @@
        <!-- Page JS -->
        <script src="{{url('assets/js/forms-file-upload.js')}}"></script>
        <script>
+        function submitAdd(e){
+          e.preventDefault();
+          e.target.disabled = true;
+
+          if(document.getElementById("add-jenis-pkm").checkValidity()){
+            document.getElementById("add-jenis-pkm").submit();
+          }
+          else {
+            Swal.fire({
+              title: "Oops!",
+              text: "Tidak Boleh Ada Data Yang Kosong",
+              icon: "error",
+            });
+            e.target.disabled = false;
+          }
+        }
+
         function openModal(event){
           event.preventDefault();
           const id = event.target.getAttribute('data-id');
