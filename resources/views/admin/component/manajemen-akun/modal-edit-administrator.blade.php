@@ -17,10 +17,9 @@
                     type="text"
                     class="form-control"
                     id="edit_username"
-                    placeholder="Product title"
+                    placeholder="Username"
                     name="username"
-                    aria-label="Product title"
-                    value="iwan mahyudin" />
+                    aria-label="Product title" required/>
                   <label for="ecommerce-product-name">Username</label>
                 </div>
                 <div class="form-floating form-floating-outline mb-4">
@@ -28,10 +27,9 @@
                     type="text"
                     class="form-control"
                     id="edit_nama"
-                    placeholder="Product title"
+                    placeholder="Nama"
                     name="nama"
-                    aria-label="Product title"
-                    value="1234567" />
+                    aria-label="Product title" required />
                   <label for="ecommerce-product-name">Nama</label>
                 </div>
                 <div class="form-floating form-floating-outline mb-4">
@@ -41,8 +39,7 @@
                     id="edit_password"
                     placeholder="Type here when change password"
                     name="password"
-                    aria-label="Product title"
-                    />
+                    aria-label="Product title" />
                   <label for="ecommerce-product-name">Password</label>
                 </div>
                 {{ csrf_field() }}
@@ -54,7 +51,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-          <button type="button" class="btn btn-primary" onclick="submitEdit()">Ubah</button>
+          <button type="button" class="btn btn-primary" onclick="submitEdit(event)">Ubah</button>
         </div>
       </div>
     </div>

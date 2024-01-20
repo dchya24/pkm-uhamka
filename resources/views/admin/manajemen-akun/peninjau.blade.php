@@ -131,12 +131,37 @@
 <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
 <script>
-  function submitAdd(){
-    document.getElementById("add-peninjau").submit();
+  function submitAdd(e){
+    e.preventDefault();
+    e.target.disabled = true;
+
+    if(document.getElementById("add-peninjau").checkValidity()){
+      document.getElementById("add-peninjau").submit();
+    }
+    else {
+      Swal.fire({
+        title: "Oops!",
+        text: "Tidak Boleh Ada Data Yang Kosong",
+        icon: "error",
+      });
+      e.target.disabled = false;
+    }
   }
 
-  function submitEdit(){
-    $("#edit_peninjau").submit();
+  function submitEdit(e){
+    e.preventDefault();
+    e.target.disabled = true;
+    if(document.getElementById("edit_peninjau").checkValidity()){
+      document.getElementById("edit_peninjau").submit();
+    }
+    else {
+      Swal.fire({
+        title: "Oops!",
+        text: "Tidak Boleh Ada Data Yang Kosong",
+        icon: "error",
+      });
+      e.target.disabled = false;
+    }
   }
 
   function openModal(event){

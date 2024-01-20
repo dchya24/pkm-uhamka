@@ -15,7 +15,7 @@
               name="edit_peninjau"
               method="POST"
               id="edit_peninjau"
-            >
+              >
               <div class="form-floating form-floating-outline mb-4">
                 <input type="password" class="form-control" name="password"  placeholder="Password" required />
                 <label for="ecommerce-product-name">Password</label>
@@ -29,7 +29,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="submitEdit()">Ubah</button>
+        <button type="button" class="btn btn-primary" onclick="submitEdit(event)">Ubah</button>
       </div>
     </div>
   </div>

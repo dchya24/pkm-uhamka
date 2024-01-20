@@ -19,7 +19,7 @@
                   type="text"
                   class="form-control"
                   name="username"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Username</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -27,7 +27,7 @@
                   type="text"
                   class="form-control"
                   name="nama"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Nama</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -35,7 +35,7 @@
                   type="password"
                   class="form-control"
                   name="password"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Password</label>
               </div>
               {{ csrf_field() }}
@@ -48,7 +48,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary" onclick="submitAdd()">Tambah</button>
+        <button type="button" class="btn btn-primary" onclick="submitAdd(event)">Tambah</button>
       </div>
     </div>
   </div>

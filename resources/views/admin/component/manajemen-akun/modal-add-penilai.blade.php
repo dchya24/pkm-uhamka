@@ -20,7 +20,7 @@
                   class="form-control"
                   name="username"
                   id="username"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Username</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -29,7 +29,7 @@
                   class="form-control"
                   name="nama"
                   id="nama"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Nama Lengkap</label>
               </div>
               <div class="form-floating form-floating-outline mb-4">
@@ -45,7 +45,7 @@
                   id="jenis_penilai"
                   class="select2 form-select form-select-lg"
                   name="jenis_penilai"
-                  data-allow-clear="true">
+                  data-allow-clear="true" required>
                   <option value="1">Penilai Administrasi</option>
                   <option value="2">Penilai Substansi</option>
                 </select>
@@ -61,7 +61,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary" onclick="submitAdd()">Tambah</button>
+        <button type="button" class="btn btn-primary" onclick="submitAdd(event)">Tambah</button>
       </div>
     </div>
   </div>

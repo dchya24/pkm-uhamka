@@ -18,7 +18,7 @@
                 <select
                   name="nim"
                   class="select2"
-                  id="select2-nim">
+                  id="select2-nim" required>
                   <option value="">NIM - NAMA</option>
                 </select>
                 <label>NIM</label>
@@ -28,7 +28,7 @@
                   type="password"
                   class="form-control"
                   name="password"
-                  aria-label="Product title" />
+                  aria-label="Product title" required />
                 <label>Password</label>
               </div>
               @csrf
@@ -41,7 +41,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary" onclick="submitAdd()">Tambah</button>
+        <button type="button" class="btn btn-primary" onclick="submitAdd(event)">Tambah</button>
       </div>
     </div>
   </div>

@@ -128,8 +128,21 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
     <script>
-      function submitAdd(){
-        $("#add-warek").submit();
+      function submitAdd(e){
+        e.preventDefault();
+        e.target.disabled = true;
+
+        if(document.forms['add-warek'].checkValidity()){
+          document.forms['add-warek'].submit();
+        }
+        else {
+          Swal.fire({
+            title: "Oops!",
+            text: "Tidak Boleh Ada Data Yang Kosong",
+            icon: "error",
+          });
+          e.target.disabled = false;
+        }
       }
 
       function submitEdit(){

@@ -29,7 +29,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="submitEdit()">Ubah</button>
+        <button type="button" class="btn btn-primary" onclick="submitEdit(event)">Ubah</button>
       </div>
     </div>
   </div>
