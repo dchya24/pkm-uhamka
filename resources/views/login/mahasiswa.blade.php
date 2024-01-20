@@ -48,7 +48,7 @@
                       class="form-control"
                       placeholder="Masukan NIM kamu"
                       name="nim"
-                      autofocus />
+                      autofocus required  />
                   <label for="a_username">Nomor Induk Mahasiswa</label>
                   </div>
                   <div class="mb-3 form-password-toggle">
@@ -60,7 +60,7 @@
                           class="form-control"
                           name="password"
                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                          aria-describedby="password" />
+                          aria-describedby="password" required />
                       <label for="password">Password</label>
                       </div>
                       <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
@@ -68,7 +68,7 @@
                   </div>
                   <div class="mb-3">
                     @csrf
-                      <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>                  
+                      <button class="btn btn-primary d-grid w-100" type="button" onclick="login(event)">Masuk</button>                  
                   </div>
               </form>
               <p class="text-center mt-2">
@@ -117,7 +117,24 @@
 
     @section('script')
         <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
+        <script>
+            function login(e){
+                e.preventDefault();
+                e.target.disabled = true;
 
+                if(document.getElementById('formAuthentication').checkValidity()){
+                    document.getElementById('formAuthentication').submit();
+                }
+                else{
+                    e.target.disabled = false;
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Data tidak valid!',
+                    })
+                }
+            }
+        </script>
     @endsection
 	</body>
 </html>
