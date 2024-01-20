@@ -1,6 +1,5 @@
 @extends('mahasiswa.template.layout')
 @section("title", "Kirim Usulan | Mahasiswa")
-
 @section('body')
   <!-- Main Content -->
   <div class="container-xxl flex-grow-0 container-p-y">
@@ -420,7 +419,8 @@
                         <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                       </button>
                       <button 
-                        class="btn btn-primary">
+                        class="btn btn-primary"
+                        id="btn_kirim">
                         Kirim
                       </button>
                     </div>
@@ -556,6 +556,9 @@
     // });
 
     function submitData(){
+      const btnKirim = document.getElementById('btn_kirim');
+      btnKirim.disabled = true;
+
       const form = document.forms['kirim-usulan'];
       const anggaran = form['anggaran'].value;
       const lembar_bimbingan = form['lembar_bimbingan'].value;
@@ -563,7 +566,6 @@
       const pendahuluan = form['pendahuluan'].value;
       const jenis_pkm_id = form['jenis_pkm_id'].value;
       const pembimbing_id = form['pembimbing_id'].value;
-      console.log(anggaran)
 
       if(
         anggaran == "" || lembar_bimbingan == "" 
@@ -577,6 +579,7 @@
             icon: "error",
           });
 
+          btnKirim.disabled = false;
           return false;
       }
 
@@ -587,6 +590,7 @@
           icon: "warning",
         });
 
+        btnKirim.disabled = false;
         return false;
       }
 

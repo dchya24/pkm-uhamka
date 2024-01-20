@@ -108,7 +108,7 @@ class UsulanController extends BaseMahasiswaController
         }
 
         $linkGroup = null;
-        if($detail->status_rekomendasi){
+        if(!empty($detail) && $detail->status_rekomendasi != null){
             $data = DB::table('rekomendasi')
             ->where(DB::raw('LOWER(nama)'), 'like', '%' . strtolower($detail->status_rekomendasi) . '%')
             ->first();
