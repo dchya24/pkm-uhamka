@@ -44,10 +44,11 @@ class ManajemenInformasiController extends Controller
 
         if(!$informasi) abort(404);
 
-        $file = $informasi->file;
-        $informasi->delete();
+        if($informasi->file !== null && file_exists($informasi->file)){
+            unlink($informasi->file);
+        }
 
-        unlink($file);
+        $informasi->delete();
 
         return redirect()->back();
     }
@@ -73,7 +74,9 @@ class ManajemenInformasiController extends Controller
             $fileName = $file->getClientOriginalName();
             $fileUpload = "upload/informasi/" . $fileName;
 
-            unlink($informasi->file);
+            if($informasi->file !== null && file_exists($informasi->file)){
+                unlink($informasi->file);
+            }
             
             $file->move(public_path("upload/informasi"), $fileName);
 

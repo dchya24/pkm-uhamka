@@ -58,6 +58,10 @@ class JenisPkmController extends Controller
 
             $tujuan = "upload/jenis-pkm/";
 
+            if($jenisPkm->form_substansi !== null && file_exists($jenisPkm->form_substansi)){
+                unlink($jenisPkm->form_substansi);
+            }
+
             $file->move(public_path($tujuan), $fileName);
 
             $jenisPkm->form_substansi = $tujuan .  $fileName;
@@ -68,6 +72,10 @@ class JenisPkmController extends Controller
             $fileName = $file->getClientOriginalName();
 
             $tujuan = "upload/jenis-pkm/";
+
+            if($jenisPkm->form_administrasi !== null && file_exists($jenisPkm->form_administrasi)){
+                unlink($jenisPkm->form_administrasi);
+            }
 
             $file->move(public_path($tujuan), $fileName);
 
@@ -80,6 +88,10 @@ class JenisPkmController extends Controller
 
             $tujuan = "upload/jenis-pkm/";
 
+            if($jenisPkm->form_peninjau !== null && file_exists($jenisPkm->form_peninjau)){
+                unlink($jenisPkm->form_peninjau);
+            }
+
             $file->move(public_path($tujuan), $fileName);
 
             $jenisPkm->form_peninjau = $tujuan .  $fileName;
@@ -91,7 +103,21 @@ class JenisPkmController extends Controller
     }
 
     public function delete($id){
-        $jenisPkm = JenisPkm::destroy($id);
+        $jenisPkm = JenisPkm::find($id);
+
+        if($jenisPkm->form_peninjau !== null && file_exists($jenisPkm->form_peninjau)){
+            unlink($jenisPkm->form_peninjau);
+        }
+
+        if($jenisPkm->form_administrasi !== null && file_exists($jenisPkm->form_administrasi)){
+            unlink($jenisPkm->form_administrasi);
+        }
+
+        if($jenisPkm->form_substansi !== null && file_exists($jenisPkm->form_substansi)){
+            unlink($jenisPkm->form_substansi);
+        }
+
+        $jenisPkm->delete();
 
         return redirect()->back();
     }
