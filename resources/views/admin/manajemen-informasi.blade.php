@@ -157,7 +157,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  function submit(){
+  function submit(e){
+    e.preventDefault();
+    e.target.disabled = true;
+
     const descriptionText = window.quillDescription.root.innerHTML;
     const description = document.querySelector("input[name='description']");
     const judul = document.getElementById("input_judul").value;
@@ -182,6 +185,7 @@
         title: 'Oops...',
         text: 'Data tidak boleh kosong!',
       })
+      e.target.disabled = false;
 
       return false;
     }

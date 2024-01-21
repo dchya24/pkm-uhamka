@@ -116,7 +116,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button> 
-        <button type="button" class="btn btn-primary" onclick="submit()">
+        <button type="button" class="btn btn-primary" onclick="submit(event)">
           Tambahkan
         </button>
       </div>
