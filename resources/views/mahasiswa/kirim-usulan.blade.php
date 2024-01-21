@@ -624,6 +624,8 @@
           text: "File tidak boleh lebih dari 5 MB",
         });
         anggaran.value = oldAnggaran;
+        btnKirim.disabled = false;
+
         return false;
       }
 
