@@ -54,6 +54,10 @@ class ManajemenProposalController extends Controller
         ];
 
         foreach($request->anggota_kelompok as $key => $item){
+            if($item == null){
+                continue;
+            }
+
             $data["anggota_" . $anggota[$key] . "_id"] = $item;
             $data["tugas_anggota_" . $anggota[$key]] = $request->tugas_anggota[$key];
         }
@@ -110,7 +114,7 @@ class ManajemenProposalController extends Controller
     }
 
     private function uploadFile(UploadedFile $file, $dirpath, $oldPath = ""){
-        if($oldPath != null){
+        if($oldPath != null || $oldPath != ""){
             if(file_exists($oldPath)){
                 unlink($oldPath);
             }

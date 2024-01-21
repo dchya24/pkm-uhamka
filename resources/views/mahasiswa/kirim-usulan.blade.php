@@ -284,7 +284,7 @@
                           >Unggah Lembar Bimbingan</label
                         >
                         <div class="col-xl-10">
-                          <input class="form-control" type="file" id="formFile" name="lembar_bimbingan" />
+                          <input class="form-control" type="file" id="formFile" name="lembar_bimbingan" accept=".pdf" />
                           <label for="">Maks.5 MB | Tipe File : PDF</label>
                         </div>
                       </div>
@@ -561,14 +561,14 @@
 
       const form = document.forms['kirim-usulan'];
       const anggaran = form['anggaran'].value;
-      const lembar_bimbingan = form['lembar_bimbingan'].value;
+      const lembar_bimbingan = form['lembar_bimbingan'];
       const judul = form['judul'].value;
       const pendahuluan = form['pendahuluan'].value;
       const jenis_pkm_id = form['jenis_pkm_id'].value;
       const pembimbing_id = form['pembimbing_id'].value;
 
       if(
-        anggaran == "" || lembar_bimbingan == "" 
+        anggaran == "" || lembar_bimbingan.files.length == 0 
         || judul == "" || pendahuluan == ""
         || jenis_pkm_id == "" || jenis_pkm_id == null
         || pembimbing_id == "" || pembimbing_id == null
@@ -581,6 +581,17 @@
 
           btnKirim.disabled = false;
           return false;
+      }
+
+      var maxSize = 1024 * 1024 * 5; // 5 MB
+
+      if(lembar_bimbingan.files[0].size > maxSize){
+        Swal.fire({
+          title: "Oops!",
+          icon: "error",
+          text: "File tidak boleh lebih dari 5 MB",
+        });
+        return;
       }
 
       if(anggaran < 5000000 || anggaran > 12000000){

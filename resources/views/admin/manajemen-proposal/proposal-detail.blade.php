@@ -67,6 +67,7 @@
             <form 
             method="POST" 
             action="{{route('admin.manajemen-proposal.proposal-update', $usulan->id)}}" 
+            name="form-usulan"
             enctype="multipart/form-data">    
 
               <!-- Proposal Details -->
@@ -310,7 +311,7 @@
                       >Unggah Lembar Bimbingan</label
                     >
                     <div class="col-xl-10">
-                      <input class="form-control" type="file" id="formFile" name="lembar_bimbingan"/>
+                      <input class="form-control" type="file" id="formFile" name="lembar_bimbingan" accept=".pdf" />
                       @if($usulan->lembar_bimbingan)
                         <a href="{{url($usulan->lembar_bimbingan)}}" target="_blank">
                           <?php 
@@ -502,7 +503,7 @@
                           >Upload proposal
                         </label>
                         <div class="col-sm-10">
-                          <input class="form-control" name="lembar_proposal" type="file" id="formFile" />
+                          <input class="form-control" name="lembar_proposal" type="file" id="formFile" accept=".pdf" />
                           @if($usulan->lembar_proposal)
                             <a href="{{ $usulan->lembar_proposal ? url($usulan->lembar_proposal): '#'}}" target="_blank">
                               <?php 
@@ -520,7 +521,7 @@
                           >Upload lembar biodata dosen pembimbing
                         </label>
                         <div class="col-sm-10">
-                          <input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" />
+                          <input class="form-control" type="file" name="lembar_biodata_dospem" id="formFile" accept=".pdf" />
                           @if($usulan->lembar_biodata_dospem)
                             <a href="{{url($usulan->lembar_biodata_dospem)}}" target="_blank">
                               <?php 
@@ -538,7 +539,7 @@
                         >Upload lembar biodata ketua & semua anggota
                       </label>
                       <div class="col-sm-10">
-                        <input class="form-control" type="file" name="lembar_biodata_kelompok" id="formFile" />
+                        <input class="form-control" type="file" name="lembar_biodata_kelompok" id="formFile" accept=".pdf" />
                         @if($usulan->lembar_biodata_kelompok)
                           <a href="{{url($usulan->lembar_biodata_kelompok)}}" target="_blank">
                             <?php 
@@ -555,13 +556,15 @@
                         >Upload lembar pengesahan
                       </label>
                       <div class="col-sm-10">
-                        <input class="form-control" type="file" name='lembar_pengesahan' id="formFile" />
-                        <a href="{{url($usulan->lembar_pengesahan)}}" target="_blank">
-                          <?php 
-                            $file = explode("/", $usulan->lembar_pengesahan);  
-                          ?>
-                          {{$file[2]}}
-                        </a> 
+                        <input class="form-control" type="file" name='lembar_pengesahan' id="formFile" accept=".pdf" />
+                        @if($usulan->lembar_pengesahan)
+                          <a href="{{url($usulan->lembar_pengesahan)}}" target="_blank">
+                            <?php 
+                              $file = explode("/", $usulan->lembar_pengesahan);  
+                            ?>
+                            {{$file[2]}}
+                          </a>
+                        @endif
                       </div>
                     </div>
                     <div class="col-12 d-flex justify-content-between">
@@ -569,7 +572,7 @@
                         <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
                         <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                       </button>
-                      <button class="btn btn-primary btn-next" type="submit">
+                      <button class="btn btn-primary btn-next" type="button" onclick="submit(event)">
                         <span class="align-middle d-sm-inline-block d-none me-sm-1" id="kirim-proposal">Edit usulan</span>
                       </button>
                       
@@ -642,5 +645,42 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
+    <script>
+      function submit(e){
+        e.preventDefault();
+        e.target.disabled = true;
+        document.querySelectorAll("input[type='file']").forEach((item) => {
+          var maxSizeInBytes = 1024 * 1024 * 5; // 5 MB
+          var allowedExtensions = ['pdf'];
+
+          if(item.files.length !== 0){
+            var fileName = item.files[0].name;
+            var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
+
+            if(!allowedExtensions.includes(fileExtension)){
+              Swal.fire({
+                title: "Oops!",
+                text: "File harus berupa pdf",
+                icon: "error",
+              });
+              e.target.disabled = false;
+              return;
+            }
+
+            if(item.files[0].size > maxSizeInBytes){
+              Swal.fire({
+                title: "Oops!",
+                text: "File tidak boleh lebih dari 5 MB",
+                icon: "error",
+              });
+              e.target.disabled = false;
+              return;
+            }
+          }
+        })
+
+        document.forms['form-usulan'].submit();
+      }
+    </script>
   @endsection
 @endsection

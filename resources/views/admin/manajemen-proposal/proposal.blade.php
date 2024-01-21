@@ -197,7 +197,7 @@
                   </td>
                   <td>
                     <a href=
-                      "@if($item->lembar_biodata_anggota) {{url($item->lembar_biodata_anggota)}} @else # @endif" 
+                      "@if($item->lembar_biodata_kelompok) {{url($item->lembar_biodata_kelompok)}} @else # @endif" 
                       target="_blank" rel="noopener noreferrer">
                       Unduh
                     </a>

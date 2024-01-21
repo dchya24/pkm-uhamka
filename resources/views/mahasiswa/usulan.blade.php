@@ -778,7 +778,7 @@
 			return;
 		}
 
-		var maxSizeInBytes = 1024 * 1024 * 5; // 1 MB
+		var maxSizeInBytes = 1024 * 1024 * 5; // 5 MB
 		if (
 			(lembar_pengesahan.files[0].size > maxSizeInBytes) ||
 			(lembar_biodata_dospem.files[0].size > maxSizeInBytes) ||
@@ -812,9 +812,9 @@
 			!allowedExtensions.includes(fileLembarBiodataKelompokExtension)
 		) {
 			Swal.fire({
-			title: "Oops!",
-			text: "File harus berupa pdf",
-			icon: "error",
+				title: "Oops!",
+				text: "File harus berupa pdf",
+				icon: "error",
 			});
 			return;
 		}
