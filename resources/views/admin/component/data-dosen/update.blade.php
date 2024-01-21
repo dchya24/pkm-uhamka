@@ -9,7 +9,11 @@
       <div class="modal-body">
         <div class="mb-4">
           <div class="card-body">
-            <form action="{{ route('admin.data-dosen.update', 12123123) }}" method="POST" name="edit_dosen" id="form-edit">
+            <form 
+              action="{{ route('admin.data-dosen.update', 12123123) }}" 
+              method="POST" 
+              name="edit_dosen" 
+              id="edit_dosen">
               <div class="form-floating form-floating-outline mb-4">
                 <input
                   type="number"
@@ -70,7 +74,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-primary" onclick="submitEdit()">Ubah</button>
+        <button type="submit" class="btn btn-primary" onclick="submitEdit(event)">Ubah</button>
       </div>
     </div>
   </div>

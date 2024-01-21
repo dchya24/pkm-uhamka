@@ -40,15 +40,20 @@
                 class="form-control"
                 placeholder="Masukan NIM kamu"
                 name="nim"
-                autofocus />
+                autofocus required />
               <label for="a_username">Nomor Induk Mahasiswa</label>
             </div>
-            <div class="mb-3">
-                @csrf
-                <button class="btn btn-primary d-grid w-100" type="submit">Verifikasi data</button>                  
-            </div>
+            @csrf
           </form>
 
+          <div class="mb-3">
+            <button 
+              class="btn btn-primary d-grid w-100" 
+              type="button" 
+              onclick="submit(event)">
+              Verifikasi data
+            </button>                  
+          </div>
           <div class="divider my-4">
             <div class="divider-text">Media Sosial Kami</div>
           </div>
@@ -91,14 +96,32 @@
     <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
     @if(Session::has('error'))
       <script>
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: '{{Session::get('error')}}',
-          showCancelButton: false,
-        })
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Oops...',
+        //   text: '{{Session::get('error')}}',
+        //   showCancelButton: false,
+        // })
       </script>
     @endif
+    <script>
+      function submit(e){
+        e.preventDefault();
+        e.target.disabled = true;
+
+        if(document.getElementById('formAuthentication').checkValidity()){
+          document.getElementById('formAuthentication').submit();
+        }
+        else{
+          e.target.disabled = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Data tidak valid!',
+          })
+        }
+      }
+    </script>
 @endsection
 	</body>
 </html>

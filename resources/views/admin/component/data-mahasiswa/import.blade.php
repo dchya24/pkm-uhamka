@@ -31,7 +31,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" onclick="document.forms['import-mahasiswa'].submit()" class="btn btn-primary">Import</button>
+        <button type="button" onclick="importData(event)" class="btn btn-primary">Import</button>
       </div>
     </div>
   </div>

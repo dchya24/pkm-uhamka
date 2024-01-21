@@ -7,7 +7,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{{url('admin.data-mahasiswa.update')}}" method="POST" id="form-edit" name="form-edit">
+        <form 
+          action="{{url('admin.data-mahasiswa.update')}}" 
+          method="POST" id="form-edit" 
+          name="form-edit">
           <div class="mb-4">
             <div class="card-body">
               <div class="form-floating form-floating-outline mb-4">
@@ -70,7 +73,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="submitEdit()">Ubah</button>
+        <button type="button" class="btn btn-primary" onclick="submitEdit(event)">Ubah</button>
       </div>
     </div>
   </div>

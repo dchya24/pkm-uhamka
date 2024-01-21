@@ -182,6 +182,41 @@
         e.target.disabled = false;
       }
     }
+
+    
+    function submitEdit(e){
+      e.preventDefault();
+      e.target.disabled = true;
+
+      if(document.forms["form-edit"].checkValidity()){
+        document.forms["form-edit"].submit();
+      }
+      else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Tidak Boleh Ada Data Yang Kosong",
+          icon: "error",
+        });
+        e.target.disabled = false;
+      }
+    }
+
+    function importData(e){
+      e.preventDefault();
+      e.target.disabled = true;
+
+      if(document.forms['import-mahasiswa'].checkValidity()){
+        document.forms['import-mahasiswa'].submit()
+      }
+      else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Tidak Boleh Ada Data Yang Kosong",
+          icon: "error",
+        });
+        e.target.disabled = false;
+      }
+    }
   </script>
 
   @endsection

@@ -135,39 +135,73 @@
   <script src="{{ asset('dist2/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
 
   <script>
-      function openModal(event){
-        event.preventDefault();
-        const nidn = event.target.getAttribute('data-nidn');
-        const nama = event.target.getAttribute('data-nama');
-        const fakultas = event.target.getAttribute('data-fakultas');
-        const prodi = event.target.getAttribute('data-prodi');
-        const keterangan = event.target.getAttribute('data-keterangan');
+    function openModal(event){
+      event.preventDefault();
+      const nidn = event.target.getAttribute('data-nidn');
+      const nama = event.target.getAttribute('data-nama');
+      const fakultas = event.target.getAttribute('data-fakultas');
+      const prodi = event.target.getAttribute('data-prodi');
+      const keterangan = event.target.getAttribute('data-keterangan');
 
-        document.getElementById("edit_nidn").value = nidn;
-        document.getElementById("edit_nama").value = nama;
-        document.getElementById("edit_fakultas").value = fakultas;
-        document.getElementById("edit_prodi").value = prodi;
-        document.getElementById("edit_keterangan").value = keterangan;
-        const url = window.BASE_URL + `/administrator/data-dosen/${nidn}/update`;
+      document.getElementById("edit_nidn").value = nidn;
+      document.getElementById("edit_nama").value = nama;
+      document.getElementById("edit_fakultas").value = fakultas;
+      document.getElementById("edit_prodi").value = prodi;
+      document.getElementById("edit_keterangan").value = keterangan;
+      const url = window.BASE_URL + `/administrator/data-dosen/${nidn}/update`;
 
-        document.forms["edit_dosen"].action = url;
+      document.forms["edit_dosen"].action = url;
+    }
+
+    function submitAdd(e){
+      e.preventDefault();
+      e.target.disabled = true;
+
+      if(document.getElementById("add-dosen").checkValidity()){
+        document.getElementById("add-dosen").submit();
       }
-
-      function submitAdd(e){
-        e.preventDefault();
-        e.target.disabled = true;
-
-        if(document.getElementById("add-dosen").checkValidity()){
-          document.getElementById("add-dosen").submit();
-        }
-        else {
-          Swal.fire({
-            title: "Oops!",
-            text: "Tidak Boleh Ada Data Yang Kosong",
-            icon: "error",
-          });
-          e.target.disabled = false;
-        }
+      else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Tidak Boleh Ada Data Yang Kosong",
+          icon: "error",
+        });
+        e.target.disabled = false;
       }
+    }
+
+    function submitEdit(e){
+      e.preventDefault();
+      e.target.disabled = true;
+
+      if(document.forms["edit_dosen"].checkValidity()){
+        document.forms["edit_dosen"].submit();
+      }
+      else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Tidak Boleh Ada Data Yang Kosong",
+          icon: "error",
+        });
+        e.target.disabled = false;
+      }
+    }
+
+    function importData(e){
+      e.preventDefault();
+      e.target.disabled = true;
+
+      if(document.forms['import-dosen'].checkValidity()){
+        document.forms['import-dosen'].submit()
+      }
+      else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Tidak Boleh Ada Data Yang Kosong",
+          icon: "error",
+        });
+        e.target.disabled = false;
+      }
+    }
   </script>
 @endsection

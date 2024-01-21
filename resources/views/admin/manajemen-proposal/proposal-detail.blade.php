@@ -297,7 +297,7 @@
                       <input                                 
                         type="text"
                         class="form-control"
-                        id="dengan-rupiah"
+                        id="anggaran"
                         value="{{$usulan->anggaran}}"
                         name="anggaran"
                         step="1" 
@@ -649,6 +649,19 @@
       function submit(e){
         e.preventDefault();
         e.target.disabled = true;
+
+        const anggaran = form['anggaran'].value;
+        if(anggaran < 5000000 || anggaran > 12000000){
+          Swal.fire({
+            title: "Info",
+            text: "Batas anggaran usulan adalah Rp.5.000.000 - Rp.12.000.000",
+            icon: "warning",
+          });
+
+          e.target.disabled = false;
+          return false;
+        }
+
         document.querySelectorAll("input[type='file']").forEach((item) => {
           var maxSizeInBytes = 1024 * 1024 * 5; // 5 MB
           var allowedExtensions = ['pdf'];

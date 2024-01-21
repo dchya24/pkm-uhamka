@@ -20,7 +20,7 @@
               enctype="multipart/form-data">
               <div class="form-floating form-floating-outline mb-4">
                 <input class="form-control" type="file" id="formFile" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
-                name="data_dosen" />
+                name="data_dosen" required />
               </div>
               @csrf
             </form>
@@ -32,7 +32,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Tutup
         </button>
-        <button type="button" class="btn btn-primary" onclick="document.forms['import-dosen'].submit()">Import</button>
+        <button type="button" class="btn btn-primary" onclick="importData(event)">Import</button>
       </div>
     </div>
   </div>
