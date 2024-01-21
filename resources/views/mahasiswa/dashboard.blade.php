@@ -11,30 +11,6 @@
           <div class="col-md-8">
             <div class="card-body">
               <h4 class="card-title">Selamat Datang 🎉</h4>
-              <div class="">
-                @if($usulan->count() > 0)
-                  @if(
-                    $usulan->last()->status_penilaian_substansi !== "mayor"
-                    && $usulan->last()->status_penilaian_substansi !== null 
-                    && $usulan->last()->status_rekomendasi === null)
-                    <span class="badge rounded-pill bg-label-warning text-md-end text-dark">
-                      Usulan {{$usulan->last()->usulan}} : Usulan sedang dinilai, 
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                    </span>
-                  @elseif($usulan->last()->status_rekomendasi !== null || $usulan->last()->status_penilaian_substansi == "mayor")
-                    <span class="badge rounded-pill bg-label-success text-md-end text-dark">
-                      Usulan {{$usulan->last()->usulan}} : Usulan kamu telah dinilai, 
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                    </span>
-                  @else
-                    <span class="badge rounded-pill bg-label-danger text-md-end text-dark">
-                      Usulan {{$usulan->last()->usulan}} : Usulan kamu belum dinilai,
-                      <a href="{{ route('mahasiswa.usulan', 'id='.$usulan->last()->id)}}" type="button" target="_blank">Lihat usulanmu</a>
-                    </span>
-                  @endif
-                @endif
-                <br>
-              </div>
               
               <div class="d-flex justify-content-between pt-3">
                 <div class="d-flex align-items-center gap-3">
