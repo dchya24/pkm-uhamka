@@ -529,7 +529,6 @@
       const nama = text[1].trim();
 
       const preview = `${nama} / ${fakultas} / ${prodi}`;
-      console.log(resultId, preview)
 
       document.getElementById(`result-${resultId}`).innerHTML = preview;
       document.getElementById(`tugas-${resultId}`).innerHTML = `${nim} <br> ${nama}`;
@@ -545,7 +544,7 @@
       const nidn = text[0].trim();
       const nama = text[1].trim();
 
-      console.log(preview)
+      const preview = `${nama} / ${fakultas} / ${prodi}`;
 
       document.getElementById(`result-pembimbing`).innerHTML = preview;
     }
