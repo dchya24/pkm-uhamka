@@ -138,7 +138,7 @@
                       <td>{{$item->jenisPkm->singkatan}}</td>
                       <td>Usulan {{$item->usulan}}</td>
                       <td>{{$item->tahun_pengajuan}}</td>
-                      <td>{{$item->anggaran}}</td>
+                      <td>{{formatRupiah($item->anggaran, true)}}</td>
                       <td>{{$item->ketuaKelompok->nama}}</td>
                       <td>{{$item->pembimbing->nama}}</td>
                     </tr>

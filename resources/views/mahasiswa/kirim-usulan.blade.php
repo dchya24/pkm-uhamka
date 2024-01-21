@@ -1,5 +1,13 @@
 @extends('mahasiswa.template.layout')
 @section("title", "Kirim Usulan | Mahasiswa")
+@section('css')
+  <style>
+    input['type=number']{
+      -moz-appearance:textfield;
+
+    }
+  </style>
+@endsection
 @section('body')
   <!-- Main Content -->
   <div class="container-xxl flex-grow-0 container-p-y">
@@ -53,8 +61,7 @@
                 action="{{ route('mahasiswa.usulan.store')}}" 
                 method="POST" 
                 name="kirim-usulan" 
-                enctype="multipart/form-data"
-                onsubmit="return submitData()">
+                enctype="multipart/form-data">
                 @if(session()->has('error'))
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Oops!</strong> {{session()->get('error')}}
@@ -268,14 +275,18 @@
                           >Anggaran yang diajukan</label
                         >
                         <div class="col-xl-10">
-                          <input                                 
-                            type="number"
-                            name="anggaran"
-                            class="form-control"
-                            id="anggaran"
-                            {{-- min="5000000"
-                            max="12000000" --}}
-                            placeholder="37000000 (contoh)"/>
+                          <div class="input-group">
+                            <div class="input-group-text">Rp.</div>
+                            <input                                 
+                              type="text"
+                              oninput="formatCurrency(event)"
+                              name="anggaran"
+                              class="form-control"
+                              id="anggaran"
+                              {{-- min="5000000"
+                              max="12000000" --}}
+                              placeholder="37000000 (contoh)"/>
+                          </div>
                         </div>
                       </div>
 
@@ -420,6 +431,8 @@
                       </button>
                       <button 
                         class="btn btn-primary"
+                        type="button"
+                        onclick="submitData()"
                         id="btn_kirim">
                         Kirim
                       </button>
@@ -490,6 +503,20 @@
       //   showCancelButton: false,
       // });
     @endif
+
+    function formatCurrency(event) {
+      event.preventDefault();
+        // Remove non-numeric characters
+        let value = event.target.value.replace(/[^0-9.]/g, '');
+
+        // Format as currency for Indonesia (IDR)
+        const formattedValue = new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: 0
+        }).format(value);
+
+        // Update the input value
+        event.target.value = formattedValue.replace('IDR', '');
+    }
   
     function selectAnggota(event){
       const resultId = event.srcElement.getAttribute('id');
@@ -518,7 +545,6 @@
       const nidn = text[0].trim();
       const nama = text[1].trim();
 
-      const preview = `${nama} / ${fakultas} / ${prodi}`;
       console.log(preview)
 
       document.getElementById(`result-pembimbing`).innerHTML = preview;
@@ -560,15 +586,20 @@
       btnKirim.disabled = true;
 
       const form = document.forms['kirim-usulan'];
-      const anggaran = form['anggaran'].value;
+      const anggaran = form['anggaran'];
       const lembar_bimbingan = form['lembar_bimbingan'];
       const judul = form['judul'].value;
       const pendahuluan = form['pendahuluan'].value;
       const jenis_pkm_id = form['jenis_pkm_id'].value;
       const pembimbing_id = form['pembimbing_id'].value;
 
+      const oldAnggaran = anggaran.value
+      const intAnggaran = (anggaran.value.replaceAll(",",""));
+
+      anggaran.value = intAnggaran;
+
       if(
-        anggaran == "" || lembar_bimbingan.files.length == 0 
+        anggaran.value == "" || lembar_bimbingan.files.length == 0 
         || judul == "" || pendahuluan == ""
         || jenis_pkm_id == "" || jenis_pkm_id == null
         || pembimbing_id == "" || pembimbing_id == null
@@ -579,6 +610,7 @@
             icon: "error",
           });
 
+          anggaran.value = oldAnggaran;
           btnKirim.disabled = false;
           return false;
       }
@@ -591,7 +623,8 @@
           icon: "error",
           text: "File tidak boleh lebih dari 5 MB",
         });
-        return;
+        anggaran.value = oldAnggaran;
+        return false;
       }
 
       if(anggaran < 5000000 || anggaran > 12000000){
@@ -601,11 +634,12 @@
           icon: "warning",
         });
 
+        anggaran.value = oldAnggaran;
         btnKirim.disabled = false;
         return false;
       }
 
-      return true;
+      document.forms['kirim-usulan'].submit();
     }
   </script>
 @endsection

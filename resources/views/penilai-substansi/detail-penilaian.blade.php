@@ -201,7 +201,7 @@
 										Anggaran yang diajukan
 									</label>
 									<div class="col-xl-8">
-										<p>: {{$detail->anggaran}}</p>
+										<p>: {{formatRupiah($detail->anggaran, true)}}</p>
 									</div>
 								</div>
 

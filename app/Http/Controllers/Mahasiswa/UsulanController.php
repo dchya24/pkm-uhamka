@@ -46,7 +46,6 @@ class UsulanController extends BaseMahasiswaController
 
     public function store(KirimUsulanRequest $request){
         $user = Auth::guard('mahasiswa')->user();
-
         $anggota = ["satu", "dua", "tiga", "empat"];
 
         $lembar_bimbinan = $request->file('lembar_bimbingan');

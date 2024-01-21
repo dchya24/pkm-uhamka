@@ -294,15 +294,19 @@
                       >Anggaran yang diajukan</label
                     >
                     <div class="col-xl-10">
-                      <input                                 
-                        type="text"
-                        class="form-control"
-                        id="anggaran"
-                        value="{{$usulan->anggaran}}"
-                        name="anggaran"
-                        step="1" 
-                        min="5000000" 
-                        max="12000000"/>
+                      <div class="input-group">
+                        <div class="input-group-text">Rp.</div>
+                        <input                                 
+                          type="text"
+                          oninput="formatCurrency(event)"
+                          class="form-control"
+                          id="anggaran"
+                          value="{{formatRupiah($usulan->anggaran)}}"
+                          name="anggaran"
+                          step="1" 
+                          min="5000000" 
+                          max="12000000"/>
+                      </div>
                     </div>
                   </div>
 
@@ -646,6 +650,21 @@
     <script src="{{ asset('dist2/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
     <script>
+
+      function formatCurrency(event) {
+        event.preventDefault();
+          // Remove non-numeric characters
+          let value = event.target.value.replace(/[^0-9.]/g, '');
+
+          // Format as currency for Indonesia (IDR)
+          const formattedValue = new Intl.NumberFormat('en-US', {
+              minimumFractionDigits: 0
+          }).format(value);
+
+          // Update the input value
+          event.target.value = formattedValue.replace('IDR', '');
+      }
+
       function submit(e){
         e.preventDefault();
         e.target.disabled = true;

@@ -106,7 +106,7 @@
                     {{$item->judul}}
                   </td>
                   <td>{{$item->tahun_pengajuan}}</td>
-                  <td>{{$item->anggaran}}</td>
+                  <td>{{formatRupiah($item->anggaran, true)}}</td>
                   <td>
                     {{$item->pembimbing->nama}}
                   </td>
