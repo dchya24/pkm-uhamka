@@ -217,7 +217,7 @@
                                 name="pembimbing_id"
                                 class="select2-nim form-select form-select-sm"
                                 onchange="selectPembimbing(event)"
-                                id="anggota-5">
+                                id="anggota-5" required>
                                 <option value="">NIDN - NAMA</option>
                                 @foreach ($dataDosen as $item)
                                   <option
@@ -242,7 +242,7 @@
                               id="skema_pkm"
                               class="form-select form-select-xl w-25"
                               name="jenis_pkm_id"
-                              data-allow-clear="true">
+                              data-allow-clear="true" required>
                               <option value="" selected>Singkatan - Jenis PKM</option>
                               @foreach ($jenisPkm as $item)
                                   <option value="{{$item->id}}">{{$item->singkatan}} - {{$item->nama_skema}}</option>
@@ -285,7 +285,7 @@
                               id="anggaran"
                               {{-- min="5000000"
                               max="12000000" --}}
-                              placeholder="37000000 (contoh)"/>
+                              placeholder="37000000 (contoh)" required />
                           </div>
                         </div>
                       </div>
@@ -295,7 +295,7 @@
                           >Unggah Lembar Bimbingan</label
                         >
                         <div class="col-xl-10">
-                          <input class="form-control" type="file" id="formFile" name="lembar_bimbingan" accept=".pdf" />
+                          <input class="form-control" type="file" id="formFile" name="lembar_bimbingan" accept=".pdf" required />
                           <label for="">Maks.5 MB | Tipe File : PDF</label>
                         </div>
                       </div>
@@ -339,7 +339,8 @@
                               class="form-control"
                               id="basic-default-name"
                               name="judul"
-                              placeholder="Masukan Judul Proposal (Tidak boleh lebih dari 20 Kata)" />
+                              placeholder="Masukan Judul Proposal (Tidak boleh lebih dari 20 Kata)"
+                              required />
                           </div>
                       </div>
 
@@ -353,7 +354,8 @@
                               id="exampleFormControlTextarea1"
                               name="pendahuluan"
                               rows="15"
-                              placeholder="Isian disesuaikan dengan skema yang diusulkan"></textarea>
+                              placeholder="Isian disesuaikan dengan skema yang diusulkan"
+                              required></textarea>
                           </div>
                         </div>
 
@@ -368,7 +370,8 @@
                               id="exampleFormControlTextarea1"
                               rows="10"
                               name="tugas_ketua"
-                              placeholder="Jabarkan secara rinci & jelas tugas Ketua Kelompok!"></textarea>
+                              placeholder="Jabarkan secara rinci & jelas tugas Ketua Kelompok!"
+                              required></textarea>
                           </div>
                         </div>
                         <div class="row mb-3">
@@ -533,6 +536,7 @@
       document.getElementById(`result-${resultId}`).innerHTML = preview;
       document.getElementById(`tugas-${resultId}`).innerHTML = `${nim} <br> ${nama}`;
       document.getElementById(`textarea-tugas-${resultId}`).disabled = false;
+      document.getElementById(`textarea-tugas-${resultId}`).required = true;
     }
 
     function selectPembimbing(event){
@@ -597,11 +601,14 @@
 
       anggaran.value = intAnggaran;
 
+      const formValid = document.forms['kirim-usulan'].checkValidity()
+
       if(
         anggaran.value == "" || lembar_bimbingan.files.length == 0 
         || judul == "" || pendahuluan == ""
         || jenis_pkm_id == "" || jenis_pkm_id == null
         || pembimbing_id == "" || pembimbing_id == null
+        || !formValid
       ){
           Swal.fire({
             title: "Oops!",
