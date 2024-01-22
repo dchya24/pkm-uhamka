@@ -668,8 +668,11 @@
       function submit(e){
         e.preventDefault();
         e.target.disabled = true;
+        const anggaran = document.getElementById('anggaran');
 
-        const anggaran = form['anggaran'].value;
+        const oldAnggaran = anggaran.value
+        const intAnggaran = (anggaran.value.replaceAll(",",""));
+
         if(anggaran < 5000000 || anggaran > 12000000){
           Swal.fire({
             title: "Info",
@@ -677,6 +680,7 @@
             icon: "warning",
           });
 
+          anggaran.value = oldAnggaran;
           e.target.disabled = false;
           return false;
         }
@@ -695,6 +699,7 @@
                 text: "File harus berupa pdf",
                 icon: "error",
               });
+              anggaran.value = oldAnggaran;
               e.target.disabled = false;
               return;
             }
@@ -705,6 +710,7 @@
                 text: "File tidak boleh lebih dari 5 MB",
                 icon: "error",
               });
+              anggaran.value = oldAnggaran;
               e.target.disabled = false;
               return;
             }
