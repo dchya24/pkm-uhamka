@@ -497,16 +497,6 @@
   {{-- <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> --}}
 
   <script>
-    @if($canCreateUsulan)
-      // Swal.fire({
-      //   title: "Info",
-      //   text: "Batas anggaran usulan adalah Rp.5.000.000 - Rp.12.000.000",
-      //   icon: "info",
-      //   showDenyButton: false,
-      //   showCancelButton: false,
-      // });
-    @endif
-
     function formatCurrency(event) {
       event.preventDefault();
         // Remove non-numeric characters

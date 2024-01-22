@@ -61,9 +61,6 @@
             </div>
           </div>
           <div class="bs-stepper-content">
-
-
-            
             <form 
             method="POST" 
             action="{{route('admin.manajemen-proposal.proposal-update', $usulan->id)}}" 
@@ -103,6 +100,7 @@
                                 <option
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
+                                  data-nim="{{$item->nim}}"
                                   data-prodi="{{$item->prodi}}"
                                   @if($item->id == $usulan->getAnggotaSatu()->id)
                                   selected @endif> 
@@ -135,6 +133,7 @@
                                 <option
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
+                                  data-nim="{{$item->nim}}"
                                   data-prodi="{{$item->prodi}}"
                                   @if($item->id == $usulan->getAnggotaDua()->id)
                                   selected @endif> 
@@ -144,7 +143,7 @@
                           </select>
                       </div>
                     </div>
-                    <div class="col-xl-8 d-flex" id="result-anggota-1">
+                    <div class="col-xl-8 d-flex" id="result-anggota-2">
                       :
                       @if($usulan->anggota_dua_id)
                         <p>&nbsp;{{$usulan->getAnggotaDua()->nim}} &nbsp;</p>
@@ -168,6 +167,7 @@
                                 <option
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
+                                  data-nim="{{$item->nim}}"
                                   data-prodi="{{$item->prodi}}"
                                   @if($item->id == $usulan->getAnggotaTiga()->id)
                                   selected @endif> 
@@ -201,6 +201,7 @@
                                 <option
                                   value="{{$item->id}}"
                                   data-fakultas="{{$item->fakultas}}"
+                                  data-nim="{{$item->nim}}"
                                   data-prodi="{{$item->prodi}}"
                                   @if($item->id == $usulan->getAnggotaEmpat()->id)
                                   selected @endif> 
@@ -412,50 +413,54 @@
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 1 <p> {{$usulan->getAnggotaSatu()->nim}} <br> {{$usulan->getAnggotaSatu()->nama}}</p>
+													>Tugas Anggota 1 <p id="tugas-anggota-1"> {{$usulan->getAnggotaSatu()->nim}} <br> {{$usulan->getAnggotaSatu()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
                             class="form-control"
-                            id="exampleFormControlTextarea1"
+                            id="textarea-tugas-anggota-1"
                             name="tugas_anggota[]"
-                            rows="10">{{$usulan->tugas_anggota_satu}}</textarea>
+                            rows="10" 
+                            @if($usulan->anggota_satu_id == null) disabled @endif>{{$usulan->tugas_anggota_satu}}</textarea>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 2 <p> {{$usulan->getAnggotaDua()->nim}} <br> {{$usulan->getAnggotaDua()->nama}}</p>
+													>Tugas Anggota 2 <p id="tugas-anggota-2"> {{$usulan->getAnggotaDua()->nim}} <br> {{$usulan->getAnggotaDua()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
                             class="form-control"
-                            id="exampleFormControlTextarea1"
+                            id="textarea-tugas-anggota-2"
                             name="tugas_anggota[]"
-                            rows="10">{{ $usulan->tugas_anggota_dua }}</textarea>
+                            rows="10"
+                            @if($usulan->anggota_dua_id == null) disabled @endif>{{ $usulan->tugas_anggota_dua }}</textarea>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 3 <p> {{$usulan->getAnggotaTiga()->nim}} <br> {{$usulan->getAnggotaTiga()->nama}}</p>
+													>Tugas Anggota 3 <p id="tugas-anggota-3"> {{$usulan->getAnggotaTiga()->nim}} <br> {{$usulan->getAnggotaTiga()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
                             class="form-control"
-                            id="exampleFormControlTextarea1"
+                            id="textarea-tugas-anggota-3"
                             name="tugas_anggota[]"
-                            rows="10">{{$usulan->tugas_anggota_tiga}}</textarea>
+                            rows="10"
+                            @if($usulan->anggota_tiga_id == null) disabled @endif>{{$usulan->tugas_anggota_tiga}}</textarea>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <label class="col-xl-2 col-form-label fw-bold" for="basic-default-name"
-													>Tugas Anggota 4  <p> {{$usulan->getAnggotaEmpat()->nim}} <br> {{$usulan->getAnggotaEmpat()->nama}}</p>
+													>Tugas Anggota 4  <p id="tugas-anggota-4"> {{$usulan->getAnggotaEmpat()->nim}} <br> {{$usulan->getAnggotaEmpat()->nama}}</p>
 												</label>
                         <div class="col-xl-10">
                           <textarea
                             class="form-control"
-                            id="exampleFormControlTextarea1"
+                            id="textarea-tugas-anggota-4"
                             name="tugas_anggota[]"
-                            rows="10">{{$usulan->tugas_anggota_empat}}</textarea>
+                            rows="10"
+                            @if($usulan->anggota_empat_id == null) disabled @endif>{{$usulan->tugas_anggota_empat}}</textarea>
                         </div>
                       </div>
                   
@@ -571,6 +576,8 @@
                         @endif
                       </div>
                     </div>
+                    
+                  
                     <div class="col-12 d-flex justify-content-between">
                       <button type="button" class="btn btn-outline-secondary btn-prev">
                         <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
@@ -651,6 +658,38 @@
     <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
     <script>
 
+      function selectAnggota(event){
+        const resultId = event.srcElement.getAttribute('id');
+        const target = event.target[event.target.selectedIndex];
+        const id = target.getAttribute('data-id');
+        const fakultas = target.getAttribute('data-fakultas');
+        const prodi = target.getAttribute('data-prodi');
+        const text = target.text.split("-")
+        const nim = text[0].trim();
+        const nama = text[1].trim();
+
+        const preview = `${nim} / ${nama} / ${fakultas} / ${prodi}`;
+
+        document.getElementById(`result-${resultId}`).innerHTML = preview;
+        document.getElementById(`tugas-${resultId}`).innerHTML = `${nim} <br> ${nama}`;
+        document.getElementById(`textarea-tugas-${resultId}`).disabled = false;
+        document.getElementById(`textarea-tugas-${resultId}`).required = true;
+      }
+
+      function selectPembimbing(event){
+        const target = event.target[event.target.selectedIndex];
+        const id = target.getAttribute('data-id');
+        const fakultas = target.getAttribute('data-fakultas');
+        const prodi = target.getAttribute('data-prodi');
+        const text = target.text.split("-")
+        const nidn = text[0].trim();
+        const nama = text[1].trim();
+
+        const preview = `${nama} / ${fakultas} / ${prodi}`;
+
+        document.getElementById(`result-pembimbing`).innerHTML = preview;
+      }
+      
       function formatCurrency(event) {
         event.preventDefault();
           // Remove non-numeric characters
@@ -669,9 +708,22 @@
         e.preventDefault();
         e.target.disabled = true;
         const anggaran = document.getElementById('anggaran');
+        const form =  document.forms['form-usulan'];
 
         const oldAnggaran = anggaran.value
         const intAnggaran = (anggaran.value.replaceAll(",",""));
+        anggaran.value = intAnggaran;
+        const formValid = form.checkValidity();
+
+        if(!formValid){
+          e.target.disabled = false;
+          Swal.fire({
+            title: "Info",
+            text: "Tugas Anggota Tidak boleh kosong",
+            icon: "warning",
+          });
+          return false;
+        }
 
         if(anggaran < 5000000 || anggaran > 12000000){
           Swal.fire({
@@ -716,9 +768,10 @@
             }
           }
         })
-
         document.forms['form-usulan'].submit();
+
       }
     </script>
+
   @endsection
 @endsection

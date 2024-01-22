@@ -39,6 +39,7 @@ class ManajemenProposalController extends Controller
     }
 
     public function update(Request $request, $id){
+        $anggaran = str_replace(",", "", $request->anggaran);
         $usulan = usulan::find($id);
         $anggota = ["satu", "dua", "tiga", "empat"];
 
@@ -46,7 +47,7 @@ class ManajemenProposalController extends Controller
             "judul" => $request->judul,
             "pendahuluan" => $request->pendahuluan,
             "jenis_pkm_id" => $request->jenis_pkm_id,
-            "anggaran" => $request->anggaran,
+            "anggaran" => $anggaran,
             "tahun_pengajuan" => $request->has('tahun_pengajuan') ? $request->tahun_pengajuan : date("Y"),
             "pembimbing_id" => $request->pembimbing_id,
             "tugas_ketua_kelompok" => $request->tugas_ketua,
