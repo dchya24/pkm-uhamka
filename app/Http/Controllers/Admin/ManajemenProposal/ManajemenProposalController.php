@@ -56,6 +56,8 @@ class ManajemenProposalController extends Controller
 
         foreach($request->anggota_kelompok as $key => $item){
             if($item == null){
+                $data["anggota_" . $anggota[$key] . "_id"] = null;
+                $data["tugas_anggota_" . $anggota[$key]] = null;
                 continue;
             }
 

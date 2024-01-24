@@ -303,10 +303,7 @@
                           class="form-control"
                           id="anggaran"
                           value="{{formatRupiah($usulan->anggaran)}}"
-                          name="anggaran"
-                          step="1" 
-                          min="5000000" 
-                          max="12000000"/>
+                          name="anggaran"  />
                       </div>
                     </div>
                   </div>
@@ -466,7 +463,7 @@
                   
                 </div>
                 <div class="col-12 d-flex justify-content-between">
-                    <button class="btn btn-outline-secondary btn-prev">
+                    <button class="btn btn-outline-secondary btn-prev" type="button">
                       <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
                       <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                     </button>
@@ -579,11 +576,12 @@
                     
                   
                     <div class="col-12 d-flex justify-content-between">
+                      @csrf
                       <button type="button" class="btn btn-outline-secondary btn-prev">
                         <i class="mdi mdi-arrow-left me-sm-1 me-0"></i>
                         <span class="align-middle d-sm-inline-block d-none">Sebelumnya</span>
                       </button>
-                      <button class="btn btn-primary btn-next" type="button" onclick="submit(event)">
+                      <button class="btn btn-primary" type="button" onclick="editUsulan(event)">
                         <span class="align-middle d-sm-inline-block d-none me-sm-1" id="kirim-proposal">Edit usulan</span>
                       </button>
                       
@@ -591,7 +589,6 @@
                   </div>
                 </div>
               </div>
-              @csrf
             </form>
           </div>
         </div>
@@ -668,12 +665,25 @@
         const nim = text[0].trim();
         const nama = text[1].trim();
 
-        const preview = `${nim} / ${nama} / ${fakultas} / ${prodi}`;
+        let preview = ": ";
+        if(nim != null && nama != null && fakultas != null && prodi != null){
+          preview += `${nim} / ${nama} / ${fakultas} / ${prodi}`;
+        }
 
         document.getElementById(`result-${resultId}`).innerHTML = preview;
         document.getElementById(`tugas-${resultId}`).innerHTML = `${nim} <br> ${nama}`;
-        document.getElementById(`textarea-tugas-${resultId}`).disabled = false;
-        document.getElementById(`textarea-tugas-${resultId}`).required = true;
+
+        if(event.target.value == ""){
+          document.getElementById(`tugas-${resultId}`).innerHTML = "";
+          document.getElementById(`textarea-tugas-${resultId}`).disabled = true;
+          document.getElementById(`textarea-tugas-${resultId}`).required = false;
+          return;
+        }
+        else {
+          document.getElementById(`textarea-tugas-${resultId}`).disabled = false;
+          document.getElementById(`textarea-tugas-${resultId}`).required = true;
+        }
+        
       }
 
       function selectPembimbing(event){
@@ -699,12 +709,13 @@
           const formattedValue = new Intl.NumberFormat('en-US', {
               minimumFractionDigits: 0
           }).format(value);
+          console.log(formattedValue);
 
           // Update the input value
           event.target.value = formattedValue.replace('IDR', '');
       }
 
-      function submit(e){
+      function editUsulan(e){
         e.preventDefault();
         e.target.disabled = true;
         const anggaran = document.getElementById('anggaran');
@@ -723,9 +734,11 @@
             icon: "warning",
           });
           return false;
+          
         }
+        console.log(anggaran.value < 5000000);
 
-        if(anggaran < 5000000 || anggaran > 12000000){
+        if(intAnggaran < 5000000 || intAnggaran > 12000000){
           Swal.fire({
             title: "Info",
             text: "Batas anggaran usulan adalah Rp.5.000.000 - Rp.12.000.000",
