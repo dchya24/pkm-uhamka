@@ -377,7 +377,7 @@
 										
 										@if($detail->status_penilaian_substansi == 'minor' || $detail->status_penilaian_substansi == "mayor") 
 											<Label class="fw-bold">Unduh nilai : 
-												<a href="{{url($usulan->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+												<a href="{{url($detail->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 													<i class="mdi mdi-file"></i> Unduh
 												</a> 
 											</Label>
