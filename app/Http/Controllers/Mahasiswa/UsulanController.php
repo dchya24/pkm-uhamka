@@ -28,7 +28,7 @@ class UsulanController extends BaseMahasiswaController
         $canCreateUsulan = empty($oldUsulan) ? true : false;
 
         $dataMahasiswa = DataMahasiswa::where('keterangan', 1)->get();
-        $jenisPkm = JenisPkm::all();
+        $jenisPkm = JenisPkm::where('keterangan', 1)->get();
         $penilai = Penilai::select('id')->get();
         $user = Auth::guard('mahasiswa')->user();
         

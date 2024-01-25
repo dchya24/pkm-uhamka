@@ -24,7 +24,7 @@ class ManajemenProposalController extends Controller
     public function show($id){
         $usulan = usulan::find($id);
         $dataMahasiswa = DataMahasiswa::where('keterangan', 1)->get();
-        $jenisPkm = JenisPkm::all();
+        $jenisPkm = JenisPkm::where('keterangan', 1)->get();
         $penilai = Penilai::select('id')->get();
         $user = Auth::guard('mahasiswa')->user();
         
