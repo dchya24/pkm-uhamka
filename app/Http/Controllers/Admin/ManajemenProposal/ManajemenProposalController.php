@@ -24,7 +24,7 @@ class ManajemenProposalController extends Controller
     public function show($id){
         $usulan = usulan::find($id);
         $dataMahasiswa = DataMahasiswa::where('keterangan', 1)->get();
-        $jenisPkm = JenisPkm::where('keterangan', 1)->get();
+        $jenisPkm = JenisPkm::all();
         $penilai = Penilai::select('id')->get();
         $user = Auth::guard('mahasiswa')->user();
         
@@ -33,7 +33,9 @@ class ManajemenProposalController extends Controller
             array_push($idsPenilai, $item->id);
         }
 
-        $dataDosen = DataDosen::whereNotIn('id', $idsPenilai)->get();
+        $dataDosen = DataDosen::whereNotIn('id', $idsPenilai)
+            ->where('keterangan', 1)
+            ->get();
 
         return view('admin.manajemen-proposal.proposal-detail', compact('usulan', 'dataMahasiswa', 'jenisPkm', 'dataDosen', 'user'));
     }

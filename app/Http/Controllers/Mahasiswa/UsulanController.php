@@ -28,7 +28,7 @@ class UsulanController extends BaseMahasiswaController
         $canCreateUsulan = empty($oldUsulan) ? true : false;
 
         $dataMahasiswa = DataMahasiswa::where('keterangan', 1)->get();
-        $jenisPkm = JenisPkm::where('keterangan', 1)->get();
+        $jenisPkm = JenisPkm::all();
         $penilai = Penilai::select('id')->get();
         $user = Auth::guard('mahasiswa')->user();
         
@@ -37,7 +37,10 @@ class UsulanController extends BaseMahasiswaController
             array_push($idsPenilai, $item->id);
         }
 
-        $dataDosen = DataDosen::whereNotIn('id', $idsPenilai)->get();
+        $dataDosen = DataDosen::whereNotIn('id', $idsPenilai)
+            ->where('keterangan', 1)
+            ->get();
+            
         return view("mahasiswa.kirim-usulan", compact(
             "dataMahasiswa", "jenisPkm", "dataDosen", "user" , "canCreateUsulan", "oldUsulan",
             "aksesHalaman"
