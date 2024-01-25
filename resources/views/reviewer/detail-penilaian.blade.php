@@ -339,9 +339,9 @@
 											@endif
 										</p>
 										
-										@if($detail->status_penilaian_substansi !== 'sedang dinilai' && $detail->penilai_substansi_id !== null) 
+										@if($detail->status_penilaian_substansi == 'mayor' || $detail->status_penilaian_substansi !== "minor") 
 											<Label class="fw-bold">Unduh nilai : 
-												<a href="/assets/pdf/HASIL_SUB_VGK122.pdf" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
+												<a href="{{url($usulan->form_penilaian_substansi)}}" type="button" class="btn rounded-pill btn-primary btn-sm" target="_blank">
 													<i class="mdi mdi-file"></i> Unduh
 												</a> 
 											</Label>
