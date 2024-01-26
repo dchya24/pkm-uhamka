@@ -77,7 +77,7 @@
                         Edit
                       </button>
 
-                      <form action=" {{route('admin.data-dosen.delete', $item->nidn)}}" method="POST" onsubmit="confirm()">
+                      <form action=" {{route('admin.data-dosen.delete', $item->nidn)}}" method="POST" onsubmit="return confirm()">
                         {{ csrf_field() }}
                         @method('delete')
                         <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
@@ -135,6 +135,23 @@
   <script src="{{ asset('dist2/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
 
   <script>
+    function confirm(){
+      Swal.fire({
+        title: "Apakah yakin menghapus data dosen ini?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: "Hapus"
+      })
+      .then((result) => {
+        if(result.isConfirmerd){
+          return true;
+        }
+        else{
+          return false;
+        }
+      })
+    }
+
     function openModal(event){
       event.preventDefault();
       const nidn = event.target.getAttribute('data-nidn');

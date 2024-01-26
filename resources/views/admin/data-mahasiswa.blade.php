@@ -78,10 +78,10 @@
                         Edit
                       </button>
 
-                      <form action="{{route('admin.data-mahasiswa.delete', $item->nim)}}" method="POST" onsubmit="confirm()">
+                      <form action="{{route('admin.data-mahasiswa.delete', $item->nim)}}" method="POST" onsubmit="return confirm()">
                         {{ csrf_field() }}
                         @method('delete')
-                        <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
+                        <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
                             Hapus
                         </button>
                       </form>
@@ -144,6 +144,9 @@
       .then((result) => {
         if(result.isConfirmerd){
           return true;
+        }
+        else{
+          return false;
         }
       })
     }
