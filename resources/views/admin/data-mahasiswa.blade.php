@@ -78,10 +78,13 @@
                         Edit
                       </button>
 
-                      <form action="{{route('admin.data-mahasiswa.delete', $item->nim)}}" method="POST" onsubmit="return confirm()">
+                      <form 
+                        action="{{route('admin.data-mahasiswa.delete', $item->nim)}}" 
+                        method="POST"
+                        id="delete-mahasiswa-{{$item->id}}">
                         {{ csrf_field() }}
                         @method('delete')
-                        <button type="button" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
+                        <button type="button" onclick="confirm({{$item->id}})" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
                             Hapus
                         </button>
                       </form>
@@ -134,7 +137,7 @@
   <script src="{{ asset('dist2/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
   
   <script>
-    function confirm(){
+    function confirm(id){
       Swal.fire({
         title: "Apakah yakin menghapus data mahasiswa ini?",
         icon: 'warning',
@@ -142,7 +145,8 @@
         confirmButtonText: "Hapus"
       })
       .then((result) => {
-        if(result.isConfirmerd){
+        if(result.isConfirmed){
+          document.getElementById(`delete-mahasiswa-${id}`).submit();
           return true;
         }
         else{

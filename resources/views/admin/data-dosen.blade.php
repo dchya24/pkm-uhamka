@@ -77,7 +77,10 @@
                         Edit
                       </button>
 
-                      <form action=" {{route('admin.data-dosen.delete', $item->nidn)}}" method="POST" onsubmit="return confirm()">
+                      <form 
+                        action="{{route('admin.data-dosen.delete', $item->nidn)}}" 
+                        method="POST" 
+                        id="delete-dosen-{{$item->id}}">
                         {{ csrf_field() }}
                         @method('delete')
                         <button type="submit" class="btn btn-sm rounded-pill btn-danger waves-effect waves-light mt-1">
@@ -143,7 +146,8 @@
         confirmButtonText: "Hapus"
       })
       .then((result) => {
-        if(result.isConfirmerd){
+        if(result.isConfirmed){
+          document.getElementById(`delete-dosen-${id}`).submit();
           return true;
         }
         else{
