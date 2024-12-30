@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DataDosenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
+use App\Http\Controllers\Api\DataMahasiswaController as ApiDataMahasiswaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get("dosen", [DataDosenController::class, "apiDataDosen"]);
 Route::get("mahasiswa", [DataMahasiswaController::class, "apiDataMahasiswa"]);
+Route::get("data-mahasiswa", [ApiDataMahasiswaController::class, "getApi"])->name("api.data.mahasiswa");

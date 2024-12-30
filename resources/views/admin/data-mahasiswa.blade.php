@@ -37,7 +37,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table id="example1" class="table table-bordered table-striped text-center">
+          <table id="data-mahasiswa" class="table table-bordered table-striped text-center">
             <thead>
               <tr class="text-center">
                 <th>NIM</th>
@@ -49,7 +49,7 @@
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              @forelse ($mahasiswa as $item)
+              {{-- @forelse ($mahasiswa as $item)
                   <tr class="text-center">
                     <td>{{$item->nim }}</td>
                     <td> {{$item->nama}} </td>
@@ -95,7 +95,7 @@
                   <tr>
                     <td colspan="5" class="text-center"> No Data! </td>
                   </tr>
-              @endforelse
+              @endforelse --}}
             </tbody>
           </table>
         </div>
@@ -224,6 +224,36 @@
         e.target.disabled = false;
       }
     }
+
+    $(document).ready(function() {
+      $('#data-mahasiswa').DataTable({
+        "serverSide": true,
+        "ajax": {
+          "url": "{{ route('api.data.mahasiswa') }}",
+          "dataSrc": function ( json ) {      
+            return json.data.data;
+          }
+        },
+        "columns": [
+          { "data": "nim" },
+          { "data": "nama" },
+          { "data": "fakultas" },
+          { "data": "prodi" },
+          { "data": "keterangan" },
+          { "data": "keterangan" }
+        ],
+        "paging": true,
+        "processing": true,
+        "searching": true,
+        "ordering": true,
+        "language": {
+          "paginate": {
+            "next": '<span class="p-1">Selanjutnya</span>',
+            "previous": '<span class="p-1">Sebelumnya</span>'
+          }
+        }
+      });
+    });
   </script>
 
   @endsection
